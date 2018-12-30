@@ -1,0 +1,31 @@
+{
+  "name": "@awesome-fe/translate",
+  "description": "Translate utils (ts only)",
+  "main": "src/index.ts",
+  "version": "0.0.1",
+  "author": "Zhicheng Wang<asnowwolf@gmail.com>",
+  "homepage": "https://github.com/angular-cn/translate",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/angular-cn/translate.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/angular-cn/translate/issues"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/jsdom": "^12.2.1",
+    "@types/mdast": "^3.0.1",
+    "@types/node": "^9.6.41",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "ts-node": "^5.0.1",
+    "tslint": "^5.12.0",
+    "typescript": "^3.2.2"
+  },
+  "dependencies": {
+    "jsdom": "^13.1.0",
+    "request": "^2.88.0"
+  }
+}
