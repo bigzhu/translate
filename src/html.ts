@@ -69,10 +69,11 @@ export function restructureTable(node: ParentNode): void {
 }
 
 function mergeRows(originRow: HTMLTableRowElement, translationRow: HTMLTableRowElement): void {
-  const document = originRow.ownerDocument!;
   if (originRow.cells.length !== translationRow.cells.length) {
-    throw 'Origin row must have same cells count with translation row!';
+    console.warn('Origin row must have same cells count with translation row!');
+    return;
   }
+  const document = originRow.ownerDocument!;
   for (let i = 0; i < originRow.cells.length; ++i) {
     const originCell = originRow.cells.item(i)!;
     const translationCell = translationRow.cells.item(i)!;
