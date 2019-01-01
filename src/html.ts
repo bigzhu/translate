@@ -1,7 +1,8 @@
-export function markAndSwapAll(body: HTMLElement): void {
+export const defaultElements = ['p,h1,h2,h3,h4,h5,h6,header', 't,span,a'];
+
+export function markAndSwapAll(body: HTMLElement, selectorGroups: string[] = defaultElements): void {
   restructureTable(body);
-  mark(body, 'p,h1,h2,h3,h4,h5,h6,header');
-  mark(body, 't,span,a');
+  selectorGroups.forEach(selectors => mark(body, selectors));
   swap(body);
 }
 
