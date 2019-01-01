@@ -11,7 +11,7 @@ export function mark(node: ParentNode, selector: string): void {
   elements.forEach(node => {
     if (containsChinese(node.textContent!)) {
       const prev = node.previousElementSibling;
-      if (prev && prev.tagName === node.tagName && !containsChinese(prev.textContent!)) {
+      if (prev && prev.nextElementSibling === node && !containsChinese(prev.textContent!)) {
         node.setAttribute('translation-result', 'on');
         prev.setAttribute('translation-origin', 'off');
         // 交换 id，中文内容应该占用原文的 id
@@ -23,6 +23,13 @@ export function mark(node: ParentNode, selector: string): void {
         const href = prev.getAttribute('href');
         if (href) {
           node.setAttribute('href', href);
+        }
+        if (node.tagName.match(/H[1-6]/)) {
+          const prevAnchor = prev.querySelector('a[href]');
+          const nodeAnchor = node.querySelector('a[href]');
+          if (prevAnchor && nodeAnchor && containsChinese(nodeAnchor.getAttribute('href')!)) {
+            nodeAnchor.setAttribute('href', prevAnchor.getAttribute('href')!);
+          }
         }
       }
     }

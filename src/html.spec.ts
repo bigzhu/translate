@@ -67,9 +67,9 @@ describe('html', function () {
 </table>`);
   });
   it('should mark and swap translation and origin', () => {
-    const dom = new JSDOM(`<p>a</p><p>one</p><p>一</p><script>const a = 1;</script>`);
+    const dom = new JSDOM(`<p id="a">a</p><p id="one">one</p><p id="一">一</p><script>const a = 1;</script>`);
     const body = dom.window.document.body;
     markAndSwapAll(body);
-    expect(body.innerHTML).eql(`<p>a</p><p translation-result="on">一</p><p translation-origin="off">one</p><script>const a = 1;</script>`);
+    expect(body.innerHTML).eql(`<p id="a">a</p><p id="one" translation-result="on">一</p><p translation-origin="off">one</p><script>const a = 1;</script>`);
   });
 });
