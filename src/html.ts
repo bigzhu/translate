@@ -38,7 +38,7 @@ export function restructureTable(node: ParentNode): void {
     for (let i = 0; i < rows.length - 1; ++i) {
       const thisRow = rows.item(i) as HTMLTableRowElement;
       const nextRow = rows.item(i + 1) as HTMLTableRowElement;
-      if (containsChinese(nextRow.textContent!!)) {
+      if (containsChinese(nextRow.textContent!!) && !containsChinese(thisRow.textContent!!)) {
         translationRows.push(nextRow);
         mergeRows(thisRow, nextRow);
       }
