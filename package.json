@@ -4,14 +4,14 @@
   "main": "./dist/index.js",
   "version": "0.0.4",
   "author": "Zhicheng Wang<asnowwolf@gmail.com>",
-  "homepage": "https://github.com/angular-cn/translate",
+  "homepage": "https://github.com/asnowwolf/translate",
   "repository": {
     "type": "git",
-    "url": "https://github.com/angular-cn/translate.git"
+    "url": "https://github.com/asnowwolf/translate.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/angular-cn/translate/issues"
+    "url": "https://github.com/asnowwolf/translate/issues"
   },
   "scripts": {
     "prepublish": "rm -fr dist && tsc"
