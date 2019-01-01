@@ -14,7 +14,7 @@
     "url": "https://github.com/angular-cn/translate/issues"
   },
   "scripts": {
-    "publish": "rm -fr dist && tsc && npm publish --access public"
+    "prepublish": "rm -fr dist && tsc"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
