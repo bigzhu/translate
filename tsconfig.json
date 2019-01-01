@@ -1,9 +1,11 @@
 {
-  "compileOnSave": false,
+  "compileOnSave": true,
   "compilerOptions": {
     "strict": true,
     "noImplicitAny": false,
+    "outDir": "dist",
     "baseUrl": "src",
+    "module": "commonjs",
     "sourceMap": true,
     "declaration": true,
     "moduleResolution": "node",

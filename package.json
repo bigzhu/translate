@@ -1,8 +1,8 @@
 {
   "name": "@awesome-fe/translate",
   "description": "Translate utils (ts only)",
-  "main": "src/index.ts",
-  "version": "0.0.2",
+  "main": "./dist/index.js",
+  "version": "0.0.3",
   "author": "Zhicheng Wang<asnowwolf@gmail.com>",
   "homepage": "https://github.com/angular-cn/translate",
   "repository": {
@@ -12,6 +12,9 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/angular-cn/translate/issues"
+  },
+  "scripts": {
+    "publish": "tsc && npm publish --access public"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
