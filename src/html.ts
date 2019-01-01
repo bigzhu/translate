@@ -29,17 +29,37 @@ export function mark(node: ParentNode, selector: string): void {
   });
 }
 
+function shouldMergeTable(element: HTMLTableElement): boolean {
+  return element.getAttribute('translation-merge-rows') === 'no';
+}
+
+function shouldMergeRow(element: HTMLTableRowElement): boolean {
+  if (element.getAttribute('translation-merge-rows') === 'no') {
+    return false;
+  }
+  // 如果内部有 p 元素，则禁止自动合并
+  for (let i = 0; i < element.cells.length; ++i) {
+    if (element.cells.item(i)!.querySelector('p')) {
+      return false;
+    }
+  }
+  return true;
+}
+
 // 重塑表格结构
 export function restructureTable(node: ParentNode): void {
   const items = node.querySelectorAll('table');
   items.forEach(table => {
+    if (shouldMergeTable(table)) {
+      return;
+    }
     // 对出现在 thead 的行和出现在 tbody 的行进行统一处理
     const rows = table.querySelectorAll('* > tr');
     const translationRows: HTMLElement[] = [];
     for (let i = 0; i < rows.length - 1; ++i) {
       const thisRow = rows.item(i) as HTMLTableRowElement;
       const nextRow = rows.item(i + 1) as HTMLTableRowElement;
-      if (containsChinese(nextRow.textContent!!) && !containsChinese(thisRow.textContent!!)) {
+      if (shouldMergeRow(nextRow) && containsChinese(nextRow.textContent!!) && !containsChinese(thisRow.textContent!!)) {
         translationRows.push(nextRow);
         mergeRows(thisRow, nextRow);
       }

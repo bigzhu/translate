@@ -25,6 +25,16 @@ describe('html', function () {
   <td>三</td>
   <td>四</td>
 </tr>
+<tr>
+  <td>
+    <p>five</p>
+    <p>五</p>
+  </td>
+  <td>
+    <p>six</p>
+    <p>六</p>
+  </td>
+</tr>
 </tbody>
 </table>`);
     const body = dom.window.document.body;
@@ -43,6 +53,16 @@ describe('html', function () {
   <td><p>four</p><p>四</p></td>
 </tr>
 
+<tr>
+  <td>
+    <p>five</p>
+    <p>五</p>
+  </td>
+  <td>
+    <p>six</p>
+    <p>六</p>
+  </td>
+</tr>
 </tbody>
 </table>`);
   });
