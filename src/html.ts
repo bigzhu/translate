@@ -83,7 +83,9 @@ function mergeRows(originRow: HTMLTableRowElement, translationRow: HTMLTableRowE
   for (let i = 0; i < originRow.cells.length; ++i) {
     const originCell = originRow.cells.item(i)!;
     const translationCell = translationRow.cells.item(i)!;
-    originCell.innerHTML = `<p>${originCell.innerHTML}</p><p>${translationCell.innerHTML}</p>`;
+    if (originCell.innerHTML !== translationCell.innerHTML) {
+      originCell.innerHTML = `<p>${originCell.innerHTML}</p><p>${translationCell.innerHTML}</p>`;
+    }
   }
 }
 
