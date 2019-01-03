@@ -6,34 +6,34 @@ export function markAndSwapAll(body: HTMLElement, selectorGroups: string[] = def
   swap(body);
 }
 
-function isPaired(prev: Element, node: Element): boolean {
-  return prev && prev.nextElementSibling === node &&
-      prev.tagName === node.tagName && prev.className === node.className;
+function isPaired(prev: Element, element: Element): boolean {
+  return prev && prev.nextElementSibling === element &&
+      prev.tagName === element.tagName && prev.className === element.className;
 }
 
-export function mark(node: ParentNode, selector: string): void {
-  const elements = node.querySelectorAll(selector);
-  elements.forEach(node => {
-    if (containsChinese(node.textContent!)) {
-      const prev = node.previousElementSibling!;
-      if (isPaired(prev, node) && !containsChinese(prev.textContent!)) {
-        node.setAttribute('translation-result', 'on');
+export function mark(element: Element, selector: string): void {
+  const elements = element.querySelectorAll(selector);
+  elements.forEach(element => {
+    if (containsChinese(element.textContent!)) {
+      const prev = element.previousElementSibling!;
+      if (isPaired(prev, element) && !containsChinese(prev.textContent!)) {
+        element.setAttribute('translation-result', 'on');
         prev.setAttribute('translation-origin', 'off');
         // 交换 id，中文内容应该占用原文的 id
         const id = prev.getAttribute('id');
         if (id) {
           prev.removeAttribute('id');
-          node.setAttribute('id', id);
+          element.setAttribute('id', id);
         }
         const href = prev.getAttribute('href');
         if (href) {
-          node.setAttribute('href', href);
+          element.setAttribute('href', href);
         }
-        if (node.tagName.match(/H[1-6]/)) {
+        if (element.tagName.match(/H[1-6]/)) {
           const prevAnchor = prev.querySelector('a[href]');
-          const nodeAnchor = node.querySelector('a[href]');
-          if (prevAnchor && nodeAnchor && containsChinese(nodeAnchor.getAttribute('href')!)) {
-            nodeAnchor.setAttribute('href', prevAnchor.getAttribute('href')!);
+          const thisAnchor = element.querySelector('a[href]');
+          if (prevAnchor && thisAnchor && containsChinese(thisAnchor.getAttribute('href')!)) {
+            thisAnchor.setAttribute('href', prevAnchor.getAttribute('href')!);
           }
         }
       }
@@ -59,8 +59,8 @@ function shouldMergeRow(element: HTMLTableRowElement): boolean {
 }
 
 // 重塑表格结构
-export function restructureTable(node: ParentNode): void {
-  const items = node.querySelectorAll('table');
+export function restructureTable(element: Element): void {
+  const items = element.querySelectorAll('table');
   items.forEach(table => {
     if (shouldMergeTable(table)) {
       return;
@@ -94,11 +94,11 @@ function mergeRows(originRow: HTMLTableRowElement, translationRow: HTMLTableRowE
   }
 }
 
-export function swap(node: ParentNode): void {
-  const pairList = node.querySelectorAll('[translation-origin]+[translation-result]');
-  pairList.forEach(node => {
-    const prev = node.previousElementSibling;
-    node.parentElement!.insertBefore(node, prev);
+export function swap(element: Element): void {
+  const pairList = element.querySelectorAll('[translation-origin]+[translation-result]');
+  pairList.forEach(element => {
+    const prev = element.previousElementSibling;
+    element.parentElement!.insertBefore(element, prev);
   });
 }
 
