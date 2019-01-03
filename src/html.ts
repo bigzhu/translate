@@ -1,4 +1,4 @@
-export const defaultElements = ['p,h1,h2,h3,h4,h5,h6,header', 't,span,a'];
+export const defaultElements = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 't', 'span', 'a'];
 
 export function markAndSwapAll(body: HTMLElement, selectorGroups: string[] = defaultElements): void {
   restructureTable(body);
@@ -6,12 +6,17 @@ export function markAndSwapAll(body: HTMLElement, selectorGroups: string[] = def
   swap(body);
 }
 
+function isPaired(prev: Element, node: Element): boolean {
+  return prev && prev.nextElementSibling === node &&
+      prev.tagName === node.tagName && prev.className === node.className;
+}
+
 export function mark(node: ParentNode, selector: string): void {
   const elements = node.querySelectorAll(selector);
   elements.forEach(node => {
     if (containsChinese(node.textContent!)) {
-      const prev = node.previousElementSibling;
-      if (prev && prev.nextElementSibling === node && !containsChinese(prev.textContent!)) {
+      const prev = node.previousElementSibling!;
+      if (isPaired(prev, node) && !containsChinese(prev.textContent!)) {
         node.setAttribute('translation-result', 'on');
         prev.setAttribute('translation-origin', 'off');
         // 交换 id，中文内容应该占用原文的 id
