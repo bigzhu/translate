@@ -1,6 +1,6 @@
 const slugs = require('github-slugger')();
 
-export const defaultElements = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 't', 'span', 'a'];
+export const defaultSelectors = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 't', 'span', 'a'];
 
 function toId(text) {
   return slugs.slug(text);
@@ -15,9 +15,9 @@ export function addIdForHeaders(body: HTMLElement): void {
   });
 }
 
-export function markAndSwapAll(body: HTMLElement, selectorGroups: string[] = defaultElements): void {
+export function markAndSwapAll(body: HTMLElement, selectors: string[] = defaultSelectors): void {
   restructureTable(body);
-  selectorGroups.forEach(selectors => mark(body, selectors));
+  selectors.forEach(selectors => mark(body, selectors));
   swap(body);
 }
 
