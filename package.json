@@ -2,7 +2,7 @@
   "name": "@awesome-fe/translate",
   "description": "Translate utils (ts only)",
   "main": "./dist/index.js",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "author": "Zhicheng Wang<asnowwolf@gmail.com>",
   "homepage": "https://github.com/asnowwolf/translate",
   "repository": {
@@ -30,5 +30,6 @@
     "typescript": "^3.2.2"
   },
   "dependencies": {
+    "github-slugger": "^1.2.0"
   }
 }

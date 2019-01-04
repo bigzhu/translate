@@ -1,4 +1,19 @@
+const slugs = require('github-slugger')();
+
 export const defaultElements = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 't', 'span', 'a'];
+
+function toId(text) {
+  return slugs.slug(text);
+}
+
+export function addIdForHeaders(body: HTMLElement): void {
+  const headers = body.querySelectorAll('h1,h2,h3,h4,h5,h6');
+  headers.forEach(header => {
+    if (!header.hasAttribute('id')) {
+      header.setAttribute('id', toId(header.textContent));
+    }
+  });
+}
 
 export function markAndSwapAll(body: HTMLElement, selectorGroups: string[] = defaultElements): void {
   restructureTable(body);
