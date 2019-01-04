@@ -2,7 +2,7 @@
   "name": "@awesome-fe/translate",
   "description": "Translate utils (ts only)",
   "main": "./dist/index.js",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "author": "Zhicheng Wang<asnowwolf@gmail.com>",
   "homepage": "https://github.com/asnowwolf/translate",
   "repository": {
@@ -22,14 +22,15 @@
     "@types/mdast": "^3.0.1",
     "@types/node": "^9.6.41",
     "chai": "^4.2.0",
-    "jsdom": "^13.1.0",
     "mocha": "^5.2.0",
-    "request": "^2.88.0",
     "ts-node": "^5.0.1",
     "tslint": "^5.12.0",
     "typescript": "^3.2.2"
   },
   "dependencies": {
-    "github-slugger": "^1.2.0"
+    "github-slugger": "^1.2.0",
+    "globby": "^8.0.1",
+    "jsdom": "^13.1.0",
+    "request": "^2.88.0"
   }
 }
