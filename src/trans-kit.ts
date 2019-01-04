@@ -7,8 +7,8 @@ declare interface TranslationHandler {
   (doc: HTMLDocument): void;
 }
 
-export function handleHtmlFiles(dir: string, charset = 'utf-8', docHandler: TranslationHandler): void {
-  globby.sync(dir).forEach(file => {
+export function handleHtmlFiles(globPattern: string, charset = 'utf-8', docHandler: TranslationHandler): void {
+  globby.sync(globPattern).forEach(file => {
     const content = readFileSync(file, charset);
     const dom = new JSDOM(content);
     const doc = dom.window.document;
