@@ -1,16 +1,17 @@
-const slugs = require('github-slugger')();
+import * as slugs from 'github-slugger';
 
 export const defaultSelectors = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 't', 'span', 'a'];
 
-function toId(text) {
-  return slugs.slug(text);
+function toId(slugger, text) {
+  return slugger.slug(text);
 }
 
 export function addIdForHeaders(body: HTMLElement): void {
   const headers = body.querySelectorAll('h1,h2,h3,h4,h5,h6');
+  const slugger = slugs();
   headers.forEach(header => {
     if (!header.hasAttribute('id')) {
-      header.setAttribute('id', toId(header.textContent));
+      header.setAttribute('id', toId(slugger, header.textContent));
     }
   });
 }
