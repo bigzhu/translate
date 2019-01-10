@@ -11,7 +11,7 @@ export function addIdForHeaders(body: HTMLElement): void {
   const slugger = slugs();
   headers.forEach(header => {
     if (!header.hasAttribute('id')) {
-      header.setAttribute('id', toId(slugger, header.textContent));
+      header.setAttribute('id', toId(slugger, header.innerHTML));
     }
   });
 }
@@ -30,9 +30,9 @@ function isPaired(prev: Element, element: Element): boolean {
 export function mark(element: Element, selector: string): void {
   const elements = element.querySelectorAll(selector);
   elements.forEach(element => {
-    if (containsChinese(element.textContent!)) {
+    if (containsChinese(element.innerHTML)) {
       const prev = element.previousElementSibling!;
-      if (isPaired(prev, element) && !containsChinese(prev.textContent!)) {
+      if (isPaired(prev, element) && !containsChinese(prev.innerHTML)) {
         element.setAttribute('translation-result', 'on');
         prev.setAttribute('translation-origin', 'off');
         // 交换 id，中文内容应该占用原文的 id
@@ -48,7 +48,7 @@ export function mark(element: Element, selector: string): void {
         if (element.tagName.match(/H[1-6]/)) {
           const prevAnchor = prev.querySelector('a[href]');
           const thisAnchor = element.querySelector('a[href]');
-          if (prevAnchor && thisAnchor && containsChinese(thisAnchor.getAttribute('href')!)) {
+          if (prevAnchor && thisAnchor && containsChinese(decodeURIComponent(thisAnchor.getAttribute('href')!)!)) {
             thisAnchor.setAttribute('href', prevAnchor.getAttribute('href')!);
           }
         }
@@ -87,7 +87,7 @@ export function restructureTable(element: Element): void {
     for (let i = 0; i < rows.length - 1; ++i) {
       const thisRow = rows.item(i) as HTMLTableRowElement;
       const nextRow = rows.item(i + 1) as HTMLTableRowElement;
-      if (shouldMergeRow(nextRow) && containsChinese(nextRow.textContent!!) && !containsChinese(thisRow.textContent!!)) {
+      if (shouldMergeRow(nextRow) && containsChinese(nextRow.innerHTML) && !containsChinese(thisRow.innerHTML)) {
         translationRows.push(nextRow);
         mergeRows(thisRow, nextRow);
       }
@@ -118,7 +118,10 @@ export function swap(element: Element): void {
   });
 }
 
-function containsChinese(text: string): boolean {
+function containsChinese(text?: string): boolean {
+  if (!text) {
+    return false;
+  }
   return text.search(/[\u4e00-\u9fa5]/gm) !== -1;
 }
 

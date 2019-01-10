@@ -73,6 +73,24 @@ describe('html', function () {
     expect(body.innerHTML).eql(`<p id="a">a</p><p id="one" translation-result="on">一</p><p translation-origin="off">one</p><script>const a = 1;</script>`);
   });
 
+  it('should mark and swap anchors in Hn', () => {
+    const dom = new JSDOM(`<h3 id="english_id">
+<a id="english_id" class="anchor" href="#english_id" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+english content</h3>
+<h3 id="中文标题">
+<a id="中文标题" class="anchor" href="#%E4%B8%AD%E6%96%87%E6%A0%87%E9%A2%98" aria-hidden="true">
+<span class="octicon octicon-link"></span></a>
+中文内容</h3>`);
+    const body = dom.window.document.body;
+    markAndSwapAll(body);
+    expect(body.innerHTML).eql(`<h3 id="english title" translation-result="on">
+<a id="中文id" class="anchor" href="#english_id" aria-hidden="true">
+<span class="octicon octicon-link"></span></a>
+中文内容</h3><h3 translation-origin="off">
+<a id="english_id" class="anchor" href="#english_id" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+english content</h3>
+`);
+  });
   it('should add id for headers', () => {
     const dom = new JSDOM(`<h1>a%b -1</h1><h2>one</h2><h3>一</h3>`);
     const body = dom.window.document.body;
