@@ -1,6 +1,6 @@
 import * as slugs from 'github-slugger';
 
-export const defaultSelectors = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 't', 'span', 'a'];
+export const defaultSelectors = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 't', 'span', 'a', '.section-nav li.toc-entry'];
 
 function toId(slugger, text) {
   return slugger.slug(text);
@@ -45,7 +45,7 @@ export function mark(element: Element, selector: string): void {
         if (href) {
           element.setAttribute('href', href);
         }
-        if (element.tagName.match(/H[1-6]/)) {
+        if (element.tagName.match(/(H[1-6]|li)/)) {
           const prevAnchor = prev.querySelector('a[href]');
           const thisAnchor = element.querySelector('a[href]');
           if (prevAnchor && thisAnchor && containsChinese(decodeURIComponent(thisAnchor.getAttribute('href')!)!)) {
