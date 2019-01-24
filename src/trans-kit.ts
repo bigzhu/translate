@@ -1,29 +1,44 @@
 import { JSDOM } from 'jsdom';
-import { readFileSync, writeFileSync } from 'fs';
 import * as globby from 'globby';
 import { addIdForHeaders, markAndSwapAll } from './html';
+import { from, Observable } from 'rxjs';
+import * as vfile from 'to-vfile';
+import { VFile } from 'vfile';
 
-declare interface TranslationHandler {
-  (doc: HTMLDocument): void;
+export function listFiles(globPattern: string): Observable<string> {
+  const files = globby.sync(globPattern);
+  return from(files);
 }
 
-export function handleHtmlFiles(globPattern: string, charset = 'utf-8', docHandler: TranslationHandler): void {
-  globby.sync(globPattern).forEach(file => {
-    const content = readFileSync(file, charset);
-    const dom = new JSDOM(content);
-    const doc = dom.window.document;
-    if (doc.charset !== charset.toUpperCase()) {
-      throw new Error(`The charset of HTML file "${file}" must be '${charset}'`);
-    }
-    docHandler(doc);
-    writeFileSync(file, dom.serialize(), charset);
-  });
+export function read(charset = 'utf-8'): (string) => VFile {
+  return (path) => vfile.readSync(path, charset);
 }
 
-export function addTranslationMark(doc: HTMLDocument): void {
-  const body = doc.body;
-  addIdForHeaders(body);
-  markAndSwapAll(body);
+export function parse(): (file: VFile) => JSDOM {
+  return (file) => new JSDOM(file.contents);
+}
+
+export function stringify(): (JSDOM) => string {
+  return (dom) => dom.serialize();
+}
+
+export function checkCharset(charset = 'utf-8'): (JSDOM) => void {
+  return (dom) => dom.window.document.charset !== charset.toUpperCase();
+}
+
+export function write(file: VFile): (string) => void {
+  return (contents) => {
+    file.contents = contents;
+    vfile.writeSync(file);
+  };
+}
+
+export function addTranslationMark(): (JSDOM) => void {
+  return (dom: JSDOM) => {
+    const body = dom.window.document.body;
+    addIdForHeaders(body);
+    markAndSwapAll(body);
+  };
 }
 
 function styleSheetExists(styleSheets: NodeListOf<HTMLLinkElement>, styleSheetUrl: string): boolean {
@@ -52,44 +67,50 @@ function scriptsOf(doc: HTMLDocument): NodeListOf<HTMLScriptElement> {
   return doc.querySelectorAll<HTMLScriptElement>('script[src]');
 }
 
-export function injectTranslators(doc: HTMLDocument, styleUrls: string[] = [], scriptUrls: string[] = []): void {
-  styleUrls.forEach(styleUrl => {
-    if (styleSheetExists(styleSheetsOf(doc), styleUrl)) {
-      return;
-    }
-    const link = doc.createElement('link');
-    link.href = styleUrl;
-    link.rel = 'stylesheet';
-    doc.head.appendChild(link);
-  });
-  scriptUrls.forEach(scriptUrl => {
-    if (scriptExists(scriptsOf(doc), scriptUrl)) {
-      return;
-    }
-    const script = doc.createElement('script');
-    script.src = scriptUrl;
-    doc.body.appendChild(script);
-  });
+export function injectTranslators(styleUrls: string[] = [], scriptUrls: string[] = []): (JSDOM) => void {
+  return (dom: JSDOM) => {
+    const doc = dom.window.document;
+    styleUrls.forEach(styleUrl => {
+      if (styleSheetExists(styleSheetsOf(doc), styleUrl)) {
+        return;
+      }
+      const link = doc.createElement('link');
+      link.href = styleUrl;
+      link.rel = 'stylesheet';
+      doc.head.appendChild(link);
+    });
+    scriptUrls.forEach(scriptUrl => {
+      if (scriptExists(scriptsOf(doc), scriptUrl)) {
+        return;
+      }
+      const script = doc.createElement('script');
+      script.src = scriptUrl;
+      doc.body.appendChild(script);
+    });
+  };
 }
 
-export function replaceResourceUrls(doc: HTMLDocument, urlMap: { [key: string]: string }): void {
-  styleSheetsOf(doc).forEach(styleSheet => {
-    const newValue = urlMap[styleSheet.href];
-    if (newValue) {
-      styleSheet.href = newValue;
-    }
-  });
-  scriptsOf(doc).forEach(script => {
-    const newValue = urlMap[script.src];
-    if (newValue) {
-      script.src = newValue;
-    }
-  });
-  doc.querySelectorAll<HTMLImageElement>('img[src]').forEach(image => {
-    const newValue = urlMap[image.src];
-    if (newValue) {
-      image.src = newValue;
-    }
-  });
+export function replaceResourceUrls(urlMap: Record<string, string>): (JSDOM) => void {
+  return (dom: JSDOM) => {
+    const doc = dom.window.document;
+    styleSheetsOf(doc).forEach(styleSheet => {
+      const newValue = urlMap[styleSheet.href];
+      if (newValue) {
+        styleSheet.href = newValue;
+      }
+    });
+    scriptsOf(doc).forEach(script => {
+      const newValue = urlMap[script.src];
+      if (newValue) {
+        script.src = newValue;
+      }
+    });
+    doc.querySelectorAll<HTMLImageElement>('img[src]').forEach(image => {
+      const newValue = urlMap[image.src];
+      if (newValue) {
+        image.src = newValue;
+      }
+    });
+  };
 }
 

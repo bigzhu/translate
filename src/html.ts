@@ -2,6 +2,11 @@ import * as slugs from 'github-slugger';
 
 export const defaultSelectors = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 't', 'span', 'a', '.section-nav li.toc-entry'];
 
+interface SentencePair {
+  english: string;
+  chinese: string;
+}
+
 function toId(slugger, text) {
   return slugger.slug(text);
 }
@@ -22,9 +27,25 @@ export function markAndSwapAll(body: HTMLElement, selectors: string[] = defaultS
   swap(body);
 }
 
+function clearAiraHidden(body: HTMLElement): void {
+  const hiddens = body.querySelectorAll('[aria-hidden=true]');
+  hiddens.forEach(element => element.remove());
+}
+
+export function extractAll(body: HTMLElement): SentencePair[] {
+  clearAiraHidden(body);
+  const resultElements = body.querySelectorAll('[translation-result]+[translation-origin]');
+  const results: SentencePair[] = [];
+  resultElements.forEach(origin => {
+    const result = origin.previousElementSibling!;
+    results.push({ english: origin.innerHTML.trim(), chinese: result.innerHTML.trim() });
+  });
+  return results;
+}
+
 function isPaired(prev: Element, element: Element): boolean {
   return prev && prev.nextElementSibling === element &&
-      prev.tagName === element.tagName && prev.className === element.className;
+    prev.tagName === element.tagName && prev.className === element.className;
 }
 
 export function mark(element: Element, selector: string): void {

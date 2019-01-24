@@ -1,6 +1,6 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
-import { addIdForHeaders, markAndSwapAll, restructureTable } from './html';
+import { addIdForHeaders, extractAll, markAndSwapAll, restructureTable } from './html';
 import { JSDOM } from 'jsdom';
 
 describe('html', function () {
@@ -96,5 +96,22 @@ english content</h3>
     const body = dom.window.document.body;
     addIdForHeaders(body);
     expect(body.innerHTML).eql(`<h1 id="ab--1">a%b -1</h1><h2 id="one">one</h2><h3 id="一">一</h3>`);
+  });
+
+  it('should extract sentence pair', () => {
+    const dom = new JSDOM(`<p id="a">a</p><p id="one"><a aria-hidden="true"></a>one</p><p id="一">一</p><script>const a = 1;</script><p id="one">two</p><p id="一">二</p>`);
+    const body = dom.window.document.body;
+    markAndSwapAll(body);
+    const sentencePairs = extractAll(body);
+    expect(sentencePairs).eql([
+      {
+        'chinese': '一',
+        'english': 'one',
+      },
+      {
+        'chinese': '二',
+        'english': 'two',
+      },
+    ]);
   });
 });
