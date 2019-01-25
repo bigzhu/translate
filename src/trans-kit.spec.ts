@@ -11,7 +11,7 @@ import {
   stringify,
   write,
 } from './trans-kit';
-import { distinct, flatMap, map, mapTo, switchMap, tap, toArray } from 'rxjs/operators';
+import { flatMap, map, mapTo, switchMap, tap, toArray } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { extractAll } from './html';
 
@@ -51,7 +51,6 @@ describe('trans-kit', function () {
         tap(addTranslationMark()),
         map(doc => extractAll(doc.body)),
         flatMap(pairs => pairs),
-        distinct(it => it.english),
         map(pair => `${pair.english}\t${pair.chinese}`),
       )),
       toArray(),
