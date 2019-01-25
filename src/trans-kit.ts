@@ -10,7 +10,7 @@ export function listFiles(globPattern: string): Observable<string> {
   return from(files);
 }
 
-export function read(charset = 'utf-8'): (string) => VFile {
+export function read(charset = 'utf-8'): (path: string) => VFile {
   return (path) => vfile.readSync(path, charset);
 }
 
@@ -22,22 +22,21 @@ export function stringify(): (JSDOM) => string {
   return (dom) => dom.serialize();
 }
 
-export function checkCharset(charset = 'utf-8'): (JSDOM) => void {
-  return (dom) => dom.window.document.charset !== charset.toUpperCase();
+export function checkCharset(charset = 'utf-8'): (doc: Document) => void {
+  return (doc) => doc.charset !== charset.toUpperCase();
 }
 
-export function write(file: VFile): (string) => void {
+export function write(file: VFile): (contents: string) => void {
   return (contents) => {
     file.contents = contents;
     vfile.writeSync(file);
   };
 }
 
-export function addTranslationMark(): (JSDOM) => void {
-  return (dom: JSDOM) => {
-    const body = dom.window.document.body;
-    addIdForHeaders(body);
-    markAndSwapAll(body);
+export function addTranslationMark(): (doc: Document) => void {
+  return (doc: Document) => {
+    addIdForHeaders(doc.body);
+    markAndSwapAll(doc.body);
   };
 }
 
@@ -67,9 +66,8 @@ function scriptsOf(doc: HTMLDocument): NodeListOf<HTMLScriptElement> {
   return doc.querySelectorAll<HTMLScriptElement>('script[src]');
 }
 
-export function injectTranslators(styleUrls: string[] = [], scriptUrls: string[] = []): (JSDOM) => void {
-  return (dom: JSDOM) => {
-    const doc = dom.window.document;
+export function injectTranslators(styleUrls: string[] = [], scriptUrls: string[] = []): (doc: Document) => void {
+  return (doc: Document) => {
     styleUrls.forEach(styleUrl => {
       if (styleSheetExists(styleSheetsOf(doc), styleUrl)) {
         return;
@@ -90,9 +88,8 @@ export function injectTranslators(styleUrls: string[] = [], scriptUrls: string[]
   };
 }
 
-export function replaceResourceUrls(urlMap: Record<string, string>): (JSDOM) => void {
-  return (dom: JSDOM) => {
-    const doc = dom.window.document;
+export function replaceResourceUrls(urlMap: Record<string, string>): (doc: Document) => void {
+  return (doc: Document) => {
     styleSheetsOf(doc).forEach(styleSheet => {
       const newValue = urlMap[styleSheet.href];
       if (newValue) {
