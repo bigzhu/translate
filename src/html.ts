@@ -1,6 +1,6 @@
 import * as slugs from 'github-slugger';
 
-export const defaultSelectors = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 't', 'span', 'a', '.section-nav li.toc-entry'];
+export const defaultSelectors = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 't', '.section-nav li.toc-entry'];
 
 export interface SentencePair {
   english: Element;
