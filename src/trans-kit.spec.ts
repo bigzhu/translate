@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import {
   addTranslationMark,
   checkCharset,
+  extractFromFiles,
   injectTranslators,
   listFiles,
   parse,
@@ -11,9 +12,8 @@ import {
   stringify,
   write,
 } from './trans-kit';
-import { flatMap, map, mapTo, switchMap, tap, toArray } from 'rxjs/operators';
+import { map, mapTo, switchMap, tap, toArray } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { extractAll } from './html';
 
 describe('trans-kit', function () {
   it('translate', () => {
@@ -42,19 +42,10 @@ describe('trans-kit', function () {
     ).toPromise();
   });
   it('extract all', () => {
-    return listFiles(exampleGlob).pipe(
-      map(read()),
-      switchMap(file => of(file).pipe(
-        map(parse()),
-        map(dom => dom.window.document),
-        tap(checkCharset()),
-        tap(addTranslationMark()),
-        map(doc => extractAll(doc.body)),
-        flatMap(pairs => pairs),
-        map(pair => `${pair.english}\t${pair.chinese}`),
-      )),
+    return extractFromFiles(exampleGlob, false).pipe(
       toArray(),
       tap((result) => expect(result).eql([
+        '<a href="/search">Search <i class="icon icon-search"></i></a>\t<a href="/search">搜索 <i class="icon icon-search"></i></a>',
         '<a href="/search">Search <i class="icon icon-search"></i></a>\t<a href="/search">搜索 <i class="icon icon-search"></i></a>',
         'Handling errors\t错误处理',
         'Writing file contents\t编写文件内容',

@@ -3,8 +3,8 @@ import * as slugs from 'github-slugger';
 export const defaultSelectors = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 't', 'span', 'a', '.section-nav li.toc-entry'];
 
 export interface SentencePair {
-  english: string;
-  chinese: string;
+  english: Element;
+  chinese: Element;
 }
 
 function toId(slugger, text) {
@@ -38,7 +38,7 @@ export function extractAll(body: HTMLElement): SentencePair[] {
   const results: SentencePair[] = [];
   resultElements.forEach(origin => {
     const result = origin.previousElementSibling!;
-    results.push({ english: origin.innerHTML.trim(), chinese: result.innerHTML.trim() });
+    results.push({ english: origin, chinese: result });
   });
   return results;
 }

@@ -1,9 +1,10 @@
 import { JSDOM } from 'jsdom';
 import * as globby from 'globby';
-import { addIdForHeaders, markAndSwapAll } from './html';
-import { from, Observable } from 'rxjs';
+import { addIdForHeaders, extractAll, markAndSwapAll } from './html';
+import { from, Observable, of } from 'rxjs';
 import * as vfile from 'to-vfile';
 import { VFile } from 'vfile';
+import { distinct, filter, flatMap, map, switchMap, tap } from 'rxjs/operators';
 
 export function listFiles(globPattern: string): Observable<string> {
   const files = globby.sync(globPattern);
@@ -111,3 +112,34 @@ export function replaceResourceUrls(urlMap: Record<string, string>): (doc: Docum
   };
 }
 
+function textOf(node: Element): string {
+  return node.textContent!.trim().replace(/\s+/g, ' ');
+}
+
+function countOfChinese(chinese: string): number {
+  let count = 0;
+  for (let i = 0; i < chinese.length; ++i) {
+    const code = chinese.charCodeAt(i);
+    if (code >= 0x4e00 && code <= 0x9fa5) {
+      ++count;
+    }
+  }
+  return count;
+}
+
+export function extractFromFiles(sourceGlob: string, unique = false): Observable<string> {
+  return listFiles(sourceGlob).pipe(
+    map(read()),
+    switchMap(file => of(file).pipe(
+      map(parse()),
+      map(dom => dom.window.document),
+      tap(checkCharset()),
+      map(doc => extractAll(doc.body)),
+      flatMap(pairs => pairs),
+      map(({ english, chinese }) => ({ english: textOf(english), chinese: textOf(chinese) })),
+      filter(({ chinese }) => countOfChinese(chinese) > 4),
+      map(({ english, chinese }) => `${english}\t${chinese}`),
+    )),
+    unique ? distinct() : tap(),
+  );
+}
