@@ -143,3 +143,21 @@ export function extractFromFiles(sourceGlob: string, unique = false): Observable
     unique ? distinct() : tap(),
   );
 }
+
+export function autoCheckFiles(sourceGlob: string): Observable<string> {
+  return listFiles(sourceGlob).pipe(
+    map(read()),
+    switchMap(file => of(file).pipe(
+      map(parse()),
+      map(dom => dom.window.document),
+      tap(checkCharset()),
+      map(doc => extractAll(doc.body)),
+      flatMap(pairs => pairs),
+      map(({ english, chinese }) => ({ english: textOf(english), chinese: textOf(chinese) })),
+      filter(({ english, chinese }) => {
+        return english.length > chinese.length * 3.5 || english.length < chinese.length;
+      }),
+      map(({ english, chinese }) => `${english}(${english.length})\t|\t${chinese}(${chinese.length})`),
+    )),
+  );
+}
