@@ -127,7 +127,7 @@ function countOfChinese(chinese: string): number {
   return count;
 }
 
-export function extractFromFiles(sourceGlob: string, unique = false): Observable<string> {
+export function extractFromFiles(sourceGlob: string, unique = false): Observable<{ english: string, chinese: string }> {
   return listFiles(sourceGlob).pipe(
     map(read()),
     switchMap(file => of(file).pipe(
@@ -138,7 +138,6 @@ export function extractFromFiles(sourceGlob: string, unique = false): Observable
       flatMap(pairs => pairs),
       map(({ english, chinese }) => ({ english: textOf(english), chinese: textOf(chinese) })),
       filter(({ chinese }) => countOfChinese(chinese) > 4),
-      map(({ english, chinese }) => `${english}\t${chinese}`),
     )),
     unique ? distinct() : tap(),
   );
@@ -153,9 +152,11 @@ export function autoCheckFiles(sourceGlob: string): Observable<string> {
       tap(checkCharset()),
       map(doc => extractAll(doc.body)),
       flatMap(pairs => pairs),
+      distinct(),
       map(({ english, chinese }) => ({ english: textOf(english), chinese: textOf(chinese) })),
       filter(({ english, chinese }) => {
-        return english.length > chinese.length * 3.5 || english.length < chinese.length;
+        return chinese.indexOf(english) === -1 && countOfChinese(chinese) >= 10 &&
+          (english.length > chinese.length * 4 || english.length < chinese.length);
       }),
       map(({ english, chinese }) => `${english}(${english.length})\t|\t${chinese}(${chinese.length})`),
     )),

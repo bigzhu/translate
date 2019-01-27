@@ -43,11 +43,9 @@ describe('trans-kit', function () {
   });
   it('extract all', () => {
     return extractFromFiles(exampleGlob, false).pipe(
+      map(({ english, chinese }) => `${english}\t${chinese}`),
       toArray(),
       tap((result) => expect(result).eql([
-        '<a href="/search">Search <i class="icon icon-search"></i></a>\t<a href="/search">搜索 <i class="icon icon-search"></i></a>',
-        '<a href="/search">Search <i class="icon icon-search"></i></a>\t<a href="/search">搜索 <i class="icon icon-search"></i></a>',
-        'Handling errors\t错误处理',
         'Writing file contents\t编写文件内容',
       ])),
     ).toPromise();
