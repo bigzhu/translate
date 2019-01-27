@@ -12,11 +12,11 @@ function toId(slugger, text) {
 }
 
 export function addIdForHeaders(body: HTMLElement): void {
-  const headers = body.querySelectorAll('h1,h2,h3,h4,h5,h6');
+  const headers = body.querySelectorAll<HTMLHeadingElement>('h1,h2,h3,h4,h5,h6');
   const slugger = slugs();
   headers.forEach(header => {
     if (!header.hasAttribute('id')) {
-      header.setAttribute('id', toId(slugger, (header as HTMLElement).innerText));
+      header.setAttribute('id', toId(slugger, header.innerText));
     }
   });
 }
