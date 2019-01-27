@@ -16,7 +16,7 @@ export function addIdForHeaders(body: HTMLElement): void {
   const slugger = slugs();
   headers.forEach(header => {
     if (!header.hasAttribute('id')) {
-      header.setAttribute('id', toId(slugger, header.innerHTML));
+      header.setAttribute('id', toId(slugger, (header as HTMLElement).innerText));
     }
   });
 }
