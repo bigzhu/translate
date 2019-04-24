@@ -57,15 +57,18 @@ export namespace html {
       if (containsChinese(element.innerHTML)) {
         const prev = element.previousElementSibling!;
         if (isPaired(prev, element) && !containsChinese(prev.innerHTML)) {
-          element.setAttribute('translation-result', 'on');
-          prev.setAttribute('translation-origin', 'off');
-          element.parentElement!.insertBefore(element, prev);
+          element.setAttribute('translation-result', 'off');
+          prev.setAttribute('translation-origin', 'on');
+          // 不要交换位置
+          // element.parentElement!.insertBefore(element, prev);
           // 交换 id，中文内容应该占用原文的 id
+          /*
           const id = prev.getAttribute('id');
           if (id) {
             prev.removeAttribute('id');
             element.setAttribute('id', id);
           }
+           */
           const href = prev.getAttribute('href');
           if (href) {
             element.setAttribute('href', href);
