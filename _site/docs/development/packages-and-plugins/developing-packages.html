@@ -1,0 +1,1219 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flutter Packages 的开发和提交  - Flutter 中文文档 - Flutter 社区中文资源 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-ND4LWWZ');</script>
+  <!-- End Google Tag Manager -->
+
+  
+  <meta name="description" content="如何编写和提交你的 Packages。">
+  <meta name="keywords" content=" ">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@flutterdev">
+
+  <meta property="og:title" content="Flutter Packages 的开发和提交">
+  <meta property="og:url" content="https://flutter.dev/docs/development/packages-and-plugins/developing-packages">
+  <meta property="og:description" content="如何编写和提交你的 Packages。">
+  
+  <meta property="og:image" content="https://flutter.dev/images/flutter-logo-sharing.png">
+
+  <link href="/assets/translator/css/material-roboto.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/assets/main-74a0c308218334fcd85291a957a514973015ea8e4eb76b9abae6e14bb5012f5e.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  <script src="/assets/main-d6b8b8d26e7b4122b3ddf6a5201966d6e2494aaffadaafaf7c571ce5e2fe0aab.js" type="text/javascript"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-122680122-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <!--<meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />-->
+<link href="/assets/translator/css/translator.css" rel="stylesheet"></head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-ND4LWWZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div id="overlay-under-drawer"></div>
+
+    <header class="site-header">
+  <nav class="navbar navbar-expand-md justify-content-start justify-content-md-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="material-icons">menu</i>
+    </button>
+
+    <a class="navbar-brand" href="/">
+      <img alt="Flutter by Google" height="37" width="129" class="align-middle" src="/assets/flutter-lockup-4cb0ee072ab312e59784d9fbf4fb7ad42688a7fdaea1270ccf6bbf4f34b7e03f.svg">
+    </a>
+
+    <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
+      <div class="site-header__sheet-bg" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></div>
+      <div class="site-header__sheet">
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <a class="nav-link active" href="/docs">开发文档</a>
+          </li>
+          <div class="site-sidebar site-sidebar--header d-md-none">
+            <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="false" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="false" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link active collapsable" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="true" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link active" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+          </div>
+
+<!-- 
+          <li class="nav-item">
+            <a class="nav-link" href="/showcase">Showcase</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/community">Community</a>
+          </li>
+ -->
+        </ul>
+        <form action="/search" class="site-header__search form-inline">
+          <input class="site-header__searchfield form-control" type="search" name="q" id="q" autocomplete="off" placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+    </div>
+    <div class="site-header__social navbar-nav flex-row">
+      <a class="nav-item nav-link" href="https://twitter.com/flutterdev"><i class="fab fa-twitter fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://www.youtube.com/flutterdev"><i class="fab fa-youtube fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://github.com/flutter"><i class="fab fa-github fa-lg"></i></a>
+    </div>
+    <a class="site-header__cta btn btn-primary" href="/docs/get-started/install/">Get started</a>
+    </nav>
+</header>
+<div class="site-banner site-banner--default" role="alert">
+    <p>
+      We are looking for a Flutter Infrastructure engineer!
+      <a href="/jobs/infrastructure" target="_blank" rel="noopener">Learn more</a>.
+    </p>
+
+  </div>
+<div class="container-fluid position-relative">
+  <div class="row flex-xl-nowrap">
+    <div class="fixed-col site-sidebar site-sidebar--fixed col-12 col-md-3 col-xl-2 d-none d-md-block" data-fixed-column="">
+      <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="false" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="false" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link active collapsable" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="true" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link active" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+    </div>
+    <div id="site-toc--side" class="site-toc site-toc--side fixed-col col-xl-2 order-3" data-fixed-column="">
+  <header class="site-toc__title">
+    Contents
+    <button type="button" class="btn site-toc--button__page-top" aria-label="Page top"></button>
+    </header>
+  <ul class="section-nav nav">
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#package-introduction">Package introduction</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#package-types">Package types</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#developing-dart-packages">Developing Dart packages</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#step-1-create-the-package">Step 1: Create the package</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#step-2-implement-the-package">Step 2: Implement the package</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#developing-plugin-packages">Developing plugin packages</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#step-1-create-the-package-1">Step 1: Create the package</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#step-2-implement-the-package-1">Step 2: Implement the package</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#step-2a-define-the-package-api-dart">Step 2a: Define the package API (.dart)</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#step-2b-add-android-platform-code-javakt">Step 2b: Add Android platform code (.java/.kt)</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#step-2c-add-ios-platform-code-hmswift">Step 2c: Add iOS platform code (.h+.m/.swift)</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#step-2d-connect-the-api-and-the-platform-code">Step 2d: Connect the API and the platform code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#adding-documentation">Adding documentation</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#api-documentation">API documentation</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#publishing-packages">Publishing packages</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#handling-package-interdependencies">Handling package interdependencies</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#android">Android</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#ios">iOS</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#conflict-resolution">Conflict resolution</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<main class="site-content col-12 col-md-9 offset-md-3 col-xl-8 offset-xl-2 col-xxl-8 offset-xxl-2" role="main">
+      <div class="container">
+        
+        
+        <header class="site-content__title">
+          <div id="page-github-links" class="btn-group" aria-label="Page GitHub links" role="group">
+  <a href="https://github.com/cfug/flutter.cn/tree/master/src/docs/development/packages-and-plugins/developing-packages.md" class="btn no-automatic-external" title="View page source" target="_blank" rel="noopener">
+    <i class="fas fa-file-alt fa-sm"></i>
+  </a>
+  <a href="https://github.com/cfug/flutter.cn/issues/new?title='Flutter Packages 的开发和提交' page issue&amp;body=
+Page URL: https://flutter.dev/docs/development/packages-and-plugins/developing-packages.html%0D%0A
+Page source: https://github.com/cfug/flutter.cn/tree/master/src/docs/development/packages-and-plugins/developing-packages.md%0D%0A
+%0D%0A
+Found a typo? You can fix it yourself by going to the page source and clicking the pencil icon. Or finish creating this issue.%0D%0A
+%0D%0A
+Description of issue:" class="btn no-automatic-external" title="Report an issue with this page" target="_blank" rel="noopener">
+    <i class="fas fa-bug fa-sm"></i>
+  </a>
+</div>
+
+          <h1 id="flutter-packages-的开发和提交">Flutter Packages 的开发和提交</h1>
+          
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="/docs" property="item" typeof="WebPage"><span property="name">文档</span>
+      </a>
+      <meta property="position" content="1">
+    </li>
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="/docs/development" property="item" typeof="WebPage"><span property="name">开发文档</span>
+      </a>
+      <meta property="position" content="2">
+    </li>
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="/docs/development/packages-and-plugins" property="item" typeof="WebPage"><span property="name">Flutter 的 Packages</span>
+      </a>
+      <meta property="position" content="3">
+    </li>
+  <li class="breadcrumb-item active" property="itemListElement" typeof="ListItem" aria-current="page"><a href="/docs/development/packages-and-plugins/developing-packages.html" property="item" typeof="WebPage"><span property="name">开发和提交</span>
+      </a>
+      <meta property="position" content="4">
+    </li>
+  
+  </ol>
+</nav>
+          </header>
+        <div id="site-toc--inline" class="site-toc site-toc--inline ">
+  <header class="site-toc__title">
+    Contents
+    </header>
+  <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#package-introduction">Package introduction</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#package-types">Package types</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#developing-dart-packages">Developing Dart packages</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#step-1-create-the-package">Step 1: Create the package</a></li>
+<li class="toc-entry toc-h3"><a href="#step-2-implement-the-package">Step 2: Implement the package</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#developing-plugin-packages">Developing plugin packages</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#step-1-create-the-package-1">Step 1: Create the package</a></li>
+<li class="toc-entry toc-h3"><a href="#step-2-implement-the-package-1">Step 2: Implement the package</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#step-2a-define-the-package-api-dart">Step 2a: Define the package API (.dart)</a></li>
+<li class="toc-entry toc-h4"><a href="#step-2b-add-android-platform-code-javakt">Step 2b: Add Android platform code (.java/.kt)</a></li>
+<li class="toc-entry toc-h4"><a href="#step-2c-add-ios-platform-code-hmswift">Step 2c: Add iOS platform code (.h+.m/.swift)</a></li>
+<li class="toc-entry toc-h4"><a href="#step-2d-connect-the-api-and-the-platform-code">Step 2d: Connect the API and the platform code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#adding-documentation">Adding documentation</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#api-documentation">API documentation</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#publishing-packages">Publishing packages</a></li>
+<li class="toc-entry toc-h2"><a href="#handling-package-interdependencies">Handling package interdependencies</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#android">Android</a></li>
+<li class="toc-entry toc-h3"><a href="#ios">iOS</a></li>
+<li class="toc-entry toc-h3"><a href="#conflict-resolution">Conflict resolution</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="package-introduction">
+<a id="package-introduction" class="anchor" href="#package-introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Package introduction</h2>
+
+<p>Packages enable the creation of modular code that can be shared easily. A
+minimal package consists of:</p>
+
+<ul>
+  <li>
+    <p>A <code class="highlighter-rouge">pubspec.yaml</code> file: A metadata file that declares the package name,
+version, author, etc.</p>
+  </li>
+  <li>
+    <p>A <code class="highlighter-rouge">lib</code> directory containing the public code in the package, minimally a
+single <code class="highlighter-rouge">&lt;package-name&gt;.dart</code> file.</p>
+  </li>
+</ul>
+
+<aside class="alert alert-info" role="alert">
+  <p><i class="fas fa-info-circle"></i> <strong>备忘：</strong>
+  For a list of dos and don’ts when writing an effective plugin,
+  see <a href="https://medium.com/flutter-io/writing-a-good-flutter-plugin-1a561b986c9c">Writing a good
+  plugin</a>
+  on Medium.</p>
+</aside>
+
+<h3 id="types">
+<a id="package-types" class="anchor" href="#package-types" aria-hidden="true"><span class="octicon octicon-link"></span></a>Package types</h3>
+
+<p>Packages can contain several kinds of content:</p>
+
+<ul>
+  <li>
+    <p><em>Dart packages</em>: General packages written in Dart, for example the
+<a href="https://pub.flutter-io.cn/packages/path"><code class="highlighter-rouge">path</code></a> package. Some of these may
+contain Flutter specific functionality and thus have a dependency on the
+Flutter framework, restricting their use to Flutter only, for example the
+<a href="https://pub.flutter-io.cn/packages/fluro"><code class="highlighter-rouge">fluro</code></a> package.</p>
+  </li>
+  <li>
+    <p><em>Plugin packages</em>: A specialized Dart package which contain an API written in
+Dart code combined with a platform-specific implementation for Android (using
+Java or Kotlin), and/or for iOS (using ObjC or Swift). A concrete example is
+the <a href="https://pub.flutter-io.cn/packages/battery"><code class="highlighter-rouge">battery</code></a> plugin package.</p>
+  </li>
+</ul>
+
+<h2 id="dart">
+<a id="developing-dart-packages" class="anchor" href="#developing-dart-packages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Developing Dart packages</h2>
+
+<h3 id="step-1-create-the-package">
+<a id="step-1-create-the-package" class="anchor" href="#step-1-create-the-package" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 1: Create the package</h3>
+
+<p>To create a Dart package, use the <code class="highlighter-rouge">--template=package</code> flag with <code class="highlighter-rouge">flutter create</code>:</p>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> flutter create <span class="nt">--template</span><span class="o">=</span>package hello
+</code></pre></div></div>
+
+<p>This creates a package project in the <code class="highlighter-rouge">hello/</code> folder with the following
+specialized content:</p>
+
+<ul>
+  <li>
+<code class="highlighter-rouge">lib/hello.dart</code>:
+    <ul>
+      <li>The Dart code for the package.</li>
+    </ul>
+  </li>
+  <li>
+<code class="highlighter-rouge">test/hello_test.dart</code>:
+    <ul>
+      <li>The <a href="/docs/testing#unit-testing">unit tests</a> for the package.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="step-2-implement-the-package">
+<a id="step-2-implement-the-package" class="anchor" href="#step-2-implement-the-package" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 2: Implement the package</h3>
+
+<p>For pure Dart packages, simply add the functionality inside the main
+<code class="highlighter-rouge">lib/&lt;package name&gt;.dart</code> file, or in several files in the <code class="highlighter-rouge">lib</code> directory.</p>
+
+<p>To test the package, add <a href="/docs/testing#unit-testing">unit tests</a>
+in a <code class="highlighter-rouge">test</code> directory.</p>
+
+<p>For additional details on how to organize the package contents, see the
+<a href="https://www.dartlang.org/guides/libraries/create-library-packages">Dart library
+package</a>
+documentation.</p>
+
+<h2 id="plugin">
+<a id="developing-plugin-packages" class="anchor" href="#developing-plugin-packages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Developing plugin packages</h2>
+
+<p>If you want to develop a package that calls into platform-specific APIs, you
+need to develop a plugin package. A plugin package is a specialized version of a
+Dart package, that in addition to the content described above also contains
+platform-specific implementations written for Android (Java or Kotlin code), for
+iOS (Objective-C or Swift code), or for both. The API is connected to the
+platform-specific implementation(s) using <a href="/docs/development/platform-integration/platform-channels">platform
+channels</a>.</p>
+
+<h3 id="step-1-create-the-package-1">
+<a id="step-1-create-the-package-1" class="anchor" href="#step-1-create-the-package-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 1: Create the package</h3>
+
+<p>To create a plugin package, use the <code class="highlighter-rouge">--template=plugin</code> flag with <code class="highlighter-rouge">flutter create</code>.</p>
+
+<p>Use the <code class="highlighter-rouge">--org</code> option to specify your organization, using reverse domain name
+notation. This value is used in various package and bundle identifiers in the
+generated Android and iOS code.</p>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> flutter create <span class="nt">--org</span> com.example <span class="nt">--template</span><span class="o">=</span>plugin hello
+</code></pre></div></div>
+
+<p>This creates a plugin project in the <code class="highlighter-rouge">hello/</code> folder with the following
+specialized content:</p>
+
+<ul>
+  <li>
+<code class="highlighter-rouge">lib/hello.dart</code>:
+    <ul>
+      <li>The Dart API for the plugin.</li>
+    </ul>
+  </li>
+  <li>
+<code>android/src/main/java/com/example/​hello/HelloPlugin.java</code>:
+    <ul>
+      <li>The Android platform specific implementation of the plugin API.</li>
+    </ul>
+  </li>
+  <li>
+<code class="highlighter-rouge">ios/Classes/HelloPlugin.m</code>:
+    <ul>
+      <li>The iOS platform specific implementation of the plugin API.</li>
+    </ul>
+  </li>
+  <li>
+<code class="highlighter-rouge">example/</code>:
+    <ul>
+      <li>A Flutter app that depends on the plugin, and illustrates how to use it.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>By default, the plugin project uses Objective-C for iOS code and
+Java for Android code. If you prefer Swift or Kotlin, you can specify the
+iOS language using <code class="highlighter-rouge">-i</code> and/or the Android language using <code class="highlighter-rouge">-a</code>. For example:</p>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> flutter create <span class="nt">--template</span><span class="o">=</span>plugin <span class="nt">-i</span> swift <span class="nt">-a</span> kotlin hello
+</code></pre></div></div>
+
+<h3 id="edit-plugin-package">
+<a id="step-2-implement-the-package-1" class="anchor" href="#step-2-implement-the-package-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 2: Implement the package</h3>
+
+<p>As a plugin package contains code for several platforms written in several
+programming languages, some specific steps are needed to ensure a smooth
+experience.</p>
+
+<h4 id="step-2a-define-the-package-api-dart">
+<a id="step-2a-define-the-package-api-dart" class="anchor" href="#step-2a-define-the-package-api-dart" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 2a: Define the package API (.dart)</h4>
+
+<p>The API of the plugin package is defined in Dart code. Open the main <code class="highlighter-rouge">hello/</code>
+folder in your favorite <a href="/docs/get-started/editor">Flutter editor</a>. Locate the file
+<code class="highlighter-rouge">lib/hello.dart</code>.</p>
+
+<h4 id="step-2b-add-android-platform-code-javakt">
+<a id="step-2b-add-android-platform-code-javakt" class="anchor" href="#step-2b-add-android-platform-code-javakt" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 2b: Add Android platform code (.java/.kt)</h4>
+
+<p>We recommend you edit the Android code using Android Studio.</p>
+
+<p>Before editing the Android platform code in Android Studio, first make sure that
+the code has been built at least once (i.e., run the example app from your IDE/editor,
+or in a terminal execute <code class="highlighter-rouge">cd hello/example; flutter build apk</code>).</p>
+
+<p>Next,</p>
+
+<ol>
+  <li>Launch Android Studio</li>
+  <li>Select ‘Import project’ in ‘Welcome to Android Studio’ dialog, or select
+‘File &gt; New &gt; Import Project…’’ in the menu, and select the
+<code class="highlighter-rouge">hello/example/android/build.gradle</code> file.</li>
+  <li>In the ‘Gradle Sync’ dialog, select ‘OK’.</li>
+  <li>In the ‘Android Gradle Plugin Update’ dialog, select ‘Don’t remind me again
+for this project’.</li>
+</ol>
+
+<p>The Android platform code of your plugin is located in
+<code>hello/java/com.example.hello/​HelloPlugin</code>.</p>
+
+<p>You can run the example app from Android Studio by pressing the ▶ button.</p>
+
+<h4 id="step-2c-add-ios-platform-code-hmswift">
+<a id="step-2c-add-ios-platform-code-hmswift" class="anchor" href="#step-2c-add-ios-platform-code-hmswift" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 2c: Add iOS platform code (.h+.m/.swift)</h4>
+
+<p>We recommend you edit the iOS code using Xcode.</p>
+
+<p>Before editing the iOS platform code in Xcode, first make sure that
+the code has been built at least once (i.e., run the example app from your IDE/editor,
+or in a terminal execute <code class="highlighter-rouge">cd hello/example; flutter build ios --no-codesign</code>).</p>
+
+<p>Next,</p>
+
+<ol>
+  <li>Launch Xcode</li>
+  <li>Select ‘File &gt; Open’, and select the <code class="highlighter-rouge">hello/example/ios/Runner.xcworkspace</code> file.</li>
+</ol>
+
+<p>The iOS platform code of your plugin is located in <code class="highlighter-rouge">Pods/Development
+Pods/hello/Classes/</code> in the Project Navigator.</p>
+
+<p>You can run the example app by pressing the ▶ button.</p>
+
+<h4 id="step-2d-connect-the-api-and-the-platform-code">
+<a id="step-2d-connect-the-api-and-the-platform-code" class="anchor" href="#step-2d-connect-the-api-and-the-platform-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 2d: Connect the API and the platform code</h4>
+
+<p>Finally, you need to connect the API written in Dart code with the platform-specific
+implementations. This is done using <a href="/docs/development/platform-integration/platform-channels">platform
+channels</a>.</p>
+
+<h2 id="adding-documentation">
+<a id="adding-documentation" class="anchor" href="#adding-documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding documentation</h2>
+
+<p>It is recommended practice to add the following documentation to all packages:</p>
+
+<ol>
+  <li>A <code class="highlighter-rouge">README.md</code> file that introduces the package</li>
+  <li>A <code class="highlighter-rouge">CHANGELOG.md</code> file that documents changes in each version</li>
+  <li>A <code class="highlighter-rouge">LICENSE</code> file containing the terms under which the package is licensed</li>
+  <li>API documentation for all public APIs (see below for details)</li>
+</ol>
+
+<h3 id="api-documentation">
+<a id="api-documentation" class="anchor" href="#api-documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>API documentation</h3>
+
+<p>When you publish a package, API documentation is automatically generated and
+published to dartdocs.org, see for example the <a href="https://pub.dartlang.org/documentation/device_info/latest">device_info
+docs</a></p>
+
+<p>If you wish to generate API documentation locally on your developement machine, use the following commands:</p>
+
+<ol>
+  <li>
+    <p>Change directory to the location of your package:</p>
+
+    <p><code class="highlighter-rouge">cd ~/dev/mypackage</code></p>
+  </li>
+  <li>
+    <p>Tell the documentation tool where the Flutter SDK is (change to reflect where you placed it):</p>
+
+    <p><code class="highlighter-rouge">export FLUTTER_ROOT=~/dev/flutter</code> (on macOS or Linux)</p>
+
+    <p><code class="highlighter-rouge">set FLUTTER_ROOT=~/dev/flutter</code> (on Windows)</p>
+  </li>
+  <li>
+    <p>Run the <code class="highlighter-rouge">dartdoc</code> tool (comes as part of the Flutter SDK):</p>
+
+    <p><code class="highlighter-rouge">$FLUTTER_ROOT/bin/cache/dart-sdk/bin/dartdoc</code> (on macOS or Linux)</p>
+
+    <p><code class="highlighter-rouge">%FLUTTER_ROOT%\bin\cache\dart-sdk\bin\dartdoc</code> (on Windows)</p>
+  </li>
+</ol>
+
+<p>For tips on how to write API documentation, see <a href="https://www.dartlang.org/guides/language/effective-dart/documentation">Effective Dart:
+Documentation</a>.</p>
+
+<h2 id="publish">
+<a id="publishing-packages" class="anchor" href="#publishing-packages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Publishing packages</h2>
+
+<p>Once you have implemented a package, you can publish it on the
+<a href="https://pub.flutter-io.cn">Pub site</a>, so that other developers can
+easily use it.</p>
+
+<p>Prior to publishing, make sure to review the <code class="highlighter-rouge">pubspec.yaml</code>, <code class="highlighter-rouge">README.md</code>, and
+<code class="highlighter-rouge">CHANGELOG.md</code> files to make sure their content is complete and correct.</p>
+
+<p>Next, run the dry-run command to see if everything passes analysis:</p>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> flutter packages pub publish <span class="nt">--dry-run</span>
+</code></pre></div></div>
+
+<p>Finally, run the actual publish command:</p>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> flutter packages pub publish
+</code></pre></div></div>
+
+<p>For details on publishing, see the
+<a href="https://www.dartlang.org/tools/pub/publishing">publishing docs</a>.
+for the Pub site.</p>
+
+<h2 id="dependencies">
+<a id="handling-package-interdependencies" class="anchor" href="#handling-package-interdependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Handling package interdependencies</h2>
+
+<p>If you are developing a package <code class="highlighter-rouge">hello</code> that depends on the Dart API exposed
+by another package, you need to add that package to the <code class="highlighter-rouge">dependencies</code>
+section of your <code class="highlighter-rouge">pubspec.yaml</code> file.  The code below makes the Dart API
+of the <code class="highlighter-rouge">url_launcher</code> plugin available to <code class="highlighter-rouge">hello</code>:</p>
+
+<p>In <code class="highlighter-rouge">hello/pubspec.yaml</code>:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">dependencies</span><span class="pi">:</span>
+  <span class="na">url_launcher</span><span class="pi">:</span> <span class="s">^0.4.2</span>
+</code></pre></div></div>
+
+<p>You can now <code class="highlighter-rouge">import 'package:url_launcher/url_launcher.dart'</code> and <code class="highlighter-rouge">launch(someUrl)</code> in
+the Dart code of <code class="highlighter-rouge">hello</code>.</p>
+
+<p>This is no different from how you include packages in Flutter apps or any other Dart project.</p>
+
+<p>But if <code class="highlighter-rouge">hello</code> happens to be a <em>plugin</em> package whose platform-specific code needs access
+to the platform-specific APIs exposed by <code class="highlighter-rouge">url_launcher</code>, you also need to add
+suitable dependency declarations to your platform-specific build files, as shown below.</p>
+
+<h3 id="android">
+<a id="android" class="anchor" href="#android" aria-hidden="true"><span class="octicon octicon-link"></span></a>Android</h3>
+
+<p>In <code class="highlighter-rouge">hello/android/build.gradle</code>:</p>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">android</span> <span class="o">{</span>
+    <span class="c1">// lines skipped</span>
+    <span class="n">dependencies</span> <span class="o">{</span>
+        <span class="n">provided</span> <span class="n">rootProject</span><span class="o">.</span><span class="na">findProject</span><span class="o">(</span><span class="s2">":url_launcher"</span><span class="o">)</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>You can now <code class="highlighter-rouge">import io.flutter.plugins.urllauncher.UrlLauncherPlugin</code> and access the <code class="highlighter-rouge">UrlLauncherPlugin</code>
+class in the source code at <code class="highlighter-rouge">hello/android/src</code>.</p>
+
+<h3 id="ios">
+<a id="ios" class="anchor" href="#ios" aria-hidden="true"><span class="octicon octicon-link"></span></a>iOS</h3>
+
+<p>In <code class="highlighter-rouge">hello/ios/hello.podspec</code>:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Pod</span><span class="o">::</span><span class="no">Spec</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>
+  <span class="c1"># lines skipped</span>
+  <span class="n">s</span><span class="p">.</span><span class="nf">dependency</span> <span class="s1">'url_launcher'</span>
+</code></pre></div></div>
+<p>You can now <code class="highlighter-rouge">#import "UrlLauncherPlugin.h"</code> and access the <code class="highlighter-rouge">UrlLauncherPlugin</code> class in the source code
+at <code class="highlighter-rouge">hello/ios/Classes</code>.</p>
+
+<h3 id="conflict-resolution">
+<a id="conflict-resolution" class="anchor" href="#conflict-resolution" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conflict resolution</h3>
+
+<p>Suppose you want to use <code class="highlighter-rouge">some_package</code> and <code class="highlighter-rouge">other_package</code> in your package
+<code class="highlighter-rouge">hello</code>, and both of these depend on <code class="highlighter-rouge">url_launcher</code>, but in different
+versions. Then we have a potential conflict. The best way to avoid this
+is for package authors to use <a href="https://www.dartlang.org/tools/pub/dependencies#version-constraints">version
+ranges</a>
+rather than specific versions when specifying dependencies.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">dependencies</span><span class="pi">:</span>
+  <span class="na">url_launcher</span><span class="pi">:</span> <span class="s">^0.4.2</span>    <span class="c1"># Good, any 0.4.x with x &gt;= 2 will do.</span>
+  <span class="na">image_picker</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0.1.1'</span>   <span class="c1"># Not so good, only 0.1.1 will do.</span>
+</code></pre></div></div>
+
+<p>If <code class="highlighter-rouge">some_package</code> declares the dependencies above and <code class="highlighter-rouge">other_package</code>
+declares a compatible  <code class="highlighter-rouge">url_launcher</code> dependency like <code class="highlighter-rouge">'0.4.5'</code> or <code class="highlighter-rouge">^0.4.0</code>,
+<code class="highlighter-rouge">pub</code> is able to resolve the issue automatically. Similar
+remarks apply to plugin packages’ platform-specific dependencies on
+<a href="https://docs.gradle.org/current/userguide/introduction_dependency_management.html">Gradle modules</a> and/or <a href="https://guides.cocoapods.org/syntax/podspec.html#dependency">CocoaPods</a>.</p>
+
+<p>Even if <code class="highlighter-rouge">some_package</code> and <code class="highlighter-rouge">other_package</code> declare incompatible versions for
+<code class="highlighter-rouge">url_launcher</code>, it may still be that they actually use <code class="highlighter-rouge">url_launcher</code> in
+compatible ways. Then the conflict can be dealt with by adding
+a dependency override declaration to the <code class="highlighter-rouge">pubspec.yaml</code> file in <code class="highlighter-rouge">hello</code>,
+forcing the use of a particular version.</p>
+
+<p>Forcing the use of <code class="highlighter-rouge">url_launcher</code> version <code class="highlighter-rouge">0.4.3</code> in <code class="highlighter-rouge">hello/pubspec.yaml</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">dependencies</span><span class="pi">:</span>
+  <span class="na">some_package</span><span class="pi">:</span>
+  <span class="na">other_package</span><span class="pi">:</span>
+<span class="na">dependency_overrides</span><span class="pi">:</span>
+  <span class="na">url_launcher</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0.4.3'</span>
+</code></pre></div></div>
+
+<p>If the conflicting dependency is not itself a package,
+but an Android-specific library like <code class="highlighter-rouge">guava</code>, the dependency override
+declaration must be added to Gradle build logic instead.</p>
+
+<p>Forcing the use of <code class="highlighter-rouge">guava</code> version <code class="highlighter-rouge">23.0</code> in <code class="highlighter-rouge">hello/android/build.gradle</code>:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">configurations</span><span class="o">.</span><span class="na">all</span> <span class="o">{</span>
+    <span class="n">resolutionStrategy</span> <span class="o">{</span>
+        <span class="n">force</span> <span class="s1">'com.google.guava:guava:23.0-android'</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>CocoaPods does not currently offer dependency override functionality.</p>
+
+
+        
+      </div>
+    </main>
+  </div>
+</div>
+<footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 site-footer__wrapper">
+        <div class="site-footer__logo">
+          <img src="/images/flutter-mono-81x100.png" alt="Flutter Logo" width="81" height="100">
+        </div>
+        <div class="site-footer__content">
+          <ul class="site-footer__link-list">
+              <li><a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a></li>
+              <li><a href="/tos">terms</a></li>
+              <li><a href="/security">security</a></li>
+              <li><a href="https://www.google.com/intl/en/policies/privacy">privacy</a></li>
+              <li><a href="https://flutter-es.io/">español</a></li>
+              <li><a href="https://flutter-io.cn" class="text-nowrap">社区中文资源</a></li>
+          </ul>
+
+          <p class="licenses" translation-origin="on">
+            Except as otherwise noted,
+            this work is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0">Creative
+            Commons Attribution 4.0 International License</a>,
+            and code samples are licensed under the BSD License.
+          </p>
+          <p class="licenses" translation-result="off">
+            除非特别说明，否则本站内容采用 <a rel="license" href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0 授权协议</a>，所有范例代码都采用 BSD 授权协议。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- <script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script> -->
+  
+
+<script src="/assets/translator/js/translator.js"></script></body></html>

@@ -1,0 +1,975 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>动画效果介绍  - Flutter 中文文档 - Flutter 社区中文资源 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-ND4LWWZ');</script>
+  <!-- End Google Tag Manager -->
+
+  
+  <meta name="description" content="如何使用 Flutter 实现动画效果">
+  <meta name="keywords" content=" ">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@flutterdev">
+
+  <meta property="og:title" content="动画效果介绍">
+  <meta property="og:url" content="https://flutter.dev/docs/development/ui/animations">
+  <meta property="og:description" content="如何使用 Flutter 实现动画效果">
+  
+  <meta property="og:image" content="https://flutter.dev/images/flutter-logo-sharing.png">
+
+  <link href="/assets/translator/css/material-roboto.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/assets/main-74a0c308218334fcd85291a957a514973015ea8e4eb76b9abae6e14bb5012f5e.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  <script src="/assets/main-d6b8b8d26e7b4122b3ddf6a5201966d6e2494aaffadaafaf7c571ce5e2fe0aab.js" type="text/javascript"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-122680122-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <!--<meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />-->
+<link href="/assets/translator/css/translator.css" rel="stylesheet"></head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-ND4LWWZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div id="overlay-under-drawer"></div>
+
+    <header class="site-header">
+  <nav class="navbar navbar-expand-md justify-content-start justify-content-md-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="material-icons">menu</i>
+    </button>
+
+    <a class="navbar-brand" href="/">
+      <img alt="Flutter by Google" height="37" width="129" class="align-middle" src="/assets/flutter-lockup-4cb0ee072ab312e59784d9fbf4fb7ad42688a7fdaea1270ccf6bbf4f34b7e03f.svg">
+    </a>
+
+    <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
+      <div class="site-header__sheet-bg" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></div>
+      <div class="site-header__sheet">
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <a class="nav-link active" href="/docs">开发文档</a>
+          </li>
+          <div class="site-sidebar site-sidebar--header d-md-none">
+            <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="false" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="false" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link active collapsable" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="true" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link active collapsable" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="true" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link active" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+          </div>
+
+<!-- 
+          <li class="nav-item">
+            <a class="nav-link" href="/showcase">Showcase</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/community">Community</a>
+          </li>
+ -->
+        </ul>
+        <form action="/search" class="site-header__search form-inline">
+          <input class="site-header__searchfield form-control" type="search" name="q" id="q" autocomplete="off" placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+    </div>
+    <div class="site-header__social navbar-nav flex-row">
+      <a class="nav-item nav-link" href="https://twitter.com/flutterdev"><i class="fab fa-twitter fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://www.youtube.com/flutterdev"><i class="fab fa-youtube fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://github.com/flutter"><i class="fab fa-github fa-lg"></i></a>
+    </div>
+    <a class="site-header__cta btn btn-primary" href="/docs/get-started/install/">Get started</a>
+    </nav>
+</header>
+<div class="site-banner site-banner--default" role="alert">
+    <p>
+      We are looking for a Flutter Infrastructure engineer!
+      <a href="/jobs/infrastructure" target="_blank" rel="noopener">Learn more</a>.
+    </p>
+
+  </div>
+<div class="container-fluid position-relative">
+  <div class="row flex-xl-nowrap">
+    <div class="fixed-col site-sidebar site-sidebar--fixed col-12 col-md-3 col-xl-2 d-none d-md-block" data-fixed-column="">
+      <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="false" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="false" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link active collapsable" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="true" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link active collapsable" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="true" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link active" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+    </div>
+    <div id="site-toc--side" class="site-toc site-toc--side fixed-col col-xl-2 order-3" data-fixed-column="">
+  <header class="site-toc__title">
+    Contents
+    <button type="button" class="btn site-toc--button__page-top" aria-label="Page top"></button>
+    </header>
+  <ul class="section-nav nav">
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#animation-types">Animation types</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#tween-animation">Tween animation</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#physics-based-animation">Physics-based animation</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#common-animation-patterns">Common animation patterns</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#animated-list-or-grid">Animated list or grid</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#shared-element-transition">Shared element transition</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#staggered-animation">Staggered animation</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#other-resources">Other resources</a></li>
+</ul>
+</div>
+<main class="site-content col-12 col-md-9 offset-md-3 col-xl-8 offset-xl-2 col-xxl-8 offset-xxl-2" role="main">
+      <div class="container">
+        
+        
+        <header class="site-content__title">
+          <div id="page-github-links" class="btn-group" aria-label="Page GitHub links" role="group">
+  <a href="https://github.com/cfug/flutter.cn/tree/master/src/docs/development/ui/animations/index.md" class="btn no-automatic-external" title="View page source" target="_blank" rel="noopener">
+    <i class="fas fa-file-alt fa-sm"></i>
+  </a>
+  <a href="https://github.com/cfug/flutter.cn/issues/new?title='动画效果介绍' page issue&amp;body=
+Page URL: https://flutter.dev/docs/development/ui/animations/%0D%0A
+Page source: https://github.com/cfug/flutter.cn/tree/master/src/docs/development/ui/animations/index.md%0D%0A
+%0D%0A
+Found a typo? You can fix it yourself by going to the page source and clicking the pencil icon. Or finish creating this issue.%0D%0A
+%0D%0A
+Description of issue:" class="btn no-automatic-external" title="Report an issue with this page" target="_blank" rel="noopener">
+    <i class="fas fa-bug fa-sm"></i>
+  </a>
+</div>
+
+          <h1 id="动画效果介绍">动画效果介绍</h1>
+          
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="/docs" property="item" typeof="WebPage"><span property="name">文档</span>
+      </a>
+      <meta property="position" content="1">
+    </li>
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="/docs/development" property="item" typeof="WebPage"><span property="name">开发文档</span>
+      </a>
+      <meta property="position" content="2">
+    </li>
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="/docs/development/ui" property="item" typeof="WebPage"><span property="name">UI</span>
+      </a>
+      <meta property="position" content="3">
+    </li>
+  <li class="breadcrumb-item active" property="itemListElement" typeof="ListItem" aria-current="page"><a href="/docs/development/ui/animations" property="item" typeof="WebPage"><span property="name">动画</span>
+      </a>
+      <meta property="position" content="4">
+    </li>
+  
+  </ol>
+</nav>
+          </header>
+        <div id="site-toc--inline" class="site-toc site-toc--inline ">
+  <header class="site-toc__title">
+    Contents
+    </header>
+  <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#animation-types">Animation types</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#tween-animation">Tween animation</a></li>
+<li class="toc-entry toc-h3"><a href="#physics-based-animation">Physics-based animation</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#common-animation-patterns">Common animation patterns</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#animated-list-or-grid">Animated list or grid</a></li>
+<li class="toc-entry toc-h3"><a href="#shared-element-transition">Shared element transition</a></li>
+<li class="toc-entry toc-h3"><a href="#staggered-animation">Staggered animation</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#other-resources">Other resources</a></li>
+</ul>
+</div>
+<p>Well-designed animations makes a UI feel more intuitive, contribute to the slick
+look and feel of a polished app, and improve the user experience. Flutter’s
+animation support makes it easy to implement a variety of animation types. Many
+widgets, especially <a href="/docs/development/ui/widgets/material">Material widgets</a>, come with the standard motion effects
+defined in their design spec, but it’s also possible to customize these effects.</p>
+
+<p>The following resources are a good place to start learning the Flutter animation
+framework. Each of these documents shows, step by step, how to write animation
+code.</p>
+
+<ul>
+  <li>
+    <p><a href="/docs/development/ui/animations/tutorial">Animations tutorial</a><br>
+Explains the fundamental classes in the Flutter animation package
+(controllers, Animatable, curves, listeners, builders),
+as it guides you through a progression of tween animations using
+different aspects of the animation APIs.</p>
+  </li>
+  <li>
+    <p><a href="https://medium.com/dartlang/zero-to-one-with-flutter-43b13fd7b354">Zero to One with Flutter, part
+1</a> and <a href="https://medium.com/dartlang/zero-to-one-with-flutter-part-two-5aa2f06655cb">part
+2</a><br>
+Medium articles showing how to create an animated chart using tweening.</p>
+  </li>
+  <li>
+    <p><a href="https://codelabs.flutter-io.cn/codelabs/flutter">Building Beautiful UIs with
+Flutter</a><br>
+Codelab demonstrating how to build a simple chat app. <a href="https://codelabs.flutter-io.cn/codelabs/flutter/#6">Step 7 (Animate
+your app)</a>
+shows how to animate the new message—sliding it from the input area up
+to the message list.</p>
+  </li>
+</ul>
+
+<p>We also have some videos that discuss aspects of Flutter animation.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yI-8QHpGIP4?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+<p>AnimatedContainer</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/9hltevOHQBw?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+<p>Opacity, including the implicit AnimatedOpacity widget</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pK738Pg9cxc?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+<p>FadeInImage</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Be9UH1kXFDw?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+<p>Hero</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/9z_YNlRlWfA?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+<p>Transform</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/N-RiyZlv8v8?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+<p>AnimatedBuilder</p>
+
+<h2 id="animation-types">
+<a id="animation-types" class="anchor" href="#animation-types" aria-hidden="true"><span class="octicon octicon-link"></span></a>Animation types</h2>
+
+<p>Animations fall into one of two categories: tween- or physics-based.
+The following sections explain what these terms mean, and points you to
+resources where you can learn more. In some cases,
+the best documentation we currently have is example code in the
+Flutter gallery.</p>
+
+<h3 id="tween-animation">
+<a id="tween-animation" class="anchor" href="#tween-animation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tween animation</h3>
+
+<p>Short for <em>in-betweening</em>. In a tween animation, the beginning
+and ending points are defined, as well as a timeline, and a curve
+that defines the timing and speed of the transition.
+The framework calculates how to transition from the beginning point
+to the end point.</p>
+
+<p>The documents listed above, such as the <a href="/docs/development/ui/animations/tutorial">animations
+tutorial</a> are not about tweening,
+specifically, but they use tweens in their examples.</p>
+
+<h3 id="physics-based-animation">
+<a id="physics-based-animation" class="anchor" href="#physics-based-animation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Physics-based animation</h3>
+
+<p>In physics-based animation, motion is modeled to resemble real-world
+behavior. When you toss a ball, for example, where and when it lands
+depends on how fast it was tossed and how far it was from the ground.
+Similarly, dropping a ball attached to a spring falls
+(and bounces) differently than dropping a ball attached to a string.</p>
+
+<ul>
+  <li>
+    <p><a href="https://github.com/flutter/flutter/tree/master/examples/flutter_gallery">Flutter Gallery</a><br>
+Under <strong>Material Components</strong>, the
+<a href="https://github.com/flutter/flutter/blob/master/examples/flutter_gallery/lib/demo/material/grid_list_demo.dart">Grid</a> example
+demonstrates a fling animation. Select one of the images from
+the grid and zoom in. You can pan the image with flinging or dragging
+gestures.</p>
+  </li>
+  <li>
+    <p>Also see the API documentation for
+<a href="https://api.flutter.dev/flutter/animation/AnimationController/animateWith.html">AnimationController<wbr>.animateWith</a> and
+<a href="https://api.flutter.dev/flutter/physics/SpringSimulation-class.html">SpringSimulation</a>.</p>
+  </li>
+</ul>
+
+<h2 id="common-animation-patterns">
+<a id="common-animation-patterns" class="anchor" href="#common-animation-patterns" aria-hidden="true"><span class="octicon octicon-link"></span></a>Common animation patterns</h2>
+
+<p>Most UX or motion designers find that certain animation patterns are
+used repeatedly when designing a UI. This section lists some of the commonly
+used animation patterns, and tells you where you can learn more.</p>
+
+<h3 id="animated-list-or-grid">
+<a id="animated-list-or-grid" class="anchor" href="#animated-list-or-grid" aria-hidden="true"><span class="octicon octicon-link"></span></a>Animated list or grid</h3>
+<p>This pattern involves animating the addition or removal of elements from a
+list or grid.</p>
+
+<ul>
+  <li>
+<a href="/docs/catalog/samples/animated-list">AnimatedList example</a><br>
+This demo, from the <a href="/docs/catalog/samples">Sample App Catalog</a>, shows how to
+animate adding an element to a list, or removing a selected element.
+The internal Dart list is synced as the user modifies the list using
+the plus (+) and minus (-) buttons.</li>
+</ul>
+
+<h3 id="shared-element-transition">
+<a id="shared-element-transition" class="anchor" href="#shared-element-transition" aria-hidden="true"><span class="octicon octicon-link"></span></a>Shared element transition</h3>
+
+<p>In this pattern, the user selects an element—often an
+image—from the page, and the UI animates the selected element
+to a new page with more detail. In Flutter, you can easily implement
+shared element transitions between routes (pages) using the Hero widget.</p>
+
+<ul>
+  <li>
+<a href="/docs/development/ui/animations/hero-animations">Hero Animations</a>
+How to create two styles of Hero animations:
+    <ul>
+      <li>The hero flies from one page to another while changing position
+and size.</li>
+      <li>The hero’s boundary changes shape, from a circle to a square,
+as its flies from one page to another.</li>
+    </ul>
+  </li>
+  <li>
+    <p><a href="https://github.com/flutter/flutter/tree/master/examples/flutter_gallery">Flutter Gallery</a><br>
+You can build the Gallery app yourself, or download it from the Play Store.
+The
+<a href="https://github.com/flutter/flutter/blob/master/examples/flutter_gallery/lib/demo/shrine_demo.dart">Shrine</a>
+demo includes an example of a Hero animation.</p>
+  </li>
+  <li>Also see the API documentation for the
+<a href="https://api.flutter.dev/flutter/widgets/Hero-class.html">Hero,</a>
+<a href="https://api.flutter.dev/flutter/widgets/Navigator-class.html">Navigator,</a> and
+<a href="https://api.flutter.dev/flutter/widgets/PageRoute-class.html">PageRoute</a>
+classes.</li>
+</ul>
+
+<h3 id="staggered-animation">
+<a id="staggered-animation" class="anchor" href="#staggered-animation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Staggered animation</h3>
+
+<p>Animations that are broken into smaller motions, where some of the motion is delayed.
+The smaller animations may be sequential, or may partially or completely overlap.</p>
+
+<ul>
+  <li><a href="/docs/development/ui/animations/staggered-animations">Staggered Animations</a></li>
+</ul>
+
+<h2 id="other-resources">
+<a id="other-resources" class="anchor" href="#other-resources" aria-hidden="true"><span class="octicon octicon-link"></span></a>Other resources</h2>
+
+<p>Learn more about Flutter animations at the following links:</p>
+
+<ul>
+  <li>
+    <p><a href="/docs/development/ui/animations/overview.html">Animations: Technical Overview</a><br>
+A look at some of the major classes in the animations library,
+and Flutter’s animation architecture.</p>
+  </li>
+  <li>
+    <p><a href="/docs/development/ui/widgets/animation">Animation and Motion Widgets</a><br>
+A catalog of some of the animation widgets provided in the Flutter APIs.</p>
+  </li>
+</ul>
+
+<hr>
+
+<p>If there is specific animation documentation you’d like to see,
+<a href="https://github.com/flutter/website/issues">file an issue</a>.</p>
+
+
+        
+      </div>
+    </main>
+  </div>
+</div>
+<footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 site-footer__wrapper">
+        <div class="site-footer__logo">
+          <img src="/images/flutter-mono-81x100.png" alt="Flutter Logo" width="81" height="100">
+        </div>
+        <div class="site-footer__content">
+          <ul class="site-footer__link-list">
+              <li><a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a></li>
+              <li><a href="/tos">terms</a></li>
+              <li><a href="/security">security</a></li>
+              <li><a href="https://www.google.com/intl/en/policies/privacy">privacy</a></li>
+              <li><a href="https://flutter-es.io/">español</a></li>
+              <li><a href="https://flutter-io.cn" class="text-nowrap">社区中文资源</a></li>
+          </ul>
+
+          <p class="licenses" translation-origin="on">
+            Except as otherwise noted,
+            this work is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0">Creative
+            Commons Attribution 4.0 International License</a>,
+            and code samples are licensed under the BSD License.
+          </p>
+          <p class="licenses" translation-result="off">
+            除非特别说明，否则本站内容采用 <a rel="license" href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0 授权协议</a>，所有范例代码都采用 BSD 授权协议。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- <script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script> -->
+  
+
+<script src="/assets/translator/js/translator.js"></script></body></html>

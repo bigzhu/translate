@@ -1,0 +1,1121 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>打包和发布到 Android 平台  - Flutter 中文文档 - Flutter 社区中文资源 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-ND4LWWZ');</script>
+  <!-- End Google Tag Manager -->
+
+  
+  <meta name="description" content="During a typical development cycle, you test an app using`flutter run` at the command line, the **Run** and **Debug**toolbar buttons in IntelliJ. By default,Flutter builds a *debug* version of your app.When you're ready to prepare a *release* version for Android, for example to[publish to the Google Play Store][play], follow the...">
+  <meta name="keywords" content=" ">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@flutterdev">
+
+  <meta property="og:title" content="打包和发布到 Android 平台">
+  <meta property="og:url" content="https://flutter.dev/docs/deployment/android">
+  <meta property="og:description" content="During a typical development cycle, you test an app using`flutter run` at the command line, the **Run** and **Debug**toolbar buttons in IntelliJ. By default,Flutter builds a *debug* version of your app.When you're ready to prepare a *release* version for Android, for example to[publish to the Google Play Store][play], follow the...">
+  
+  <meta property="og:image" content="https://flutter.dev/images/flutter-logo-sharing.png">
+
+  <link href="/assets/translator/css/material-roboto.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/assets/main-74a0c308218334fcd85291a957a514973015ea8e4eb76b9abae6e14bb5012f5e.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  <script src="/assets/main-d6b8b8d26e7b4122b3ddf6a5201966d6e2494aaffadaafaf7c571ce5e2fe0aab.js" type="text/javascript"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-122680122-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <!--<meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />-->
+<link href="/assets/translator/css/translator.css" rel="stylesheet"></head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-ND4LWWZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div id="overlay-under-drawer"></div>
+
+    <header class="site-header">
+  <nav class="navbar navbar-expand-md justify-content-start justify-content-md-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="material-icons">menu</i>
+    </button>
+
+    <a class="navbar-brand" href="/">
+      <img alt="Flutter by Google" height="37" width="129" class="align-middle" src="/assets/flutter-lockup-4cb0ee072ab312e59784d9fbf4fb7ad42688a7fdaea1270ccf6bbf4f34b7e03f.svg">
+    </a>
+
+    <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
+      <div class="site-header__sheet-bg" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></div>
+      <div class="site-header__sheet">
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <a class="nav-link active" href="/docs">开发文档</a>
+          </li>
+          <div class="site-sidebar site-sidebar--header d-md-none">
+            <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="false" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="false" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="true" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link active" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+          </div>
+
+<!-- 
+          <li class="nav-item">
+            <a class="nav-link" href="/showcase">Showcase</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/community">Community</a>
+          </li>
+ -->
+        </ul>
+        <form action="/search" class="site-header__search form-inline">
+          <input class="site-header__searchfield form-control" type="search" name="q" id="q" autocomplete="off" placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+    </div>
+    <div class="site-header__social navbar-nav flex-row">
+      <a class="nav-item nav-link" href="https://twitter.com/flutterdev"><i class="fab fa-twitter fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://www.youtube.com/flutterdev"><i class="fab fa-youtube fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://github.com/flutter"><i class="fab fa-github fa-lg"></i></a>
+    </div>
+    <a class="site-header__cta btn btn-primary" href="/docs/get-started/install/">Get started</a>
+    </nav>
+</header>
+<div class="site-banner site-banner--default" role="alert">
+    <p>
+      We are looking for a Flutter Infrastructure engineer!
+      <a href="/jobs/infrastructure" target="_blank" rel="noopener">Learn more</a>.
+    </p>
+
+  </div>
+<div class="container-fluid position-relative">
+  <div class="row flex-xl-nowrap">
+    <div class="fixed-col site-sidebar site-sidebar--fixed col-12 col-md-3 col-xl-2 d-none d-md-block" data-fixed-column="">
+      <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="false" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="false" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="true" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link active" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+    </div>
+    <div id="site-toc--side" class="site-toc site-toc--side fixed-col col-xl-2 order-3" data-fixed-column="">
+  <header class="site-toc__title">
+    Contents
+    <button type="button" class="btn site-toc--button__page-top" aria-label="Page top"></button>
+    </header>
+  <ul class="section-nav nav">
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#review-the-app-manifest">Review the App Manifest</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#review-the-build-configuration">Review the build configuration</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#adding-a-launcher-icon">Adding a Launcher icon</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#signing-the-app">Signing the app</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#create-a-keystore">Create a keystore</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#reference-the-keystore-from-the-app">Reference the keystore from the app</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#configure-signing-in-gradle">Configure signing in gradle</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#enabling-proguard">Enabling Proguard</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#step-1---configure-proguard">Step 1 - Configure Proguard</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#step-2---enable-obfuscation-andor-minification">Step 2 - Enable obfuscation and/or minification</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#building-a-release-apk">Building a release APK</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#installing-a-release-apk-on-a-device">Installing a release APK on a device</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#publishing-an-apk-to-the-google-play-store">Publishing an APK to the Google Play Store</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#building-a-release-app-bundle">Building a release app bundle</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#testing-an-app-bundle">Testing an app Bundle</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#offline-using-the-bundle-tool">Offline using the bundle tool</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#online-using-google-play">Online using Google Play</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<main class="site-content col-12 col-md-9 offset-md-3 col-xl-8 offset-xl-2 col-xxl-8 offset-xxl-2" role="main">
+      <div class="container">
+        
+        
+        <header class="site-content__title">
+          <div id="page-github-links" class="btn-group" aria-label="Page GitHub links" role="group">
+  <a href="https://github.com/cfug/flutter.cn/tree/master/src/docs/deployment/android.md" class="btn no-automatic-external" title="View page source" target="_blank" rel="noopener">
+    <i class="fas fa-file-alt fa-sm"></i>
+  </a>
+  <a href="https://github.com/cfug/flutter.cn/issues/new?title='打包和发布到 Android 平台' page issue&amp;body=
+Page URL: https://flutter.dev/docs/deployment/android.html%0D%0A
+Page source: https://github.com/cfug/flutter.cn/tree/master/src/docs/deployment/android.md%0D%0A
+%0D%0A
+Found a typo? You can fix it yourself by going to the page source and clicking the pencil icon. Or finish creating this issue.%0D%0A
+%0D%0A
+Description of issue:" class="btn no-automatic-external" title="Report an issue with this page" target="_blank" rel="noopener">
+    <i class="fas fa-bug fa-sm"></i>
+  </a>
+</div>
+
+          <h1 id="打包和发布到-android-平台">打包和发布到 Android 平台</h1>
+          </header>
+        <div id="site-toc--inline" class="site-toc site-toc--inline ">
+  <header class="site-toc__title">
+    Contents
+    </header>
+  <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#review-the-app-manifest">Review the App Manifest</a></li>
+<li class="toc-entry toc-h2"><a href="#review-the-build-configuration">Review the build configuration</a></li>
+<li class="toc-entry toc-h2"><a href="#adding-a-launcher-icon">Adding a Launcher icon</a></li>
+<li class="toc-entry toc-h2"><a href="#signing-the-app">Signing the app</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#create-a-keystore">Create a keystore</a></li>
+<li class="toc-entry toc-h3"><a href="#reference-the-keystore-from-the-app">Reference the keystore from the app</a></li>
+<li class="toc-entry toc-h3"><a href="#configure-signing-in-gradle">Configure signing in gradle</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#enabling-proguard">Enabling Proguard</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#step-1---configure-proguard">Step 1 - Configure Proguard</a></li>
+<li class="toc-entry toc-h3"><a href="#step-2---enable-obfuscation-andor-minification">Step 2 - Enable obfuscation and/or minification</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#building-a-release-apk">Building a release APK</a></li>
+<li class="toc-entry toc-h2"><a href="#installing-a-release-apk-on-a-device">Installing a release APK on a device</a></li>
+<li class="toc-entry toc-h2"><a href="#publishing-an-apk-to-the-google-play-store">Publishing an APK to the Google Play Store</a></li>
+<li class="toc-entry toc-h2"><a href="#building-a-release-app-bundle">Building a release app bundle</a></li>
+<li class="toc-entry toc-h2"><a href="#testing-an-app-bundle">Testing an app Bundle</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#offline-using-the-bundle-tool">Offline using the bundle tool</a></li>
+<li class="toc-entry toc-h3"><a href="#online-using-google-play">Online using Google Play</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>During a typical development cycle, you test an app using
+<code class="highlighter-rouge">flutter run</code> at the command line, the <strong>Run</strong> and <strong>Debug</strong>
+toolbar buttons in IntelliJ. By default,
+Flutter builds a <em>debug</em> version of your app.</p>
+
+<p>When you’re ready to prepare a <em>release</em> version for Android, for example to
+<a href="https://developer.android.google.cn/distribute/googleplay/start">publish to the Google Play Store</a>, follow the steps on this page.</p>
+
+<h2 id="review-the-app-manifest">
+<a id="review-the-app-manifest" class="anchor" href="#review-the-app-manifest" aria-hidden="true"><span class="octicon octicon-link"></span></a>Review the App Manifest</h2>
+
+<p>Review the default <a href="https://developer.android.google.cn/guide/topics/manifest/manifest-intro">App Manifest</a> file <code class="highlighter-rouge">AndroidManifest.xml</code> located
+in <code class="highlighter-rouge">&lt;app dir&gt;/android/app/src/main</code> and verify the values are correct,
+especially:</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">application</code>: Edit the <code class="highlighter-rouge">android:label</code> in the
+<a href="https://developer.android.google.cn/guide/topics/manifest/application-element"><code class="highlighter-rouge">application</code></a> tag to reflect the final name of the app.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">uses-permission</code>: Remove the <code class="highlighter-rouge">android.permission.INTERNET</code>
+<a href="https://developer.android.google.cn/guide/topics/manifest/uses-permission-element">permission</a> if your application code does not need Internet
+access. The standard template includes this tag to enable communication
+between Flutter tools and a running app.</p>
+  </li>
+</ul>
+
+<h2 id="review-the-build-configuration">
+<a id="review-the-build-configuration" class="anchor" href="#review-the-build-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Review the build configuration</h2>
+
+<p>Review the default <a href="https://developer.android.google.cn/studio/build/#module-level">Gradle build file</a> file <code class="highlighter-rouge">build.gradle</code>
+located in <code class="highlighter-rouge">&lt;app dir&gt;/android/app</code> and verify the values are correct,
+especially:</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">defaultConfig</code>:</p>
+
+    <ul>
+      <li>
+        <p><code class="highlighter-rouge">applicationId</code>: Specify the final, unique (Application Id)<a href="https://developer.android.google.cn/studio/build/application-id">appid</a></p>
+      </li>
+      <li>
+        <p><code class="highlighter-rouge">versionCode</code> &amp; <code class="highlighter-rouge">versionName</code>: Specify the internal app version number,
+ and the version number display string. You can do this by setting
+ the <code class="highlighter-rouge">version</code> property in the pubspec.yaml file. Consult the version
+ information guidance in the <a href="https://developer.android.google.cn/studio/publish/versioning">versions documentation</a>.</p>
+      </li>
+      <li>
+        <p><code class="highlighter-rouge">minSdkVersion</code> &amp; <code class="highlighter-rouge">targetSdkVersion</code>: Specify the minimum API level,
+ and the API level on which the app is designed to run. Consult the API
+ level section in the <a href="https://developer.android.google.cn/studio/publish/versioning">versions documentation</a> for details.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="adding-a-launcher-icon">
+<a id="adding-a-launcher-icon" class="anchor" href="#adding-a-launcher-icon" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding a Launcher icon</h2>
+
+<p>When a new Flutter app is created, it has a default Launcher icon. To
+customize this icon you might want to check out the <a href="https://pub.flutter-io.cn/packages/flutter_launcher_icons">Flutter Launcher
+Icons</a> package.</p>
+
+<p>Alternatively, if you want to do it manually, here’s how:</p>
+
+<ol>
+  <li>
+    <p>Review the <a href="https://developer.android.google.cn/guide/practices/ui_guidelines/icon_design_launcher">Android Launcher Icons</a> guidelines for icon
+design.</p>
+  </li>
+  <li>
+    <p>In the <code class="highlighter-rouge">&lt;app dir&gt;/android/app/src/main/res/</code> directory, place your icon files
+in folders named using <a href="https://developer.android.google.cn/guide/topics/resources/providing-resources#AlternativeResources">configuration qualifiers</a>.
+The default <code class="highlighter-rouge">mipmap-</code> folders demonstrate the correct naming convention.</p>
+  </li>
+  <li>
+    <p>In <code class="highlighter-rouge">AndroidManifest.xml</code>, update the <a href="https://developer.android.google.cn/guide/topics/manifest/application-element"><code class="highlighter-rouge">application</code></a> tag’s
+<code class="highlighter-rouge">android:icon</code> attribute to reference icons from the previous step (for
+example, <code class="highlighter-rouge">&lt;application android:icon="@mipmap/ic_launcher" ...</code>).</p>
+  </li>
+  <li>
+    <p>To verify the icon has been replaced, run your app using <code class="highlighter-rouge">flutter run</code>
+and inspect the app icon in the Launcher.</p>
+  </li>
+</ol>
+
+<h2 id="signing-the-app">
+<a id="signing-the-app" class="anchor" href="#signing-the-app" aria-hidden="true"><span class="octicon octicon-link"></span></a>Signing the app</h2>
+
+<p>To publish on the Play store, you need to give your app a digital
+signature. Use the following instructions to sign your app.</p>
+
+<h3 id="create-a-keystore">
+<a id="create-a-keystore" class="anchor" href="#create-a-keystore" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create a keystore</h3>
+<p>If you have an existing keystore, skip to the next step. If not, create one
+by running the following at the command line:
+<code class="highlighter-rouge">keytool -genkey -v -keystore ~/key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias key</code></p>
+
+<p><em>Note:</em> Keep this file private; do not check it into public source control.</p>
+
+<p><em>Note:</em> <code class="highlighter-rouge">keytool</code> might not be in your path. It is part of the Java JDK,
+which is installed as part of Android Studio. For the concrete path,
+run <code class="highlighter-rouge">flutter doctor -v</code> and see the path printed after ‘Java binary at:’,
+and then use that fully qualified path replacing <code class="highlighter-rouge">java</code> with <code class="highlighter-rouge">keytool</code>.</p>
+
+<h3 id="reference-the-keystore-from-the-app">
+<a id="reference-the-keystore-from-the-app" class="anchor" href="#reference-the-keystore-from-the-app" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reference the keystore from the app</h3>
+
+<p>Create a file named <code class="highlighter-rouge">&lt;app dir&gt;/android/key.properties</code> that contains a
+reference to your keystore:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>storePassword=&lt;password from previous step&gt;
+keyPassword=&lt;password from previous step&gt;
+keyAlias=key
+storeFile=&lt;location of the key store file, e.g. /Users/&lt;user name&gt;/key.jks&gt;
+</code></pre></div></div>
+
+<p><em>Note:</em> Keep this file private; do not check it into public source control.</p>
+
+<h3 id="configure-signing-in-gradle">
+<a id="configure-signing-in-gradle" class="anchor" href="#configure-signing-in-gradle" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configure signing in gradle</h3>
+
+<p>Configure signing for your app by editing the
+<code class="highlighter-rouge">&lt;app dir&gt;/android/app/build.gradle</code> file.</p>
+
+<ol>
+  <li>Replace:
+    <div class="highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>android {
+</code></pre></div>    </div>
+    <p>with the keystore information from your properties file:</p>
+    <div class="highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+android {
+</code></pre></div>    </div>
+  </li>
+  <li>Replace:
+    <div class="highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>buildTypes {
+    release {
+        // TODO: Add your own signing config for the release build.
+        // Signing with the debug keys for now, so `flutter run --release` works.
+        signingConfig signingConfigs.debug
+    }
+}
+</code></pre></div>    </div>
+    <p>with:</p>
+    <div class="highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>signingConfigs {
+    release {
+        keyAlias keystoreProperties['keyAlias']
+        keyPassword keystoreProperties['keyPassword']
+        storeFile file(keystoreProperties['storeFile'])
+        storePassword keystoreProperties['storePassword']
+    }
+}
+buildTypes {
+    release {
+        signingConfig signingConfigs.release
+    }
+}
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>Release builds of your app will now be signed automatically.</p>
+
+<h2 id="enabling-proguard">
+<a id="enabling-proguard" class="anchor" href="#enabling-proguard" aria-hidden="true"><span class="octicon octicon-link"></span></a>Enabling Proguard</h2>
+
+<p>By default, Flutter does not obfuscate or minify the Android host.
+If you intend to use third-party Java or Android libraries,
+you may want to reduce the size of the APK or protect that code from
+reverse engineering.</p>
+
+<p>For information on obfuscating Dart code, see <a href="https://github.com/flutter/flutter/wiki/Obfuscating-Dart-Code">Obfuscating Dart
+Code</a>
+in the <a href="https://github.com/flutter/flutter/wiki">Flutter wiki</a>.</p>
+
+<h3 id="step-1---configure-proguard">
+<a id="step-1---configure-proguard" class="anchor" href="#step-1---configure-proguard" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 1 - Configure Proguard</h3>
+
+<p>Create <code class="highlighter-rouge">/android/app/proguard-rules.pro</code> file and add rules listed below.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#Flutter Wrapper
+-keep class io.flutter.app.** { *; }
+-keep class io.flutter.plugin.**  { *; }
+-keep class io.flutter.util.**  { *; }
+-keep class io.flutter.view.**  { *; }
+-keep class io.flutter.**  { *; }
+-keep class io.flutter.plugins.**  { *; }
+</code></pre></div></div>
+
+<p>The configuration above only protects Flutter engine libraries.
+Any additional libraries (for example, Firebase) require their own
+rules to be added.</p>
+
+<h3 id="step-2---enable-obfuscation-andor-minification">
+<a id="step-2---enable-obfuscation-andor-minification" class="anchor" href="#step-2---enable-obfuscation-andor-minification" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 2 - Enable obfuscation and/or minification</h3>
+
+<p>Open <code class="highlighter-rouge">/android/app/build.gradle</code> file and locate <code class="highlighter-rouge">buildTypes</code> definition.
+Inside <code class="highlighter-rouge">release</code> configuration set <code class="highlighter-rouge">minifiyEnabled</code> and <code class="highlighter-rouge">useProguard</code> flags
+to true. You have to also point ProGuard to the file you have created in step 1.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>android {
+
+    ...
+
+    buildTypes {
+
+        release {
+
+            signingConfig signingConfigs.release
+
+            minifyEnabled true
+            useProguard true
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+    }
+}
+</code></pre></div></div>
+
+<p>Note: Obfuscation and minification can considerably extend compile time
+of the Android application.</p>
+
+<h2 id="building-a-release-apk">
+<a id="building-a-release-apk" class="anchor" href="#building-a-release-apk" aria-hidden="true"><span class="octicon octicon-link"></span></a>Building a release APK</h2>
+
+<p>This section describes how to build a release APK. If you completed the
+signing steps in the previous section, the release APK will be signed.</p>
+
+<p>Using the command line:</p>
+
+<ol>
+  <li>
+<code class="highlighter-rouge">cd &lt;app dir&gt;</code> (replace <code class="highlighter-rouge">&lt;app dir&gt;</code> with your application’s directory).</li>
+  <li>Run <code class="highlighter-rouge">flutter build apk</code> (<code class="highlighter-rouge">flutter build</code> defaults to <code class="highlighter-rouge">--release</code>).</li>
+</ol>
+
+<p>The release APK for your app is created at
+<code class="highlighter-rouge">&lt;app dir&gt;/build/app/outputs/apk/release/app-release.apk</code>.</p>
+
+<h2 id="installing-a-release-apk-on-a-device">
+<a id="installing-a-release-apk-on-a-device" class="anchor" href="#installing-a-release-apk-on-a-device" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing a release APK on a device</h2>
+
+<p>Follow these steps to install the APK built in the previous step on a
+connected Android device.</p>
+
+<p>Using the command line:</p>
+
+<ol>
+  <li>Connect your Android device to your computer with a USB cable.</li>
+  <li>
+<code class="highlighter-rouge">cd &lt;app dir&gt;</code> where <code class="highlighter-rouge">&lt;app dir&gt;</code> is your application directory.</li>
+  <li>Run <code class="highlighter-rouge">flutter install</code> .</li>
+</ol>
+
+<h2 id="publishing-an-apk-to-the-google-play-store">
+<a id="publishing-an-apk-to-the-google-play-store" class="anchor" href="#publishing-an-apk-to-the-google-play-store" aria-hidden="true"><span class="octicon octicon-link"></span></a>Publishing an APK to the Google Play Store</h2>
+
+<p>For detailed instructions on publishing the release version of an app to the
+Google Play Store, see the <a href="https://developer.android.google.cn/distribute/googleplay/start">Google Play publishing documentation</a>.</p>
+
+<h2 id="building-a-release-app-bundle">
+<a id="building-a-release-app-bundle" class="anchor" href="#building-a-release-app-bundle" aria-hidden="true"><span class="octicon octicon-link"></span></a>Building a release app bundle</h2>
+
+<p>This section describes how to build a release app bundle. If you completed
+the signing steps in the previous section, the release bundle will be signed.</p>
+
+<p>From the command line:</p>
+
+<ol>
+  <li>Enter <code class="highlighter-rouge">cd &lt;app dir&gt;</code>. (Replace <code class="highlighter-rouge">&lt;app, dir&gt;</code> with your application’s directory.)</li>
+  <li>Run <code class="highlighter-rouge">flutter build appbundle</code>. (Running <code class="highlighter-rouge">flutter build</code> defaults to a release build.)</li>
+  <li>To generate a different variant of bundle, you can enter
+    <nobr>`flutter build appbundle --release --target-platform=android-arm`.</nobr>
+    <p>This generates a bundle for android-arm.</p>
+  </li>
+</ol>
+
+<p>The release bundle for your app is created at
+<code class="highlighter-rouge">&lt;app dir&gt;/build/app/outputs/bundle/release/app.aab</code>.</p>
+
+<aside class="alert alert-info" role="alert">
+  <p><i class="fas fa-info-circle"></i> <strong>备忘：</strong>
+  As of this writing, the app bundle command only generates <strong>armeabi-v7a</strong>
+  compatible libs. Follow <a href="https://github.com/flutter/flutter/issues/18494">Issue 18494</a> for more information.</p>
+</aside>
+
+<h2 id="testing-an-app-bundle">
+<a id="testing-an-app-bundle" class="anchor" href="#testing-an-app-bundle" aria-hidden="true"><span class="octicon octicon-link"></span></a>Testing an app Bundle</h2>
+
+<p>An app bundle can be tested in multiple ways. This section describes a couple
+ways in which to test an app bundle.</p>
+
+<h3 id="offline-using-the-bundle-tool">
+<a id="offline-using-the-bundle-tool" class="anchor" href="#offline-using-the-bundle-tool" aria-hidden="true"><span class="octicon octicon-link"></span></a>Offline using the bundle tool</h3>
+
+<ol>
+  <li>If you have done done so already, download <code class="highlighter-rouge">bundletool</code> from the
+<a href="https://github.com/google/bundletool">GitHub repository</a>.</li>
+  <li>
+<a href="https://developer.android.com/studio/command-line/bundletool#generate_apks">Generate a set of
+APKs</a>
+from your app bundle.</li>
+  <li>
+<a href="https://developer.android.com/studio/command-line/bundletool#deploy_with_bundletool">Deploy the
+APKs</a>
+to connected devices.</li>
+</ol>
+
+<h3 id="online-using-google-play">
+<a id="online-using-google-play" class="anchor" href="#online-using-google-play" aria-hidden="true"><span class="octicon octicon-link"></span></a>Online using Google Play</h3>
+
+<ol>
+  <li>Upload your bundle to Google Play to test it. You can use the internal
+test track, or the alpha or beta channels to test the bundle before releasing
+it in production.</li>
+  <li>Follow <a href="https://developer.android.com/studio/publish/upload-bundle">these steps to upload your
+bundle</a>
+to the Play Store.</li>
+</ol>
+
+
+        
+      </div>
+    </main>
+  </div>
+</div>
+<footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 site-footer__wrapper">
+        <div class="site-footer__logo">
+          <img src="/images/flutter-mono-81x100.png" alt="Flutter Logo" width="81" height="100">
+        </div>
+        <div class="site-footer__content">
+          <ul class="site-footer__link-list">
+              <li><a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a></li>
+              <li><a href="/tos">terms</a></li>
+              <li><a href="/security">security</a></li>
+              <li><a href="https://www.google.com/intl/en/policies/privacy">privacy</a></li>
+              <li><a href="https://flutter-es.io/">español</a></li>
+              <li><a href="https://flutter-io.cn" class="text-nowrap">社区中文资源</a></li>
+          </ul>
+
+          <p class="licenses" translation-origin="on">
+            Except as otherwise noted,
+            this work is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0">Creative
+            Commons Attribution 4.0 International License</a>,
+            and code samples are licensed under the BSD License.
+          </p>
+          <p class="licenses" translation-result="off">
+            除非特别说明，否则本站内容采用 <a rel="license" href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0 授权协议</a>，所有范例代码都采用 BSD 授权协议。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- <script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script> -->
+  
+
+<script src="/assets/translator/js/translator.js"></script></body></html>

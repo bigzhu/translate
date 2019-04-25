@@ -1,0 +1,3047 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flutter Widget 目录  - Flutter 中文文档 - Flutter 社区中文资源 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-ND4LWWZ');</script>
+  <!-- End Google Tag Manager -->
+
+  
+  <meta name="description" content="">
+  <meta name="keywords" content=" ">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@flutterdev">
+
+  <meta property="og:title" content="Flutter Widget 目录">
+  <meta property="og:url" content="https://flutter.dev/docs/reference/widgets">
+  <meta property="og:description" content="">
+  
+  <meta property="og:image" content="https://flutter.dev/images/flutter-logo-sharing.png">
+
+  <link href="/assets/translator/css/material-roboto.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/assets/main-74a0c308218334fcd85291a957a514973015ea8e4eb76b9abae6e14bb5012f5e.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  <script src="/assets/main-d6b8b8d26e7b4122b3ddf6a5201966d6e2494aaffadaafaf7c571ce5e2fe0aab.js" type="text/javascript"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-122680122-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <!--<meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />-->
+<link href="/assets/translator/css/translator.css" rel="stylesheet"></head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-ND4LWWZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div id="overlay-under-drawer"></div>
+
+    <header class="site-header">
+  <nav class="navbar navbar-expand-md justify-content-start justify-content-md-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="material-icons">menu</i>
+    </button>
+
+    <a class="navbar-brand" href="/">
+      <img alt="Flutter by Google" height="37" width="129" class="align-middle" src="/assets/flutter-lockup-4cb0ee072ab312e59784d9fbf4fb7ad42688a7fdaea1270ccf6bbf4f34b7e03f.svg">
+    </a>
+
+    <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
+      <div class="site-header__sheet-bg" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></div>
+      <div class="site-header__sheet">
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <a class="nav-link active" href="/docs">开发文档</a>
+          </li>
+          <div class="site-sidebar site-sidebar--header d-md-none">
+            <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="false" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="false" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link active" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+          </div>
+
+<!-- 
+          <li class="nav-item">
+            <a class="nav-link" href="/showcase">Showcase</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/community">Community</a>
+          </li>
+ -->
+        </ul>
+        <form action="/search" class="site-header__search form-inline">
+          <input class="site-header__searchfield form-control" type="search" name="q" id="q" autocomplete="off" placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+    </div>
+    <div class="site-header__social navbar-nav flex-row">
+      <a class="nav-item nav-link" href="https://twitter.com/flutterdev"><i class="fab fa-twitter fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://www.youtube.com/flutterdev"><i class="fab fa-youtube fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://github.com/flutter"><i class="fab fa-github fa-lg"></i></a>
+    </div>
+    <a class="site-header__cta btn btn-primary" href="/docs/get-started/install/">Get started</a>
+    </nav>
+</header>
+<div class="site-banner site-banner--default" role="alert">
+    <p>
+      We are looking for a Flutter Infrastructure engineer!
+      <a href="/jobs/infrastructure" target="_blank" rel="noopener">Learn more</a>.
+    </p>
+
+  </div>
+<div class="container-fluid position-relative">
+  <div class="row flex-xl-nowrap">
+    <div class="fixed-col site-sidebar site-sidebar--fixed col-12 col-md-3 col-xl-2 d-none d-md-block" data-fixed-column="">
+      <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="false" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="false" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link active" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+    </div>
+    <main class="site-content col-12 col-md-9 offset-md-3 col-xl-8 offset-xl-2 col-xxl-8 offset-xxl-2" role="main">
+      <div class="container">
+        
+        
+        <header class="site-content__title">
+          <div id="page-github-links" class="btn-group" aria-label="Page GitHub links" role="group">
+  <a href="https://github.com/cfug/flutter.cn/tree/master/src/docs/reference/widgets.md" class="btn no-automatic-external" title="View page source" target="_blank" rel="noopener">
+    <i class="fas fa-file-alt fa-sm"></i>
+  </a>
+  <a href="https://github.com/cfug/flutter.cn/issues/new?title='Flutter Widget 目录' page issue&amp;body=
+Page URL: https://flutter.dev/docs/reference/widgets.html%0D%0A
+Page source: https://github.com/cfug/flutter.cn/tree/master/src/docs/reference/widgets.md%0D%0A
+%0D%0A
+Found a typo? You can fix it yourself by going to the page source and clicking the pencil icon. Or finish creating this issue.%0D%0A
+%0D%0A
+Description of issue:" class="btn no-automatic-external" title="Report an issue with this page" target="_blank" rel="noopener">
+    <i class="fas fa-bug fa-sm"></i>
+  </a>
+</div>
+
+          <h1 id="flutter-widget-目录">Flutter Widget 目录</h1>
+          </header>
+        <p>This is an alphabetical list of nearly every widget that is bundled with
+Flutter. You can also <a href="/docs/development/ui/widgets">browse widgets by category</a>.</p>
+
+<p>You might also want to check out our Widget of the Week video series
+on the <a href="https://www.youtube.com/flutterdev">Flutter YouTube channel</a>. Each short
+episode features a different Flutter widget. For more video series, see
+our <a href="/docs/resources/videos">videos</a> page.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/b_sQ9bMltGU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+<p><a href="https://www.youtube.com/playlist?list=PLjxrf2q8roU23XGwz3Km7sQZFTdB996iG">Widget of the Week playlist</a></p>
+
+<div class="card-deck card-deck--responsive">
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/AbsorbPointer-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/AbsorbPointer-class.html"><header class="card-title">AbsorbPointer</header></a>
+            <p class="card-text">A widget that absorbs pointers during hit testing. When absorbing is true, this widget prevents its subtree from receiving pointer events by terminating hit testing at itself. It still consumes space during layout and paints its child as usual. It just prevents its children from being the target of located events, because it returns true from RenderBox.hitTest.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/AbsorbPointer-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/AlertDialog-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://material-design.storage.googleapis.com/publish/material_v_9/0Bzhp5Z4wHba3TzFHYVlrbWF2bnM/components_alerts_1.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/AlertDialog-class.html"><header class="card-title">AlertDialog</header></a>
+            <p class="card-text">Alerts are urgent interruptions requiring acknowledgement that inform the user about a situation. The AlertDialog widget implements this component.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/AlertDialog-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/Align-class.html">
+            <div class="card-image-holder">
+                <svg viewBox="0 0 100 100"><defs><marker id="arrow-align" orient="auto-start-reverse" viewBox="0 0 1 1" markerWidth="3" markerHeight="3" refX="0.5" refY="0.5"><path d="M 1 0.5 L 0.5 0 L 0.5 1 z" fill="#f50057"></path></marker></defs><rect x="0" y="0" width="100" height="100" fill="#3949ab"></rect><rect x="10" y="20" width="80" height="60" fill="#ffffff"></rect><rect x="15" y="50" width="50" height="30" fill="#4dd0e1"></rect><line x1="10" y1="65" x2="12" y2="65" stroke="#f50057" stroke-width="2" marker-end="url(#arrow-align)"></line><line x1="90" y1="65" x2="68" y2="65" stroke="#f50057" stroke-width="2" marker-end="url(#arrow-align)"></line><line x1="40" y1="20" x2="40" y2="47" stroke="#f50057" stroke-width="2" marker-end="url(#arrow-align)"></line></svg>
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/Align-class.html"><header class="card-title">Align</header></a>
+            <p class="card-text">A widget that aligns its child within itself and optionally sizes itself based on the child's size.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/Align-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/AnimatedBuilder-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/AnimatedBuilder-class.html"><header class="card-title">AnimatedBuilder</header></a>
+            <p class="card-text">A general-purpose widget for building animations. AnimatedBuilder is useful for more complex widgets that wish to include an animation as part of a larger build function. To use AnimatedBuilder, simply construct the widget and pass it a builder function.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/AnimatedBuilder-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/AnimatedContainer-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/AnimatedContainer-class.html"><header class="card-title">AnimatedContainer</header></a>
+            <p class="card-text">A container that gradually changes its values over a period of time.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/AnimatedContainer-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/AnimatedCrossFade-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/AnimatedCrossFade-class.html"><header class="card-title">AnimatedCrossFade</header></a>
+            <p class="card-text">A widget that cross-fades between two given children and animates itself between their sizes.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/AnimatedCrossFade-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/AnimatedDefaultTextStyle-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/AnimatedDefaultTextStyle-class.html"><header class="card-title">AnimatedDefaultTextStyle</header></a>
+            <p class="card-text">Animated version of DefaultTextStyle which automatically transitions the default text style (the text style to apply to descendant Text widgets without explicit style) over a given duration whenever the given style changes.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/AnimatedDefaultTextStyle-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/AnimatedListState-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/AnimatedListState-class.html"><header class="card-title">AnimatedListState</header></a>
+            <p class="card-text">The state for a scrolling container that animates items when they are inserted or removed.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/AnimatedListState-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/AnimatedModalBarrier-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/AnimatedModalBarrier-class.html"><header class="card-title">AnimatedModalBarrier</header></a>
+            <p class="card-text">A widget that prevents the user from interacting with widgets behind itself.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/AnimatedModalBarrier-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/AnimatedOpacity-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/AnimatedOpacity-class.html"><header class="card-title">AnimatedOpacity</header></a>
+            <p class="card-text">Animated version of Opacity which automatically transitions the child's opacity over a given duration whenever the given opacity changes.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/AnimatedOpacity-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/AnimatedPhysicalModel-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/AnimatedPhysicalModel-class.html"><header class="card-title">AnimatedPhysicalModel</header></a>
+            <p class="card-text">Animated version of PhysicalModel.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/AnimatedPhysicalModel-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/AnimatedPositioned-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/AnimatedPositioned-class.html"><header class="card-title">AnimatedPositioned</header></a>
+            <p class="card-text">Animated version of Positioned which automatically transitions the child's position over a given duration whenever the given position changes.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/AnimatedPositioned-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/AnimatedSize-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/AnimatedSize-class.html"><header class="card-title">AnimatedSize</header></a>
+            <p class="card-text">Animated widget that automatically transitions its size over a given duration whenever the given child's size changes.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/AnimatedSize-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/AnimatedWidget-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/AnimatedWidget-class.html"><header class="card-title">AnimatedWidget</header></a>
+            <p class="card-text">A widget that rebuilds when the given Listenable changes value.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/AnimatedWidget-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/AnimatedWidgetBaseState-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/AnimatedWidgetBaseState-class.html"><header class="card-title">AnimatedWidgetBaseState</header></a>
+            <p class="card-text">A base class for widgets with implicit animations.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/AnimatedWidgetBaseState-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/AppBar-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VclpfSFpuelBGR1k/components_toolbars.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/AppBar-class.html"><header class="card-title">Appbar</header></a>
+            <p class="card-text">A Material Design app bar. An app bar consists of a toolbar and potentially other widgets, such as a TabBar and a FlexibleSpaceBar.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/AppBar-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/AspectRatio-class.html">
+            <div class="card-image-holder">
+                <svg viewBox="0 0 100 100"><defs><marker id="arrow-aspect-ratio" orient="auto-start-reverse" viewBox="0 0 1 1" markerWidth="3" markerHeight="3" refX="0.5" refY="0.5"><path d="M 1 0.5 L 0.5 0 L 0.5 1 z" fill="#ffffff"></path></marker></defs><rect x="0" y="0" width="100" height="100" fill="#3949ab"></rect><rect x="25" y="35" width="50" height="30" fill="#ffffff"></rect><rect x="27.5" y="37.5" width="45" height="25" fill="#4dd0e1"></rect><line x1="31" y1="41" x2="69" y2="59" stroke="#ffffff" stroke-width="2" marker-start="url(#arrow-aspect-ratio)" marker-end="url(#arrow-aspect-ratio)"></line></svg>
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/AspectRatio-class.html"><header class="card-title">AspectRatio</header></a>
+            <p class="card-text">A widget that attempts to size the child to a specific aspect ratio.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/AspectRatio-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/services/AssetBundle-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/services/AssetBundle-class.html"><header class="card-title">AssetBundle</header></a>
+            <p class="card-text">Asset bundles contain resources, such as images and strings, that can be used by an application. Access to these resources is asynchronous so that they can be transparently loaded over a network (e.g., from a NetworkAssetBundle) or from the local file system without blocking the application's user interface.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/services/AssetBundle-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/BackdropFilter-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/BackdropFilter-class.html"><header class="card-title">BackdropFilter</header></a>
+            <p class="card-text">A widget that applies a filter to the existing painted content and then paints child. This effect is relatively expensive, especially if the filter is non-local, such as a blur.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/BackdropFilter-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/Baseline-class.html">
+            <div class="card-image-holder">
+                <svg viewBox="0 0 100 100"><defs><marker id="arrow-baseline" orient="auto-start-reverse" viewBox="0 0 1 1" markerWidth="3" markerHeight="3" refX="0.5" refY="0.5"><path d="M 1 0.5 L 0.5 0 L 0.5 1 z" fill="#ffffff"></path></marker></defs><rect x="0" y="0" width="100" height="100" fill="#3949ab"></rect><rect x="20" y="20" width="60" height="50" fill="#ffffff"></rect><rect x="20" y="45" width="60" height="30" fill="#4dd0e1"></rect><line x1="85" y1="20" x2="85" y2="66" stroke="#ffffff" stroke-width="2" marker-end="url(#arrow-baseline)"></line><line x1="15" y1="20" x2="15" y2="66" stroke="#ffffff" stroke-width="2" marker-end="url(#arrow-baseline)"></line><line x1="10" y1="70" x2="90" y2="70" stroke="#ffffff" stroke-width="2"></line><text x="50" y="69" text-anchor="middle" font-family="Roboto" font-size="25" fill="#3b75ad">Abc </text></svg>
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/Baseline-class.html"><header class="card-title">Baseline</header></a>
+            <p class="card-text">A widget that positions its child according to the child's baseline.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/Baseline-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/BottomNavigationBar-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VWG5nei0wWXpoczA/components_bottom_navigation.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/BottomNavigationBar-class.html"><header class="card-title">BottomNavigationBar</header></a>
+            <p class="card-text">Bottom navigation bars make it easy to explore and switch between top-level views in a single tap. The BottomNavigationBar widget implements this component.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/BottomNavigationBar-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/BottomSheet-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VVWZzZ1FIN09XWGc/components_bottom_sheets.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/BottomSheet-class.html"><header class="card-title">BottomSheet</header></a>
+            <p class="card-text">Bottom sheets slide up from the bottom of the screen to reveal more content. You can call showBottomSheet() to implement a persistent bottom sheet or showModalBottomSheet() to implement a modal bottom sheet.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/BottomSheet-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/ButtonBar-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/ButtonBar-class.html"><header class="card-title">ButtonBar</header></a>
+            <p class="card-text">A horizontal arrangement of buttons.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/ButtonBar-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/Card-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VR0ptbC1RV1NLNlk/components_cards.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/Card-class.html"><header class="card-title">Card</header></a>
+            <p class="card-text">A Material Design card. A card has slightly rounded corners and a shadow.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/Card-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/Center-class.html">
+            <div class="card-image-holder">
+                <svg viewBox="0 0 100 100"><defs><marker id="arrow-center" orient="auto-start-reverse" viewBox="0 0 1 1" markerWidth="3" markerHeight="3" refX="0.5" refY="0.5"><path d="M 1 0.5 L 0.5 0 L 0.5 1 z" fill="#f50057"></path></marker></defs><rect x="0" y="0" width="100" height="100" fill="#3949ab"></rect><rect x="10" y="20" width="80" height="60" fill="#ffffff"></rect><rect x="25" y="35" width="50" height="30" fill="#4dd0e1"></rect><line x1="10" y1="50" x2="22" y2="50" stroke="#f50057" stroke-width="2" marker-end="url(#arrow-center)"></line><line x1="90" y1="50" x2="78" y2="50" stroke="#f50057" stroke-width="2" marker-end="url(#arrow-center)"></line><line x1="50" y1="20" x2="50" y2="32" stroke="#f50057" stroke-width="2" marker-end="url(#arrow-center)"></line><line x1="50" y1="80" x2="50" y2="68" stroke="#f50057" stroke-width="2" marker-end="url(#arrow-center)"></line></svg>
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/Center-class.html"><header class="card-title">Center</header></a>
+            <p class="card-text">A widget that centers its child within itself.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/Center-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/Checkbox-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://storage.googleapis.com/material-design/publish/material_v_9/0Bx4BSt6jniD7T2xGbGo0cUlPVG8/components_switches_check1.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/Checkbox-class.html"><header class="card-title">Checkbox</header></a>
+            <p class="card-text">Checkboxes allow the user to select multiple options from a set. The Checkbox widget implements this component.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/Checkbox-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/Chip-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VM1VORGxxWUx5U0E/components_chips.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/Chip-class.html"><header class="card-title">Chip</header></a>
+            <p class="card-text">A Material Design chip. Chips represent complex entities in small blocks, such as a contact.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/Chip-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html"><header class="card-title">CircularProgressIndicator</header></a>
+            <p class="card-text">A material design circular progress indicator, which spins to indicate that the application is busy.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/ClipOval-class.html">
+            <div class="card-image-holder">
+                <svg viewBox="0 0 100 100"><defs><clipPath id="clip-oval"><circle cx="40" cy="50" r="30"></circle></clipPath></defs><rect x="0" y="0" width="100" height="100" fill="#3949ab"></rect><rect x="30" y="10" width="60" height="50" fill="#4dd0e1" opacity="0.05"></rect><circle cx="40" cy="50" r="30" fill="#ffffff"></circle><rect x="30" y="10" width="60" height="50" fill="#4dd0e1" clip-path="url(#clip-oval)"></rect></svg>
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/ClipOval-class.html"><header class="card-title">ClipOval</header></a>
+            <p class="card-text">A widget that clips its child using an oval.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/ClipOval-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/ClipPath-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/ClipPath-class.html"><header class="card-title">ClipPath</header></a>
+            <p class="card-text">A widget that clips its child using a path.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/ClipPath-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/ClipRect-class.html">
+            <div class="card-image-holder">
+                <svg viewBox="0 0 100 100"><defs><clipPath id="clip-rect"><rect x="10" y="20" width="60" height="60"></rect></clipPath></defs><rect x="0" y="0" width="100" height="100" fill="#3949ab"></rect><rect x="30" y="10" width="60" height="50" fill="#4dd0e1" opacity="0.05"></rect><rect x="10" y="20" width="60" height="60" fill="#ffffff"></rect><rect x="30" y="10" width="60" height="50" fill="#4dd0e1" clip-path="url(#clip-rect)"></rect></svg>
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/ClipRect-class.html"><header class="card-title">ClipRect</header></a>
+            <p class="card-text">A widget that clips its child using a rectangle.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/ClipRect-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/widgets/Column-class.html">
+            <div class="card-image-holder">
+                <svg viewBox="0 0 100 100"><rect x="0" y="0" width="100" height="100" fill="#3949ab"></rect><rect x="30" y="10" width="40" height="80" fill="#ffffff"></rect><rect x="40" y="15" width="20" height="20" fill="#4dd0e1"></rect><rect x="35" y="40" width="30" height="30" fill="#4dd0e1"></rect></svg>
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/widgets/Column-class.html"><header class="card-title">Column</header></a>
+            <p class="card-text">Layout a list of child widgets in the vertical direction.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/widgets/Column-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/ConstrainedBox-class.html">
+            <div class="card-image-holder">
+                <svg viewBox="0 0 100 100"><defs><marker id="arrow-constrained-box" orient="auto-start-reverse" viewBox="0 0 1 1" markerWidth="3" markerHeight="3" refX="0.5" refY="0.5"><path d="M 1 0.5 L 0.5 0 L 0.5 1 z" fill="#ffffff"></path></marker></defs><rect x="0" y="0" width="100" height="100" fill="#3949ab"></rect><rect x="20" y="30" width="50" height="40" fill="#ffffff"></rect><rect x="22.5" y="32.5" width="45" height="35" fill="#4dd0e1"></rect><path d="M63 23 v 40" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-dasharray="0.5 3.1" fill="transparent"></path><path d="M77 23 v 54" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-dasharray="0.5 3.1" fill="transparent"></path><path d="M13 63 h 50" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-dasharray="0.5 3.1" fill="transparent"></path><path d="M13 77 h 64" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-dasharray="0.5 3.1" fill="transparent"></path><path d="M50 25 L60 25" stroke="#ffffff" stroke-width="2" marker-end="url(#arrow-constrained-box)"></path><path d="M90 25 L80 25" stroke="#ffffff" stroke-width="2" marker-end="url(#arrow-constrained-box)"></path><path d="M15 50 L15 60" stroke="#ffffff" stroke-width="2" marker-end="url(#arrow-constrained-box)"></path><path d="M15 90 L15 80" stroke="#ffffff" stroke-width="2" marker-end="url(#arrow-constrained-box)"></path></svg>
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/ConstrainedBox-class.html"><header class="card-title">ConstrainedBox</header></a>
+            <p class="card-text">A widget that imposes additional constraints on its child.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/ConstrainedBox-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/widgets/Container-class.html">
+            <div class="card-image-holder">
+                <svg viewBox="0 0 100 100"><defs><marker id="arrow-container-1" orient="auto-start-reverse" viewBox="0 0 1 1" markerWidth="3" markerHeight="3" refX="0.5" refY="0.5"><path d="M 1 0.5 L 0.5 0 L 0.5 1 z" fill="#f50057"></path></marker><marker id="arrow-container-2" orient="auto-start-reverse" viewBox="0 0 1 1" markerWidth="3" markerHeight="3" refX="0.5" refY="0.5"><path d="M 1 0.5 L 0.5 0 L 0.5 1 z" fill="#ffffff"></path></marker><filter id="shadow-container" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4"></feGaussianBlur></filter><linearGradient id="gradient-container" x1="0" y1="0.2" x2="0.4" y2="0.9"><stop offset="55%" stop-color="#ffffff"></stop><stop offset="100%" stop-color="#fdccdd"></stop></linearGradient></defs><rect x="0" y="0" width="100" height="100" fill="#3949ab"></rect><rect x="15" y="25" width="70" height="47.5" rx="10" ry="10" fill="#000000" filter="url(#shadow-container)"></rect><rect x="15" y="25" width="70" height="47.5" rx="10" ry="10" fill="url(#gradient-container)" stroke-width="5" stroke="#3b75ad"></rect><rect x="30" y="40" width="40" height="30" fill="#4dd0e1"></rect><line x1="20" y1="55" x2="27" y2="55" stroke="#f50057" stroke-width="2" marker-start="url(#arrow-container-1)" marker-end="url(#arrow-container-1)"></line><line x1="73" y1="55" x2="80" y2="55" stroke="#f50057" stroke-width="2" marker-start="url(#arrow-container-1)" marker-end="url(#arrow-container-1)"></line><line x1="50" y1="30" x2="50" y2="37" stroke="#f50057" stroke-width="2" marker-start="url(#arrow-container-1)" marker-end="url(#arrow-container-1)"></line><line x1="50" y1="78" x2="50" y2="82" stroke="#f50057" stroke-width="2" marker-start="url(#arrow-container-1)" marker-end="url(#arrow-container-1)"></line><line x1="16" y1="17.5" x2="85" y2="17.5" stroke="#ffffff" stroke-width="2" marker-start="url(#arrow-container-2)" marker-end="url(#arrow-container-2)"></line><line x1="7.5" y1="26" x2="7.5" y2="72" stroke="#ffffff" stroke-width="2" marker-start="url(#arrow-container-2)" marker-end="url(#arrow-container-2)"></line></svg>
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/widgets/Container-class.html"><header class="card-title">Container</header></a>
+            <p class="card-text">A convenience widget that combines common painting, positioning, and sizing widgets.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/widgets/Container-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/cupertino/CupertinoActionSheet-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/widget-catalog/cupertino-action-sheet.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/cupertino/CupertinoActionSheet-class.html"><header class="card-title">CupertinoActionSheet</header></a>
+            <p class="card-text">An iOS-style modal bottom action sheet to choose an option among many.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/cupertino/CupertinoActionSheet-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/cupertino/CupertinoActivityIndicator-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/widget-catalog/cupertino-activity-indicator.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/cupertino/CupertinoActivityIndicator-class.html"><header class="card-title">CupertinoActivityIndicator</header></a>
+            <p class="card-text">An iOS-style activity indicator. Displays a circular 'spinner'.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/cupertino/CupertinoActivityIndicator-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/cupertino/CupertinoAlertDialog-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/widget-catalog/cupertino-alert-dialog.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/cupertino/CupertinoAlertDialog-class.html"><header class="card-title">CupertinoAlertDialog</header></a>
+            <p class="card-text">An iOS-style alert dialog.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/cupertino/CupertinoAlertDialog-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/cupertino/CupertinoButton-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/widget-catalog/cupertino-button.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/cupertino/CupertinoButton-class.html"><header class="card-title">CupertinoButton</header></a>
+            <p class="card-text">An iOS-style button.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/cupertino/CupertinoButton-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/cupertino/CupertinoDatePicker-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/widget-catalog/cupertino-date-picker.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/cupertino/CupertinoDatePicker-class.html"><header class="card-title">CupertinoDatePicker</header></a>
+            <p class="card-text">An iOS-style date or date and time picker.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/cupertino/CupertinoDatePicker-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/cupertino/CupertinoDialog-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/widget-catalog/cupertino-dialog.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/cupertino/CupertinoDialog-class.html"><header class="card-title">CupertinoDialog</header></a>
+            <p class="card-text">An iOS-style dialog.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/cupertino/CupertinoDialog-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/cupertino/CupertinoDialogAction-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/widget-catalog/cupertino-dialog-action.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/cupertino/CupertinoDialogAction-class.html"><header class="card-title">CupertinoDialogAction</header></a>
+            <p class="card-text">A button typically used in a CupertinoAlertDialog.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/cupertino/CupertinoDialogAction-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/cupertino/CupertinoFullscreenDialogTransition-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/widget-catalog/cupertino-fullscreen-dialog-transition.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/cupertino/CupertinoFullscreenDialogTransition-class.html"><header class="card-title">CupertinoFullscreenDialogTransition</header></a>
+            <p class="card-text">An iOS-style transition used for summoning fullscreen dialogs.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/cupertino/CupertinoFullscreenDialogTransition-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/cupertino/CupertinoNavigationBar-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/widget-catalog/cupertino-nav-bar.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/cupertino/CupertinoNavigationBar-class.html"><header class="card-title">CupertinoNavigationBar</header></a>
+            <p class="card-text">An iOS-style top navigation bar. Typically used with CupertinoPageScaffold.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/cupertino/CupertinoNavigationBar-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/cupertino/CupertinoPageScaffold-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/widget-catalog/cupertino-page-scaffold.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/cupertino/CupertinoPageScaffold-class.html"><header class="card-title">CupertinoPageScaffold</header></a>
+            <p class="card-text">Basic iOS style page layout structure. Positions a navigation bar and content on a background.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/cupertino/CupertinoPageScaffold-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/cupertino/CupertinoPageTransition-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/widget-catalog/cupertino-page-transition.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/cupertino/CupertinoPageTransition-class.html"><header class="card-title">CupertinoPageTransition</header></a>
+            <p class="card-text">Provides an iOS-style page transition animation.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/cupertino/CupertinoPageTransition-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/cupertino/CupertinoPicker-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/widget-catalog/cupertino-picker.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/cupertino/CupertinoPicker-class.html"><header class="card-title">CupertinoPicker</header></a>
+            <p class="card-text">An iOS-style picker control. Used to select an item in a short list.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/cupertino/CupertinoPicker-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/cupertino/CupertinoPopupSurface-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/cupertino/CupertinoPopupSurface-class.html"><header class="card-title">CupertinoPopupSurface</header></a>
+            <p class="card-text">Rounded rectangle surface that looks like an iOS popup surface, such as an alert dialog or action sheet.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/cupertino/CupertinoPopupSurface-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/cupertino/CupertinoScrollbar-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/widget-catalog/cupertino-scrollbar.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/cupertino/CupertinoScrollbar-class.html"><header class="card-title">CupertinoScrollbar</header></a>
+            <p class="card-text">An iOS-style scrollbar that indicates which portion of a scrollable widget is currently visible.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/cupertino/CupertinoScrollbar-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/cupertino/CupertinoSegmentedControl-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/widget-catalog/cupertino-segmented-control.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/cupertino/CupertinoSegmentedControl-class.html"><header class="card-title">CupertinoSegmentedControl</header></a>
+            <p class="card-text">An iOS-style segmented control. Used to select mutually exclusive options in a horizontal list.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/cupertino/CupertinoSegmentedControl-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/cupertino/CupertinoSlider-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/widget-catalog/cupertino-slider.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/cupertino/CupertinoSlider-class.html"><header class="card-title">CupertinoSlider</header></a>
+            <p class="card-text">Used to select from a range of values.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/cupertino/CupertinoSlider-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/cupertino/CupertinoSwitch-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/widget-catalog/cupertino-switch.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/cupertino/CupertinoSwitch-class.html"><header class="card-title">CupertinoSwitch</header></a>
+            <p class="card-text">An iOS-style switch. Used to toggle the on/off state of a single setting.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/cupertino/CupertinoSwitch-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/cupertino/CupertinoTabBar-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/widget-catalog/cupertino-tab-bar.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/cupertino/CupertinoTabBar-class.html"><header class="card-title">CupertinoTabBar</header></a>
+            <p class="card-text">An iOS-style bottom tab bar. Typically used with CupertinoTabScaffold.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/cupertino/CupertinoTabBar-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/cupertino/CupertinoTabScaffold-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/widget-catalog/cupertino-tab-scaffold.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/cupertino/CupertinoTabScaffold-class.html"><header class="card-title">CupertinoTabScaffold</header></a>
+            <p class="card-text">Tabbed iOS app structure. Positions a tab bar on top of tabs of content.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/cupertino/CupertinoTabScaffold-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/cupertino/CupertinoTabView-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/widget-catalog/cupertino-tab-view.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/cupertino/CupertinoTabView-class.html"><header class="card-title">CupertinoTabView</header></a>
+            <p class="card-text">Root content of a tab that supports parallel navigation between tabs. Typically used with CupertinoTabScaffold.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/cupertino/CupertinoTabView-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/cupertino/CupertinoTextField-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/widget-catalog/cupertino-textfield.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/cupertino/CupertinoTextField-class.html"><header class="card-title">CupertinoTextField</header></a>
+            <p class="card-text">An iOS-style text field.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/cupertino/CupertinoTextField-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/cupertino/CupertinoTimerPicker-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/widget-catalog/cupertino-timer-picker.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/cupertino/CupertinoTimerPicker-class.html"><header class="card-title">CupertinoTimerPicker</header></a>
+            <p class="card-text">An iOS-style countdown timer picker.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/cupertino/CupertinoTimerPicker-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/CustomMultiChildLayout-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/CustomMultiChildLayout-class.html"><header class="card-title">CustomMultiChildLayout</header></a>
+            <p class="card-text">A widget that uses a delegate to size and position multiple children.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/CustomMultiChildLayout-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/CustomPaint-class.html">
+            <div class="card-image-holder">
+                <svg viewBox="0 0 100 100"><rect x="0" y="0" width="100" height="100" fill="#3949ab"></rect><rect x="20" y="20" width="60" height="60" fill="#ffffff"></rect><ellipse cx="40" cy="35" rx="10" ry="10" stroke-width="5" stroke="#4dd0e1" fill="transparent"></ellipse><ellipse cx="20" cy="71" rx="15" ry="20" stroke-width="5" stroke="#4dd0e1" fill="transparent" transform="rotate(-25)"></ellipse></svg>
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/CustomPaint-class.html"><header class="card-title">CustomPaint</header></a>
+            <p class="card-text">A widget that provides a canvas on which to draw during the paint phase.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/CustomPaint-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/CustomScrollView-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/CustomScrollView-class.html"><header class="card-title">CustomScrollView</header></a>
+            <p class="card-text">A ScrollView that creates custom scroll effects using slivers.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/CustomScrollView-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/CustomSingleChildLayout-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/CustomSingleChildLayout-class.html"><header class="card-title">CustomSingleChildLayout</header></a>
+            <p class="card-text">A widget that defers the layout of its single child to a delegate.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/CustomSingleChildLayout-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/DataTable-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VWTJHMmJZdWZ5LU0/components_data_tables.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/DataTable-class.html"><header class="card-title">DataTable</header></a>
+            <p class="card-text">Data tables display sets of raw data. They usually appear in desktop enterprise products. The DataTable widget implements this component.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/DataTable-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/showDatePicker.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VY2h4WElGdEhPb2c/components_pickers.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/showDatePicker.html"><header class="card-title">Date &amp; Time Pickers</header></a>
+            <p class="card-text">Date pickers use a dialog window to select a single date on mobile. Time pickers use a dialog to select a single time (in the hours:minutes format) on mobile.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/showDatePicker.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/DecoratedBox-class.html">
+            <div class="card-image-holder">
+                <svg viewBox="0 0 100 100"><defs><filter id="shadow-decorated-box" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4"></feGaussianBlur></filter><linearGradient id="gradient-decorated-box" x1="0" y1="0" x2="0.5" y2="1"><stop offset="50%" stop-color="#ffffff"></stop><stop offset="100%" stop-color="#f50057"></stop></linearGradient></defs><rect x="0" y="0" width="100" height="100" fill="#3949ab"></rect><rect x="25" y="25" width="50" height="50" rx="10" ry="10" fill="#000000" filter="url(#shadow-decorated-box)"></rect><rect x="25" y="25" width="50" height="50" rx="10" ry="10" fill="url(#gradient-decorated-box)" stroke-width="5" stroke="#4dd0e1"></rect></svg>
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/DecoratedBox-class.html"><header class="card-title">DecoratedBox</header></a>
+            <p class="card-text">A widget that paints a Decoration either before or after its child paints.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/DecoratedBox-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/DecoratedBoxTransition-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/DecoratedBoxTransition-class.html"><header class="card-title">DecoratedBoxTransition</header></a>
+            <p class="card-text">Animated version of a DecoratedBox that animates the different properties of its Decoration.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/DecoratedBoxTransition-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/DefaultTextStyle-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/DefaultTextStyle-class.html"><header class="card-title">DefaultTextStyle</header></a>
+            <p class="card-text">The text style to apply to descendant Text widgets without explicit style.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/DefaultTextStyle-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/Dismissible-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/Dismissible-class.html"><header class="card-title">Dismissible</header></a>
+            <p class="card-text">A widget that can be dismissed by dragging in the indicated direction. Dragging or flinging this widget in the DismissDirection causes the child to slide out of view. Following the slide animation, if resizeDuration is non-null, the Dismissible widget animates its height (or width, whichever is perpendicular to the dismiss direction) to zero over the resizeDuration.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/Dismissible-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/Divider-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VUVlmbHM1Q013RU0/components_dividers.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/Divider-class.html"><header class="card-title">Divider</header></a>
+            <p class="card-text">A one logical pixel thick horizontal line, with padding on either side.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/Divider-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/DragTarget-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/DragTarget-class.html"><header class="card-title">DragTarget</header></a>
+            <p class="card-text">A widget that receives data when a Draggable widget is dropped. When a draggable is dragged on top of a drag target, the drag target is asked whether it will accept the data the draggable is carrying. If the user does drop the draggable on top of the drag target (and the drag target has indicated that it will accept the draggable's data), then the drag target is asked to accept the draggable's data.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/DragTarget-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/Draggable-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/Draggable-class.html"><header class="card-title">Draggable</header></a>
+            <p class="card-text">A widget that can be dragged from to a DragTarget. When a draggable widget recognizes the start of a drag gesture, it displays a feedback widget that tracks the user's finger across the screen. If the user lifts their finger while on top of a DragTarget, that target is given the opportunity to accept the data carried by the draggable.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/Draggable-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/Drawer-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://storage.googleapis.com/material-design/publish/material_v_11/assets/0B7WCemMG6e0VaDhWUXJTTng4ZGs/patterns_navigation_drawer.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/Drawer-class.html"><header class="card-title">Drawer</header></a>
+            <p class="card-text">A Material Design panel that slides in horizontally from the edge of a Scaffold to show navigation links in an application.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/Drawer-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/DropdownButton-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/DropdownButton-class.html"><header class="card-title">DropdownButton</header></a>
+            <p class="card-text">Shows the currently selected item and an arrow that opens a menu for selecting another item.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/DropdownButton-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/ExcludeSemantics-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/ExcludeSemantics-class.html"><header class="card-title">ExcludeSemantics</header></a>
+            <p class="card-text">A widget that drops all the semantics of its descendants. This can be used to hide subwidgets that would otherwise be reported but that would only be confusing. For example, the Material Components Chip widget hides the avatar since it is redundant with the chip label.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/ExcludeSemantics-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/Expanded-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/Expanded-class.html"><header class="card-title">Expanded</header></a>
+            <p class="card-text">A widget that expands a child of a Row, Column, or Flex.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/Expanded-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/ExpansionPanel-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VOXF3eEJ3azZMSjg/components_expansion_panels.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/ExpansionPanel-class.html"><header class="card-title">ExpansionPanel</header></a>
+            <p class="card-text">Expansion panels contain creation flows and allow lightweight editing of an element. The ExpansionPanel widget implements this component.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/ExpansionPanel-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/FadeTransition-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/FadeTransition-class.html"><header class="card-title">FadeTransition</header></a>
+            <p class="card-text">Animates the opacity of a widget.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/FadeTransition-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/FittedBox-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/FittedBox-class.html"><header class="card-title">FittedBox</header></a>
+            <p class="card-text">Scales and positions its child within itself according to fit.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/FittedBox-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/FlatButton-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VNDg3V3ZjU2hsNGc/components_buttons_usage3.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/FlatButton-class.html"><header class="card-title">FlatButton</header></a>
+            <p class="card-text">A flat button is a section printed on a Material Components widget that reacts to touches by filling with color.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/FlatButton-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/FloatingActionButton-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VN20tOXJoUjVxQjg/components_buttons_fab.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/FloatingActionButton-class.html"><header class="card-title">FloatingActionButton</header></a>
+            <p class="card-text">A floating action button is a circular icon button that hovers over content to promote a primary action in the application. Floating action buttons are most commonly used in the Scaffold.floatingActionButton field.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/FloatingActionButton-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/Flow-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/Flow-class.html"><header class="card-title">Flow</header></a>
+            <p class="card-text">A widget that implements the flow layout algorithm.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/Flow-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/FlutterLogo-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/FlutterLogo-class.html"><header class="card-title">FlutterLogo</header></a>
+            <p class="card-text">The Flutter logo, in widget form. This widget respects the IconTheme.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/FlutterLogo-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/Form-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/Form-class.html"><header class="card-title">Form</header></a>
+            <p class="card-text">An optional container for grouping together multiple form field widgets (e.g. TextField widgets).</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/Form-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/FormField-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/FormField-class.html"><header class="card-title">FormField</header></a>
+            <p class="card-text">A single form field. This widget maintains the current state of the form field, so that updates and validation errors are visually reflected in the UI.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/FormField-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/FractionalTranslation-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/FractionalTranslation-class.html"><header class="card-title">FractionalTranslation</header></a>
+            <p class="card-text">A widget that applies a translation expressed as a fraction of the box's size before painting its child.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/FractionalTranslation-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/FractionallySizedBox-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/FractionallySizedBox-class.html"><header class="card-title">FractionallySizedBox</header></a>
+            <p class="card-text">A widget that sizes its child to a fraction of the total available space. For more details about the layout algorithm, see RenderFractionallySizedOverflowBox.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/FractionallySizedBox-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/FutureBuilder-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/FutureBuilder-class.html"><header class="card-title">FutureBuilder</header></a>
+            <p class="card-text">Widget that builds itself based on the latest snapshot of interaction with a Future.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/FutureBuilder-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/GestureDetector-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/GestureDetector-class.html"><header class="card-title">GestureDetector</header></a>
+            <p class="card-text">A widget that detects gestures. Attempts to recognize gestures that correspond to its non-null callbacks. If this widget has a child, it defers to that child for its sizing behavior. If it does not have a child, it grows to fit the parent instead.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/GestureDetector-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/GridView-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VandQYXpNMG9aQUk/components_grid_lists.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/GridView-class.html"><header class="card-title">GridView</header></a>
+            <p class="card-text">A grid list consists of a repeated pattern of cells arrayed in a vertical and horizontal layout. The GridView widget implements this component.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/GridView-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/Hero-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/Hero-class.html"><header class="card-title">Hero</header></a>
+            <p class="card-text">A widget that marks its child as being a candidate for hero animations.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/Hero-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/widgets/Icon-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/widgets/Icon-class.html"><header class="card-title">Icon</header></a>
+            <p class="card-text">A Material Design icon.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/widgets/Icon-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/IconButton-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://storage.googleapis.com/material-design/publish/material_v_11/assets/0B_udO5B8pzrzdXVuTlBoOTBjcU0/components_buttons_other1.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/IconButton-class.html"><header class="card-title">IconButton</header></a>
+            <p class="card-text">An icon button is a picture printed on a Material widget that reacts to touches by filling with color (ink).</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/IconButton-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/IgnorePointer-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/IgnorePointer-class.html"><header class="card-title">IgnorePointer</header></a>
+            <p class="card-text">A widget that is invisible during hit testing. When ignoring is true, this widget (and its subtree) is invisible to hit testing. It still consumes space during layout and paints its child as usual. It just cannot be the target of located events, because it returns false from RenderBox.hitTest.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/IgnorePointer-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/widgets/Image-class.html">
+            <div class="card-image-holder">
+                <svg viewBox="0 0 100 100"><rect x="0" y="0" width="100" height="100" fill="#3949ab"></rect><rect x="20" y="20" width="60" height="60" fill="#ffffff"></rect><image x="22.5" y="22.5" width="55" height="55" xlink:href="/images/owl.jpg"></image></svg>
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/widgets/Image-class.html"><header class="card-title">Image</header></a>
+            <p class="card-text">A widget that displays an image.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/widgets/Image-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/IndexedStack-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/IndexedStack-class.html"><header class="card-title">IndexedStack</header></a>
+            <p class="card-text">A Stack that shows a single child from a list of children.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/IndexedStack-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/IntrinsicHeight-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/IntrinsicHeight-class.html"><header class="card-title">IntrinsicHeight</header></a>
+            <p class="card-text">A widget that sizes its child to the child's intrinsic height.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/IntrinsicHeight-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/IntrinsicWidth-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/IntrinsicWidth-class.html"><header class="card-title">IntrinsicWidth</header></a>
+            <p class="card-text">A widget that sizes its child to the child's intrinsic width.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/IntrinsicWidth-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/LayoutBuilder-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/LayoutBuilder-class.html"><header class="card-title">LayoutBuilder</header></a>
+            <p class="card-text">Builds a widget tree that can depend on the parent widget's size.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/LayoutBuilder-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/LimitedBox-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/LimitedBox-class.html"><header class="card-title">LimitedBox</header></a>
+            <p class="card-text">A box that limits its size only when it's unconstrained.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/LimitedBox-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/LinearProgressIndicator-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VWkJiRjRLbzRNS3M/components_progress_and_activity.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/LinearProgressIndicator-class.html"><header class="card-title">LinearProgressIndicator</header></a>
+            <p class="card-text">A material design linear progress indicator, also known as a progress bar.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/LinearProgressIndicator-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/ListBody-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/ListBody-class.html"><header class="card-title">ListBody</header></a>
+            <p class="card-text">A widget that arranges its children sequentially along a given axis, forcing them to the dimension of the parent in the other axis.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/ListBody-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/ListTile-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://material-design.storage.googleapis.com/publish/material_v_9/0Bx4BSt6jniD7UUw0bzVwU2lMUHc/components_lists_keylines_single10.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/ListTile-class.html"><header class="card-title">ListTile</header></a>
+            <p class="card-text">A single fixed-height row that typically contains some text as well as a leading or trailing icon.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/ListTile-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/ListView-class.html">
+            <div class="card-image-holder">
+                <svg viewBox="0 0 100 100"><filter id="inset-shadow-block" x="-50%" y="-50%" width="200%" height="200%"><feComponentTransfer in="SourceAlpha"><feFuncA type="table" tableValues="1 0"></feFuncA></feComponentTransfer><feGaussianBlur stdDeviation="2" result="Blur"></feGaussianBlur><feFlood flood-color="#666666" result="color"></feFlood><feComposite in2="Blur" operator="in"></feComposite><feComposite in2="SourceAlpha" operator="in"></feComposite><feMerge><feMergeNode></feMergeNode></feMerge></filter><rect x="0" y="0" width="100" height="100" fill="#3949ab"></rect><rect x="30" y="10" width="40" height="80" fill="#ffffff"></rect><rect x="35" y="10" width="30" height="15" fill="#4dd0e1"></rect><rect x="35" y="30" width="30" height="20" fill="#4dd0e1"></rect><rect x="35" y="55" width="30" height="5" fill="#4dd0e1"></rect><rect x="35" y="65" width="30" height="15" fill="#4dd0e1"></rect><rect x="35" y="85" width="30" height="5" fill="#4dd0e1"></rect><rect x="30" y="10" width="40" height="80" fill="#ffffff" filter="url(#inset-shadow-block)"></rect></svg>
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/ListView-class.html"><header class="card-title">ListView</header></a>
+            <p class="card-text">A scrollable, linear list of widgets. ListView is the most commonly used scrolling widget. It displays its children one after another in the scroll direction. In the cross axis, the children are required to fill the ListView.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/ListView-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/LongPressDraggable-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/LongPressDraggable-class.html"><header class="card-title">LongPressDraggable</header></a>
+            <p class="card-text">Makes its child draggable starting from long press.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/LongPressDraggable-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/MaterialApp-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://storage.googleapis.com/material-design/publish/material_v_11/assets/0Bx4BSt6jniD7Y1huOXVQdlFPMmM/materialdesign_introduction.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/MaterialApp-class.html"><header class="card-title">MaterialApp</header></a>
+            <p class="card-text">A convenience widget that wraps a number of widgets that are commonly required for applications implementing Material Design.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/MaterialApp-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/MediaQuery-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/MediaQuery-class.html"><header class="card-title">MediaQuery</header></a>
+            <p class="card-text">Establishes a subtree in which media queries resolve to the given data.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/MediaQuery-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/MergeSemantics-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/MergeSemantics-class.html"><header class="card-title">MergeSemantics</header></a>
+            <p class="card-text">A widget that merges the semantics of its descendants.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/MergeSemantics-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/Navigator-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/Navigator-class.html"><header class="card-title">Navigator</header></a>
+            <p class="card-text">A widget that manages a set of child widgets with a stack discipline. Many apps have a navigator near the top of their widget hierarchy in order to display their logical history using an Overlay with the most recently visited pages visually on top of the older pages. Using this pattern lets the navigator visually transition from one page to another by moving the widgets around in the overlay. Similarly, the navigator can be used to show a dialog by positioning the dialog widget above the current page.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/Navigator-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/NestedScrollView-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/NestedScrollView-class.html"><header class="card-title">NestedScrollView</header></a>
+            <p class="card-text">A scrolling view inside of which can be nested other scrolling views, with their scroll positions being intrinsically linked.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/NestedScrollView-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/NotificationListener-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/NotificationListener-class.html"><header class="card-title">NotificationListener</header></a>
+            <p class="card-text">A widget that listens for Notifications bubbling up the tree.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/NotificationListener-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/Offstage-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/Offstage-class.html"><header class="card-title">Offstage</header></a>
+            <p class="card-text">A widget that lays the child out as if it was in the tree, but without painting anything, without making the child available for hit testing, and without taking any room in the parent.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/Offstage-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/Opacity-class.html">
+            <div class="card-image-holder">
+                <svg viewBox="0 0 100 100"><rect x="0" y="0" width="100" height="100" fill="#3949ab"></rect><rect x="10" y="10" width="60" height="60" fill="#3b75ad"></rect><rect x="20" y="30" width="70" height="50" fill="#ffffff" opacity="0.8"></rect></svg>
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/Opacity-class.html"><header class="card-title">Opacity</header></a>
+            <p class="card-text">A widget that makes its child partially transparent.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/Opacity-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/OverflowBox-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/OverflowBox-class.html"><header class="card-title">OverflowBox</header></a>
+            <p class="card-text">A widget that imposes different constraints on its child than it gets from its parent, possibly allowing the child to overflow the parent.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/OverflowBox-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/Padding-class.html">
+            <div class="card-image-holder">
+                <svg viewBox="0 0 100 100"><defs><marker id="arrow-padding" orient="auto-start-reverse" viewBox="0 0 1 1" markerWidth="3" markerHeight="3" refX="0.5" refY="0.5"><path d="M 1 0.5 L 0.5 0 L 0.5 1 z" fill="#f50057"></path></marker></defs><rect x="0" y="0" width="100" height="100" fill="#3949ab"></rect><rect x="10" y="20" width="80" height="60" fill="#ffffff"></rect><rect x="25" y="30" width="50" height="30" fill="#4dd0e1"></rect><line x1="13" y1="45" x2="22" y2="45" stroke="#f50057" stroke-width="2" marker-start="url(#arrow-padding)" marker-end="url(#arrow-padding)"></line><line x1="78" y1="45" x2="87" y2="45" stroke="#f50057" stroke-width="2" marker-start="url(#arrow-padding)" marker-end="url(#arrow-padding)"></line><line x1="50" y1="23" x2="50" y2="27" stroke="#f50057" stroke-width="2" marker-start="url(#arrow-padding)" marker-end="url(#arrow-padding)"></line><line x1="50" y1="63" x2="50" y2="77" stroke="#f50057" stroke-width="2" marker-start="url(#arrow-padding)" marker-end="url(#arrow-padding)"></line></svg>
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/Padding-class.html"><header class="card-title">Padding</header></a>
+            <p class="card-text">A widget that insets its child by the given padding.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/Padding-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/PageView-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/PageView-class.html"><header class="card-title">PageView</header></a>
+            <p class="card-text">A scrollable list that works page by page.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/PageView-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/widgets/Placeholder-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/widgets/Placeholder-class.html"><header class="card-title">Placeholder</header></a>
+            <p class="card-text">A widget that draws a box that represents where other widgets will one day be added.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/widgets/Placeholder-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/PopupMenuButton-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://storage.googleapis.com/material-design/publish/material_v_11/assets/0B7WCemMG6e0VakJ6a0F2MFJaaDQ/components_menus.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/PopupMenuButton-class.html"><header class="card-title">PopupMenuButton</header></a>
+            <p class="card-text">Displays a menu when pressed and calls onSelected when the menu is dismissed because an item was selected.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/PopupMenuButton-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/PositionedTransition-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/PositionedTransition-class.html"><header class="card-title">PositionedTransition</header></a>
+            <p class="card-text">Animated version of Positioned which takes a specific Animation to transition the child's position from a start position to and end position over the lifetime of the animation.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/PositionedTransition-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/Radio-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://storage.googleapis.com/material-design/publish/material_v_9/0Bx4BSt6jniD7Z1NaaXh2ZkpDRkE/components_switches_radio1.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/Radio-class.html"><header class="card-title">Radio</header></a>
+            <p class="card-text">Radio buttons allow the user to select one option from a set. Use radio buttons for exclusive selection if you think that the user needs to see all available options side-by-side. </p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/Radio-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/RaisedButton-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VbDh6YmNiYVc3SHM/components_buttons_usage2.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/RaisedButton-class.html"><header class="card-title">RaisedButton</header></a>
+            <p class="card-text">A Material Design raised button. A raised button consists of a rectangular piece of material that hovers over the interface.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/RaisedButton-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/RawImage-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/RawImage-class.html"><header class="card-title">RawImage</header></a>
+            <p class="card-text">A widget that displays a dart:ui.Image directly.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/RawImage-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/RawKeyboardListener-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/RawKeyboardListener-class.html"><header class="card-title">RawKeyboardListener</header></a>
+            <p class="card-text">A widget that calls a callback whenever the user presses or releases a key on a keyboard.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/RawKeyboardListener-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/material/RefreshIndicator-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://storage.googleapis.com/material-design/publish/material_v_12/assets/0B7WCemMG6e0VS2kzSmZwNnNKQVk/patterns-swipe-to-refresh.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/material/RefreshIndicator-class.html"><header class="card-title">RefreshIndicator</header></a>
+            <p class="card-text">A Material Design pull-to-refresh wrapper for scrollables.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/material/RefreshIndicator-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/RichText-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/RichText-class.html"><header class="card-title">RichText</header></a>
+            <p class="card-text">The RichText widget displays text that uses multiple different styles. The text to display is described using a tree of TextSpan objects, each of which has an associated style that is used for that subtree. The text might break across multiple lines or might all be displayed on the same line depending on the layout constraints.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/RichText-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/RotatedBox-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/RotatedBox-class.html"><header class="card-title">RotatedBox</header></a>
+            <p class="card-text">A widget that rotates its child by a integral number of quarter turns.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/RotatedBox-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/RotationTransition-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/RotationTransition-class.html"><header class="card-title">RotationTransition</header></a>
+            <p class="card-text">Animates the rotation of a widget.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/RotationTransition-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/widgets/Row-class.html">
+            <div class="card-image-holder">
+                <svg viewBox="0 0 100 100"><rect x="0" y="0" width="100" height="100" fill="#3949ab"></rect><rect x="10" y="30" width="80" height="40" fill="#ffffff"></rect><rect x="15" y="40" width="20" height="20" fill="#4dd0e1"></rect><rect x="40" y="35" width="30" height="30" fill="#4dd0e1"></rect></svg>
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/widgets/Row-class.html"><header class="card-title">Row</header></a>
+            <p class="card-text">Layout a list of child widgets in the horizontal direction.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/widgets/Row-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/Scaffold-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://storage.googleapis.com/material-design/publish/material_v_11/assets/0Bx4BSt6jniD7T0hfM01sSmRyTG8/layout_structure_regions_mobile.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/Scaffold-class.html"><header class="card-title">Scaffold</header></a>
+            <p class="card-text">Implements the basic Material Design visual layout structure. This class provides APIs for showing drawers, snack bars, and bottom sheets.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/Scaffold-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/ScaleTransition-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/ScaleTransition-class.html"><header class="card-title">ScaleTransition</header></a>
+            <p class="card-text">Animates the scale of transformed widget.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/ScaleTransition-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/ScrollConfiguration-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/ScrollConfiguration-class.html"><header class="card-title">ScrollConfiguration</header></a>
+            <p class="card-text">Controls how Scrollable widgets behave in a subtree.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/ScrollConfiguration-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/Scrollable-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/Scrollable-class.html"><header class="card-title">Scrollable</header></a>
+            <p class="card-text">Scrollable implements the interaction model for a scrollable widget, including gesture recognition, but does not have an opinion about how the viewport, which actually displays the children, is constructed.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/Scrollable-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/material/Scrollbar-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/material/Scrollbar-class.html"><header class="card-title">Scrollbar</header></a>
+            <p class="card-text">A Material Design scrollbar. A scrollbar indicates which portion of a Scrollable widget is actually visible.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/material/Scrollbar-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/Semantics-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/Semantics-class.html"><header class="card-title">Semantics</header></a>
+            <p class="card-text">A widget that annotates the widget tree with a description of the meaning of the widgets. Used by accessibility tools, search engines, and other semantic analysis software to determine the meaning of the application.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/Semantics-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/SimpleDialog-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VVGNnN3NvMGdoQTg/components_dialogs.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/SimpleDialog-class.html"><header class="card-title">SimpleDialog</header></a>
+            <p class="card-text">Simple dialogs can provide additional details or actions about a list item. For example they can display avatars icons clarifying subtext or orthogonal actions (such as adding an account). </p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/SimpleDialog-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/SingleChildScrollView-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/SingleChildScrollView-class.html"><header class="card-title">SingleChildScrollView</header></a>
+            <p class="card-text">A box in which a single widget can be scrolled. This widget is useful when you have a single box that will normally be entirely visible, for example a clock face in a time picker, but you need to make sure it can be scrolled if the container gets too small in one axis (the scroll direction).</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/SingleChildScrollView-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/SizeTransition-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/SizeTransition-class.html"><header class="card-title">SizeTransition</header></a>
+            <p class="card-text">Animates its own size and clips and aligns the child.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/SizeTransition-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/SizedBox-class.html">
+            <div class="card-image-holder">
+                <svg viewBox="0 0 100 100"><defs><marker id="arrow-sized-box" orient="auto-start-reverse" viewBox="0 0 1 1" markerWidth="3" markerHeight="3" refX="0.5" refY="0.5"><path d="M 1 0.5 L 0.5 0 L 0.5 1 z" fill="#ffffff"></path></marker></defs><rect x="0" y="0" width="100" height="100" fill="#3949ab"></rect><rect x="25" y="35" width="50" height="30" fill="#ffffff"></rect><rect x="27.5" y="37.5" width="45" height="25" fill="#4dd0e1"></rect><line x1="28" y1="30" x2="72" y2="30" stroke="#ffffff" stroke-width="2" marker-start="url(#arrow-sized-box)" marker-end="url(#arrow-sized-box)"></line><line x1="20" y1="38" x2="20" y2="62" stroke="#ffffff" stroke-width="2" marker-start="url(#arrow-sized-box)" marker-end="url(#arrow-sized-box)"></line></svg>
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/SizedBox-class.html"><header class="card-title">SizedBox</header></a>
+            <p class="card-text">A box with a specified size. If given a child, this widget forces its child to have a specific width and/or height (assuming values are permitted by this widget's parent). If either the width or height is null, this widget will size itself to match the child's size in that dimension.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/SizedBox-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/SizedOverflowBox-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/SizedOverflowBox-class.html"><header class="card-title">SizedOverflowBox</header></a>
+            <p class="card-text">A widget that is a specific size but passes its original constraints through to its child, which will probably overflow.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/SizedOverflowBox-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/SlideTransition-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/SlideTransition-class.html"><header class="card-title">SlideTransition</header></a>
+            <p class="card-text">Animates the position of a widget relative to its normal position.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/SlideTransition-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/Slider-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VTmJrQUYzajFIclE/components_sliders.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/Slider-class.html"><header class="card-title">Slider</header></a>
+            <p class="card-text">Sliders let users select from a range of values by moving the slider thumb. </p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/Slider-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/material/SliverAppBar-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VclpfSFpuelBGR1k/components_toolbars.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/material/SliverAppBar-class.html"><header class="card-title">SliverAppBar</header></a>
+            <p class="card-text">A material design app bar that integrates with a CustomScrollView.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/material/SliverAppBar-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/SnackBar-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VSjZkendtc19iZ2M/components_snackbars.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/SnackBar-class.html"><header class="card-title">SnackBar</header></a>
+            <p class="card-text">A lightweight message with an optional action which briefly displays at the bottom of the screen.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/SnackBar-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/widgets/Stack-class.html">
+            <div class="card-image-holder">
+                <svg viewBox="0 0 100 100"><rect x="0" y="0" width="100" height="100" fill="#3949ab"></rect><rect x="10" y="10" width="80" height="80" fill="#ffffff"></rect><rect x="25" y="25" width="40" height="30" fill="#3b75ad"></rect><rect x="45" y="35" width="30" height="30" fill="#4dd0e1"></rect><rect x="40" y="50" width="10" height="10" fill="#f50057"></rect></svg>
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/widgets/Stack-class.html"><header class="card-title">Stack</header></a>
+            <p class="card-text">This class is useful if you want to overlap several children in a simple way, for example having some text and an image, overlaid with a gradient and a button attached to the bottom.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/widgets/Stack-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/Stepper-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VTndyUnNCR2tQREE/components_steppers.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/Stepper-class.html"><header class="card-title">Stepper</header></a>
+            <p class="card-text">A Material Design stepper widget that displays progress through a sequence of steps.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/Stepper-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/StreamBuilder-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/StreamBuilder-class.html"><header class="card-title">StreamBuilder</header></a>
+            <p class="card-text">Widget that builds itself based on the latest snapshot of interaction with a Stream.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/StreamBuilder-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/Switch-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://storage.googleapis.com/material-design/publish/material_v_9/0Bx4BSt6jniD7NDg4aGIzVXYxVEE/components_switches_switch1.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/Switch-class.html"><header class="card-title">Switch</header></a>
+            <p class="card-text">On/off switches toggle the state of a single settings option. The Switch widget implements this component.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/Switch-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/TabBar-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VaWdBdnhMT3ViXzQ/components_tabs.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/TabBar-class.html"><header class="card-title">TabBar</header></a>
+            <p class="card-text">A Material Design widget that displays a horizontal row of tabs.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/TabBar-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/TabBarView-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://storage.googleapis.com/material-design/publish/material_v_11/assets/0B7WCemMG6e0VaWdBdnhMT3ViXzQ/components_tabs.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/TabBarView-class.html"><header class="card-title">TabBarView</header></a>
+            <p class="card-text">A page view that displays the widget which corresponds to the currently selected tab. Typically used in conjunction with a TabBar.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/TabBarView-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/Table-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/Table-class.html"><header class="card-title">Table</header></a>
+            <p class="card-text">A widget that uses the table layout algorithm for its children.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/Table-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/widgets/Text-class.html">
+            <div class="card-image-holder">
+                <svg viewBox="0 0 100 100"><rect x="0" y="0" width="100" height="100" fill="#3949ab"></rect><rect x="20" y="30" width="60" height="40" fill="#ffffff"></rect><text x="50" y="60" text-anchor="middle" font-family="Roboto" font-size="25" fill="#3b75ad">Abc</text></svg>
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/widgets/Text-class.html"><header class="card-title">Text</header></a>
+            <p class="card-text">A run of text with a single style.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/widgets/Text-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/TextField-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VbURLNTM0N0R6eUE/components_text_fields.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/TextField-class.html"><header class="card-title">TextField</header></a>
+            <p class="card-text">Touching a text field places the cursor and displays the keyboard. The TextField widget implements this component.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/TextField-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/material/Theme-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/material/Theme-class.html"><header class="card-title">Theme</header></a>
+            <p class="card-text">Applies a theme to descendant widgets. A theme describes the colors and typographic choices of an application.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/material/Theme-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/material/Tooltip-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VZ1JKMzJFcmhOWkk/components_tooltips.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/material/Tooltip-class.html"><header class="card-title">Tooltip</header></a>
+            <p class="card-text">Tooltips provide text labels that help explain the function of a button or other user interface action. Wrap the button in a Tooltip widget to show a label when the widget long pressed (or when the user takes some other appropriate action).</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/material/Tooltip-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/Transform-class.html">
+            <div class="card-image-holder">
+                <svg viewBox="0 0 100 100"><rect x="0" y="0" width="100" height="100" fill="#3949ab"></rect><rect x="17.5" y="42.5" width="50" height="30" fill="#ffffff"></rect><rect x="20" y="45" width="45" height="25" fill="#3b75ad"></rect><rect x="20" y="45" width="45" height="25" fill="#4dd0e1" transform="translate(15 -5) rotate(-23) skewX(-10)"></rect></svg>
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/Transform-class.html"><header class="card-title">Transform</header></a>
+            <p class="card-text">A widget that applies a transformation before painting its child.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/Transform-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://docs.flutter.io/flutter/widgets/WidgetsApp-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://docs.flutter.io/flutter/widgets/WidgetsApp-class.html"><header class="card-title">WidgetsApp</header></a>
+            <p class="card-text">A convenience class that wraps a number of widgets that are commonly required for an application.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://docs.flutter.io/flutter/widgets/WidgetsApp-class.html">Documentation</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <a href="https://api.flutter.dev/flutter/widgets/Wrap-class.html">
+            <div class="card-image-holder">
+                <img alt="" src="/images/catalog-widget-placeholder.png">
+            </div>
+        </a>
+        <div class="card-body">
+            <a href="https://api.flutter.dev/flutter/widgets/Wrap-class.html"><header class="card-title">Wrap</header></a>
+            <p class="card-text">A widget that displays its children in multiple horizontal or vertical runs.</p>
+        </div>
+        <div class="card-footer card-footer--transparent">
+            <a href="https://api.flutter.dev/flutter/widgets/Wrap-class.html">Documentation</a>
+        </div>
+    </div>
+
+</div>
+
+
+        
+      </div>
+    </main>
+  </div>
+</div>
+<footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 site-footer__wrapper">
+        <div class="site-footer__logo">
+          <img src="/images/flutter-mono-81x100.png" alt="Flutter Logo" width="81" height="100">
+        </div>
+        <div class="site-footer__content">
+          <ul class="site-footer__link-list">
+              <li><a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a></li>
+              <li><a href="/tos">terms</a></li>
+              <li><a href="/security">security</a></li>
+              <li><a href="https://www.google.com/intl/en/policies/privacy">privacy</a></li>
+              <li><a href="https://flutter-es.io/">español</a></li>
+              <li><a href="https://flutter-io.cn" class="text-nowrap">社区中文资源</a></li>
+          </ul>
+
+          <p class="licenses" translation-origin="on">
+            Except as otherwise noted,
+            this work is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0">Creative
+            Commons Attribution 4.0 International License</a>,
+            and code samples are licensed under the BSD License.
+          </p>
+          <p class="licenses" translation-result="off">
+            除非特别说明，否则本站内容采用 <a rel="license" href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0 授权协议</a>，所有范例代码都采用 BSD 授权协议。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- <script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script> -->
+  
+
+<script src="/assets/translator/js/translator.js"></script></body></html>

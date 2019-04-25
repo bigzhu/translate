@@ -1,0 +1,1085 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Widget 的淡入淡出效果  - Flutter 中文文档 - Flutter 社区中文资源 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-ND4LWWZ');</script>
+  <!-- End Google Tag Manager -->
+
+  
+  <meta name="description" content="As UI developers, you often need to show and hide elements on screen. However,quickly popping elements on and off the screen can feel jarring to end users.Instead, you can fade elements in and out with an opacity animation to createa smooth experience.在实现 UI 设计时，我们经常需要在屏幕上显示或隐藏各种元素。如若这个过程只是让某个元素快速地出现或者消失，用户们肯定不买帐。我们一般会使用不透明动画让元素淡入淡出，以创建出更加流畅的用户体验。In Flutter, you can achieve this task...">
+  <meta name="keywords" content=" ">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@flutterdev">
+
+  <meta property="og:title" content="Widget 的淡入淡出效果">
+  <meta property="og:url" content="https://flutter.dev/docs/cookbook/animation/opacity-animation">
+  <meta property="og:description" content="As UI developers, you often need to show and hide elements on screen. However,quickly popping elements on and off the screen can feel jarring to end users.Instead, you can fade elements in and out with an opacity animation to createa smooth experience.在实现 UI 设计时，我们经常需要在屏幕上显示或隐藏各种元素。如若这个过程只是让某个元素快速地出现或者消失，用户们肯定不买帐。我们一般会使用不透明动画让元素淡入淡出，以创建出更加流畅的用户体验。In Flutter, you can achieve this task...">
+  
+  <meta property="og:image" content="https://flutter.dev/images/flutter-logo-sharing.png">
+
+  <link href="/assets/translator/css/material-roboto.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/assets/main-74a0c308218334fcd85291a957a514973015ea8e4eb76b9abae6e14bb5012f5e.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  <script src="/assets/main-d6b8b8d26e7b4122b3ddf6a5201966d6e2494aaffadaafaf7c571ce5e2fe0aab.js" type="text/javascript"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-122680122-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <!--<meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />-->
+<link href="/assets/translator/css/translator.css" rel="stylesheet"></head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-ND4LWWZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div id="overlay-under-drawer"></div>
+
+    <header class="site-header">
+  <nav class="navbar navbar-expand-md justify-content-start justify-content-md-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="material-icons">menu</i>
+    </button>
+
+    <a class="navbar-brand" href="/">
+      <img alt="Flutter by Google" height="37" width="129" class="align-middle" src="/assets/flutter-lockup-4cb0ee072ab312e59784d9fbf4fb7ad42688a7fdaea1270ccf6bbf4f34b7e03f.svg">
+    </a>
+
+    <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
+      <div class="site-header__sheet-bg" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></div>
+      <div class="site-header__sheet">
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <a class="nav-link active" href="/docs">开发文档</a>
+          </li>
+          <div class="site-sidebar site-sidebar--header d-md-none">
+            <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="false" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="true" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link active" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+          </div>
+
+<!-- 
+          <li class="nav-item">
+            <a class="nav-link" href="/showcase">Showcase</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/community">Community</a>
+          </li>
+ -->
+        </ul>
+        <form action="/search" class="site-header__search form-inline">
+          <input class="site-header__searchfield form-control" type="search" name="q" id="q" autocomplete="off" placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+    </div>
+    <div class="site-header__social navbar-nav flex-row">
+      <a class="nav-item nav-link" href="https://twitter.com/flutterdev"><i class="fab fa-twitter fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://www.youtube.com/flutterdev"><i class="fab fa-youtube fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://github.com/flutter"><i class="fab fa-github fa-lg"></i></a>
+    </div>
+    <a class="site-header__cta btn btn-primary" href="/docs/get-started/install/">Get started</a>
+    </nav>
+</header>
+<div class="site-banner site-banner--default" role="alert">
+    <p>
+      We are looking for a Flutter Infrastructure engineer!
+      <a href="/jobs/infrastructure" target="_blank" rel="noopener">Learn more</a>.
+    </p>
+
+  </div>
+<div class="container-fluid position-relative">
+  <div class="row flex-xl-nowrap">
+    <div class="fixed-col site-sidebar site-sidebar--fixed col-12 col-md-3 col-xl-2 d-none d-md-block" data-fixed-column="">
+      <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="false" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="true" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link active" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+    </div>
+    <div id="site-toc--side" class="site-toc site-toc--side fixed-col col-xl-2 order-3" data-fixed-column="">
+  <header class="site-toc__title">
+    Contents
+    <button type="button" class="btn site-toc--button__page-top" aria-label="Page top"></button>
+    </header>
+  <ul class="section-nav nav">
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#directions">Directions</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#步骤">步骤</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#1-create-a-box-to-fade-in-and-out">1. Create a box to fade in and out</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#1-创建一个用来淡入淡出的方框">1. 创建一个用来淡入淡出的方框</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#2-define-a-statefulwidget">2. Define a StatefulWidget</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#2-定义一个-statefulwidget">2. 定义一个 StatefulWidget</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#3-display-a-button-that-toggles-the-visibility">3. Display a button that toggles the visibility</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#3-显示一个用于切换可见状态的按钮">3. 显示一个用于切换可见状态的按钮</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#4-fade-the-box-in-and-out">4. Fade the box in and out</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#4-淡入淡出方框">4. 淡入淡出方框</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#complete-example">Complete example</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#一个完整的例子">一个完整的例子</a></li>
+</ul>
+</div>
+<main class="site-content col-12 col-md-9 offset-md-3 col-xl-8 offset-xl-2 col-xxl-8 offset-xxl-2" role="main">
+      <div class="container">
+        
+        <nav class="site-nextprev-nav">
+    <ul>
+      <li class="prev">
+          <a href="/docs/cookbook/animation/animated-container">Container 里的动画渐变效果</a>
+      </li>
+      <li class="next">
+          <a href="/docs/cookbook/design/drawer">在屏幕上添加一个 Drawer</a>
+      </li>
+      </ul>
+  </nav>
+
+        <header class="site-content__title">
+          <div id="page-github-links" class="btn-group" aria-label="Page GitHub links" role="group">
+  <a href="https://github.com/cfug/flutter.cn/tree/master/src/docs/cookbook/animation/opacity-animation.md" class="btn no-automatic-external" title="View page source" target="_blank" rel="noopener">
+    <i class="fas fa-file-alt fa-sm"></i>
+  </a>
+  <a href="https://github.com/cfug/flutter.cn/issues/new?title='Widget 的淡入淡出效果' page issue&amp;body=
+Page URL: https://flutter.dev/docs/cookbook/animation/opacity-animation.html%0D%0A
+Page source: https://github.com/cfug/flutter.cn/tree/master/src/docs/cookbook/animation/opacity-animation.md%0D%0A
+%0D%0A
+Found a typo? You can fix it yourself by going to the page source and clicking the pencil icon. Or finish creating this issue.%0D%0A
+%0D%0A
+Description of issue:" class="btn no-automatic-external" title="Report an issue with this page" target="_blank" rel="noopener">
+    <i class="fas fa-bug fa-sm"></i>
+  </a>
+</div>
+
+          <h1 id="widget-的淡入淡出效果">Widget 的淡入淡出效果</h1>
+          
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="/docs" property="item" typeof="WebPage"><span property="name">文档</span>
+      </a>
+      <meta property="position" content="1">
+    </li>
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="/docs/cookbook" property="item" typeof="WebPage"><span property="name">实用教程</span>
+      </a>
+      <meta property="position" content="2">
+    </li>
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="/docs/cookbook/animation" property="item" typeof="WebPage"><span property="name">动画 (Animation)</span>
+      </a>
+      <meta property="position" content="3">
+    </li>
+  <li class="breadcrumb-item active" property="itemListElement" typeof="ListItem" aria-current="page"><a href="/docs/cookbook/animation/opacity-animation.html" property="item" typeof="WebPage"><span property="name">Widget 的淡入淡出效果</span>
+      </a>
+      <meta property="position" content="4">
+    </li>
+  
+  </ol>
+</nav>
+          </header>
+        <div id="site-toc--inline" class="site-toc site-toc--inline ">
+  <header class="site-toc__title">
+    Contents
+    </header>
+  <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#directions">Directions</a></li>
+<li class="toc-entry toc-h2"><a href="#步骤">步骤</a></li>
+<li class="toc-entry toc-h2"><a href="#1-create-a-box-to-fade-in-and-out">1. Create a box to fade in and out</a></li>
+<li class="toc-entry toc-h2"><a href="#1-创建一个用来淡入淡出的方框">1. 创建一个用来淡入淡出的方框</a></li>
+<li class="toc-entry toc-h2"><a href="#2-define-a-statefulwidget">2. Define a StatefulWidget</a></li>
+<li class="toc-entry toc-h2"><a href="#2-定义一个-statefulwidget">2. 定义一个 StatefulWidget</a></li>
+<li class="toc-entry toc-h2"><a href="#3-display-a-button-that-toggles-the-visibility">3. Display a button that toggles the visibility</a></li>
+<li class="toc-entry toc-h2"><a href="#3-显示一个用于切换可见状态的按钮">3. 显示一个用于切换可见状态的按钮</a></li>
+<li class="toc-entry toc-h2"><a href="#4-fade-the-box-in-and-out">4. Fade the box in and out</a></li>
+<li class="toc-entry toc-h2"><a href="#4-淡入淡出方框">4. 淡入淡出方框</a></li>
+<li class="toc-entry toc-h2"><a href="#complete-example">Complete example</a></li>
+<li class="toc-entry toc-h2"><a href="#一个完整的例子">一个完整的例子</a></li>
+</ul>
+</div>
+<p translation-origin="on">As UI developers, you often need to show and hide elements on screen. However,
+quickly popping elements on and off the screen can feel jarring to end users.
+Instead, you can fade elements in and out with an opacity animation to create
+a smooth experience.</p>
+
+<p translation-result="off">在实现 UI 设计时，我们经常需要在屏幕上显示或隐藏各种元素。如若这个过程只是让某个元素快速地出现或者消失，用户们肯定不买帐。我们一般会使用不透明动画让元素淡入淡出，以创建出更加流畅的用户体验。</p>
+
+<p translation-origin="on">In Flutter, you can achieve this task using the <a href="https://api.flutter.dev/flutter/widgets/AnimatedOpacity-class.html"><code class="highlighter-rouge">AnimatedOpacity</code></a> Widget.</p>
+
+<p translation-result="off">在 Flutter 中，你可以使用 <a href="https://api.flutter.dev/flutter/widgets/AnimatedOpacity-class.html"><code class="highlighter-rouge">AnimatedOpacity</code></a> Widget 来完成这个效果。</p>
+
+<h2 id="directions" translation-origin="on">
+<a id="directions" class="anchor" href="#directions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Directions</h2>
+
+<h2 id="步骤" translation-result="off">
+<a id="步骤" class="anchor" href="#directions" aria-hidden="true"><span class="octicon octicon-link"></span></a>步骤</h2>
+
+<ol>
+  <li>
+    <p translation-origin="on">Show a box to fade in and out</p>
+
+    <p translation-result="off">创建一个用来淡入淡出的方框</p>
+  </li>
+  <li>
+    <p translation-origin="on">Define a <code class="highlighter-rouge">StatefulWidget</code></p>
+
+    <p translation-result="off">定义一个 <code class="highlighter-rouge">StatefulWidget</code></p>
+  </li>
+  <li>
+    <p translation-origin="on">Display a button that toggles the visibility</p>
+
+    <p translation-result="off">显示一个用于切换可见状态的按钮</p>
+  </li>
+  <li>
+    <p translation-origin="on">Fade the box in and out</p>
+
+    <p translation-result="off">淡入淡出方框</p>
+  </li>
+</ol>
+
+<h2 id="1-create-a-box-to-fade-in-and-out" translation-origin="on">
+<a id="1-create-a-box-to-fade-in-and-out" class="anchor" href="#1-create-a-box-to-fade-in-and-out" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Create a box to fade in and out</h2>
+
+<h2 id="1-创建一个用来淡入淡出的方框" translation-result="off">
+<a id="1-创建一个用来淡入淡出的方框" class="anchor" href="#1-create-a-box-to-fade-in-and-out" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. 创建一个用来淡入淡出的方框</h2>
+
+<p translation-origin="on">First, you’ll need something to fade in and out. In this example,
+you’ll draw a green box on screen.</p>
+
+<p translation-result="off">首先你需要一些用来淡入淡出的东西。在这个示例中，你将在屏幕上绘制一个绿色的方框。</p>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Container</span><span class="o">(</span>
+  <span class="nl">width:</span> <span class="mf">200.0</span><span class="o">,</span>
+  <span class="nl">height:</span> <span class="mf">200.0</span><span class="o">,</span>
+  <span class="nl">color:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">green</span><span class="o">,</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<h2 id="2-define-a-statefulwidget" translation-origin="on">
+<a id="2-define-a-statefulwidget" class="anchor" href="#2-define-a-statefulwidget" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Define a <code class="highlighter-rouge">StatefulWidget</code>
+</h2>
+
+<h2 id="2-定义一个-statefulwidget" translation-result="off">
+<a id="2-定义一个-statefulwidget" class="anchor" href="#2-define-a-statefulwidget" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. 定义一个 <code class="highlighter-rouge">StatefulWidget</code>
+</h2>
+
+<p translation-origin="on">Now that you have a green box to animate, you’ll need a way to know whether the
+box should be visible or invisible. To accomplish this, use a
+<a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html"><code class="highlighter-rouge">StatefulWidget</code></a>.</p>
+
+<p translation-result="off">我们要对这个绿色的方框进行动画。那么为了表示这个方框的状态是否可见，你需要使用 <a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html"><code class="highlighter-rouge">StatefulWidget</code></a>。</p>
+
+<p translation-origin="on">A <code class="highlighter-rouge">StatefulWidget</code> is a class that creates a <code class="highlighter-rouge">State</code> object. The <code class="highlighter-rouge">State</code> object
+holds some data about our app and provides a way to update that data. When you
+update the data, you can also ask Flutter to rebuild our UI with those changes.</p>
+
+<p translation-result="off"><code class="highlighter-rouge">StatefulWidget</code> 是一个类，它将会创建一个 <code class="highlighter-rouge">State</code> 对象。而这个 <code class="highlighter-rouge">State</code> 对象将包含与这个应用相关的一些数据，并且能够更新它们。当你更新数据时，可以让Flutter使用这些更改去重建用户界面。</p>
+
+<p translation-origin="on">In this case, you’ll have one piece of data: a boolean representing whether the
+button is visible or invisible.</p>
+
+<p translation-result="off">在这个示例中，我们将使用一个布尔值来表示其是否可见。</p>
+
+<p translation-origin="on">To construct a <code class="highlighter-rouge">StatefulWidget</code>, you need to create two classes: A
+<code class="highlighter-rouge">StatefulWidget</code> and a corresponding <code class="highlighter-rouge">State</code> class. Pro tip: The Flutter plugins
+for Android Studio and VSCode include the <code class="highlighter-rouge">stful</code> snippet to quickly generate
+this code.</p>
+
+<p translation-result="off">要构造一个 <code class="highlighter-rouge">StatefulWidget</code>，你需要创建两个类：一个 <code class="highlighter-rouge">StatefulWidget</code> 类以及与其对应的 <code class="highlighter-rouge">State</code> 类。小提示：Android Studio 和 VSCode 的 Flutter 插件都包含了 <code class="highlighter-rouge">stful</code> 片段，能够快速生成该代码。</p>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// The StatefulWidget's job is to take in some data and create a State class.</span>
+<span class="c1">// In this case, our Widget takes in a title, and creates a _MyHomePageState.</span>
+<span class="kd">class</span> <span class="nc">MyHomePage</span> <span class="kd">extends</span> <span class="n">StatefulWidget</span> <span class="o">{</span>
+  <span class="kd">final</span> <span class="kt">String</span> <span class="n">title</span><span class="o">;</span>
+
+  <span class="n">MyHomePage</span><span class="o">({</span><span class="n">Key</span> <span class="n">key</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">title</span><span class="o">})</span> <span class="o">:</span> <span class="k">super</span><span class="o">(</span><span class="nl">key:</span> <span class="n">key</span><span class="o">);</span>
+
+  <span class="nd">@override</span>
+  <span class="n">_MyHomePageState</span> <span class="n">createState</span><span class="o">()</span> <span class="o">=&gt;</span> <span class="n">_MyHomePageState</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="c1">// The State class is responsible for two things: holding some data you can</span>
+<span class="c1">// update and building the UI using that data.</span>
+<span class="kd">class</span> <span class="nc">_MyHomePageState</span> <span class="kd">extends</span> <span class="n">State</span><span class="o">&lt;</span><span class="n">MyHomePage</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="c1">// Whether the green box should be visible or invisible</span>
+  <span class="kt">bool</span> <span class="n">_visible</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// The green box goes here with some other Widgets.</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="3-display-a-button-that-toggles-the-visibility" translation-origin="on">
+<a id="3-display-a-button-that-toggles-the-visibility" class="anchor" href="#3-display-a-button-that-toggles-the-visibility" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Display a button that toggles the visibility</h2>
+
+<h2 id="3-显示一个用于切换可见状态的按钮" translation-result="off">
+<a id="3-显示一个用于切换可见状态的按钮" class="anchor" href="#3-display-a-button-that-toggles-the-visibility" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. 显示一个用于切换可见状态的按钮</h2>
+
+<p translation-origin="on">Now that you have some data to determine whether the green box should be visible
+or invisible, you’ll need a way update that data. In this case, if the box is
+visible, you want to hide it. If the box is hidden, you want to show it.</p>
+
+<p translation-result="off">现在你已经有了一些数据能够决定这个绿色方框是否可见，但是还需要一个方法来改变这些数据。在这个例子中，我们想让方框在显示与隐藏之间切换。</p>
+
+<p translation-origin="on">To achieve this, you’ll display a button. When a user presses the button, you’ll
+flip the boolean from true to false, or false to true. You need to make this
+change using <a href="https://api.flutter.dev/flutter/widgets/State/setState.html"><code class="highlighter-rouge">setState</code></a>, which is a method on the <code class="highlighter-rouge">State</code> class.
+This lets Flutter know it needs to rebuild the Widget.</p>
+
+<p translation-result="off">为此你将使用一个按钮。当用户按下按钮时，数据将会在 true 和 false 之间进行切换。为了使改变生效，你需要使用 <code class="highlighter-rouge">State</code> 类中的 <a href="https://api.flutter.dev/flutter/widgets/State/setState.html"><code class="highlighter-rouge">setState</code></a> 方法，这会使 Flutter 重建这个小部件。</p>
+
+<p translation-origin="on">Note: For more information on working with user input, please see the
+<a href="/docs/cookbook#gestures">Gestures</a> section of the Cookbook.</p>
+
+<p translation-result="off">注意：如果你想要了解更多与用户输入相关的资料，请参阅 Cookbook 的 <a href="/docs/cookbook#gestures">Gestures</a> 部分。</p>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">FloatingActionButton</span><span class="o">(</span>
+  <span class="nl">onPressed:</span> <span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// Make sure to call setState. This tells Flutter to rebuild the</span>
+    <span class="c1">// UI with the changes.</span>
+    <span class="n">setState</span><span class="o">(()</span> <span class="o">{</span>
+      <span class="n">_visible</span> <span class="o">=</span> <span class="o">!</span><span class="n">_visible</span><span class="o">;</span>
+    <span class="o">});</span>
+  <span class="o">},</span>
+  <span class="nl">tooltip:</span> <span class="s">'Toggle Opacity'</span><span class="o">,</span>
+  <span class="nl">child:</span> <span class="n">Icon</span><span class="o">(</span><span class="n">Icons</span><span class="o">.</span><span class="na">flip</span><span class="o">),</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<h2 id="4-fade-the-box-in-and-out" translation-origin="on">
+<a id="4-fade-the-box-in-and-out" class="anchor" href="#4-fade-the-box-in-and-out" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. Fade the box in and out</h2>
+
+<h2 id="4-淡入淡出方框" translation-result="off">
+<a id="4-淡入淡出方框" class="anchor" href="#4-fade-the-box-in-and-out" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. 淡入淡出方框</h2>
+
+<p translation-origin="on">You’ve got a green box on screen. You’ve got a button to toggle the visibility
+to <code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code>. So how do you fade the box in and out? With an
+<a href="https://api.flutter.dev/flutter/widgets/AnimatedOpacity-class.html"><code class="highlighter-rouge">AnimatedOpacity</code></a> Widget.</p>
+
+<p translation-result="off">现在你的屏幕上已经有一个绿色的方框，以及一个可以通过改变 <code class="highlighter-rouge">true</code> 或 <code class="highlighter-rouge">false</code> 来切换方框可见性的按钮。那么该如何让方框淡入淡出呢？答案是使用 <a href="https://api.flutter.dev/flutter/widgets/AnimatedOpacity-class.html"><code class="highlighter-rouge">AnimatedOpacity</code></a> Widget。</p>
+
+<p translation-origin="on">The <code class="highlighter-rouge">AnimatedOpacity</code> Widget requires three arguments:</p>
+
+<p translation-result="off"><code class="highlighter-rouge">AnimatedOpacity</code> 小部件需要传入三个参数：</p>
+
+<ul>
+  <li>
+    <p translation-origin="on"><code class="highlighter-rouge">opacity</code>: A value from 0.0 (invisible) to 1.0 (fully visible).</p>
+
+    <p translation-result="off"><code class="highlighter-rouge">opacity</code>：它的取值范围从 0.0（不可见）到 1.0（完全可见）。</p>
+  </li>
+  <li>
+    <p translation-origin="on"><code class="highlighter-rouge">duration</code>: How long the animation should take to complete.</p>
+
+    <p translation-result="off"><code class="highlighter-rouge">duration</code>：代表这个动画需要持续多长时间。</p>
+  </li>
+  <li>
+    <p translation-origin="on"><code class="highlighter-rouge">child</code>: The Widget to animate. In our case, the green box.</p>
+
+    <p translation-result="off"><code class="highlighter-rouge">child</code>：需要进行动画的小部件。在这个例子中就是那个绿色的方框。</p>
+  </li>
+</ul>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">AnimatedOpacity</span><span class="o">(</span>
+  <span class="c1">// If the Widget should be visible, animate to 1.0 (fully visible). If</span>
+  <span class="c1">// the Widget should be hidden, animate to 0.0 (invisible).</span>
+  <span class="nl">opacity:</span> <span class="n">_visible</span> <span class="o">?</span> <span class="mf">1.0</span> <span class="o">:</span> <span class="mf">0.0</span><span class="o">,</span>
+  <span class="nl">duration:</span> <span class="n">Duration</span><span class="o">(</span><span class="nl">milliseconds:</span> <span class="mi">500</span><span class="o">),</span>
+  <span class="c1">// The green box needs to be the child of the AnimatedOpacity</span>
+  <span class="nl">child:</span> <span class="n">Container</span><span class="o">(</span>
+    <span class="nl">width:</span> <span class="mf">200.0</span><span class="o">,</span>
+    <span class="nl">height:</span> <span class="mf">200.0</span><span class="o">,</span>
+    <span class="nl">color:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">green</span><span class="o">,</span>
+  <span class="o">),</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<h2 id="complete-example" translation-origin="on">
+<a id="complete-example" class="anchor" href="#complete-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Complete example</h2>
+
+<h2 id="一个完整的例子" translation-result="off">
+<a id="一个完整的例子" class="anchor" href="#complete-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>一个完整的例子</h2>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="s">'package:flutter/material.dart'</span><span class="o">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="o">)</span> <span class="o">=&gt;</span> <span class="n">runApp</span><span class="o">(</span><span class="n">MyApp</span><span class="o">());</span>
+
+<span class="kd">class</span> <span class="nc">MyApp</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="o">{</span>
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">appTitle</span> <span class="o">=</span> <span class="s">'Opacity Demo'</span><span class="o">;</span>
+    <span class="k">return</span> <span class="n">MaterialApp</span><span class="o">(</span>
+      <span class="nl">title:</span> <span class="n">appTitle</span><span class="o">,</span>
+      <span class="nl">home:</span> <span class="n">MyHomePage</span><span class="o">(</span><span class="nl">title:</span> <span class="n">appTitle</span><span class="o">),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// The StatefulWidget's job is to take in some data and create a State class.</span>
+<span class="c1">// In this case, the Widget takes a title, and creates a _MyHomePageState.</span>
+<span class="kd">class</span> <span class="nc">MyHomePage</span> <span class="kd">extends</span> <span class="n">StatefulWidget</span> <span class="o">{</span>
+  <span class="kd">final</span> <span class="kt">String</span> <span class="n">title</span><span class="o">;</span>
+
+  <span class="n">MyHomePage</span><span class="o">({</span><span class="n">Key</span> <span class="n">key</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">title</span><span class="o">})</span> <span class="o">:</span> <span class="k">super</span><span class="o">(</span><span class="nl">key:</span> <span class="n">key</span><span class="o">);</span>
+
+  <span class="nd">@override</span>
+  <span class="n">_MyHomePageState</span> <span class="n">createState</span><span class="o">()</span> <span class="o">=&gt;</span> <span class="n">_MyHomePageState</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="c1">// The State class is responsible for two things: holding some data you can</span>
+<span class="c1">// update and building the UI using that data.</span>
+<span class="kd">class</span> <span class="nc">_MyHomePageState</span> <span class="kd">extends</span> <span class="n">State</span><span class="o">&lt;</span><span class="n">MyHomePage</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="c1">// Whether the green box should be visible or invisible</span>
+  <span class="kt">bool</span> <span class="n">_visible</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Scaffold</span><span class="o">(</span>
+      <span class="nl">appBar:</span> <span class="n">AppBar</span><span class="o">(</span>
+        <span class="nl">title:</span> <span class="n">Text</span><span class="o">(</span><span class="n">widget</span><span class="o">.</span><span class="na">title</span><span class="o">),</span>
+      <span class="o">),</span>
+      <span class="nl">body:</span> <span class="n">Center</span><span class="o">(</span>
+        <span class="nl">child:</span> <span class="n">AnimatedOpacity</span><span class="o">(</span>
+          <span class="c1">// If the Widget should be visible, animate to 1.0 (fully visible).</span>
+          <span class="c1">// If the Widget should be hidden, animate to 0.0 (invisible).</span>
+          <span class="nl">opacity:</span> <span class="n">_visible</span> <span class="o">?</span> <span class="mf">1.0</span> <span class="o">:</span> <span class="mf">0.0</span><span class="o">,</span>
+          <span class="nl">duration:</span> <span class="n">Duration</span><span class="o">(</span><span class="nl">milliseconds:</span> <span class="mi">500</span><span class="o">),</span>
+          <span class="c1">// The green box needs to be the child of the AnimatedOpacity</span>
+          <span class="nl">child:</span> <span class="n">Container</span><span class="o">(</span>
+            <span class="nl">width:</span> <span class="mf">200.0</span><span class="o">,</span>
+            <span class="nl">height:</span> <span class="mf">200.0</span><span class="o">,</span>
+            <span class="nl">color:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">green</span><span class="o">,</span>
+          <span class="o">),</span>
+        <span class="o">),</span>
+      <span class="o">),</span>
+      <span class="nl">floatingActionButton:</span> <span class="n">FloatingActionButton</span><span class="o">(</span>
+        <span class="nl">onPressed:</span> <span class="o">()</span> <span class="o">{</span>
+          <span class="c1">// Make sure to call setState. This tells Flutter to rebuild the</span>
+          <span class="c1">// UI with the changes.</span>
+          <span class="n">setState</span><span class="o">(()</span> <span class="o">{</span>
+            <span class="n">_visible</span> <span class="o">=</span> <span class="o">!</span><span class="n">_visible</span><span class="o">;</span>
+          <span class="o">});</span>
+        <span class="o">},</span>
+        <span class="nl">tooltip:</span> <span class="s">'Toggle Opacity'</span><span class="o">,</span>
+        <span class="nl">child:</span> <span class="n">Icon</span><span class="o">(</span><span class="n">Icons</span><span class="o">.</span><span class="na">flip</span><span class="o">),</span>
+      <span class="o">),</span> <span class="c1">// This trailing comma makes auto-formatting nicer for build methods.</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p translation-origin="on"><img src="/images/cookbook/fade-in-out.gif" alt="Fade In and Out Demo" class="site-mobile-screenshot"></p>
+
+<p translation-result="off"><img src="/images/cookbook/fade-in-out.gif" alt="一个淡入淡出的例子" class="site-mobile-screenshot"></p>
+
+
+        <nav class="site-nextprev-nav">
+    <ul>
+      <li class="prev">
+          <a href="/docs/cookbook/animation/animated-container">Container 里的动画渐变效果</a>
+      </li>
+      <li class="next">
+          <a href="/docs/cookbook/design/drawer">在屏幕上添加一个 Drawer</a>
+      </li>
+      </ul>
+  </nav>
+
+      </div>
+    </main>
+  </div>
+</div>
+<footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 site-footer__wrapper">
+        <div class="site-footer__logo">
+          <img src="/images/flutter-mono-81x100.png" alt="Flutter Logo" width="81" height="100">
+        </div>
+        <div class="site-footer__content">
+          <ul class="site-footer__link-list">
+              <li><a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a></li>
+              <li><a href="/tos">terms</a></li>
+              <li><a href="/security">security</a></li>
+              <li><a href="https://www.google.com/intl/en/policies/privacy">privacy</a></li>
+              <li><a href="https://flutter-es.io/">español</a></li>
+              <li><a href="https://flutter-io.cn" class="text-nowrap">社区中文资源</a></li>
+          </ul>
+
+          <p class="licenses" translation-origin="on">
+            Except as otherwise noted,
+            this work is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0">Creative
+            Commons Attribution 4.0 International License</a>,
+            and code samples are licensed under the BSD License.
+          </p>
+          <p class="licenses" translation-result="off">
+            除非特别说明，否则本站内容采用 <a rel="license" href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0 授权协议</a>，所有范例代码都采用 BSD 授权协议。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- <script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script> -->
+  
+
+<script src="/assets/translator/js/translator.js"></script></body></html>

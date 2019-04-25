@@ -1,0 +1,3170 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>给 Android 开发者的 Flutter 指南  - Flutter 中文文档 - Flutter 社区中文资源 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-ND4LWWZ');</script>
+  <!-- End Google Tag Manager -->
+
+  
+  <meta name="description" content="学习如何把 Android 开发的经验应用到 Flutter 应用的开发中。">
+  <meta name="keywords" content=" ">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@flutterdev">
+
+  <meta property="og:title" content="给 Android 开发者的 Flutter 指南">
+  <meta property="og:url" content="https://flutter.dev/docs/get-started/flutter-for/android-devs">
+  <meta property="og:description" content="学习如何把 Android 开发的经验应用到 Flutter 应用的开发中。">
+  
+  <meta property="og:image" content="https://flutter.dev/images/flutter-logo-sharing.png">
+
+  <link href="/assets/translator/css/material-roboto.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/assets/main-74a0c308218334fcd85291a957a514973015ea8e4eb76b9abae6e14bb5012f5e.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  <script src="/assets/main-d6b8b8d26e7b4122b3ddf6a5201966d6e2494aaffadaafaf7c571ce5e2fe0aab.js" type="text/javascript"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-122680122-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <!--<meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />-->
+<link href="/assets/translator/css/translator.css" rel="stylesheet"></head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-ND4LWWZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div id="overlay-under-drawer"></div>
+
+    <header class="site-header">
+  <nav class="navbar navbar-expand-md justify-content-start justify-content-md-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="material-icons">menu</i>
+    </button>
+
+    <a class="navbar-brand" href="/">
+      <img alt="Flutter by Google" height="37" width="129" class="align-middle" src="/assets/flutter-lockup-4cb0ee072ab312e59784d9fbf4fb7ad42688a7fdaea1270ccf6bbf4f34b7e03f.svg">
+    </a>
+
+    <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
+      <div class="site-header__sheet-bg" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></div>
+      <div class="site-header__sheet">
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <a class="nav-link active" href="/docs">开发文档</a>
+          </li>
+          <div class="site-sidebar site-sidebar--header d-md-none">
+            <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="true" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link active collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link active" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="false" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+          </div>
+
+<!-- 
+          <li class="nav-item">
+            <a class="nav-link" href="/showcase">Showcase</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/community">Community</a>
+          </li>
+ -->
+        </ul>
+        <form action="/search" class="site-header__search form-inline">
+          <input class="site-header__searchfield form-control" type="search" name="q" id="q" autocomplete="off" placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+    </div>
+    <div class="site-header__social navbar-nav flex-row">
+      <a class="nav-item nav-link" href="https://twitter.com/flutterdev"><i class="fab fa-twitter fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://www.youtube.com/flutterdev"><i class="fab fa-youtube fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://github.com/flutter"><i class="fab fa-github fa-lg"></i></a>
+    </div>
+    <a class="site-header__cta btn btn-primary" href="/docs/get-started/install/">Get started</a>
+    </nav>
+</header>
+<div class="site-banner site-banner--default" role="alert">
+    <p>
+      We are looking for a Flutter Infrastructure engineer!
+      <a href="/jobs/infrastructure" target="_blank" rel="noopener">Learn more</a>.
+    </p>
+
+  </div>
+<div class="container-fluid position-relative">
+  <div class="row flex-xl-nowrap">
+    <div class="fixed-col site-sidebar site-sidebar--fixed col-12 col-md-3 col-xl-2 d-none d-md-block" data-fixed-column="">
+      <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="true" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link active collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link active" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="false" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+    </div>
+    <div id="site-toc--side" class="site-toc site-toc--side fixed-col col-xl-2 order-3" data-fixed-column="">
+  <header class="site-toc__title">
+    Contents
+    <button type="button" class="btn site-toc--button__page-top" aria-label="Page top"></button>
+    </header>
+  <ul class="section-nav nav">
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#views">Views</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#what-is-the-equivalent-of-a-view-in-flutter">What is the equivalent of a View in Flutter?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-update-widgets">How do I update Widgets?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-lay-out-my-widgets-where-is-my-xml-layout-file">How do I lay out my widgets? Where is my XML layout file?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-add-or-remove-a-component-from-my-layout">How do I add or remove a component from my layout?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-animate-a-widget">How do I animate a widget?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-use-a-canvas-to-drawpaint">How do I use a Canvas to draw/paint?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-build-custom-widgets">How do I build custom widgets?</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#intents">Intents</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#what-is-the-equivalent-of-an-intent-in-flutter">What is the equivalent of an Intent in Flutter?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-handle-incoming-intents-from-external-applications-in-flutter">How do I handle incoming intents from external applications in Flutter?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#what-is-the-equivalent-of-startactivityforresult">What is the equivalent of startActivityForResult()?</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#async-ui">Async UI</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#what-is-the-equivalent-of-runonuithread-in-flutter">What is the equivalent of runOnUiThread() in Flutter?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-you-move-work-to-a-background-thread">How do you move work to a background thread?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#what-is-the-equivalent-of-okhttp-on-flutter">What is the equivalent of OkHttp on Flutter?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-show-the-progress-for-a-long-running-task">How do I show the progress for a long-running task?</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#project-structure--resources">Project structure &amp; resources</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#where-do-i-store-my-resolution-dependent-image-files">Where do I store my resolution-dependent image files?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#where-do-i-store-strings-how-do-i-handle-localization">Where do I store strings? How do I handle localization?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#what-is-the-equivalent-of-a-gradle-file-how-do-i-add-dependencies">What is the equivalent of a Gradle file? How do I add dependencies?</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#activities-and-fragments">Activities and fragments</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#what-are-the-equivalent-of-activities-and-fragments-in-flutter">What are the equivalent of activities and fragments in Flutter?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-listen-to-android-activity-lifecycle-events">How do I listen to Android activity lifecycle events?</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#layouts">Layouts</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#what-is-the-equivalent-of-a-linearlayout">What is the equivalent of a LinearLayout?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#what-is-the-equivalent-of-a-relativelayout">What is the equivalent of a RelativeLayout?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#what-is-the-equivalent-of-a-scrollview">What is the equivalent of a ScrollView?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-handle-landscape-transitions-in-flutter">How do I handle landscape transitions in Flutter?</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#gesture-detection-and-touch-event-handling">Gesture detection and touch event handling</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-add-an-onclick-listener-to-a-widget-in-flutter">How do I add an onClick listener to a widget in Flutter?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-handle-other-gestures-on-widgets">How do I handle other gestures on widgets?</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#listviews--adapters">Listviews &amp; adapters</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#what-is-the-alternative-to-a-listview-in-flutter">What is the alternative to a ListView in Flutter?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-know-which-list-item-is-clicked-on">How do I know which list item is clicked on?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-update-listviews-dynamically">How do I update ListView’s dynamically?</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#working-with-text">Working with text</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-set-custom-fonts-on-my-text-widgets">How do I set custom fonts on my Text widgets?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-style-my-text-widgets">How do I style my Text widgets?</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#form-input">Form input</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#what-is-the-equivalent-of-a-hint-on-an-input">What is the equivalent of a “hint” on an Input?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-show-validation-errors">How do I show validation errors?</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#flutter-plugins">Flutter plugins</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-access-the-gps-sensor">How do I access the GPS sensor?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-access-the-camera">How do I access the camera?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-log-in-with-facebook">How do I log in with Facebook?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-use-firebase-features">How do I use Firebase features?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-build-my-own-custom-native-integrations">How do I build my own custom native integrations?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-use-the-ndk-in-my-flutter-application">How do I use the NDK in my Flutter application?</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#themes">Themes</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-theme-my-app">How do I theme my app?</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#databases-and-local-storage">Databases and local storage</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-access-shared-preferences">How do I access Shared Preferences?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-access-sqlite-in-flutter">How do I access SQLite in Flutter?</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#notifications">Notifications</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-set-up-push-notifications">How do I set up push notifications?</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<main class="site-content col-12 col-md-9 offset-md-3 col-xl-8 offset-xl-2 col-xxl-8 offset-xxl-2" role="main">
+      <div class="container">
+        
+        
+        <header class="site-content__title">
+          <div id="page-github-links" class="btn-group" aria-label="Page GitHub links" role="group">
+  <a href="https://github.com/cfug/flutter.cn/tree/master/src/docs/get-started/flutter-for/android-devs.md" class="btn no-automatic-external" title="View page source" target="_blank" rel="noopener">
+    <i class="fas fa-file-alt fa-sm"></i>
+  </a>
+  <a href="https://github.com/cfug/flutter.cn/issues/new?title='给 Android 开发者的 Flutter 指南' page issue&amp;body=
+Page URL: https://flutter.dev/docs/get-started/flutter-for/android-devs.html%0D%0A
+Page source: https://github.com/cfug/flutter.cn/tree/master/src/docs/get-started/flutter-for/android-devs.md%0D%0A
+%0D%0A
+Found a typo? You can fix it yourself by going to the page source and clicking the pencil icon. Or finish creating this issue.%0D%0A
+%0D%0A
+Description of issue:" class="btn no-automatic-external" title="Report an issue with this page" target="_blank" rel="noopener">
+    <i class="fas fa-bug fa-sm"></i>
+  </a>
+</div>
+
+          <h1 id="给-android-开发者的-flutter-指南">给 Android 开发者的 Flutter 指南</h1>
+          </header>
+        <div id="site-toc--inline" class="site-toc site-toc--inline ">
+  <header class="site-toc__title">
+    Contents
+    </header>
+  <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#views">Views</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#what-is-the-equivalent-of-a-view-in-flutter">What is the equivalent of a View in Flutter?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-do-i-update-widgets">How do I update Widgets?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-do-i-lay-out-my-widgets-where-is-my-xml-layout-file">How do I lay out my widgets? Where is my XML layout file?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-do-i-add-or-remove-a-component-from-my-layout">How do I add or remove a component from my layout?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-do-i-animate-a-widget">How do I animate a widget?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-do-i-use-a-canvas-to-drawpaint">How do I use a Canvas to draw/paint?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-do-i-build-custom-widgets">How do I build custom widgets?</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#intents">Intents</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#what-is-the-equivalent-of-an-intent-in-flutter">What is the equivalent of an Intent in Flutter?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-do-i-handle-incoming-intents-from-external-applications-in-flutter">How do I handle incoming intents from external applications in Flutter?</a></li>
+<li class="toc-entry toc-h3"><a href="#what-is-the-equivalent-of-startactivityforresult">What is the equivalent of startActivityForResult()?</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#async-ui">Async UI</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#what-is-the-equivalent-of-runonuithread-in-flutter">What is the equivalent of runOnUiThread() in Flutter?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-do-you-move-work-to-a-background-thread">How do you move work to a background thread?</a></li>
+<li class="toc-entry toc-h3"><a href="#what-is-the-equivalent-of-okhttp-on-flutter">What is the equivalent of OkHttp on Flutter?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-do-i-show-the-progress-for-a-long-running-task">How do I show the progress for a long-running task?</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#project-structure--resources">Project structure &amp; resources</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#where-do-i-store-my-resolution-dependent-image-files">Where do I store my resolution-dependent image files?</a></li>
+<li class="toc-entry toc-h3"><a href="#where-do-i-store-strings-how-do-i-handle-localization">Where do I store strings? How do I handle localization?</a></li>
+<li class="toc-entry toc-h3"><a href="#what-is-the-equivalent-of-a-gradle-file-how-do-i-add-dependencies">What is the equivalent of a Gradle file? How do I add dependencies?</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#activities-and-fragments">Activities and fragments</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#what-are-the-equivalent-of-activities-and-fragments-in-flutter">What are the equivalent of activities and fragments in Flutter?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-do-i-listen-to-android-activity-lifecycle-events">How do I listen to Android activity lifecycle events?</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#layouts">Layouts</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#what-is-the-equivalent-of-a-linearlayout">What is the equivalent of a LinearLayout?</a></li>
+<li class="toc-entry toc-h3"><a href="#what-is-the-equivalent-of-a-relativelayout">What is the equivalent of a RelativeLayout?</a></li>
+<li class="toc-entry toc-h3"><a href="#what-is-the-equivalent-of-a-scrollview">What is the equivalent of a ScrollView?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-do-i-handle-landscape-transitions-in-flutter">How do I handle landscape transitions in Flutter?</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#gesture-detection-and-touch-event-handling">Gesture detection and touch event handling</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#how-do-i-add-an-onclick-listener-to-a-widget-in-flutter">How do I add an onClick listener to a widget in Flutter?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-do-i-handle-other-gestures-on-widgets">How do I handle other gestures on widgets?</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#listviews--adapters">Listviews &amp; adapters</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#what-is-the-alternative-to-a-listview-in-flutter">What is the alternative to a ListView in Flutter?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-do-i-know-which-list-item-is-clicked-on">How do I know which list item is clicked on?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-do-i-update-listviews-dynamically">How do I update ListView’s dynamically?</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#working-with-text">Working with text</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#how-do-i-set-custom-fonts-on-my-text-widgets">How do I set custom fonts on my Text widgets?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-do-i-style-my-text-widgets">How do I style my Text widgets?</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#form-input">Form input</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#what-is-the-equivalent-of-a-hint-on-an-input">What is the equivalent of a “hint” on an Input?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-do-i-show-validation-errors">How do I show validation errors?</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#flutter-plugins">Flutter plugins</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#how-do-i-access-the-gps-sensor">How do I access the GPS sensor?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-do-i-access-the-camera">How do I access the camera?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-do-i-log-in-with-facebook">How do I log in with Facebook?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-do-i-use-firebase-features">How do I use Firebase features?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-do-i-build-my-own-custom-native-integrations">How do I build my own custom native integrations?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-do-i-use-the-ndk-in-my-flutter-application">How do I use the NDK in my Flutter application?</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#themes">Themes</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#how-do-i-theme-my-app">How do I theme my app?</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#databases-and-local-storage">Databases and local storage</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#how-do-i-access-shared-preferences">How do I access Shared Preferences?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-do-i-access-sqlite-in-flutter">How do I access SQLite in Flutter?</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#notifications">Notifications</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#how-do-i-set-up-push-notifications">How do I set up push notifications?</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>This document is meant for Android developers looking to apply their
+existing Android knowledge to build mobile apps with Flutter. If you understand
+the fundamentals of the Android framework then you can use this document as a
+jump start to Flutter development.</p>
+
+<p>Your Android knowledge and skill set are highly valuable when building with
+Flutter, because Flutter relies on the mobile operating system for numerous
+capabilities and configurations. Flutter is a new way to build UIs for mobile,
+but it has a plugin system to communicate with Android (and iOS) for non-UI
+tasks. If you’re an expert with Android, you don’t have to relearn everything
+to use Flutter.</p>
+
+<p>This document can be used as a cookbook by jumping around and finding questions
+that are most relevant to your needs.</p>
+
+<h2 id="views">
+<a id="views" class="anchor" href="#views" aria-hidden="true"><span class="octicon octicon-link"></span></a>Views</h2>
+
+<h3 id="what-is-the-equivalent-of-a-view-in-flutter">
+<a id="what-is-the-equivalent-of-a-view-in-flutter" class="anchor" href="#what-is-the-equivalent-of-a-view-in-flutter" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is the equivalent of a <code class="highlighter-rouge">View</code> in Flutter?</h3>
+
+<aside class="alert alert-secondary" role="alert">
+  <p>How is react-style, or <em>declarative</em>, programming different than the
+traditional imperative style?
+For a comparison, see <a href="/docs/get-started/flutter-for/declarative">Introduction to declarative
+UI</a>.</p>
+</aside>
+
+<p>In Android, the <code class="highlighter-rouge">View</code> is the foundation of everything that shows up on the
+screen. Buttons, toolbars, and inputs, everything is a View.
+In Flutter, the rough equivalent to a <code class="highlighter-rouge">View</code> is a <code class="highlighter-rouge">Widget</code>.
+Widgets don’t map exactly to Android views, but while you’re getting
+acquainted with how Flutter works you can think of them as
+“the way you declare and construct UI”.</p>
+
+<p>However, these have a few differences to a <code class="highlighter-rouge">View</code>. To start, widgets have a
+different lifespan: they are immutable and only exist until they need to be
+changed. Whenever widgets or their state change, Flutter’s framework creates
+a new tree of widget instances. In comparison, an Android view is drawn once
+and does not redraw until <code class="highlighter-rouge">invalidate</code> is called.</p>
+
+<p>Flutter’s widgets are lightweight, in part due to their immutability.
+Because they aren’t views themselves, and aren’t directly drawing anything,
+but rather are a description of the UI and its semantics that get “inflated”
+into actual view objects under the hood.</p>
+
+<p>Flutter includes the <a href="https://material-io.cn/develop/flutter">Material Components</a>
+library. These are widgets that implement the
+<a href="https://material-io.cn/design">Material Design guidelines</a>. Material Design is a
+flexible design system <a href="https://material-io.cn/design/platform-guidance/cross-platform-adaptation.html#cross-platform-guidelines">optimized for all
+platforms</a>,
+including iOS.</p>
+
+<p>But Flutter is flexible and expressive enough to implement any design language.
+For example, on iOS, you can use the <a href="/docs/development/ui/widgets/cupertino">Cupertino
+widgets</a>
+to produce an interface that looks like
+<a href="https://developer.apple.com/design/resources/">Apple’s iOS design language</a>.</p>
+
+<h3 id="how-do-i-update-widgets">
+<a id="how-do-i-update-widgets" class="anchor" href="#how-do-i-update-widgets" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I update <code class="highlighter-rouge">Widget</code>s?</h3>
+
+<p>In Android, you update your views by directly mutating them. However,
+in Flutter, <code class="highlighter-rouge">Widget</code>s are immutable and are not updated directly, instead
+you have to work with the widget’s state.</p>
+
+<p>This is where the concept of Stateful and Stateless widgets comes from. A
+<code class="highlighter-rouge">StatelessWidget</code> is just what it sounds like—a widget with no state
+information.</p>
+
+<p><code class="highlighter-rouge">StatelessWidgets</code> are useful when the part of the user interface
+you are describing does not depend on anything other than the configuration
+information in the object.</p>
+
+<p>For example, in Android, this is similar to placing an <code class="highlighter-rouge">ImageView</code>
+with your logo. The logo is not going to change during runtime, so
+use a <code class="highlighter-rouge">StatelessWidget</code> in Flutter.</p>
+
+<p>If you want to dynamically change the UI based on data received
+after making an HTTP call or user interaction then you have to work
+with <code class="highlighter-rouge">StatefulWidget</code> and tell the Flutter framework that the widget’s <code class="highlighter-rouge">State</code>
+has been updated so it can update that widget.</p>
+
+<p>The important thing to note here is at the core both stateless and stateful
+widgets behave the same. They rebuild every frame, the difference is the
+<code class="highlighter-rouge">StatefulWidget</code> has a <code class="highlighter-rouge">State</code> object that stores state data across frames
+and restores it.</p>
+
+<p>If you are in doubt, then always remember this rule: if a widget changes
+(because of user interactions, for example) it’s stateful.
+However, if a widget reacts to change, the containing parent widget can
+still be stateless if it doesn’t itself react to change.</p>
+
+<p>The following example shows how to use a <code class="highlighter-rouge">StatelessWidget</code>. A common
+<code class="highlighter-rouge">StatelessWidget</code> is the <code class="highlighter-rouge">Text</code> widget. If you look at the implementation of
+the <code class="highlighter-rouge">Text</code> widget you’ll find it subclasses <code class="highlighter-rouge">StatelessWidget</code>.</p>
+
+<pre class="prettyprint lang-dart">Text(
+  'I like Flutter!',
+  style: TextStyle(fontWeight: FontWeight.bold),
+);</pre>
+
+<p>As you can see, the <code class="highlighter-rouge">Text</code> Widget has no state information associated with it,
+it renders what is passed in its constructors and nothing more.</p>
+
+<p>But, what if you want to make “I Like Flutter” change dynamically, for
+example when clicking a <code class="highlighter-rouge">FloatingActionButton</code>?</p>
+
+<p>To achieve this, wrap the <code class="highlighter-rouge">Text</code> widget in a <code class="highlighter-rouge">StatefulWidget</code> and
+update it when the user clicks the button.</p>
+
+<p>For example:</p>
+
+<pre class="prettyprint lang-dart">import 'package:flutter/material.dart';
+
+void main() {
+  runApp(SampleApp());
+}
+
+class SampleApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Sample App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: SampleAppPage(),
+    );
+  }
+}
+
+class SampleAppPage extends StatefulWidget {
+  SampleAppPage({Key key}) : super(key: key);
+
+  @override
+  _SampleAppPageState createState() =&gt; _SampleAppPageState();
+}
+
+class _SampleAppPageState extends State&lt;SampleAppPage&gt; {
+  // Default placeholder text
+  String textToShow = "I Like Flutter";
+
+  void _updateText() {
+    setState(() {
+      // update the text
+      textToShow = "Flutter is Awesome!";
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Sample App"),
+      ),
+      body: Center(child: Text(textToShow)),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _updateText,
+        tooltip: 'Update Text',
+        child: Icon(Icons.update),
+      ),
+    );
+  }
+}</pre>
+
+<h3 id="how-do-i-lay-out-my-widgets-where-is-my-xml-layout-file">
+<a id="how-do-i-lay-out-my-widgets-where-is-my-xml-layout-file" class="anchor" href="#how-do-i-lay-out-my-widgets-where-is-my-xml-layout-file" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I lay out my widgets? Where is my XML layout file?</h3>
+
+<p>In Android, you write layouts in XML, but in Flutter you write your layouts
+with a widget tree.</p>
+
+<p>The following example shows how to display a simple widget with padding:</p>
+
+<pre class="prettyprint lang-dart">@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: Text("Sample App"),
+    ),
+    body: Center(
+      child: MaterialButton(
+        onPressed: () {},
+        child: Text('Hello'),
+        padding: EdgeInsets.only(left: 10.0, right: 10.0),
+      ),
+    ),
+  );
+}</pre>
+
+<p>You can view the layouts that Flutter has to offer in the <a href="/docs/development/ui/widgets/layout">widget
+catalog</a>.</p>
+
+<h3 id="how-do-i-add-or-remove-a-component-from-my-layout">
+<a id="how-do-i-add-or-remove-a-component-from-my-layout" class="anchor" href="#how-do-i-add-or-remove-a-component-from-my-layout" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I add or remove a component from my layout?</h3>
+
+<p>In Android, you call <code class="highlighter-rouge">addChild()</code> or <code class="highlighter-rouge">removeChild()</code> on a parent to dynamically
+add or remove child views. In Flutter, because widgets are immutable there is
+no direct equivalent to <code class="highlighter-rouge">addChild()</code>.
+Instead, you can pass a function to the parent that returns a widget, and
+control that child’s creation with a boolean flag.</p>
+
+<p>For example, here is how you can toggle between two widgets when you click on a
+<code class="highlighter-rouge">FloatingActionButton</code>:</p>
+
+<pre class="prettyprint lang-dart">import 'package:flutter/material.dart';
+
+void main() {
+  runApp(SampleApp());
+}
+
+class SampleApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Sample App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: SampleAppPage(),
+    );
+  }
+}
+
+class SampleAppPage extends StatefulWidget {
+  SampleAppPage({Key key}) : super(key: key);
+
+  @override
+  _SampleAppPageState createState() =&gt; _SampleAppPageState();
+}
+
+class _SampleAppPageState extends State&lt;SampleAppPage&gt; {
+  // Default value for toggle
+  bool toggle = true;
+  void _toggle() {
+    setState(() {
+      toggle = !toggle;
+    });
+  }
+
+  _getToggleChild() {
+    if (toggle) {
+      return Text('Toggle One');
+    } else {
+      return MaterialButton(onPressed: () {}, child: Text('Toggle Two'));
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Sample App"),
+      ),
+      body: Center(
+        child: _getToggleChild(),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _toggle,
+        tooltip: 'Update Text',
+        child: Icon(Icons.update),
+      ),
+    );
+  }
+}</pre>
+
+<h3 id="how-do-i-animate-a-widget">
+<a id="how-do-i-animate-a-widget" class="anchor" href="#how-do-i-animate-a-widget" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I animate a widget?</h3>
+
+<p>In Android, you either create animations using XML, or call the <code class="highlighter-rouge">animate()</code>
+method on a view. In Flutter, animate widgets using the animation
+library by wrapping widgets inside an animated widget.</p>
+
+<p>In Flutter, use an <code class="highlighter-rouge">AnimationController</code> which is an <code class="highlighter-rouge">Animation&lt;double&gt;</code>
+that can pause, seek, stop and reverse the animation. It requires a <code class="highlighter-rouge">Ticker</code>
+that signals when vsync happens, and produces a linear interpolation between
+0 and 1 on each frame while it’s running. You then create one or more
+<code class="highlighter-rouge">Animation</code>s and attach them to the controller.</p>
+
+<p>For example, you might use <code class="highlighter-rouge">CurvedAnimation</code> to implement an animation
+along an interpolated curve. In this sense, the controller
+is the “master” source of the animation progress and the <code class="highlighter-rouge">CurvedAnimation</code>
+computes the curve that replaces the controller’s default linear motion.
+Like widgets, animations in Flutter work with composition.</p>
+
+<p>When building the widget tree you assign the <code class="highlighter-rouge">Animation</code> to an animated
+property of a widget, such as the opacity of a <code class="highlighter-rouge">FadeTransition</code>, and tell the
+controller to start the animation.</p>
+
+<p>The following example shows how to write a <code class="highlighter-rouge">FadeTransition</code> that fades the
+widget into a logo when you press the <code class="highlighter-rouge">FloatingActionButton</code>:</p>
+
+<pre class="prettyprint lang-dart">import 'package:flutter/material.dart';
+
+void main() {
+  runApp(FadeAppTest());
+}
+
+class FadeAppTest extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Fade Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyFadeTest(title: 'Fade Demo'),
+    );
+  }
+}
+
+class MyFadeTest extends StatefulWidget {
+  MyFadeTest({Key key, this.title}) : super(key: key);
+  final String title;
+  @override
+  _MyFadeTest createState() =&gt; _MyFadeTest();
+}
+
+class _MyFadeTest extends State&lt;MyFadeTest&gt; with TickerProviderStateMixin {
+  AnimationController controller;
+  CurvedAnimation curve;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(duration: const Duration(milliseconds: 2000), vsync: this);
+    curve = CurvedAnimation(parent: controller, curve: Curves.easeIn);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Center(
+          child: Container(
+              child: FadeTransition(
+                  opacity: curve,
+                  child: FlutterLogo(
+                    size: 100.0,
+                  )))),
+      floatingActionButton: FloatingActionButton(
+        tooltip: 'Fade',
+        child: Icon(Icons.brush),
+        onPressed: () {
+          controller.forward();
+        },
+      ),
+    );
+  }
+}</pre>
+
+<p>For more information, see
+<a href="/docs/development/ui/widgets/animation">Animation &amp; Motion widgets</a>,
+the <a href="/docs/development/ui/animations/tutorial">Animations tutorial</a>,
+and the <a href="/docs/development/ui/animations">Animations overview</a>.</p>
+
+<h3 id="how-do-i-use-a-canvas-to-drawpaint">
+<a id="how-do-i-use-a-canvas-to-drawpaint" class="anchor" href="#how-do-i-use-a-canvas-to-drawpaint" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I use a <code class="highlighter-rouge">Canvas</code> to draw/paint?</h3>
+
+<p>In Android, you would use the <code class="highlighter-rouge">Canvas</code> and <code class="highlighter-rouge">Drawable</code>s to draw images and shapes
+to the screen. Flutter has a similar <code class="highlighter-rouge">Canvas</code> API as well, since it is based
+on the same low-level rendering engine, Skia. As a result, painting to a
+canvas in Flutter is a very familiar task for Android developers.</p>
+
+<p>Flutter has two classes that help you draw to the canvas: <code class="highlighter-rouge">CustomPaint</code>
+and <code class="highlighter-rouge">CustomPainter</code>, the latter of which implements your algorithm to draw to
+the canvas.</p>
+
+<p>To learn how to implement a signature painter in Flutter, see Collin’s answer on
+<a href="https://stackoverflow.com/questions/46241071/create-signature-area-for-mobile-app-in-dart-flutter">StackOverflow</a>.</p>
+
+<pre class="prettyprint lang-dart">import 'package:flutter/material.dart';
+
+void main() =&gt; runApp(MaterialApp(home: DemoApp()));
+
+class DemoApp extends StatelessWidget {
+  Widget build(BuildContext context) =&gt; Scaffold(body: Signature());
+}
+
+class Signature extends StatefulWidget {
+  SignatureState createState() =&gt; SignatureState();
+}
+
+class SignatureState extends State&lt;Signature&gt; {
+  List&lt;Offset&gt; _points = &lt;Offset&gt;[];
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onPanUpdate: (DragUpdateDetails details) {
+        setState(() {
+          RenderBox referenceBox = context.findRenderObject();
+          Offset localPosition =
+          referenceBox.globalToLocal(details.globalPosition);
+          _points = List.from(_points)..add(localPosition);
+        });
+      },
+      onPanEnd: (DragEndDetails details) =&gt; _points.add(null),
+      child: CustomPaint(painter: SignaturePainter(_points), size: Size.infinite),
+    );
+  }
+}
+
+class SignaturePainter extends CustomPainter {
+  SignaturePainter(this.points);
+  final List&lt;Offset&gt; points;
+  void paint(Canvas canvas, Size size) {
+    var paint = Paint()
+      ..color = Colors.black
+      ..strokeCap = StrokeCap.round
+      ..strokeWidth = 5.0;
+    for (int i = 0; i &lt; points.length - 1; i++) {
+      if (points[i] != null &amp;&amp; points[i + 1] != null)
+        canvas.drawLine(points[i], points[i + 1], paint);
+    }
+  }
+  bool shouldRepaint(SignaturePainter other) =&gt; other.points != points;
+}</pre>
+
+<h3 id="how-do-i-build-custom-widgets">
+<a id="how-do-i-build-custom-widgets" class="anchor" href="#how-do-i-build-custom-widgets" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I build custom widgets?</h3>
+
+<p>In Android, you typically subclass <code class="highlighter-rouge">View</code>, or use a pre-existing view,
+to override and implement methods that achieve the desired behavior.</p>
+
+<p>In Flutter, build a custom widget by
+<a href="/docs/resources/technical-overview#everythings-a-widget">composing</a>
+smaller widgets (instead of extending them).
+It is somewhat similar to implementing a custom
+<code class="highlighter-rouge">ViewGroup</code> in Android, where all the building blocks are already existing, but
+you provide a different behavior—for example, custom layout logic.</p>
+
+<p>For example, how do you build a <code class="highlighter-rouge">CustomButton</code> that takes a label in
+the constructor? Create a CustomButton that composes a <code class="highlighter-rouge">RaisedButton</code> with
+a label, rather than by extending <code class="highlighter-rouge">RaisedButton</code>:</p>
+
+<pre class="prettyprint lang-dart">class CustomButton extends StatelessWidget {
+  final String label;
+
+  CustomButton(this.label);
+
+  @override
+  Widget build(BuildContext context) {
+    return RaisedButton(onPressed: () {}, child: Text(label));
+  }
+}</pre>
+
+<p>Then use <code class="highlighter-rouge">CustomButton</code>, just as you’d use any other Flutter widget:</p>
+
+<pre class="prettyprint lang-dart">@override
+Widget build(BuildContext context) {
+  return Center(
+    child: CustomButton("Hello"),
+  );
+}</pre>
+
+<h2 id="intents">
+<a id="intents" class="anchor" href="#intents" aria-hidden="true"><span class="octicon octicon-link"></span></a>Intents</h2>
+
+<h3 id="what-is-the-equivalent-of-an-intent-in-flutter">
+<a id="what-is-the-equivalent-of-an-intent-in-flutter" class="anchor" href="#what-is-the-equivalent-of-an-intent-in-flutter" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is the equivalent of an <code class="highlighter-rouge">Intent</code> in Flutter?</h3>
+
+<p>In Android, there are two main use cases for <code class="highlighter-rouge">Intent</code>s: navigating between
+Activities, and communicating with components. Flutter, on the other hand, does
+not have the concept of intents, although you can still start intents
+through native integrations
+(using <a href="https://pub.flutter-io.cn/packages/android_intent">a plugin</a>).</p>
+
+<p>Flutter doesn’t really have a direct equivalent to activities and fragments;
+rather, in Flutter you navigate between screens, using a <code class="highlighter-rouge">Navigator</code> and
+<code class="highlighter-rouge">Route</code>s, all within the same <code class="highlighter-rouge">Activity</code>.</p>
+
+<p>A <code class="highlighter-rouge">Route</code> is an abstraction for a “screen” or “page” of an app, and a
+<code class="highlighter-rouge">Navigator</code> is a widget that manages routes. A route roughly maps to an
+<code class="highlighter-rouge">Activity</code>, but it does not carry the same meaning. A navigator can push
+and pop routes to move from screen to screen. Navigators work like a stack
+on which you can <code class="highlighter-rouge">push()</code> new routes you want to navigate to, and from
+which you can <code class="highlighter-rouge">pop()</code> routes when you want to “go back”.</p>
+
+<p>In Android, you declare your activities inside the app’s <code class="highlighter-rouge">AndroidManifest.xml</code>.</p>
+
+<p>In Flutter, you have a couple options to navigate between pages:</p>
+
+<ul>
+  <li>Specify a <code class="highlighter-rouge">Map</code> of route names. (MaterialApp)</li>
+  <li>Directly navigate to a route. (WidgetApp)</li>
+</ul>
+
+<p>The following example builds a Map.</p>
+
+<pre class="prettyprint lang-dart">void main() {
+  runApp(MaterialApp(
+    home: MyAppHome(), // becomes the route named '/'
+    routes: &lt;String, WidgetBuilder&gt; {
+      '/a': (BuildContext context) =&gt; MyPage(title: 'page A'),
+      '/b': (BuildContext context) =&gt; MyPage(title: 'page B'),
+      '/c': (BuildContext context) =&gt; MyPage(title: 'page C'),
+    },
+  ));
+}</pre>
+
+<p>Navigate to a route by <code class="highlighter-rouge">push</code>ing its name to the <code class="highlighter-rouge">Navigator</code>.</p>
+
+<pre class="prettyprint lang-dart">Navigator.of(context).pushNamed('/b');</pre>
+
+<p>The other popular use-case for <code class="highlighter-rouge">Intent</code>s is to call external components such
+as a Camera or File picker. For this, you would need to create a native platform
+integration (or use an <a href="https://pub.flutter-io.cn/flutter/">existing plugin</a>).</p>
+
+<p>To learn how to build a native platform integration, see
+<a href="/docs/development/packages-and-plugins/developing-packages">Developing Packages and Plugins</a>.</p>
+
+<h3 id="how-do-i-handle-incoming-intents-from-external-applications-in-flutter">
+<a id="how-do-i-handle-incoming-intents-from-external-applications-in-flutter" class="anchor" href="#how-do-i-handle-incoming-intents-from-external-applications-in-flutter" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I handle incoming intents from external applications in Flutter?</h3>
+
+<p>Flutter can handle incoming intents from Android by directly talking to the
+Android layer and requesting the data that was shared.</p>
+
+<p>The following example registers a text share intent filter on the native
+activity that runs our Flutter code, so other apps can share text with
+our Flutter app.</p>
+
+<p>The basic flow implies that we first handle the shared text data on the
+Android native side (in our <code class="highlighter-rouge">Activity</code>), and then wait until Flutter requests
+for the data to provide it using a <code class="highlighter-rouge">MethodChannel</code>.</p>
+
+<p>First, register the intent filter for all intents in <code class="highlighter-rouge">AndroidManifest.xml</code>:</p>
+
+<pre class="prettyprint lang-xml">&lt;activity
+  android:name=".MainActivity"
+  android:launchMode="singleTop"
+  android:theme="@style/LaunchTheme"
+  android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection"
+  android:hardwareAccelerated="true"
+  android:windowSoftInputMode="adjustResize"&gt;
+  &lt;!-- ... --&gt;
+  &lt;intent-filter&gt;
+    &lt;action android:name="android.intent.action.SEND" /&gt;
+    &lt;category android:name="android.intent.category.DEFAULT" /&gt;
+    &lt;data android:mimeType="text/plain" /&gt;
+  &lt;/intent-filter&gt;
+&lt;/activity&gt;</pre>
+
+<p>Then in <code class="highlighter-rouge">MainActivity</code>, handle the intent, extract the text that was
+shared from the intent, and hold onto it. When Flutter is ready to process,
+it requests the data using a platform channel, and it’s sent
+across from the native side:</p>
+
+<pre class="prettyprint lang-java">package com.example.shared;
+
+import android.content.Intent;
+import android.os.Bundle;
+
+import java.nio.ByteBuffer;
+
+import io.flutter.app.FlutterActivity;
+import io.flutter.plugin.common.ActivityLifecycleListener;
+import io.flutter.plugin.common.MethodCall;
+import io.flutter.plugin.common.MethodChannel;
+import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
+import io.flutter.plugins.GeneratedPluginRegistrant;
+
+public class MainActivity extends FlutterActivity {
+
+  private String sharedText;
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    GeneratedPluginRegistrant.registerWith(this);
+    Intent intent = getIntent();
+    String action = intent.getAction();
+    String type = intent.getType();
+
+    if (Intent.ACTION_SEND.equals(action) &amp;&amp; type != null) {
+      if ("text/plain".equals(type)) {
+        handleSendText(intent); // Handle text being sent
+      }
+    }
+
+    new MethodChannel(getFlutterView(), "app.channel.shared.data").setMethodCallHandler(
+      new MethodCallHandler() {
+        @Override
+        public void onMethodCall(MethodCall call, MethodChannel.Result result) {
+          if (call.method.contentEquals("getSharedText")) {
+            result.success(sharedText);
+            sharedText = null;
+          }
+        }
+      });
+  }
+
+  void handleSendText(Intent intent) {
+    sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
+  }
+}</pre>
+
+<p>Finally, request the data from the Flutter side when the widget is rendered:</p>
+
+<pre class="prettyprint lang-dart">import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+void main() {
+  runApp(SampleApp());
+}
+
+class SampleApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Sample Shared App Handler',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: SampleAppPage(),
+    );
+  }
+}
+
+class SampleAppPage extends StatefulWidget {
+  SampleAppPage({Key key}) : super(key: key);
+
+  @override
+  _SampleAppPageState createState() =&gt; _SampleAppPageState();
+}
+
+class _SampleAppPageState extends State&lt;SampleAppPage&gt; {
+  static const platform = const MethodChannel('app.channel.shared.data');
+  String dataShared = "No data";
+
+  @override
+  void initState() {
+    super.initState();
+    getSharedText();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(body: Center(child: Text(dataShared)));
+  }
+
+  getSharedText() async {
+    var sharedData = await platform.invokeMethod("getSharedText");
+    if (sharedData != null) {
+      setState(() {
+        dataShared = sharedData;
+      });
+    }
+  }
+}</pre>
+
+<h3 id="what-is-the-equivalent-of-startactivityforresult">
+<a id="what-is-the-equivalent-of-startactivityforresult" class="anchor" href="#what-is-the-equivalent-of-startactivityforresult" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is the equivalent of <code class="highlighter-rouge">startActivityForResult()</code>?</h3>
+
+<p>The <code class="highlighter-rouge">Navigator</code> class handles routing in Flutter and is used to get
+a result back from a route that you have pushed on the stack. This is done
+by <code class="highlighter-rouge">await</code>ing on the <code class="highlighter-rouge">Future</code> returned by <code class="highlighter-rouge">push()</code>.</p>
+
+<p>For example, to start a location route that lets the user select
+their location, you could do the following:</p>
+
+<pre class="prettyprint lang-dart">Map coordinates = await Navigator.of(context).pushNamed('/location');</pre>
+
+<p>And then, inside your location route, once the user has selected their location
+you can <code class="highlighter-rouge">pop</code> the stack with the result:</p>
+
+<pre class="prettyprint lang-dart">Navigator.of(context).pop({"lat":43.821757,"long":-79.226392});</pre>
+
+<h2 id="async-ui">
+<a id="async-ui" class="anchor" href="#async-ui" aria-hidden="true"><span class="octicon octicon-link"></span></a>Async UI</h2>
+
+<h3 id="what-is-the-equivalent-of-runonuithread-in-flutter">
+<a id="what-is-the-equivalent-of-runonuithread-in-flutter" class="anchor" href="#what-is-the-equivalent-of-runonuithread-in-flutter" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is the equivalent of <code class="highlighter-rouge">runOnUiThread()</code> in Flutter?</h3>
+
+<p>Dart has a single-threaded execution model, with support for <code class="highlighter-rouge">Isolate</code>s
+(a way to run Dart code on another thread), an event loop, and
+asynchronous programming. Unless you spawn an <code class="highlighter-rouge">Isolate</code>, your Dart code
+runs in the main UI thread and is driven by an event loop. Flutter’s event
+loop is equivalent to Android’s main <code class="highlighter-rouge">Looper</code>—that is, the <code class="highlighter-rouge">Looper</code> that
+is attached to the main thread.</p>
+
+<p>Dart’s single-threaded model doesn’t mean you need to run everything as a
+blocking operation that causes the UI to freeze. Unlike Android, which
+requires you to keep the main thread free at all times, in Flutter,
+use the asynchronous facilities that the Dart language provides, such as
+<code class="highlighter-rouge">async</code>/<code class="highlighter-rouge">await</code>, to perform asynchronous work. You may be familiar with
+the <code class="highlighter-rouge">async</code>/<code class="highlighter-rouge">await</code> paradigm if you’ve used it in C#, Javascript, or if you
+have used Kotlin’s coroutines.</p>
+
+<p>For example, you can run network code without causing the UI to hang by
+using <code class="highlighter-rouge">async</code>/<code class="highlighter-rouge">await</code> and letting Dart do the heavy lifting:</p>
+
+<pre class="prettyprint lang-dart">loadData() async {
+  String dataURL = "https://jsonplaceholder.typicode.com/posts";
+  http.Response response = await http.get(dataURL);
+  setState(() {
+    widgets = json.decode(response.body);
+  });
+}</pre>
+
+<p>Once the <code class="highlighter-rouge">await</code>ed network call is done, update the UI by calling <code class="highlighter-rouge">setState()</code>,
+which triggers a rebuild of the widget sub-tree and updates the data.</p>
+
+<p>The following example loads data asynchronously and displays it in a <code class="highlighter-rouge">ListView</code>:</p>
+
+<pre class="prettyprint lang-dart">import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+void main() {
+  runApp(SampleApp());
+}
+
+class SampleApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Sample App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: SampleAppPage(),
+    );
+  }
+}
+
+class SampleAppPage extends StatefulWidget {
+  SampleAppPage({Key key}) : super(key: key);
+
+  @override
+  _SampleAppPageState createState() =&gt; _SampleAppPageState();
+}
+
+class _SampleAppPageState extends State&lt;SampleAppPage&gt; {
+  List widgets = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    loadData();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Sample App"),
+      ),
+      body: ListView.builder(
+          itemCount: widgets.length,
+          itemBuilder: (BuildContext context, int position) {
+            return getRow(position);
+          }));
+  }
+
+  Widget getRow(int i) {
+    return Padding(
+      padding: EdgeInsets.all(10.0),
+      child: Text("Row ${widgets[i]["title"]}")
+    );
+  }
+
+  loadData() async {
+    String dataURL = "https://jsonplaceholder.typicode.com/posts";
+    http.Response response = await http.get(dataURL);
+    setState(() {
+      widgets = json.decode(response.body);
+    });
+  }
+}</pre>
+
+<p>Refer to the next section for more information on doing work in the
+background, and how Flutter differs from Android.</p>
+
+<h3 id="how-do-you-move-work-to-a-background-thread">
+<a id="how-do-you-move-work-to-a-background-thread" class="anchor" href="#how-do-you-move-work-to-a-background-thread" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do you move work to a background thread?</h3>
+
+<p>In Android, when you want to access a network resource you would typically
+move to a background thread and do the work, as to not block the main thread,
+and avoid ANRs. For example, you may be using an <code class="highlighter-rouge">AsyncTask</code>, a <code class="highlighter-rouge">LiveData</code>,
+an <code class="highlighter-rouge">IntentService</code>, a <code class="highlighter-rouge">JobScheduler</code> job, or an RxJava pipeline with a
+scheduler that works on background threads.</p>
+
+<p>Since Flutter is single threaded and runs an event loop (like Node.js), you
+don’t have to worry about thread management or spawning background threads. If
+you’re doing I/O-bound work, such as disk access or a network call, then
+you can safely use <code class="highlighter-rouge">async</code>/<code class="highlighter-rouge">await</code> and you’re all set. If, on the other
+hand, you need to do computationally intensive work that keeps the CPU busy,
+you want to move it to an <code class="highlighter-rouge">Isolate</code> to avoid blocking the event loop, like
+you would keep <em>any</em> sort of work out of the main thread in Android.</p>
+
+<p>For I/O-bound work, declare the function as an <code class="highlighter-rouge">async</code> function,
+and <code class="highlighter-rouge">await</code> on long-running tasks inside the function:</p>
+
+<pre class="prettyprint lang-dart">loadData() async {
+  String dataURL = "https://jsonplaceholder.typicode.com/posts";
+  http.Response response = await http.get(dataURL);
+  setState(() {
+    widgets = json.decode(response.body);
+  });
+}</pre>
+
+<p>This is how you would typically do network or database calls, which are both
+I/O operations.</p>
+
+<p>On Android, when you extend <code class="highlighter-rouge">AsyncTask</code>, you typically override 3 methods,
+<code class="highlighter-rouge">onPreExecute()</code>, <code class="highlighter-rouge">doInBackground()</code> and <code class="highlighter-rouge">onPostExecute()</code>. There is no
+equivalent in Flutter, since you <code class="highlighter-rouge">await</code> on a long running function, and
+Dart’s event loop takes care of the rest.</p>
+
+<p>However, there are times when you might be processing a large amount of data and
+your UI hangs. In Flutter, use <code class="highlighter-rouge">Isolate</code>s to take advantage of
+multiple CPU cores to do long-running or computationally intensive tasks.</p>
+
+<p>Isolates are separate execution threads that do not share any memory
+with the main execution memory heap. This means you can’t access variables from
+the main thread, or update your UI by calling <code class="highlighter-rouge">setState()</code>. Unlike Android threads,
+Isolates are true to their name, and cannot share memory (in the form of static fields,
+for example).</p>
+
+<p>The following example shows, in a simple isolate, how to share data back to
+the main thread to update the UI.</p>
+
+<pre class="prettyprint lang-dart">loadData() async {
+  ReceivePort receivePort = ReceivePort();
+  await Isolate.spawn(dataLoader, receivePort.sendPort);
+
+  // The 'echo' isolate sends its SendPort as the first message
+  SendPort sendPort = await receivePort.first;
+
+  List msg = await sendReceive(sendPort, "https://jsonplaceholder.typicode.com/posts");
+
+  setState(() {
+    widgets = msg;
+  });
+}
+
+// The entry point for the isolate
+static dataLoader(SendPort sendPort) async {
+  // Open the ReceivePort for incoming messages.
+  ReceivePort port = ReceivePort();
+
+  // Notify any other isolates what port this isolate listens to.
+  sendPort.send(port.sendPort);
+
+  await for (var msg in port) {
+    String data = msg[0];
+    SendPort replyTo = msg[1];
+
+    String dataURL = data;
+    http.Response response = await http.get(dataURL);
+    // Lots of JSON to parse
+    replyTo.send(json.decode(response.body));
+  }
+}
+
+Future sendReceive(SendPort port, msg) {
+  ReceivePort response = ReceivePort();
+  port.send([msg, response.sendPort]);
+  return response.first;
+}</pre>
+
+<p>Here, <code class="highlighter-rouge">dataLoader()</code> is the <code class="highlighter-rouge">Isolate</code> that runs in its own separate execution thread.
+In the isolate you can perform more CPU intensive processing (parsing a big JSON, for
+example), or perform computationally intensive math, such as encryption or signal processing.</p>
+
+<p>You can run the full example below:</p>
+
+<pre class="prettyprint lang-dart">import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:isolate';
+
+void main() {
+  runApp(SampleApp());
+}
+
+class SampleApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Sample App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: SampleAppPage(),
+    );
+  }
+}
+
+class SampleAppPage extends StatefulWidget {
+  SampleAppPage({Key key}) : super(key: key);
+
+  @override
+  _SampleAppPageState createState() =&gt; _SampleAppPageState();
+}
+
+class _SampleAppPageState extends State&lt;SampleAppPage&gt; {
+  List widgets = [];
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  showLoadingDialog() {
+    if (widgets.length == 0) {
+      return true;
+    }
+
+    return false;
+  }
+
+  getBody() {
+    if (showLoadingDialog()) {
+      return getProgressDialog();
+    } else {
+      return getListView();
+    }
+  }
+
+  getProgressDialog() {
+    return Center(child: CircularProgressIndicator());
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Sample App"),
+        ),
+        body: getBody());
+  }
+
+  ListView getListView() =&gt; ListView.builder(
+      itemCount: widgets.length,
+      itemBuilder: (BuildContext context, int position) {
+        return getRow(position);
+      });
+
+  Widget getRow(int i) {
+    return Padding(padding: EdgeInsets.all(10.0), child: Text("Row ${widgets[i]["title"]}"));
+  }
+
+  loadData() async {
+    ReceivePort receivePort = ReceivePort();
+    await Isolate.spawn(dataLoader, receivePort.sendPort);
+
+    // The 'echo' isolate sends its SendPort as the first message
+    SendPort sendPort = await receivePort.first;
+
+    List msg = await sendReceive(sendPort, "https://jsonplaceholder.typicode.com/posts");
+
+    setState(() {
+      widgets = msg;
+    });
+  }
+
+  // the entry point for the isolate
+  static dataLoader(SendPort sendPort) async {
+    // Open the ReceivePort for incoming messages.
+    ReceivePort port = ReceivePort();
+
+    // Notify any other isolates what port this isolate listens to.
+    sendPort.send(port.sendPort);
+
+    await for (var msg in port) {
+      String data = msg[0];
+      SendPort replyTo = msg[1];
+
+      String dataURL = data;
+      http.Response response = await http.get(dataURL);
+      // Lots of JSON to parse
+      replyTo.send(json.decode(response.body));
+    }
+  }
+
+  Future sendReceive(SendPort port, msg) {
+    ReceivePort response = ReceivePort();
+    port.send([msg, response.sendPort]);
+    return response.first;
+  }
+}</pre>
+
+<h3 id="what-is-the-equivalent-of-okhttp-on-flutter">
+<a id="what-is-the-equivalent-of-okhttp-on-flutter" class="anchor" href="#what-is-the-equivalent-of-okhttp-on-flutter" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is the equivalent of OkHttp on Flutter?</h3>
+
+<p>Making a network call in Flutter is easy when you use the popular
+<a href="https://pub.flutter-io.cn/packages/http"><code class="highlighter-rouge">http</code> package</a>.</p>
+
+<p>While the http package doesn’t have every feature found in OkHttp,
+it abstracts away much of the networking that you would normally implement
+yourself, making it a simple way to make network calls.</p>
+
+<p>To use the <code class="highlighter-rouge">http</code> package, add it to your dependencies in <code class="highlighter-rouge">pubspec.yaml</code>:</p>
+
+<pre class="prettyprint lang-yaml">dependencies:
+  ...
+  http: ^0.11.3+16</pre>
+
+<p>To make a network call, call <code class="highlighter-rouge">await</code> on the <code class="highlighter-rouge">async</code> function <code class="highlighter-rouge">http.get()</code>:</p>
+
+<pre class="prettyprint lang-dart">import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+[...]
+  loadData() async {
+    String dataURL = "https://jsonplaceholder.typicode.com/posts";
+    http.Response response = await http.get(dataURL);
+    setState(() {
+      widgets = json.decode(response.body);
+    });
+  }
+}</pre>
+
+<h3 id="how-do-i-show-the-progress-for-a-long-running-task">
+<a id="how-do-i-show-the-progress-for-a-long-running-task" class="anchor" href="#how-do-i-show-the-progress-for-a-long-running-task" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I show the progress for a long-running task?</h3>
+
+<p>In Android you would typically show a <code class="highlighter-rouge">ProgressBar</code> view in your UI while
+executing a long running task on a background thread.</p>
+
+<p>In Flutter, use a <code class="highlighter-rouge">ProgressIndicator</code> widget.
+Show the progress programmatically by controlling when it’s rendered
+through a boolean flag. Tell Flutter to update its state before your
+long-running task starts, and hide it after it ends.</p>
+
+<p>In the following example, the build function is separated into three different
+functions. If <code class="highlighter-rouge">showLoadingDialog()</code> is <code class="highlighter-rouge">true</code> (when <code class="highlighter-rouge">widgets.length == 0</code>),
+then render the <code class="highlighter-rouge">ProgressIndicator</code>. Otherwise, render the
+<code class="highlighter-rouge">ListView</code> with the data returned from a network call.</p>
+
+<pre class="prettyprint lang-dart">import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+void main() {
+  runApp(SampleApp());
+}
+
+class SampleApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Sample App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: SampleAppPage(),
+    );
+  }
+}
+
+class SampleAppPage extends StatefulWidget {
+  SampleAppPage({Key key}) : super(key: key);
+
+  @override
+  _SampleAppPageState createState() =&gt; _SampleAppPageState();
+}
+
+class _SampleAppPageState extends State&lt;SampleAppPage&gt; {
+  List widgets = [];
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  showLoadingDialog() {
+    return widgets.length == 0;
+  }
+
+  getBody() {
+    if (showLoadingDialog()) {
+      return getProgressDialog();
+    } else {
+      return getListView();
+    }
+  }
+
+  getProgressDialog() {
+    return Center(child: CircularProgressIndicator());
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Sample App"),
+        ),
+        body: getBody());
+  }
+
+  ListView getListView() =&gt; ListView.builder(
+      itemCount: widgets.length,
+      itemBuilder: (BuildContext context, int position) {
+        return getRow(position);
+      });
+
+  Widget getRow(int i) {
+    return Padding(padding: EdgeInsets.all(10.0), child: Text("Row ${widgets[i]["title"]}"));
+  }
+
+  loadData() async {
+    String dataURL = "https://jsonplaceholder.typicode.com/posts";
+    http.Response response = await http.get(dataURL);
+    setState(() {
+      widgets = json.decode(response.body);
+    });
+  }
+}</pre>
+
+<h2 id="project-structure--resources">
+<a id="project-structure--resources" class="anchor" href="#project-structure--resources" aria-hidden="true"><span class="octicon octicon-link"></span></a>Project structure &amp; resources</h2>
+
+<h3 id="where-do-i-store-my-resolution-dependent-image-files">
+<a id="where-do-i-store-my-resolution-dependent-image-files" class="anchor" href="#where-do-i-store-my-resolution-dependent-image-files" aria-hidden="true"><span class="octicon octicon-link"></span></a>Where do I store my resolution-dependent image files?</h3>
+
+<p>While Android treats resources and assets as distinct items, Flutter apps have
+only assets. All resources that would live in the <code class="highlighter-rouge">res/drawable-*</code>
+folders on Android, are placed in an assets folder for Flutter.</p>
+
+<p>Flutter follows a simple density-based format like iOS. Assets might be <code class="highlighter-rouge">1.0x</code>,
+<code class="highlighter-rouge">2.0x</code>, <code class="highlighter-rouge">3.0x</code>, or any other multiplier. Flutter doesn’t have <code class="highlighter-rouge">dp</code>s but there
+are logical pixels, which are basically the same as device-independent pixels.
+The so-called
+<a href="https://api.flutter.dev/flutter/dart-ui/Window/devicePixelRatio.html"><code class="highlighter-rouge">devicePixelRatio</code></a>
+expresses the ratio of physical pixels in a single logical pixel.</p>
+
+<p>The equivalent to Android’s density buckets are:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Android density qualifier</th>
+      <th>Flutter pixel ratio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">ldpi</code></td>
+      <td><code class="highlighter-rouge">0.75x</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">mdpi</code></td>
+      <td><code class="highlighter-rouge">1.0x</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">hdpi</code></td>
+      <td><code class="highlighter-rouge">1.5x</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">xhdpi</code></td>
+      <td><code class="highlighter-rouge">2.0x</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">xxhdpi</code></td>
+      <td><code class="highlighter-rouge">3.0x</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">xxxhdpi</code></td>
+      <td><code class="highlighter-rouge">4.0x</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Assets are located in any arbitrary folder—Flutter has no
+predefined folder structure. You declare the assets (with location) in
+the <code class="highlighter-rouge">pubspec.yaml</code> file, and Flutter picks them up.</p>
+
+<p>Note that before Flutter 1.0 beta 2, assets defined in Flutter were not
+accessible from the native side, and vice versa, native assets and resources
+weren’t available to Flutter, as they lived in separate folders.</p>
+
+<p>As of Flutter beta 2, assets are stored in the native asset folder,
+and are accessed on the native side using Android’s <code class="highlighter-rouge">AssetManager</code>:</p>
+
+<pre class="prettyprint lang-kotlin">val flutterAssetStream = assetManager.open("flutter_assets/assets/my_flutter_asset.png")</pre>
+
+<p>As of Flutter beta 2, Flutter still cannot access native resources, nor it can
+access native assets.</p>
+
+<p>To add a new image asset called <code class="highlighter-rouge">my_icon.png</code> to our Flutter project, for example,
+and deciding that it should live in a folder we arbitrarily called <code class="highlighter-rouge">images</code>, you
+would put the base image (1.0x) in the <code class="highlighter-rouge">images</code> folder, and all the other
+variants in sub-folders called with the appropriate ratio multiplier:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>images/my_icon.png       // Base: 1.0x image
+images/2.0x/my_icon.png  // 2.0x image
+images/3.0x/my_icon.png  // 3.0x image
+</code></pre></div></div>
+
+<p>Next, you’ll need to declare these images in your <code class="highlighter-rouge">pubspec.yaml</code> file:</p>
+
+<pre class="prettyprint lang-yaml">assets:
+ - images/my_icon.jpeg</pre>
+
+<p>You can then access your images using <code class="highlighter-rouge">AssetImage</code>:</p>
+
+<pre class="prettyprint lang-dart">return AssetImage("images/a_dot_burr.jpeg");</pre>
+
+<p>or directly in an <code class="highlighter-rouge">Image</code> widget:</p>
+
+<pre class="prettyprint lang-dart">@override
+Widget build(BuildContext context) {
+  return Image.asset("images/my_image.png");
+}</pre>
+
+<h3 id="where-do-i-store-strings-how-do-i-handle-localization">
+<a id="where-do-i-store-strings-how-do-i-handle-localization" class="anchor" href="#where-do-i-store-strings-how-do-i-handle-localization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Where do I store strings? How do I handle localization?</h3>
+
+<p>Flutter currently doesn’t have a dedicated resources-like system for strings.
+At the moment, the best practice is to hold your copy text in a class as
+static fields and accessing them from there. For example:</p>
+
+<pre class="prettyprint lang-dart">class Strings {
+  static String welcomeMessage = "Welcome To Flutter";
+}</pre>
+
+<p>Then in your code, you can access your strings as such:</p>
+
+<pre class="prettyprint lang-dart">Text(Strings.welcomeMessage)</pre>
+
+<p>Flutter has basic support for accessibility on Android, though this feature is
+a work in progress.</p>
+
+<p>Flutter developers are encouraged to use the <a href="https://pub.flutter-io.cn/packages/intl">intl
+package</a> for internationalization and
+localization.</p>
+
+<h3 id="what-is-the-equivalent-of-a-gradle-file-how-do-i-add-dependencies">
+<a id="what-is-the-equivalent-of-a-gradle-file-how-do-i-add-dependencies" class="anchor" href="#what-is-the-equivalent-of-a-gradle-file-how-do-i-add-dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is the equivalent of a Gradle file? How do I add dependencies?</h3>
+
+<p>In Android, you add dependencies by adding to your Gradle build script. Flutter
+uses Dart’s own build system, and the Pub package manager.
+The tools delegate the building of the native Android and iOS wrapper apps to the
+respective build systems.</p>
+
+<p>While there are Gradle files under the <code class="highlighter-rouge">android</code> folder in your Flutter project,
+only use these if you are adding native dependencies needed for
+per-platform integration. In general, use <code class="highlighter-rouge">pubspec.yaml</code> to declare
+external dependencies to use in Flutter. A good place to find Flutter packages is
+<a href="https://pub.flutter-io.cn/flutter/packages/">Pub</a>.</p>
+
+<h2 id="activities-and-fragments">
+<a id="activities-and-fragments" class="anchor" href="#activities-and-fragments" aria-hidden="true"><span class="octicon octicon-link"></span></a>Activities and fragments</h2>
+
+<h3 id="what-are-the-equivalent-of-activities-and-fragments-in-flutter">
+<a id="what-are-the-equivalent-of-activities-and-fragments-in-flutter" class="anchor" href="#what-are-the-equivalent-of-activities-and-fragments-in-flutter" aria-hidden="true"><span class="octicon octicon-link"></span></a>What are the equivalent of activities and fragments in Flutter?</h3>
+
+<p>In Android, an <code class="highlighter-rouge">Activity</code> represents a single focused thing the user can do. A
+<code class="highlighter-rouge">Fragment</code> represents a behavior or a portion of user interface. Fragments
+are a way to modularize your code, compose sophisticated user interfaces for
+larger screens, and help scale your application UI. In Flutter, both of these
+concepts fall under the umbrella of <code class="highlighter-rouge">Widget</code>s.</p>
+
+<p>To learn more about the UI for building Activities and Fragements, see
+the community-contributed medium article,
+<a href="https://medium.com/@burhanrashid52/flutter-for-android-developers-how-to-design-activity-ui-in-flutter-4bf7b0de1e48">Flutter For Android Developers : How to design an Activity UI in
+Flutter</a>.</p>
+
+<p>As mentioned in the <a href="#what-is-the-equivalent-of-an-intent-in-flutter">Intents</a>
+section, screens in Flutter are represented by <code class="highlighter-rouge">Widget</code>s since everything is
+a widget in Flutter. You use a <code class="highlighter-rouge">Navigator</code> to move between different <code class="highlighter-rouge">Route</code>s
+that represent different screens or pages, or maybe just different states or
+renderings of the same data.</p>
+
+<h3 id="how-do-i-listen-to-android-activity-lifecycle-events">
+<a id="how-do-i-listen-to-android-activity-lifecycle-events" class="anchor" href="#how-do-i-listen-to-android-activity-lifecycle-events" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I listen to Android activity lifecycle events?</h3>
+
+<p>In Android, you can override methods from the <code class="highlighter-rouge">Activity</code> to capture lifecycle
+methods for the activity itself, or register <code class="highlighter-rouge">ActivityLifecycleCallbacks</code> on
+the <code class="highlighter-rouge">Application</code>. In Flutter, you have neither concept, but you can instead
+listen to lifecycle events by hooking into the <code class="highlighter-rouge">WidgetsBinding</code> observer and
+listening to the <code class="highlighter-rouge">didChangeAppLifecycleState()</code> change event.</p>
+
+<p>The observable lifecycle events are:</p>
+
+<ul>
+  <li>
+<code class="highlighter-rouge">inactive</code> — The application is in an inactive state and is not receiving user
+input. This event only works on iOS, as there is no equivalent event to map to
+on Android</li>
+  <li>
+<code class="highlighter-rouge">paused</code> — The application is not currently visible to the user, not responding
+to user input, and running in the background. This is equivalent to <code class="highlighter-rouge">onPause()</code>
+in Android</li>
+  <li>
+<code class="highlighter-rouge">resumed</code> — The application is visible and responding to user input. This is
+equivalent to <code class="highlighter-rouge">onPostResume()</code> in Android</li>
+  <li>
+<code class="highlighter-rouge">suspending</code> — The application is suspended momentarily. This is equivalent
+to <code class="highlighter-rouge">onStop</code> in Android; it is not triggered on iOS as there is no equivalent
+event to map to on iOS</li>
+</ul>
+
+<p>For more details on the meaning of these states, see the
+<a href="https://api.flutter.dev/flutter/dart-ui/AppLifecycleState-class.html"><code class="highlighter-rouge">AppLifecycleStatus</code> documentation</a>.</p>
+
+<p>As you might have noticed, only a small minority of the Activity lifecycle events
+are available; while <code class="highlighter-rouge">FlutterActivity</code> does capture almost all the activity lifecycle
+events internally and send them over to the Flutter engine, they’re mostly shielded
+away from you. Flutter takes care of starting and stopping the engine for you, and
+there is little reason for needing to observe the activity lifecycle on the Flutter
+side in most cases. If you need to observe the lifecycle to acquire or release any
+native resources, you should likely be doing it from the native side, at any rate.</p>
+
+<p>Here’s an example of how to observe the lifecycle status of the containing activity:</p>
+
+<pre class="prettyprint lang-dart">import 'package:flutter/widgets.dart';
+
+class LifecycleWatcher extends StatefulWidget {
+  @override
+  _LifecycleWatcherState createState() =&gt; _LifecycleWatcherState();
+}
+
+class _LifecycleWatcherState extends State&lt;LifecycleWatcher&gt; with WidgetsBindingObserver {
+  AppLifecycleState _lastLifecycleState;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    setState(() {
+      _lastLifecycleState = state;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_lastLifecycleState == null)
+      return Text('This widget has not observed any lifecycle changes.', textDirection: TextDirection.ltr);
+
+    return Text('The most recent lifecycle state this widget observed was: $_lastLifecycleState.',
+        textDirection: TextDirection.ltr);
+  }
+}
+
+void main() {
+  runApp(Center(child: LifecycleWatcher()));
+}</pre>
+
+<h2 id="layouts">
+<a id="layouts" class="anchor" href="#layouts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Layouts</h2>
+
+<h3 id="what-is-the-equivalent-of-a-linearlayout">
+<a id="what-is-the-equivalent-of-a-linearlayout" class="anchor" href="#what-is-the-equivalent-of-a-linearlayout" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is the equivalent of a LinearLayout?</h3>
+
+<p>In Android, a LinearLayout is used to lay your widgets out
+linearly—either horizontally or vertically.
+In Flutter, use the Row widget or Column
+widget to achieve the same result.</p>
+
+<p>If you notice the two code samples are identical with the exception of the
+“Row” and “Column” widget. The children are the same and this feature can be
+exploited to develop rich layouts that can change overtime with the same
+children.</p>
+
+<pre class="prettyprint lang-dart">@override
+Widget build(BuildContext context) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: &lt;Widget&gt;[
+      Text('Row One'),
+      Text('Row Two'),
+      Text('Row Three'),
+      Text('Row Four'),
+    ],
+  );
+}</pre>
+
+<pre class="prettyprint lang-dart">@override
+Widget build(BuildContext context) {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: &lt;Widget&gt;[
+      Text('Column One'),
+      Text('Column Two'),
+      Text('Column Three'),
+      Text('Column Four'),
+    ],
+  );
+}</pre>
+
+<p>To learn more about building linear layouts, see the community contributed medium
+article <a href="https://medium.com/@burhanrashid52/flutter-for-android-developers-how-to-design-linearlayout-in-flutter-5d819c0ddf1a">Flutter For Android Developers : How to design LinearLayout in
+Flutter?</a>.</p>
+
+<h3 id="what-is-the-equivalent-of-a-relativelayout">
+<a id="what-is-the-equivalent-of-a-relativelayout" class="anchor" href="#what-is-the-equivalent-of-a-relativelayout" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is the equivalent of a RelativeLayout?</h3>
+
+<p>A RelativeLayout lays your widgets out relative to each other. In
+Flutter, there are a few ways to achieve the same result.</p>
+
+<p>You can achieve the result of a RelativeLayout by using a combination of
+Column, Row, and Stack widgets. You can specify rules for the widgets
+constructors on how the children are laid out relative to the parent.</p>
+
+<p>For a good example of building a RelativeLayout in Flutter, see Collin’s
+answer on
+<a href="https://stackoverflow.com/questions/44396075/equivalent-of-relativelayout-in-flutter">StackOverflow</a>.</p>
+
+<h3 id="what-is-the-equivalent-of-a-scrollview">
+<a id="what-is-the-equivalent-of-a-scrollview" class="anchor" href="#what-is-the-equivalent-of-a-scrollview" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is the equivalent of a ScrollView?</h3>
+
+<p>In Android, use a ScrollView to lay out your widgets—if the user’s
+device has a smaller screen than your content, it scrolls.</p>
+
+<p>In Flutter, the easiest way to do this is using the ListView widget. This might
+seem like overkill coming from Android, but in Flutter a ListView widget is
+both a ScrollView and an Android ListView.</p>
+
+<pre class="prettyprint lang-dart">@override
+Widget build(BuildContext context) {
+  return ListView(
+    children: &lt;Widget&gt;[
+      Text('Row One'),
+      Text('Row Two'),
+      Text('Row Three'),
+      Text('Row Four'),
+    ],
+  );
+}</pre>
+
+<h3 id="how-do-i-handle-landscape-transitions-in-flutter">
+<a id="how-do-i-handle-landscape-transitions-in-flutter" class="anchor" href="#how-do-i-handle-landscape-transitions-in-flutter" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I handle landscape transitions in Flutter?</h3>
+
+<p>FlutterView handles the config change if AndroidManifest.xml contains:</p>
+
+<pre class="prettyprint lang-yaml">android:configChanges="orientation|screenSize"</pre>
+
+<h2 id="gesture-detection-and-touch-event-handling">
+<a id="gesture-detection-and-touch-event-handling" class="anchor" href="#gesture-detection-and-touch-event-handling" aria-hidden="true"><span class="octicon octicon-link"></span></a>Gesture detection and touch event handling</h2>
+
+<h3 id="how-do-i-add-an-onclick-listener-to-a-widget-in-flutter">
+<a id="how-do-i-add-an-onclick-listener-to-a-widget-in-flutter" class="anchor" href="#how-do-i-add-an-onclick-listener-to-a-widget-in-flutter" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I add an onClick listener to a widget in Flutter?</h3>
+
+<p>In Android, you can attach onClick to views such as button by calling
+the method ‘setOnClickListener’.</p>
+
+<p>In Flutter there are two ways of adding touch listeners:</p>
+
+<ol>
+  <li>
+    <p>If the Widget supports event detection, pass a function to it and handle it
+in the function. For example, the RaisedButton has an <code class="highlighter-rouge">onPressed</code> parameter:</p>
+
+    <!-- skip -->
+    <div class="language-dart highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nd">@override</span>
+<span class="n">Widget</span> <span class="nf">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">RaisedButton</span><span class="o">(</span>
+      <span class="nl">onPressed:</span> <span class="o">()</span> <span class="o">{</span>
+        <span class="n">print</span><span class="o">(</span><span class="s">"click"</span><span class="o">);</span>
+      <span class="o">},</span>
+      <span class="nl">child:</span> <span class="n">Text</span><span class="o">(</span><span class="s">"Button"</span><span class="o">));</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>If the Widget doesn’t support event detection, wrap the
+widget in a GestureDetector and pass a function to the <code class="highlighter-rouge">onTap</code> parameter.</p>
+
+    <!-- skip -->
+    <div class="language-dart highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">SampleApp</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="o">{</span>
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Scaffold</span><span class="o">(</span>
+        <span class="nl">body:</span> <span class="n">Center</span><span class="o">(</span>
+      <span class="nl">child:</span> <span class="n">GestureDetector</span><span class="o">(</span>
+        <span class="nl">child:</span> <span class="n">FlutterLogo</span><span class="o">(</span>
+          <span class="nl">size:</span> <span class="mf">200.0</span><span class="o">,</span>
+        <span class="o">),</span>
+        <span class="nl">onTap:</span> <span class="o">()</span> <span class="o">{</span>
+          <span class="n">print</span><span class="o">(</span><span class="s">"tap"</span><span class="o">);</span>
+        <span class="o">},</span>
+      <span class="o">),</span>
+    <span class="o">));</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="how-do-i-handle-other-gestures-on-widgets">
+<a id="how-do-i-handle-other-gestures-on-widgets" class="anchor" href="#how-do-i-handle-other-gestures-on-widgets" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I handle other gestures on widgets?</h3>
+
+<p>Using the GestureDetector, you can listen to a wide range of Gestures such as:</p>
+
+<ul>
+  <li>
+    <p>Tap</p>
+
+    <ul>
+      <li>
+<code class="highlighter-rouge">onTapDown</code> - A pointer that might cause a tap has contacted the screen at a
+ particular location.</li>
+      <li>
+<code class="highlighter-rouge">onTapUp</code> - A pointer that triggers a tap has stopped contacting the
+ screen at a particular location.</li>
+      <li>
+<code class="highlighter-rouge">onTap</code> - A tap has occurred.</li>
+      <li>
+<code class="highlighter-rouge">onTapCancel</code> - The pointer that previously triggered the <code class="highlighter-rouge">onTapDown</code> won’t
+ cause a tap.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Double tap</p>
+
+    <ul>
+      <li>
+<code class="highlighter-rouge">onDoubleTap</code> - The user tapped the screen at the same location twice in
+ quick succession.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Long press</p>
+
+    <ul>
+      <li>
+<code class="highlighter-rouge">onLongPress</code> - A pointer has remained in contact with the screen at the same
+location for a long period of time.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Vertical drag</p>
+
+    <ul>
+      <li>
+<code class="highlighter-rouge">onVerticalDragStart</code> - A pointer has contacted the screen and might begin to
+move vertically.</li>
+      <li>
+<code class="highlighter-rouge">onVerticalDragUpdate</code> - A pointer in contact with the screen
+has moved further in the vertical direction.</li>
+      <li>
+<code class="highlighter-rouge">onVerticalDragEnd</code> - A pointer that was previously in contact with the
+screen and moving vertically is no longer in contact with the screen and was
+moving at a specific velocity when it stopped contacting the screen.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Horizontal drag</p>
+
+    <ul>
+      <li>
+<code class="highlighter-rouge">onHorizontalDragStart</code> - A pointer has contacted the screen and might begin
+to move horizontally.</li>
+      <li>
+<code class="highlighter-rouge">onHorizontalDragUpdate</code> - A pointer in contact with the screen
+has moved further in the horizontal direction.</li>
+      <li>
+<code class="highlighter-rouge">onHorizontalDragEnd</code> - A pointer that was previously in contact with the
+screen and moving horizontally is no longer in contact with the screen and was
+moving at a specific velocity when it stopped contacting the screen.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>The following example shows a <code class="highlighter-rouge">GestureDetector</code> that rotates the Flutter logo
+on a double tap:</p>
+
+<pre class="prettyprint lang-dart">AnimationController controller;
+CurvedAnimation curve;
+
+@override
+void initState() {
+  controller = AnimationController(duration: const Duration(milliseconds: 2000), vsync: this);
+  curve = CurvedAnimation(parent: controller, curve: Curves.easeIn);
+}
+
+class SampleApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Center(
+          child: GestureDetector(
+            child: RotationTransition(
+                turns: curve,
+                child: FlutterLogo(
+                  size: 200.0,
+                )),
+            onDoubleTap: () {
+              if (controller.isCompleted) {
+                controller.reverse();
+              } else {
+                controller.forward();
+              }
+            },
+        ),
+    ));
+  }
+}</pre>
+
+<h2 id="listviews--adapters">
+<a id="listviews--adapters" class="anchor" href="#listviews--adapters" aria-hidden="true"><span class="octicon octicon-link"></span></a>Listviews &amp; adapters</h2>
+
+<h3 id="what-is-the-alternative-to-a-listview-in-flutter">
+<a id="what-is-the-alternative-to-a-listview-in-flutter" class="anchor" href="#what-is-the-alternative-to-a-listview-in-flutter" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is the alternative to a ListView in Flutter?</h3>
+
+<p>The equivalent to a ListView in Flutter is … a ListView!</p>
+
+<p>In an Android ListView, you create an adapter and pass it into the
+ListView, which renders each row with what your adapter returns. However, you
+have to make sure you recycle your rows, otherwise, you get all sorts of crazy
+visual glitches and memory issues.</p>
+
+<p>Due to Flutter’s immutable widget pattern, you pass a List of
+Widgets to your ListView, and Flutter takes care of making sure
+that scrolling is fast and smooth.</p>
+
+<pre class="prettyprint lang-dart">import 'package:flutter/material.dart';
+
+void main() {
+  runApp(SampleApp());
+}
+
+class SampleApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Sample App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: SampleAppPage(),
+    );
+  }
+}
+
+class SampleAppPage extends StatefulWidget {
+  SampleAppPage({Key key}) : super(key: key);
+
+  @override
+  _SampleAppPageState createState() =&gt; _SampleAppPageState();
+}
+
+class _SampleAppPageState extends State&lt;SampleAppPage&gt; {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Sample App"),
+      ),
+      body: ListView(children: _getListData()),
+    );
+  }
+
+  _getListData() {
+    List&lt;Widget&gt; widgets = [];
+    for (int i = 0; i &lt; 100; i++) {
+      widgets.add(Padding(padding: EdgeInsets.all(10.0), child: Text("Row $i")));
+    }
+    return widgets;
+  }
+}</pre>
+
+<h3 id="how-do-i-know-which-list-item-is-clicked-on">
+<a id="how-do-i-know-which-list-item-is-clicked-on" class="anchor" href="#how-do-i-know-which-list-item-is-clicked-on" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I know which list item is clicked on?</h3>
+
+<p>In Android, the ListView has a method to find out which item was clicked
+‘onItemClickListener’.
+In Flutter, use the touch handling provided by the passed-in widgets.</p>
+
+<pre class="prettyprint lang-dart">import 'package:flutter/material.dart';
+
+void main() {
+  runApp(SampleApp());
+}
+
+class SampleApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Sample App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: SampleAppPage(),
+    );
+  }
+}
+
+class SampleAppPage extends StatefulWidget {
+  SampleAppPage({Key key}) : super(key: key);
+
+  @override
+  _SampleAppPageState createState() =&gt; _SampleAppPageState();
+}
+
+class _SampleAppPageState extends State&lt;SampleAppPage&gt; {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Sample App"),
+      ),
+      body: ListView(children: _getListData()),
+    );
+  }
+
+  _getListData() {
+    List&lt;Widget&gt; widgets = [];
+    for (int i = 0; i &lt; 100; i++) {
+      widgets.add(GestureDetector(
+        child: Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Text("Row $i")),
+        onTap: () {
+          print('row tapped');
+        },
+      ));
+    }
+    return widgets;
+  }
+}</pre>
+
+<h3 id="how-do-i-update-listviews-dynamically">
+<a id="how-do-i-update-listviews-dynamically" class="anchor" href="#how-do-i-update-listviews-dynamically" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I update ListView’s dynamically?</h3>
+
+<p>On Android, you update the adapter and call <code class="highlighter-rouge">notifyDataSetChanged</code>.</p>
+
+<p>In Flutter, if you were to update the list of widgets inside a <code class="highlighter-rouge">setState()</code>,
+you would quickly see that your data did not change visually.
+This is because when <code class="highlighter-rouge">setState()</code> is called, the Flutter rendering engine
+looks at the widget tree to see if anything has changed. When it gets to your
+<code class="highlighter-rouge">ListView</code>, it performs a <code class="highlighter-rouge">==</code> check, and determines that the two <code class="highlighter-rouge">ListView</code>s are the
+same. Nothing has changed, so no update is required.</p>
+
+<p>For a simple way to update your <code class="highlighter-rouge">ListView</code>, create a new <code class="highlighter-rouge">List</code> inside of
+<code class="highlighter-rouge">setState()</code>, and copy the data from the old list to the new list.
+While this approach is simple, it is not recommended for large data sets,
+as shown in the next example.</p>
+
+<pre class="prettyprint lang-dart">import 'package:flutter/material.dart';
+
+void main() {
+  runApp(SampleApp());
+}
+
+class SampleApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Sample App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: SampleAppPage(),
+    );
+  }
+}
+
+class SampleAppPage extends StatefulWidget {
+  SampleAppPage({Key key}) : super(key: key);
+
+  @override
+  _SampleAppPageState createState() =&gt; _SampleAppPageState();
+}
+
+class _SampleAppPageState extends State&lt;SampleAppPage&gt; {
+  List widgets = &lt;Widget&gt;[];
+
+  @override
+  void initState() {
+    super.initState();
+    for (int i = 0; i &lt; 100; i++) {
+      widgets.add(getRow(i));
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Sample App"),
+      ),
+      body: ListView(children: widgets),
+    );
+  }
+
+  Widget getRow(int i) {
+    return GestureDetector(
+      child: Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Text("Row $i")),
+      onTap: () {
+        setState(() {
+          widgets = List.from(widgets);
+          widgets.add(getRow(widgets.length + 1));
+          print('row $i');
+        });
+      },
+    );
+  }
+}</pre>
+
+<p>The recommended, efficient, and effective way to build a list uses a
+ListView.Builder. This method is great when you have a dynamic
+List or a List with very large amounts of data. This is essentially
+the equivalent of RecyclerView on Android, which automatically
+recycles list elements for you:</p>
+
+<pre class="prettyprint lang-dart">import 'package:flutter/material.dart';
+
+void main() {
+  runApp(SampleApp());
+}
+
+class SampleApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Sample App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: SampleAppPage(),
+    );
+  }
+}
+
+class SampleAppPage extends StatefulWidget {
+  SampleAppPage({Key key}) : super(key: key);
+
+  @override
+  _SampleAppPageState createState() =&gt; _SampleAppPageState();
+}
+
+class _SampleAppPageState extends State&lt;SampleAppPage&gt; {
+  List widgets = &lt;Widget&gt;[];
+
+  @override
+  void initState() {
+    super.initState();
+    for (int i = 0; i &lt; 100; i++) {
+      widgets.add(getRow(i));
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Sample App"),
+        ),
+        body: ListView.builder(
+            itemCount: widgets.length,
+            itemBuilder: (BuildContext context, int position) {
+              return getRow(position);
+            }));
+  }
+
+  Widget getRow(int i) {
+    return GestureDetector(
+      child: Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Text("Row $i")),
+      onTap: () {
+        setState(() {
+          widgets.add(getRow(widgets.length + 1));
+          print('row $i');
+        });
+      },
+    );
+  }
+}</pre>
+
+<p>Instead of creating a “ListView”, create a ListView.builder that
+takes two key parameters: the initial length of the list, and an ItemBuilder
+function.</p>
+
+<p>The ItemBuilder function is similar to the <code class="highlighter-rouge">getView</code> function in an Android
+adapter; it takes a position, and returns the row you want rendered at
+that position.</p>
+
+<p>Finally, but most importantly, notice that the <code class="highlighter-rouge">onTap()</code> function
+doesn’t recreate the list anymore, but instead <code class="highlighter-rouge">.add</code>s to it.</p>
+
+<h2 id="working-with-text">
+<a id="working-with-text" class="anchor" href="#working-with-text" aria-hidden="true"><span class="octicon octicon-link"></span></a>Working with text</h2>
+
+<h3 id="how-do-i-set-custom-fonts-on-my-text-widgets">
+<a id="how-do-i-set-custom-fonts-on-my-text-widgets" class="anchor" href="#how-do-i-set-custom-fonts-on-my-text-widgets" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I set custom fonts on my Text widgets?</h3>
+
+<p>In Android SDK (as of Android O), you create a Font resource file and
+pass it into the FontFamily param for your TextView.</p>
+
+<p>In Flutter, place the font file in a folder and reference it in the
+<code class="highlighter-rouge">pubspec.yaml</code> file, similar to how you import images.</p>
+
+<pre class="prettyprint lang-yaml">fonts:
+   - family: MyCustomFont
+     fonts:
+       - asset: fonts/MyCustomFont.ttf
+       - style: italic</pre>
+
+<p>Then assign the font to your <code class="highlighter-rouge">Text</code> widget:</p>
+
+<pre class="prettyprint lang-dart">@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: Text("Sample App"),
+    ),
+    body: Center(
+      child: Text(
+        'This is a custom font text',
+        style: TextStyle(fontFamily: 'MyCustomFont'),
+      ),
+    ),
+  );
+}</pre>
+
+<h3 id="how-do-i-style-my-text-widgets">
+<a id="how-do-i-style-my-text-widgets" class="anchor" href="#how-do-i-style-my-text-widgets" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I style my Text widgets?</h3>
+
+<p>Along with fonts, you can customize other styling elements on a <code class="highlighter-rouge">Text</code> widget.
+The style parameter of a <code class="highlighter-rouge">Text</code> widget takes a <code class="highlighter-rouge">TextStyle</code> object, where you can
+customize many parameters, such as:</p>
+
+<ul>
+  <li>color</li>
+  <li>decoration</li>
+  <li>decorationColor</li>
+  <li>decorationStyle</li>
+  <li>fontFamily</li>
+  <li>fontSize</li>
+  <li>fontStyle</li>
+  <li>fontWeight</li>
+  <li>hashCode</li>
+  <li>height</li>
+  <li>inherit</li>
+  <li>letterSpacing</li>
+  <li>textBaseline</li>
+  <li>wordSpacing</li>
+</ul>
+
+<h2 id="form-input">
+<a id="form-input" class="anchor" href="#form-input" aria-hidden="true"><span class="octicon octicon-link"></span></a>Form input</h2>
+
+<p>For more information on using Forms, see
+<a href="/docs/cookbook/forms/retrieve-input">Retrieve the value of a text field</a>,
+from the <a href="/docs/cookbook">Flutter Cookbook</a>.</p>
+
+<h3 id="what-is-the-equivalent-of-a-hint-on-an-input">
+<a id="what-is-the-equivalent-of-a-hint-on-an-input" class="anchor" href="#what-is-the-equivalent-of-a-hint-on-an-input" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is the equivalent of a “hint” on an Input?</h3>
+
+<p>In Flutter, you can easily show a “hint” or a placeholder text for your input by
+adding an InputDecoration object to the decoration constructor parameter for
+the Text Widget.</p>
+
+<pre class="prettyprint lang-dart">body: Center(
+  child: TextField(
+    decoration: InputDecoration(hintText: "This is a hint"),
+  )
+)</pre>
+
+<h3 id="how-do-i-show-validation-errors">
+<a id="how-do-i-show-validation-errors" class="anchor" href="#how-do-i-show-validation-errors" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I show validation errors?</h3>
+
+<p>Just as you would with a “hint”, pass an InputDecoration object
+to the decoration constructor for the Text widget.</p>
+
+<p>However, you don’t want to start off by showing an error.
+Instead, when the user has entered invalid data,
+update the state, and pass a new <code class="highlighter-rouge">InputDecoration</code> object.</p>
+
+<pre class="prettyprint lang-dart">import 'package:flutter/material.dart';
+
+void main() {
+  runApp(SampleApp());
+}
+
+class SampleApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Sample App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: SampleAppPage(),
+    );
+  }
+}
+
+class SampleAppPage extends StatefulWidget {
+  SampleAppPage({Key key}) : super(key: key);
+
+  @override
+  _SampleAppPageState createState() =&gt; _SampleAppPageState();
+}
+
+class _SampleAppPageState extends State&lt;SampleAppPage&gt; {
+  String _errorText;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Sample App"),
+      ),
+      body: Center(
+        child: TextField(
+          onSubmitted: (String text) {
+            setState(() {
+              if (!isEmail(text)) {
+                _errorText = 'Error: This is not an email';
+              } else {
+                _errorText = null;
+              }
+            });
+          },
+          decoration: InputDecoration(hintText: "This is a hint", errorText: _getErrorText()),
+        ),
+      ),
+    );
+  }
+
+  _getErrorText() {
+    return _errorText;
+  }
+
+  bool isEmail(String em) {
+    String emailRegexp =
+        r'^(([^&lt;&gt;()[\]\\.,;:\s@\"]+(\.[^&lt;&gt;()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+
+    RegExp regExp = RegExp(emailRegexp);
+
+    return regExp.hasMatch(em);
+  }
+}</pre>
+
+<h2 id="flutter-plugins">
+<a id="flutter-plugins" class="anchor" href="#flutter-plugins" aria-hidden="true"><span class="octicon octicon-link"></span></a>Flutter plugins</h2>
+
+<h3 id="how-do-i-access-the-gps-sensor">
+<a id="how-do-i-access-the-gps-sensor" class="anchor" href="#how-do-i-access-the-gps-sensor" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I access the GPS sensor?</h3>
+
+<p>Use the <a href="https://pub.flutter-io.cn/packages/geolocator"><code class="highlighter-rouge">geolocator</code></a> community plugin.</p>
+
+<h3 id="how-do-i-access-the-camera">
+<a id="how-do-i-access-the-camera" class="anchor" href="#how-do-i-access-the-camera" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I access the camera?</h3>
+
+<p>The <a href="https://pub.flutter-io.cn/packages/image_picker"><code class="highlighter-rouge">image_picker</code></a> plugin is popular
+for accessing the camera.</p>
+
+<h3 id="how-do-i-log-in-with-facebook">
+<a id="how-do-i-log-in-with-facebook" class="anchor" href="#how-do-i-log-in-with-facebook" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I log in with Facebook?</h3>
+
+<p>To Log in with Facebook, use the
+<a href="https://pub.flutter-io.cn/packages/flutter_facebook_login"><code class="highlighter-rouge">flutter_facebook_login</code></a> community plugin.</p>
+
+<h3 id="how-do-i-use-firebase-features">
+<a id="how-do-i-use-firebase-features" class="anchor" href="#how-do-i-use-firebase-features" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I use Firebase features?</h3>
+
+<p>Most Firebase functions are covered by
+<a href="https://pub.flutter-io.cn/flutter/packages?q=firebase">first party plugins</a>.
+These plugins are first-party integrations, maintained by the Flutter team:</p>
+
+<ul>
+  <li>
+<a href="https://pub.flutter-io.cn/packages/firebase_admob"><code class="highlighter-rouge">firebase_admob</code></a> for Firebase AdMob</li>
+  <li>
+<a href="https://pub.flutter-io.cn/packages/firebase_analytics"><code class="highlighter-rouge">firebase_analytics</code></a> for Firebase Analytics</li>
+  <li>
+<a href="https://pub.flutter-io.cn/packages/firebase_auth"><code class="highlighter-rouge">firebase_auth</code></a> for Firebase Auth</li>
+  <li>
+<a href="https://pub.flutter-io.cn/packages/firebase_database"><code class="highlighter-rouge">firebase_database</code></a> for Firebase RTDB</li>
+  <li>
+<a href="https://pub.flutter-io.cn/packages/firebase_storage"><code class="highlighter-rouge">firebase_storage</code></a> for Firebase Cloud Storage</li>
+  <li>
+<a href="https://pub.flutter-io.cn/packages/firebase_messaging"><code class="highlighter-rouge">firebase_messaging</code></a> for Firebase Messaging (FCM)</li>
+  <li>
+<a href="https://pub.flutter-io.cn/packages/flutter_firebase_ui"><code class="highlighter-rouge">flutter_firebase_ui</code></a> for quick Firebase Auth integrations (Facebook, Google, Twitter and email)</li>
+  <li>
+<a href="https://pub.flutter-io.cn/packages/cloud_firestore"><code class="highlighter-rouge">cloud_firestore</code></a> for Firebase Cloud Firestore</li>
+</ul>
+
+<p>You can also find some third-party Firebase plugins on Pub that cover areas
+not directly covered by the first-party plugins.</p>
+
+<h3 id="how-do-i-build-my-own-custom-native-integrations">
+<a id="how-do-i-build-my-own-custom-native-integrations" class="anchor" href="#how-do-i-build-my-own-custom-native-integrations" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I build my own custom native integrations?</h3>
+
+<p>If there is platform-specific functionality that Flutter or its community
+Plugins are missing, you can build your own following the
+<a href="/docs/development/packages-and-plugins/developing-packages">developing packages and plugins</a> page.</p>
+
+<p>Flutter’s plugin architecture, in a nutshell, is much like using an Event bus in
+Android: you fire off a message and let the receiver process and emit a result
+back to you. In this case, the receiver is code running on the native side
+on Android or iOS.</p>
+
+<h3 id="how-do-i-use-the-ndk-in-my-flutter-application">
+<a id="how-do-i-use-the-ndk-in-my-flutter-application" class="anchor" href="#how-do-i-use-the-ndk-in-my-flutter-application" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I use the NDK in my Flutter application?</h3>
+
+<p>If you use the NDK in your current Android application and want your Flutter
+application to take advantage of your native libraries then it’s possible by
+building a custom plugin.</p>
+
+<p>Your custom plugin first talks to your Android app, where you call your
+<code class="highlighter-rouge">native</code> functions over JNI. Once a response is ready,
+send a message back to Flutter and render the result.</p>
+
+<p>Calling native code directly from Flutter is currently not supported.</p>
+
+<h2 id="themes">
+<a id="themes" class="anchor" href="#themes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Themes</h2>
+
+<h3 id="how-do-i-theme-my-app">
+<a id="how-do-i-theme-my-app" class="anchor" href="#how-do-i-theme-my-app" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I theme my app?</h3>
+
+<p>Out of the box, Flutter comes with a beautiful implementation of Material
+Design, which takes care of a lot of styling and theming needs that you would
+typically do. Unlike Android where you declare themes in XML and then assign it
+to your application using AndroidManifest.xml, in Flutter you declare themes
+in the top level widget.</p>
+
+<p>To take full advantage of Material Components in your app, you can declare a top
+level widget <code class="highlighter-rouge">MaterialApp</code> as the entry point to your application. MaterialApp
+is a convenience widget that wraps a number of widgets that are commonly
+required for applications implementing Material Design. It builds upon a WidgetsApp by
+adding Material specific functionality.</p>
+
+<p>You can also use a <code class="highlighter-rouge">WidgetApp</code> as your app widget, which provides some of the
+same functionality, but is not as rich as <code class="highlighter-rouge">MaterialApp</code>.</p>
+
+<p>To customize the colors and styles of any child components, pass a
+<code class="highlighter-rouge">ThemeData</code> object to the <code class="highlighter-rouge">MaterialApp</code> widget. For example, in the code below,
+the primary swatch is set to blue and text selection color is red.</p>
+
+<pre class="prettyprint lang-dart">class SampleApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Sample App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        textSelectionColor: Colors.red
+      ),
+      home: SampleAppPage(),
+    );
+  }
+}</pre>
+
+<h2 id="databases-and-local-storage">
+<a id="databases-and-local-storage" class="anchor" href="#databases-and-local-storage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Databases and local storage</h2>
+
+<h3 id="how-do-i-access-shared-preferences">
+<a id="how-do-i-access-shared-preferences" class="anchor" href="#how-do-i-access-shared-preferences" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I access Shared Preferences?</h3>
+
+<p>In Android, you can store a small collection of key-value pairs using
+the SharedPreferences API.</p>
+
+<p>In Flutter, access this functionality using the
+<a href="https://pub.flutter-io.cn/packages/shared_preferences">Shared_Preferences plugin</a>.
+This plugin wraps the functionality of both Shared Preferences and
+NSUserDefaults (the iOS equivalent).</p>
+
+<pre class="prettyprint lang-dart">import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+void main() {
+  runApp(
+    MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: RaisedButton(
+            onPressed: _incrementCounter,
+            child: Text('Increment Counter'),
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+_incrementCounter() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  int counter = (prefs.getInt('counter') ?? 0) + 1;
+  print('Pressed $counter times.');
+  prefs.setInt('counter', counter);
+}</pre>
+
+<h3 id="how-do-i-access-sqlite-in-flutter">
+<a id="how-do-i-access-sqlite-in-flutter" class="anchor" href="#how-do-i-access-sqlite-in-flutter" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I access SQLite in Flutter?</h3>
+
+<p>In Android, you use SQLite to store structured data that you can query
+using SQL.</p>
+
+<p>In Flutter, access this functionality using the
+<a href="https://pub.flutter-io.cn/packages/sqflite">SQFlite</a> plugin.</p>
+
+<h2 id="notifications">
+<a id="notifications" class="anchor" href="#notifications" aria-hidden="true"><span class="octicon octicon-link"></span></a>Notifications</h2>
+
+<h3 id="how-do-i-set-up-push-notifications">
+<a id="how-do-i-set-up-push-notifications" class="anchor" href="#how-do-i-set-up-push-notifications" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I set up push notifications?</h3>
+
+<p>In Android, you use Firebase Cloud Messaging to setup push
+notifications for your app.</p>
+
+<p>In Flutter, access this functionality using the
+<a href="https://github.com/flutter/plugins/tree/master/packages/firebase_messaging">Firebase_Messaging</a>
+plugin.
+For more information on using the Firebase Cloud Messaging API, see the
+<a href="https://pub.flutter-io.cn/packages/firebase_messaging"><code class="highlighter-rouge">firebase_messaging</code></a>
+plugin documentation.</p>
+
+        
+      </div>
+    </main>
+  </div>
+</div>
+<footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 site-footer__wrapper">
+        <div class="site-footer__logo">
+          <img src="/images/flutter-mono-81x100.png" alt="Flutter Logo" width="81" height="100">
+        </div>
+        <div class="site-footer__content">
+          <ul class="site-footer__link-list">
+              <li><a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a></li>
+              <li><a href="/tos">terms</a></li>
+              <li><a href="/security">security</a></li>
+              <li><a href="https://www.google.com/intl/en/policies/privacy">privacy</a></li>
+              <li><a href="https://flutter-es.io/">español</a></li>
+              <li><a href="https://flutter-io.cn" class="text-nowrap">社区中文资源</a></li>
+          </ul>
+
+          <p class="licenses" translation-origin="on">
+            Except as otherwise noted,
+            this work is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0">Creative
+            Commons Attribution 4.0 International License</a>,
+            and code samples are licensed under the BSD License.
+          </p>
+          <p class="licenses" translation-result="off">
+            除非特别说明，否则本站内容采用 <a rel="license" href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0 授权协议</a>，所有范例代码都采用 BSD 授权协议。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- <script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script> -->
+  
+
+<script src="/assets/translator/js/translator.js"></script></body></html>

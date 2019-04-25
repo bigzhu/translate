@@ -1,0 +1,1506 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hero Animations  - Flutter 中文文档 - Flutter 社区中文资源 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-ND4LWWZ');</script>
+  <!-- End Google Tag Manager -->
+
+  
+  <meta name="description" content="{{site.alert.secondary}} What you’ll learn * The _hero_ refers to the widget that flies between screens. * Create a hero animation using Flutter's Hero widget. * Fly the hero from one screen to another. * Animate the transformation of a hero's shape from circular to rectangular while flying it from one...">
+  <meta name="keywords" content=" ">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@flutterdev">
+
+  <meta property="og:title" content="Hero Animations">
+  <meta property="og:url" content="https://flutter.dev/docs/development/ui/animations/hero-animations">
+  <meta property="og:description" content="{{site.alert.secondary}} What you’ll learn * The _hero_ refers to the widget that flies between screens. * Create a hero animation using Flutter's Hero widget. * Fly the hero from one screen to another. * Animate the transformation of a hero's shape from circular to rectangular while flying it from one...">
+  
+  <meta property="og:image" content="https://flutter.dev/images/flutter-logo-sharing.png">
+
+  <link href="/assets/translator/css/material-roboto.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/assets/main-74a0c308218334fcd85291a957a514973015ea8e4eb76b9abae6e14bb5012f5e.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  <script src="/assets/main-d6b8b8d26e7b4122b3ddf6a5201966d6e2494aaffadaafaf7c571ce5e2fe0aab.js" type="text/javascript"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-122680122-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <!--<meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />-->
+<link href="/assets/translator/css/translator.css" rel="stylesheet"></head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-ND4LWWZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div id="overlay-under-drawer"></div>
+
+    <header class="site-header">
+  <nav class="navbar navbar-expand-md justify-content-start justify-content-md-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="material-icons">menu</i>
+    </button>
+
+    <a class="navbar-brand" href="/">
+      <img alt="Flutter by Google" height="37" width="129" class="align-middle" src="/assets/flutter-lockup-4cb0ee072ab312e59784d9fbf4fb7ad42688a7fdaea1270ccf6bbf4f34b7e03f.svg">
+    </a>
+
+    <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
+      <div class="site-header__sheet-bg" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></div>
+      <div class="site-header__sheet">
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <a class="nav-link active" href="/docs">开发文档</a>
+          </li>
+          <div class="site-sidebar site-sidebar--header d-md-none">
+            <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="false" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="false" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link active collapsable" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="true" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link active collapsable" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="true" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+          </div>
+
+<!-- 
+          <li class="nav-item">
+            <a class="nav-link" href="/showcase">Showcase</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/community">Community</a>
+          </li>
+ -->
+        </ul>
+        <form action="/search" class="site-header__search form-inline">
+          <input class="site-header__searchfield form-control" type="search" name="q" id="q" autocomplete="off" placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+    </div>
+    <div class="site-header__social navbar-nav flex-row">
+      <a class="nav-item nav-link" href="https://twitter.com/flutterdev"><i class="fab fa-twitter fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://www.youtube.com/flutterdev"><i class="fab fa-youtube fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://github.com/flutter"><i class="fab fa-github fa-lg"></i></a>
+    </div>
+    <a class="site-header__cta btn btn-primary" href="/docs/get-started/install/">Get started</a>
+    </nav>
+</header>
+<div class="site-banner site-banner--default" role="alert">
+    <p>
+      We are looking for a Flutter Infrastructure engineer!
+      <a href="/jobs/infrastructure" target="_blank" rel="noopener">Learn more</a>.
+    </p>
+
+  </div>
+<div class="container-fluid position-relative">
+  <div class="row flex-xl-nowrap">
+    <div class="fixed-col site-sidebar site-sidebar--fixed col-12 col-md-3 col-xl-2 d-none d-md-block" data-fixed-column="">
+      <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="false" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="false" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link active collapsable" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="true" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link active collapsable" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="true" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+    </div>
+    <div id="site-toc--side" class="site-toc site-toc--side fixed-col col-xl-2 order-3" data-fixed-column="">
+  <header class="site-toc__title">
+    Contents
+    <button type="button" class="btn site-toc--button__page-top" aria-label="Page top"></button>
+    </header>
+  <ul class="section-nav nav">
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#basic-structure-of-a-hero-animation">Basic structure of a hero animation</a>
+<ul class="nav">
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#behind-the-scenes">Behind the scenes</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#essential-classes">Essential classes</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#standard-hero-animations">Standard hero animations</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#whats-going-on">What’s going on?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#photohero-class">PhotoHero class</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#heroanimation-class">HeroAnimation class</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#radial-hero-animations">Radial hero animations</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#whats-going-on-1">What’s going on?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#photo-class">Photo class</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#radialexpansion-class">RadialExpansion class</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#resources">Resources</a></li>
+</ul>
+</div>
+<main class="site-content col-12 col-md-9 offset-md-3 col-xl-8 offset-xl-2 col-xxl-8 offset-xxl-2" role="main">
+      <div class="container">
+        
+        
+        <header class="site-content__title">
+          <div id="page-github-links" class="btn-group" aria-label="Page GitHub links" role="group">
+  <a href="https://github.com/cfug/flutter.cn/tree/master/src/docs/development/ui/animations/hero-animations.md" class="btn no-automatic-external" title="View page source" target="_blank" rel="noopener">
+    <i class="fas fa-file-alt fa-sm"></i>
+  </a>
+  <a href="https://github.com/cfug/flutter.cn/issues/new?title='Hero Animations' page issue&amp;body=
+Page URL: https://flutter.dev/docs/development/ui/animations/hero-animations.html%0D%0A
+Page source: https://github.com/cfug/flutter.cn/tree/master/src/docs/development/ui/animations/hero-animations.md%0D%0A
+%0D%0A
+Found a typo? You can fix it yourself by going to the page source and clicking the pencil icon. Or finish creating this issue.%0D%0A
+%0D%0A
+Description of issue:" class="btn no-automatic-external" title="Report an issue with this page" target="_blank" rel="noopener">
+    <i class="fas fa-bug fa-sm"></i>
+  </a>
+</div>
+
+          <h1 id="hero-animations">Hero Animations</h1>
+          
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="/docs" property="item" typeof="WebPage"><span property="name">文档</span>
+      </a>
+      <meta property="position" content="1">
+    </li>
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="/docs/development" property="item" typeof="WebPage"><span property="name">开发文档</span>
+      </a>
+      <meta property="position" content="2">
+    </li>
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="/docs/development/ui" property="item" typeof="WebPage"><span property="name">UI</span>
+      </a>
+      <meta property="position" content="3">
+    </li>
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="/docs/development/ui/animations" property="item" typeof="WebPage"><span property="name">动画</span>
+      </a>
+      <meta property="position" content="4">
+    </li>
+  <li class="breadcrumb-item active" property="itemListElement" typeof="ListItem" aria-current="page"><a href="/docs/development/ui/animations/hero-animations.html" property="item" typeof="WebPage"><span property="name">Hero</span>
+      </a>
+      <meta property="position" content="5">
+    </li>
+  
+  </ol>
+</nav>
+          </header>
+        <div id="site-toc--inline" class="site-toc site-toc--inline ">
+  <header class="site-toc__title">
+    Contents
+    </header>
+  <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#basic-structure-of-a-hero-animation">Basic structure of a hero animation</a>
+<ul>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#behind-the-scenes">Behind the scenes</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#essential-classes">Essential classes</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#standard-hero-animations">Standard hero animations</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#whats-going-on">What’s going on?</a></li>
+<li class="toc-entry toc-h3"><a href="#photohero-class">PhotoHero class</a></li>
+<li class="toc-entry toc-h3"><a href="#heroanimation-class">HeroAnimation class</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#radial-hero-animations">Radial hero animations</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#whats-going-on-1">What’s going on?</a></li>
+<li class="toc-entry toc-h3"><a href="#photo-class">Photo class</a></li>
+<li class="toc-entry toc-h3"><a href="#radialexpansion-class">RadialExpansion class</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#resources">Resources</a></li>
+</ul>
+</div>
+<aside class="alert alert-secondary" role="alert">
+  <h4 class="no_toc" id="what-youll-learn">
+<a id="what-youll-learn" class="anchor" href="#what-youll-learn" aria-hidden="true"><span class="octicon octicon-link"></span></a>What you’ll learn</h4>
+
+  <ul>
+    <li>The <em>hero</em> refers to the widget that flies between screens.</li>
+    <li>Create a hero animation using Flutter’s Hero widget.</li>
+    <li>Fly the hero from one screen to another.</li>
+    <li>Animate the transformation of a hero’s shape from circular to
+rectangular while flying it from one screen to another.</li>
+    <li>The Hero widget in Flutter implements a style of animation
+commonly known as <em>shared element transitions</em> or
+<em>shared element animations.</em>
+</li>
+  </ul>
+</aside>
+
+<p>You’ve probably seen hero animations many times. For example, a screen displays
+a list of thumbnails representing items for sale.  Selecting an item flies it to
+a new screen, containing more details and a “Buy” button. Flying an image from
+one screen to another is called a <em>hero animation</em> in Flutter, though the same
+motion is sometimes referred to as a <em>shared element transition</em>.</p>
+
+<p>You may want to watch this one-minute video introducing the Hero widget:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Be9UH1kXFDw?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<p>This guide demonstrates how to build standard hero animations, and hero
+animations that transform the image from a circular shape to a square shape
+during flight.</p>
+
+<aside class="alert alert-info">
+  <p><strong>Examples</strong>: This guide provides examples of each hero animation style at
+  the following links.</p>
+
+  <ul>
+    <li><a href="#standard-hero-animation-code">Standard hero animation code</a></li>
+    <li><a href="#radial-hero-animation-code">Radial hero animation code</a></li>
+  </ul>
+</aside>
+
+<aside class="alert alert-info">
+  <p><strong>New to Flutter?</strong>
+  This page assumes you know how to create a layout using Flutter’s
+  widgets.  For more information, see <a href="/docs/development/ui/layout">Building Layouts in
+  Flutter</a>.</p>
+</aside>
+
+<aside class="alert alert-info">
+  <p><strong>Terminology:</strong>
+  A <a href="/docs/cookbook/navigation/navigation-basics"><em>Route</em></a> describes a page or screen
+  in a Flutter app.</p>
+</aside>
+
+<p>You can create this animation in Flutter with Hero widgets. As the hero animates
+from the source to the destination route, the destination route (minus the hero)
+fades into view. Typically, heroes are small parts of the UI, like images, that
+both routes have in common. From the user’s perspective the hero “flies” between
+the routes. This guide shows how to create the following hero animations:</p>
+
+<p><strong>Standard hero animations</strong><br></p>
+
+<p>A <em>standard hero animation</em> flies the hero from one route to a new route,
+usually landing at a different location and with a different size.</p>
+
+<p>The following video (recorded at slow speed) shows a typical example. Tapping
+the flippers in the center of the route flies them to the upper left corner of a
+new, blue route, at a smaller size. Tapping the flippers in the blue route (or
+using the device’s back-to-previous-route gesture) flies the flippers back to
+the original route.</p>
+
+<div class="embedded-video-wrapper">
+  <iframe class="embedded-video-wrapper__frame" src="https://www.youtube.com/embed/CEcFnqRDfgw?rel=0" frameborder="0" allowfullscreen="">
+  </iframe>
+</div>
+
+<p><strong>Radial hero animations</strong><br></p>
+
+<p>In <em>radial hero animation</em>, as the hero flies between routes
+its shape appears to change from circular to rectangular.</p>
+
+<p>The following video (recorded at slow speed),
+shows an example of a radial hero animation. At the start, a
+row of three circular images appears at the bottom of the route.
+Tapping any of the circular images flies that image to a new route
+that displays it with a square shape.
+Tapping the square image flies the hero back to
+the original route, displayed with a circular shape.</p>
+
+<div class="embedded-video-wrapper">
+  <iframe class="embedded-video-wrapper__frame" src="https://www.youtube.com/embed/LWKENpwDKiM?rel=0" frameborder="0" allowfullscreen="">
+  </iframe>
+</div>
+
+<p>Before moving to the sections specific to
+<a href="#standard-hero-animations">standard</a>
+or <a href="#radial-hero-animations">radial</a> hero animations,
+read <a href="#basic-structure">basic structure of a hero animation</a>
+to learn how to structure hero animation code,
+and <a href="#behind-the-scenes">behind the scenes</a> to understand
+how Flutter performs a hero animation.</p>
+
+<p><a name="basic-structure"></a></p>
+<h2 id="basic-structure-of-a-hero-animation">
+<a id="basic-structure-of-a-hero-animation" class="anchor" href="#basic-structure-of-a-hero-animation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic structure of a hero animation</h2>
+
+<aside class="alert alert-secondary" role="alert">
+  <h4 class="no_toc" id="whats-the-point">
+<a id="whats-the-point" class="anchor" href="#whats-the-point" aria-hidden="true"><span class="octicon octicon-link"></span></a>What's the point?</h4>
+
+  <ul>
+    <li>Use two hero widgets in different routes but with matching tags to
+implement the animation.</li>
+    <li>The Navigator manages a stack containing the app’s routes.</li>
+    <li>Pushing a route on or popping a route from the Navigator’s stack
+triggers the animation.</li>
+    <li>The Flutter framework calculates a <a href="https://api.flutter.dev/flutter/animation/RectTween-class.html">rectangle
+tween</a>
+that defines the hero’s boundary as it flies from the source to
+the destination route. During its flight, the hero is moved to
+an application overlay, so that it appears on top of both routes.</li>
+  </ul>
+</aside>
+
+<aside class="alert alert-info">
+  <p><strong>Terminology:</strong>
+  If the concept of tweens or tweening is new to you, please see the
+  <a href="/docs/development/ui/animations/tutorial">Animations in Flutter tutorial.</a></p>
+</aside>
+
+<p>Hero animations are implemented using two
+<a href="https://api.flutter.dev/flutter/widgets/Hero-class.html">Hero</a>
+widgets: one describing the widget in the source route,
+and another describing the widget in the destination route.
+From the user’s point of view, the hero appears to be shared, and
+only the programmer needs to understand this implementation detail.</p>
+
+<aside class="alert alert-info">
+  <p><strong>Note about dialogs:</strong>
+  Heroes fly from one PageRoute to another. Dialogs
+  (displayed with <code class="highlighter-rouge">showDialog()</code>, for example), use PopupRoutes,
+  which are not PageRoutes.  At least for now,
+  you can’t animate a hero to a Dialog.
+  For further developments (and a possible workaround), <a href="https://github.com/flutter/flutter/issues/10667">watch this
+  issue.</a></p>
+</aside>
+
+<p>Hero animation code has the following structure:</p>
+
+<ol>
+  <li>Define a starting Hero widget, referred to as the <em>source
+hero</em>. The hero specifies its graphical representation
+(typically an image), and an identifying tag, and is in
+the currently displayed widget tree as defined by the source route.</li>
+  <li>Define an ending Hero widget, referred to as the <em>destination hero</em>.
+This hero also specifies its graphical representation,
+and the same tag as the source hero.
+It’s <strong>essential that both hero widgets are created with
+the same tag</strong>, typically an object that represents the
+underlying data. For best results, the heroes should have
+virtually identical widget trees.</li>
+  <li>Create a route that contains the destination hero.
+The destination route defines the widget tree that exists
+at the end of the animation.</li>
+  <li>Trigger the animation by pushing the destination route on the
+Navigator’s stack. The Navigator push and pop operations trigger
+a hero animation for each pair of heroes with matching tags in
+the source and destination routes.</li>
+</ol>
+
+<p>Flutter calculates the tween that animates the Hero’s bounds from
+the starting point to the endpoint (interpolating size and position),
+and performs the animation in an overlay.</p>
+
+<p>The next section describes Flutter’s process in greater detail.</p>
+
+<h2 id="behind-the-scenes">
+<a id="behind-the-scenes" class="anchor" href="#behind-the-scenes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Behind the scenes</h2>
+
+<p>The following describes how Flutter performs the transition from one route to
+another.</p>
+
+<p><img alt="Before the transition the source hero appears in the source route" class="mw-100" src="/assets/ui/animations/hero-transition-0-e129c393b824c1026897ff0051019e344062817525ea83babf3d8afb74e0234c.png"></p>
+
+<p>Before transition, the source hero waits in the source route’s widget tree. The
+destination route does not yet exist, and the overlay is empty.</p>
+
+<hr>
+
+<p><img alt="The transition begins" class="mw-100" src="/assets/ui/animations/hero-transition-1-af93acb4da6e70ef6d902af4b64b2a9d1ab92c97ebd6a2580d259bdf058e36ad.png"></p>
+
+<p>Pushing a route to the Navigator triggers the animation. At t=0.0, Flutter does
+the following:</p>
+
+<ul>
+  <li>
+    <p>Calculates the destination hero’s path, offscreen, using the curved motion as
+described in the Material motion spec. Flutter now knows where the hero ends
+up.</p>
+  </li>
+  <li>
+    <p>Places the destination hero in the overlay, at the same location and size as
+the <em>source</em> hero. Adding a hero to the overlay changes its Z-order so that it
+appears on top of all routes.</p>
+  </li>
+  <li>
+    <p>Moves the source hero offscreen.</p>
+  </li>
+</ul>
+
+<hr>
+
+<p><img alt="The hero flies in the overlay to its final position and size" class="mw-100" src="/assets/ui/animations/hero-transition-2-fb104777adbaac9003639cab2b40aa4fae20033d522be4064b1790653e2fef29.png"></p>
+
+<p>As the hero flies, its rectangular bounds are animated using
+<a href="https://api.flutter.dev/flutter/animation/Tween-class.html">Tween&lt;Rect&gt;,</a>
+specified in Hero’s
+<a href="https://api.flutter.dev/flutter/widgets/CreateRectTween.html"><code class="highlighter-rouge">createRectTween</code></a> property.
+By default, Flutter uses an instance of
+<a href="https://api.flutter.dev/flutter/material/MaterialRectArcTween-class.html">MaterialRectArcTween,</a>
+which animates the rectangle’s opposing corners along a curved path.
+(See <a href="#radial-hero-animations">Radial hero animations</a>
+for an example that uses a different Tween animation.)</p>
+
+<hr>
+
+<p><img alt="When the transition is complete, the hero is moved from the overlay to the destination route" class="mw-100" src="/assets/ui/animations/hero-transition-3-66ff086cd05a7ff64290c41634d6bbd63c025126427fc0a3459af8fd71b7cded.png"></p>
+
+<p>When the flight completes:</p>
+
+<ul>
+  <li>
+    <p>Flutter moves the hero widget from the overlay to the destination route. The
+overlay is now empty.</p>
+  </li>
+  <li>
+    <p>The destination hero appears in its final position in the destination route.</p>
+  </li>
+  <li>
+    <p>The source hero is restored to its route.</p>
+  </li>
+</ul>
+
+<hr>
+
+<p>Popping the route performs the same process, animating the hero back to its size
+and location in the source route.</p>
+
+<h3 id="essential-classes">
+<a id="essential-classes" class="anchor" href="#essential-classes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Essential classes</h3>
+
+<p>The examples in this guide use the following classes to
+implement hero animations:</p>
+
+<dl>
+  <dt><a href="https://api.flutter.dev/flutter/widgets/Hero-class.html">Hero</a></dt>
+  <dd>The widget that flies from the source to the destination route.
+Define one Hero for the source route and another for the
+destination route, and assign each the same tag.
+Flutter animates pairs of heroes with matching tags.</dd>
+  <dt><a href="https://api.flutter.dev/flutter/material/InkWell-class.html">Inkwell</a></dt>
+  <dd>Specifies what happens when tapping the hero.
+The InkWell’s <code class="highlighter-rouge">onTap()</code> method builds the new route and pushes it
+to the Navigator’s stack.</dd>
+  <dt><a href="https://api.flutter.dev/flutter/widgets/Navigator-class.html">Navigator</a></dt>
+  <dd>The Navigator manages a stack of routes. Pushing a route on or
+popping a route from the Navigator’s stack triggers the animation.</dd>
+  <dt><a href="https://api.flutter.dev/flutter/widgets/Route-class.html">Route</a></dt>
+  <dd>Specifies a screen or page. Most apps, beyond the most basic,
+have multiple routes.</dd>
+</dl>
+
+<h2 id="standard-hero-animations">
+<a id="standard-hero-animations" class="anchor" href="#standard-hero-animations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Standard hero animations</h2>
+
+<aside class="alert alert-secondary" role="alert">
+  <h4 class="no_toc" id="whats-the-point-1">
+<a id="whats-the-point-1" class="anchor" href="#whats-the-point-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>What's the point?</h4>
+
+  <ul>
+    <li>Specify a route using MaterialPageRoute, CupertinoPageRoute, or
+build a custom route using
+PageRouteBuilder. The examples in this section use MaterialPageRoute.</li>
+    <li>Change the size of the image at the end of the transition by
+wrapping the destination’s image in a SizedBox.</li>
+    <li>Change the location of the image by placing the destination’s
+image in a layout widget. These examples use Container.</li>
+  </ul>
+</aside>
+
+<p><a name="standard-hero-animation-code"></a></p>
+<aside class="alert alert-info">
+  <p><strong>Standard hero animation code</strong></p>
+
+  <p>Each of the following examples demonstrates flying an image from one
+  route to another. This guide describes the first example.</p>
+
+  <dl>
+    <dt><a href="https://github.com/flutter/website/tree/master/examples/_animation/hero_animation/">hero_animation</a></dt>
+    <dd>Encapsulates the hero code in a custom PhotoHero widget.
+Animates the hero’s motion along a curved path,
+as described in the Material motion spec.</dd>
+    <dt><a href="https://github.com/flutter/website/tree/master/examples/_animation/basic_hero_animation/">basic_hero_animation</a></dt>
+    <dd>Uses the hero widget directly.
+This more basic example, provided for your reference, isn’t
+described in this guide.</dd>
+  </dl>
+</aside>
+
+<h3 id="whats-going-on">
+<a id="whats-going-on" class="anchor" href="#whats-going-on" aria-hidden="true"><span class="octicon octicon-link"></span></a>What’s going on?</h3>
+
+<p>Flying an image from one route to another is easy to implement
+using Flutter’s hero widget. When using MaterialPageRoute
+to specify the new route, the image flies along a curved path,
+as described by the <a href="https://material-io.cn/guidelines/motion/movement.html">Material Design motion
+spec.</a></p>
+
+<p><a href="/docs/get-started/test-drive">Create a new Flutter example</a> and
+update it using the files from the
+<a href="https://github.com/flutter/website/tree/master/examples/_animation/hero_animation/">GitHub directory.</a></p>
+
+<p>To run the example:</p>
+
+<ul>
+  <li>Tap on the home route’s photo to fly the image to a new route
+showing the same photo at a different location and scale.</li>
+  <li>Return to the previous route by tapping the image, or by using the
+device’s back-to-the-previous-route gesture.</li>
+  <li>You can slow the transition further using the <code class="highlighter-rouge">timeDilation</code>
+property.</li>
+</ul>
+
+<h3 id="photohero-class">
+<a id="photohero-class" class="anchor" href="#photohero-class" aria-hidden="true"><span class="octicon octicon-link"></span></a>PhotoHero class</h3>
+
+<p>The custom PhotoHero class maintains the hero, and its size, image,
+and behavior when tapped. The PhotoHero builds the following
+widget tree:</p>
+
+<div class="text-center mb-4">
+  <img alt="PhotoHero class widget tree" class="mw-100" src="/assets/ui/animations/photohero-class-ebc745117913037726a9660636a95d6b54fb59d077bceecef1546975722c4c1a.png">
+</div>
+
+<p>Here’s the code:</p>
+
+<pre class="prettyprint lang-dart">class PhotoHero extends StatelessWidget {
+  const PhotoHero({ Key key, this.photo, this.onTap, this.width }) : super(key: key);
+
+  final String photo;
+  final VoidCallback onTap;
+  final double width;
+
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: width,
+      child: Hero(
+        tag: photo,
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: onTap,
+            child: Image.asset(
+              photo,
+              fit: BoxFit.contain,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}</pre>
+
+<p>Key information:</p>
+
+<ul>
+  <li>The starting route is implicitly pushed by <code class="highlighter-rouge">MaterialApp</code> when
+<code class="highlighter-rouge">HeroAnimation</code> is provided as the app’s home property.</li>
+  <li>An <code class="highlighter-rouge">InkWell</code> wraps the image, making it trivial to add a tap
+gesture to the both the source and destination heroes.</li>
+  <li>Defining the Material widget with a transparent color
+enables the image to “pop out” of the background as it
+flies to its destination.</li>
+  <li>The <code class="highlighter-rouge">SizedBox</code> specifies the hero’s size at the start and
+end of the animation.</li>
+  <li>Setting the Image’s <code class="highlighter-rouge">fit</code> property to <code class="highlighter-rouge">BoxFit.contain</code>,
+ensures that the image is as large as possible during the
+transition without changing its aspect ratio.</li>
+</ul>
+
+<h3 id="heroanimation-class">
+<a id="heroanimation-class" class="anchor" href="#heroanimation-class" aria-hidden="true"><span class="octicon octicon-link"></span></a>HeroAnimation class</h3>
+
+<p>The HeroAnimation class creates the source and destination
+PhotoHeroes, and sets up the transition.</p>
+
+<p>Here’s the code:</p>
+
+<pre class="prettyprint lang-dart">class HeroAnimation extends StatelessWidget {
+  Widget build(BuildContext context) {
+    <span class="highlight">timeDilation = 5.0; // 1.0 means normal animation speed.</span>
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Basic Hero Animation'),
+      ),
+      body: Center(
+        <span class="highlight">child: PhotoHero(</span>
+          photo: 'images/flippers-alpha.png',
+          width: 300.0,
+          <span class="highlight">onTap: ()</span> {
+            <span class="highlight">Navigator.of(context).push(MaterialPageRoute&lt;void&gt;(</span>
+              <span class="highlight">builder: (BuildContext context)</span> {
+                return Scaffold(
+                  appBar: AppBar(
+                    title: const Text('Flippers Page'),
+                  ),
+                  body: Container(
+                    // The blue background emphasizes that it's a new route.
+                    color: Colors.lightBlueAccent,
+                    padding: const EdgeInsets.all(16.0),
+                    alignment: Alignment.topLeft,
+                    <span class="highlight">child: PhotoHero(</span>
+                      photo: 'images/flippers-alpha.png',
+                      width: 100.0,
+                      <span class="highlight">onTap: ()</span> {
+                        <span class="highlight">Navigator.of(context).pop();</span>
+                      },
+                    ),
+                  ),
+                );
+              }
+            ));
+          },
+        ),
+      ),
+    );
+  }
+}</pre>
+
+<p>Key information:</p>
+
+<ul>
+  <li>When the user taps the <code class="highlighter-rouge">InkWell</code> containing the source hero, the code creates
+the destination route using <code class="highlighter-rouge">MaterialPageRoute</code>. Pushing the destination route
+to the <code class="highlighter-rouge">Navigator</code>’s stack triggers the animation.</li>
+  <li>The <code class="highlighter-rouge">Container</code> positions the <code class="highlighter-rouge">PhotoHero</code> in the destination route’s top-left
+corner, below the AppBar.</li>
+  <li>The <code class="highlighter-rouge">onTap()</code> method for the destination <code class="highlighter-rouge">PhotoHero</code> pops the <code class="highlighter-rouge">Navigator</code>’s
+stack, triggering the animation that flies the Hero back to the original
+route.</li>
+  <li>Use the <code class="highlighter-rouge">timeDilation</code> property to slow the transition while debugging.</li>
+</ul>
+
+<hr>
+
+<h2 id="radial-hero-animations">
+<a id="radial-hero-animations" class="anchor" href="#radial-hero-animations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Radial hero animations</h2>
+
+<aside class="alert alert-secondary" role="alert">
+  <h4 class="no_toc" id="whats-the-point-2">
+<a id="whats-the-point-2" class="anchor" href="#whats-the-point-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>What's the point?</h4>
+
+  <ul>
+    <li>A <em>radial transformation</em> animates a circular shape into a square
+shape.</li>
+    <li>A radial <em>hero</em> animation performs a radial transformation while
+flying the hero from the source route to the destination route.</li>
+    <li>MaterialRectCenter­Arc­Tween defines the tween animation.</li>
+    <li>Build the destination route using PageRouteBuilder.</li>
+  </ul>
+</aside>
+
+<p>Flying a hero from one route to another as it transforms from a circular shape
+to a rectanglar shape is a slick effect that you can implement using Hero
+widgets. To accomplish this, the code animates the intersection of two clip
+shapes: a circle and a square. Throughout the animation, the circle clip (and
+the image) scales from <code class="highlighter-rouge">minRadius</code> to <code class="highlighter-rouge">maxRadius</code>, while the square clip
+maintains constant size. At the same time, the image flies from its position in
+the source route to its position in the destination route. For visual examples
+of this transition, see <a href="https://material-io.cn/guidelines/motion/transforming-material.html#transforming-material-radial-transformation">Radial transformation</a> in the Material motion spec.</p>
+
+<p>This animation might seem complex (and it is), but you can <strong>customize the
+provided example to your needs.</strong> The heavy lifting is done for you.</p>
+
+<p><a name="radial-hero-animation-code"></a></p>
+<aside class="alert alert-info">
+  <p><strong>Radial hero animation code</strong></p>
+
+  <p>Each of the following examples demonstrates a radial hero animation.
+  This guide describes the first example.</p>
+
+  <dl>
+    <dt><a href="https://github.com/flutter/website/tree/master/examples/_animation/radial_hero_animation">radial_hero_animation</a></dt>
+    <dd>A radial hero animation as described in the Material motion spec.</dd>
+    <dt><a href="https://github.com/flutter/website/tree/master/examples/_animation/basic_radial_hero_animation">basic_radial_hero_animation</a></dt>
+    <dd>The simplest example of a radial hero animation. The destination
+route has no Scaffold, Card, Column, or Text.
+This basic example, provided for your reference, isn’t
+described in this guide.</dd>
+    <dt><a href="https://github.com/flutter/website/tree/master/examples/_animation/radial_hero_animation_animate_rectclip">radial_hero_animation_animate<wbr>_rectclip</a></dt>
+    <dd>Extends radial_hero_animaton by also animating the size of the
+rectangular clip. This more advanced example,
+provided for your reference, isn’t described in this guide.</dd>
+  </dl>
+</aside>
+
+<aside class="alert alert-info">
+  <p><strong>Pro tip:</strong>
+  The radial hero animation involves intersecting a round shape with
+  a square shape. This can be hard to see, even when slowing
+  the animation with <code class="highlighter-rouge">timeDilation</code>, so you might consider enabling
+  Flutter’s <a href="/docs/testing/debugging#visual-debugging">visual debugging mode</a>
+  during development.</p>
+</aside>
+
+<h3 id="whats-going-on-1">
+<a id="whats-going-on-1" class="anchor" href="#whats-going-on-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>What’s going on?</h3>
+
+<p>The following diagram shows the clipped image at the beginning
+(<code class="highlighter-rouge">t = 0.0</code>), and the end (<code class="highlighter-rouge">t = 1.0</code>) of the animation.</p>
+
+<p><img alt="Radial transformation from beginning to end" class="mw-100" src="/assets/ui/animations/radial-hero-animation-cf2651ecb9c60cd5001451fb534e90621774cc186adebd519b056eaa92dec33f.png"></p>
+
+<p>The blue gradient (representing the image), indicates where the clip
+shapes intersect. At the beginning of the transition,
+the result of the intersection is a circular clip
+(<a href="https://api.flutter.dev/flutter/widgets/ClipOval-class.html">ClipOval</a>).
+During the transformation,
+the ClipOval scales from <code class="highlighter-rouge">minRadius</code> to <code class="highlighter-rouge">maxRadius</code> while the
+<a href="https://api.flutter.dev/flutter/widgets/ClipRect-class.html">ClipRect</a>
+maintains a constant size.
+At the end of the transition the intersection of the circular and
+rectangular clips yield a rectangle that’s the same size as the hero
+widget. In other words, at the end of the transition the image is no
+longer clipped.</p>
+
+<p><a href="/docs/get-started/test-drive">Create a new Flutter example</a> and
+update it using the files from the
+<a href="https://github.com/flutter/website/tree/master/examples/_animation/radial_hero_animation">GitHub directory.</a></p>
+
+<p>To run the example:</p>
+
+<ul>
+  <li>Tap on one of the three circular thumbnails to animate the image
+to a larger square positioned in the middle of a new route that
+obscures the original route.</li>
+  <li>Return to the previous route by tapping the image, or by using the
+device’s back-to-the-previous-route gesture.</li>
+  <li>You can slow the transition further using the <code class="highlighter-rouge">timeDilation</code>
+property.</li>
+</ul>
+
+<h3 id="photo-class">
+<a id="photo-class" class="anchor" href="#photo-class" aria-hidden="true"><span class="octicon octicon-link"></span></a>Photo class</h3>
+
+<p>The Photo class builds the widget tree that holds the image:</p>
+
+<pre class="prettyprint lang-dart">class Photo extends StatelessWidget {
+  Photo({ Key key, this.photo, this.color, this.onTap }) : super(key: key);
+
+  final String photo;
+  final Color color;
+  final VoidCallback onTap;
+
+  Widget build(BuildContext context) {
+    return <span class="highlight">Material(</span>
+      // Slightly opaque color appears where the image has transparency.
+      <span class="highlight">color: Theme.of(context).primaryColor.withOpacity(0.25),</span>
+      child: <span class="highlight">InkWell(</span>
+        onTap: <span class="highlight">onTap,</span>
+        child: <span class="highlight">Image.asset(</span>
+            photo,
+            fit: BoxFit.contain,
+          )
+      ),
+    );
+  }
+}</pre>
+
+<p>Key information:</p>
+
+<ul>
+  <li>The <code class="highlighter-rouge">Inkwell</code> captures the tap gesture.
+The calling function passes the <code class="highlighter-rouge">onTap()</code> function to the
+Photo’s constructor.</li>
+  <li>During flight, the InkWell draws its splash on its first Material
+ancestor.</li>
+  <li>The Material widget has a slightly opaque color, so the
+transparent portions of the image are rendered with color.
+This ensures that the circle-to-square transition is easy to see,
+even for images with transparency.</li>
+  <li>The Photo class does not include the Hero in its widget tree.
+For the animation to work, the hero
+wraps the <code class="highlighter-rouge">RadialExpansion</code> widget.</li>
+</ul>
+
+<h3 id="radialexpansion-class">
+<a id="radialexpansion-class" class="anchor" href="#radialexpansion-class" aria-hidden="true"><span class="octicon octicon-link"></span></a>RadialExpansion class</h3>
+
+<p>The RadialExpansion widget, the core of the demo, builds the
+widget tree that clips the image during the transition.
+The clipped shape results from the intersection of a circular clip
+(that grows during flight),
+with a rectangular clip (that remains a constant size throughout).</p>
+
+<p>To do this, it builds the following widget tree:</p>
+
+<div class="text-center mb-4">
+  <img alt="RadialExpansion widget tree" class="mw-100" src="/assets/ui/animations/radial-expansion-class-057f907d3b6ff22ac2c857a2e739436dd36eedd3ef0ed9dd73839d93d026f0d7.png">
+</div>
+
+<p>Here’s the code:</p>
+
+<pre class="prettyprint lang-dart">class RadialExpansion extends StatelessWidget {
+  RadialExpansion({
+    Key key,
+    this.maxRadius,
+    this.child,
+  }) : <span class="highlight">clipRectSize = 2.0 * (maxRadius / math.sqrt2),</span>
+       super(key: key);
+
+  final double maxRadius;
+  final clipRectSize;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) 
+    return <span class="highlight">ClipOval(</span>
+      child: <span class="highlight">Center(</span>
+        child: <span class="highlight">SizedBox(</span>
+          width: clipRectSize,
+          height: clipRectSize,
+          child: <span class="highlight">ClipRect(</span>
+            child: <span class="highlight">child,</span>  // Photo
+          ),
+        ),
+      ),
+    );
+  }
+}</pre>
+
+<p>Key information:</p>
+
+<ul>
+  <li>The hero wraps the <code class="highlighter-rouge">RadialExpansion</code> widget.</li>
+  <li>As the hero flies, its size changes and, because it constrains its child’s
+size, the <code class="highlighter-rouge">RadialExpansion</code> widget changes size to match.</li>
+  <li>The <code class="highlighter-rouge">RadialExpansion</code> animation is created by two overlapping clips.</li>
+  <li>
+    <p>The example defines the tweening interpolation using
+<a href="https://api.flutter.dev/flutter/material/MaterialRectCenterArcTween-class.html">MaterialRectCenterArcTween</a>. The default flight path for a hero animation
+interpolates the tweens using the corners of the heroes. This approach affects
+the hero’s aspect ratio during the radial transformation, so the new flight
+path uses <code class="highlighter-rouge">MaterialRectCenterArcTween</code> to interpolate the tweens using the
+center point of each hero.</p>
+
+    <p>Here’s the code:</p>
+
+    <!-- skip -->
+    <pre class="prettyprint lang-dart">static RectTween _createRectTween(Rect begin, Rect end) {
+  return MaterialRectCenterArcTween(begin: begin, end: end);
+}</pre>
+
+    <p>The hero’s flight path still follows an arc,
+but the image’s aspect ratio remains constant.</p>
+  </li>
+</ul>
+
+<hr>
+
+<h2 id="resources">
+<a id="resources" class="anchor" href="#resources" aria-hidden="true"><span class="octicon octicon-link"></span></a>Resources</h2>
+
+<p>The following resources might help when writing animations:</p>
+
+<dl>
+  <dt><a href="/docs/development/ui/animations">Animations landing page</a></dt>
+  <dd>Lists the available documentation for Flutter animations.
+If tweens are new to you, check out the
+<a href="/docs/development/ui/animations/tutorial">Animations tutorial</a>.</dd>
+  <dt><a href="https://api.flutter.dev">Flutter API documentation</a></dt>
+  <dd>Reference documentation for all of the Flutter libraries.
+In particular, see the <a href="https://api.flutter.dev/flutter/animation/animation-library.html">animation
+library</a>
+documentation.</dd>
+  <dt><a href="https://github.com/flutter/flutter/tree/master/examples/flutter_gallery">Flutter Gallery</a></dt>
+  <dd>Demo app showcasing many Material Design widgets and other Flutter
+features.  The <a href="https://github.com/flutter/flutter/tree/master/examples/flutter_gallery/lib/demo/shrine">Shrine
+demo</a>
+implements a hero animation.</dd>
+  <dt><a href="https://material-io.cn/guidelines/motion/">Material motion spec</a></dt>
+  <dd>Describes motion for Material design apps.</dd>
+</dl>
+
+
+        
+      </div>
+    </main>
+  </div>
+</div>
+<footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 site-footer__wrapper">
+        <div class="site-footer__logo">
+          <img src="/images/flutter-mono-81x100.png" alt="Flutter Logo" width="81" height="100">
+        </div>
+        <div class="site-footer__content">
+          <ul class="site-footer__link-list">
+              <li><a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a></li>
+              <li><a href="/tos">terms</a></li>
+              <li><a href="/security">security</a></li>
+              <li><a href="https://www.google.com/intl/en/policies/privacy">privacy</a></li>
+              <li><a href="https://flutter-es.io/">español</a></li>
+              <li><a href="https://flutter-io.cn" class="text-nowrap">社区中文资源</a></li>
+          </ul>
+
+          <p class="licenses" translation-origin="on">
+            Except as otherwise noted,
+            this work is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0">Creative
+            Commons Attribution 4.0 International License</a>,
+            and code samples are licensed under the BSD License.
+          </p>
+          <p class="licenses" translation-result="off">
+            除非特别说明，否则本站内容采用 <a rel="license" href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0 授权协议</a>，所有范例代码都采用 BSD 授权协议。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- <script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script> -->
+  
+
+<script src="/assets/translator/js/translator.js"></script></body></html>

@@ -1,0 +1,1173 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>使用 Camera 插件实现拍照功能  - Flutter 中文文档 - Flutter 社区中文资源 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-ND4LWWZ');</script>
+  <!-- End Google Tag Manager -->
+
+  
+  <meta name="description" content="Many apps require working with the device's cameras to take photos and videos.Flutter provides the [`camera`]({{site.pub-pkg}}/camera) pluginfor this purpose. The `camera` plugin provides tools to get a list of theavailable cameras, display a preview coming from a specific camera, and takephotos or videos.This recipe demonstrates how to use the `camera`...">
+  <meta name="keywords" content=" ">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@flutterdev">
+
+  <meta property="og:title" content="使用 Camera 插件实现拍照功能">
+  <meta property="og:url" content="https://flutter.dev/docs/cookbook/plugins/picture-using-camera">
+  <meta property="og:description" content="Many apps require working with the device's cameras to take photos and videos.Flutter provides the [`camera`]({{site.pub-pkg}}/camera) pluginfor this purpose. The `camera` plugin provides tools to get a list of theavailable cameras, display a preview coming from a specific camera, and takephotos or videos.This recipe demonstrates how to use the `camera`...">
+  
+  <meta property="og:image" content="https://flutter.dev/images/flutter-logo-sharing.png">
+
+  <link href="/assets/translator/css/material-roboto.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/assets/main-74a0c308218334fcd85291a957a514973015ea8e4eb76b9abae6e14bb5012f5e.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  <script src="/assets/main-d6b8b8d26e7b4122b3ddf6a5201966d6e2494aaffadaafaf7c571ce5e2fe0aab.js" type="text/javascript"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-122680122-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <!--<meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />-->
+<link href="/assets/translator/css/translator.css" rel="stylesheet"></head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-ND4LWWZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div id="overlay-under-drawer"></div>
+
+    <header class="site-header">
+  <nav class="navbar navbar-expand-md justify-content-start justify-content-md-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="material-icons">menu</i>
+    </button>
+
+    <a class="navbar-brand" href="/">
+      <img alt="Flutter by Google" height="37" width="129" class="align-middle" src="/assets/flutter-lockup-4cb0ee072ab312e59784d9fbf4fb7ad42688a7fdaea1270ccf6bbf4f34b7e03f.svg">
+    </a>
+
+    <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
+      <div class="site-header__sheet-bg" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></div>
+      <div class="site-header__sheet">
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <a class="nav-link active" href="/docs">开发文档</a>
+          </li>
+          <div class="site-sidebar site-sidebar--header d-md-none">
+            <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="false" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="true" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link active" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+          </div>
+
+<!-- 
+          <li class="nav-item">
+            <a class="nav-link" href="/showcase">Showcase</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/community">Community</a>
+          </li>
+ -->
+        </ul>
+        <form action="/search" class="site-header__search form-inline">
+          <input class="site-header__searchfield form-control" type="search" name="q" id="q" autocomplete="off" placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+    </div>
+    <div class="site-header__social navbar-nav flex-row">
+      <a class="nav-item nav-link" href="https://twitter.com/flutterdev"><i class="fab fa-twitter fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://www.youtube.com/flutterdev"><i class="fab fa-youtube fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://github.com/flutter"><i class="fab fa-github fa-lg"></i></a>
+    </div>
+    <a class="site-header__cta btn btn-primary" href="/docs/get-started/install/">Get started</a>
+    </nav>
+</header>
+<div class="site-banner site-banner--default" role="alert">
+    <p>
+      We are looking for a Flutter Infrastructure engineer!
+      <a href="/jobs/infrastructure" target="_blank" rel="noopener">Learn more</a>.
+    </p>
+
+  </div>
+<div class="container-fluid position-relative">
+  <div class="row flex-xl-nowrap">
+    <div class="fixed-col site-sidebar site-sidebar--fixed col-12 col-md-3 col-xl-2 d-none d-md-block" data-fixed-column="">
+      <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="false" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="true" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link active" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+    </div>
+    <div id="site-toc--side" class="site-toc site-toc--side fixed-col col-xl-2 order-3" data-fixed-column="">
+  <header class="site-toc__title">
+    Contents
+    <button type="button" class="btn site-toc--button__page-top" aria-label="Page top"></button>
+    </header>
+  <ul class="section-nav nav">
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#directions">Directions</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#1-add-the-required-dependencies">1. Add the required dependencies</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#2-get-a-list-of-the-available-cameras">2. Get a list of the available cameras</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#3-create-and-initialize-the-cameracontroller">3. Create and initialize the CameraController</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#4-use-a-camerapreview-to-display-the-cameras-feed">4. Use a CameraPreview to display the camera’s feed</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#5-take-a-picture-with-the-cameracontroller">5. Take a picture with the CameraController</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#6-display-the-picture-with-an-image-widget">6. Display the picture with an Image Widget</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#complete-example">Complete Example</a></li>
+</ul>
+</div>
+<main class="site-content col-12 col-md-9 offset-md-3 col-xl-8 offset-xl-2 col-xxl-8 offset-xxl-2" role="main">
+      <div class="container">
+        
+        <nav class="site-nextprev-nav">
+    <ul>
+      <li class="prev">
+          <a href="/docs/cookbook/plugins/play-video">视频的播放和暂停</a>
+      </li>
+      <li class="next">
+          <a href="/docs/cookbook/testing/integration/introduction">集成测试介绍</a>
+      </li>
+      </ul>
+  </nav>
+
+        <header class="site-content__title">
+          <div id="page-github-links" class="btn-group" aria-label="Page GitHub links" role="group">
+  <a href="https://github.com/cfug/flutter.cn/tree/master/src/docs/cookbook/plugins/picture-using-camera.md" class="btn no-automatic-external" title="View page source" target="_blank" rel="noopener">
+    <i class="fas fa-file-alt fa-sm"></i>
+  </a>
+  <a href="https://github.com/cfug/flutter.cn/issues/new?title='使用 Camera 插件实现拍照功能' page issue&amp;body=
+Page URL: https://flutter.dev/docs/cookbook/plugins/picture-using-camera.html%0D%0A
+Page source: https://github.com/cfug/flutter.cn/tree/master/src/docs/cookbook/plugins/picture-using-camera.md%0D%0A
+%0D%0A
+Found a typo? You can fix it yourself by going to the page source and clicking the pencil icon. Or finish creating this issue.%0D%0A
+%0D%0A
+Description of issue:" class="btn no-automatic-external" title="Report an issue with this page" target="_blank" rel="noopener">
+    <i class="fas fa-bug fa-sm"></i>
+  </a>
+</div>
+
+          <h1 id="使用-camera-插件实现拍照功能">使用 Camera 插件实现拍照功能</h1>
+          
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="/docs" property="item" typeof="WebPage"><span property="name">文档</span>
+      </a>
+      <meta property="position" content="1">
+    </li>
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="/docs/cookbook" property="item" typeof="WebPage"><span property="name">实用教程</span>
+      </a>
+      <meta property="position" content="2">
+    </li>
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="/docs/cookbook/plugins" property="item" typeof="WebPage"><span property="name">插件 (Plugins)</span>
+      </a>
+      <meta property="position" content="3">
+    </li>
+  <li class="breadcrumb-item active" property="itemListElement" typeof="ListItem" aria-current="page"><a href="/docs/cookbook/plugins/picture-using-camera.html" property="item" typeof="WebPage"><span property="name">使用 Camera 插件实现拍照功能</span>
+      </a>
+      <meta property="position" content="4">
+    </li>
+  
+  </ol>
+</nav>
+          </header>
+        <div id="site-toc--inline" class="site-toc site-toc--inline ">
+  <header class="site-toc__title">
+    Contents
+    </header>
+  <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#directions">Directions</a></li>
+<li class="toc-entry toc-h2"><a href="#1-add-the-required-dependencies">1. Add the required dependencies</a></li>
+<li class="toc-entry toc-h2"><a href="#2-get-a-list-of-the-available-cameras">2. Get a list of the available cameras</a></li>
+<li class="toc-entry toc-h2"><a href="#3-create-and-initialize-the-cameracontroller">3. Create and initialize the CameraController</a></li>
+<li class="toc-entry toc-h2"><a href="#4-use-a-camerapreview-to-display-the-cameras-feed">4. Use a CameraPreview to display the camera’s feed</a></li>
+<li class="toc-entry toc-h2"><a href="#5-take-a-picture-with-the-cameracontroller">5. Take a picture with the CameraController</a></li>
+<li class="toc-entry toc-h2"><a href="#6-display-the-picture-with-an-image-widget">6. Display the picture with an Image Widget</a></li>
+<li class="toc-entry toc-h2"><a href="#complete-example">Complete Example</a></li>
+</ul>
+</div>
+<p>Many apps require working with the device’s cameras to take photos and videos.
+Flutter provides the <a href="https://pub.flutter-io.cn/packages/camera"><code class="highlighter-rouge">camera</code></a> plugin
+for this purpose. The <code class="highlighter-rouge">camera</code> plugin provides tools to get a list of the
+available cameras, display a preview coming from a specific camera, and take
+photos or videos.</p>
+
+<p>This recipe demonstrates how to use the <code class="highlighter-rouge">camera</code> plugin to display a preview, 
+take a photo, and display it.</p>
+
+<h2 id="directions">
+<a id="directions" class="anchor" href="#directions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Directions</h2>
+
+<ol>
+  <li>Add the required dependencies</li>
+  <li>Get a list of the available cameras</li>
+  <li>Create and initialize the <code class="highlighter-rouge">CameraController</code>
+</li>
+  <li>Use a <code class="highlighter-rouge">CameraPreview</code> to display the camera’s feed</li>
+  <li>Take a picture with the <code class="highlighter-rouge">CameraController</code>
+</li>
+  <li>Display the picture with an <code class="highlighter-rouge">Image</code> Widget</li>
+</ol>
+
+<h2 id="1-add-the-required-dependencies">
+<a id="1-add-the-required-dependencies" class="anchor" href="#1-add-the-required-dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Add the required dependencies</h2>
+
+<p>To complete this recipe, you need to add three dependencies to your app:</p>
+
+<ul>
+  <li>
+<a href="https://pub.flutter-io.cn/packages/camera"><code class="highlighter-rouge">camera</code></a> - Provides tools to work with the cameras on device</li>
+  <li>
+<a href="https://pub.flutter-io.cn/packages/path_provider"><code class="highlighter-rouge">path_provider</code></a> - Finds the correct paths to store images</li>
+  <li>
+<a href="https://pub.flutter-io.cn/packages/path"><code class="highlighter-rouge">path</code></a> - Creates paths that work on any platform</li>
+</ul>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">dependencies</span><span class="pi">:</span>
+  <span class="na">flutter</span><span class="pi">:</span>
+    <span class="na">sdk</span><span class="pi">:</span> <span class="s">flutter</span>
+  <span class="na">camera</span><span class="pi">:</span>
+  <span class="na">path_provider</span><span class="pi">:</span>
+  <span class="na">path</span><span class="pi">:</span>
+</code></pre></div></div>
+
+<h2 id="2-get-a-list-of-the-available-cameras">
+<a id="2-get-a-list-of-the-available-cameras" class="anchor" href="#2-get-a-list-of-the-available-cameras" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Get a list of the available cameras</h2>
+
+<p>Next, you can get a list of available cameras using the <code class="highlighter-rouge">camera</code> plugin.</p>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Obtain a list of the available cameras on the device.</span>
+<span class="kd">final</span> <span class="n">cameras</span> <span class="o">=</span> <span class="n">await</span> <span class="n">availableCameras</span><span class="o">();</span>
+
+<span class="c1">// Get a specific camera from the list of available cameras</span>
+<span class="kd">final</span> <span class="n">firstCamera</span> <span class="o">=</span> <span class="n">cameras</span><span class="o">.</span><span class="na">first</span><span class="o">;</span> 
+</code></pre></div></div>
+
+<h2 id="3-create-and-initialize-the-cameracontroller">
+<a id="3-create-and-initialize-the-cameracontroller" class="anchor" href="#3-create-and-initialize-the-cameracontroller" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Create and initialize the <code class="highlighter-rouge">CameraController</code>
+</h2>
+
+<p>Once you have a camera to work with, you need to create and initialize a
+<code class="highlighter-rouge">CameraController</code>. This process establishes a connection to the device’s camera
+that allows you to control the camera and display a preview of the camera’s
+feed.</p>
+
+<p>To achieve this, please:</p>
+
+<ol>
+  <li>Create a <code class="highlighter-rouge">StatefulWidget</code> with a companion <code class="highlighter-rouge">State</code> class</li>
+  <li>Add a variable to the <code class="highlighter-rouge">State</code> class to store the <code class="highlighter-rouge">CameraController</code>
+</li>
+  <li>Add a variable to the <code class="highlighter-rouge">State</code> class to store the <code class="highlighter-rouge">Future</code> returned from
+  <code class="highlighter-rouge">CameraController.initialize</code>
+</li>
+  <li>Create and initialize the controller in the <code class="highlighter-rouge">initState</code> method</li>
+  <li>Dispose of the controller in the <code class="highlighter-rouge">dispose</code> method</li>
+</ol>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// A screen that takes in a list of Cameras and the Directory to store images.</span>
+<span class="kd">class</span> <span class="nc">TakePictureScreen</span> <span class="kd">extends</span> <span class="n">StatefulWidget</span> <span class="o">{</span>
+  <span class="kd">final</span> <span class="n">CameraDescription</span> <span class="n">camera</span><span class="o">;</span>
+
+  <span class="kd">const</span> <span class="n">TakePictureScreen</span><span class="o">({</span>
+    <span class="n">Key</span> <span class="n">key</span><span class="o">,</span>
+    <span class="nd">@required</span> <span class="k">this</span><span class="o">.</span><span class="na">camera</span><span class="o">,</span>
+  <span class="o">})</span> <span class="o">:</span> <span class="k">super</span><span class="o">(</span><span class="nl">key:</span> <span class="n">key</span><span class="o">);</span>
+
+  <span class="nd">@override</span>
+  <span class="n">TakePictureScreenState</span> <span class="n">createState</span><span class="o">()</span> <span class="o">=&gt;</span> <span class="n">TakePictureScreenState</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">TakePictureScreenState</span> <span class="kd">extends</span> <span class="n">State</span><span class="o">&lt;</span><span class="n">TakePictureScreen</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="c1">// Add two variables to the state class to store the CameraController and</span>
+  <span class="c1">// the Future</span>
+  <span class="n">CameraController</span> <span class="n">_controller</span><span class="o">;</span>
+  <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">_initializeControllerFuture</span><span class="o">;</span>
+
+  <span class="nd">@override</span>
+  <span class="kt">void</span> <span class="n">initState</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">super</span><span class="o">.</span><span class="na">initState</span><span class="o">();</span>
+    <span class="c1">// In order to display the current output from the Camera, you need to</span>
+    <span class="c1">// create a CameraController.</span>
+    <span class="n">_controller</span> <span class="o">=</span> <span class="n">CameraController</span><span class="o">(</span>
+      <span class="c1">// Get a specific camera from the list of available cameras</span>
+      <span class="n">widget</span><span class="o">.</span><span class="na">camera</span><span class="o">,</span>
+      <span class="c1">// Define the resolution to use</span>
+      <span class="n">ResolutionPreset</span><span class="o">.</span><span class="na">medium</span><span class="o">,</span>
+    <span class="o">);</span>
+
+    <span class="c1">// Next, you need to initialize the controller. This returns a Future</span>
+    <span class="n">_initializeControllerFuture</span> <span class="o">=</span> <span class="n">_controller</span><span class="o">.</span><span class="na">initialize</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="nd">@override</span>
+  <span class="kt">void</span> <span class="n">dispose</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// Make sure to dispose of the controller when the Widget is disposed</span>
+    <span class="n">_controller</span><span class="o">.</span><span class="na">dispose</span><span class="o">();</span>
+    <span class="k">super</span><span class="o">.</span><span class="na">dispose</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Fill this out in the next steps</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<aside class="alert alert-warning" role="alert">
+  <p><i class="fas fa-exclamation-triangle"></i> <strong>请注意：:</strong>
+If you do not initialize the <code class="highlighter-rouge">CameraController</code>, you <em>cannot</em> use the camera
+to display a preview and take pictures.</p>
+</aside>
+
+<h2 id="4-use-a-camerapreview-to-display-the-cameras-feed">
+<a id="4-use-a-camerapreview-to-display-the-cameras-feed" class="anchor" href="#4-use-a-camerapreview-to-display-the-cameras-feed" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. Use a <code class="highlighter-rouge">CameraPreview</code> to display the camera’s feed</h2>
+
+<p>Next, you can use the <code class="highlighter-rouge">CameraPreview</code> Widget from the <code class="highlighter-rouge">camera</code> package to
+display a preview of the camera’s feed.</p>
+
+<p>Remember: You must wait until the controller has finished initializing before
+working with the camera. Therefore, you must wait for the
+<code class="highlighter-rouge">_initializeControllerFuture</code> created in the previous step to complete before
+showing a <code class="highlighter-rouge">CameraPreview</code>.</p>
+
+<p>You can use a
+<a href="https://api.flutter.dev/flutter/widgets/FutureBuilder-class.html"><code class="highlighter-rouge">FutureBuilder</code></a>
+for exactly this purpose.</p>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// You must wait until the controller is initialized before displaying the</span>
+<span class="c1">// camera preview. Use a FutureBuilder to display a loading spinner until the</span>
+<span class="c1">// controller has finished initializing</span>
+<span class="n">FutureBuilder</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;(</span>
+  <span class="nl">future:</span> <span class="n">_initializeControllerFuture</span><span class="o">,</span>
+  <span class="nl">builder:</span> <span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">snapshot</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">snapshot</span><span class="o">.</span><span class="na">connectionState</span> <span class="o">==</span> <span class="n">ConnectionState</span><span class="o">.</span><span class="na">done</span><span class="o">)</span> <span class="o">{</span>
+      <span class="c1">// If the Future is complete, display the preview</span>
+      <span class="k">return</span> <span class="n">CameraPreview</span><span class="o">(</span><span class="n">_controller</span><span class="o">);</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+      <span class="c1">// Otherwise, display a loading indicator</span>
+      <span class="k">return</span> <span class="n">Center</span><span class="o">(</span><span class="nl">child:</span> <span class="n">CircularProgressIndicator</span><span class="o">());</span>
+    <span class="o">}</span>
+  <span class="o">},</span>
+<span class="o">)</span>
+</code></pre></div></div>
+
+<h2 id="5-take-a-picture-with-the-cameracontroller">
+<a id="5-take-a-picture-with-the-cameracontroller" class="anchor" href="#5-take-a-picture-with-the-cameracontroller" aria-hidden="true"><span class="octicon octicon-link"></span></a>5. Take a picture with the <code class="highlighter-rouge">CameraController</code>
+</h2>
+
+<p>You can also use the <code class="highlighter-rouge">CameraController</code> to take pictures using the
+<a href="https://pub.dartlang.org/documentation/camera/latest/camera/CameraController/takePicture.html"><code class="highlighter-rouge">takePicture</code></a>
+method. In this example, create a <code class="highlighter-rouge">FloatingActionButton</code> that takes a picture
+using the <code class="highlighter-rouge">CameraController</code> when a user taps on the button.</p>
+
+<p>Saving a picture requires 3 steps:</p>
+
+<ol>
+  <li>Ensure the camera is initialized</li>
+  <li>Construct a path that defines where the picture should be saved</li>
+  <li>Use the controller to take a picture and save the result to the path</li>
+</ol>
+
+<p>It is good practice to wrap these operations in a <code class="highlighter-rouge">try / catch</code> block in order
+to handle any errors that might occur.</p>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">FloatingActionButton</span><span class="o">(</span>
+  <span class="nl">child:</span> <span class="n">Icon</span><span class="o">(</span><span class="n">Icons</span><span class="o">.</span><span class="na">camera_alt</span><span class="o">),</span>
+  <span class="c1">// Provide an onPressed callback</span>
+  <span class="nl">onPressed:</span> <span class="o">()</span> <span class="n">async</span> <span class="o">{</span>
+    <span class="c1">// Take the Picture in a try / catch block. If anything goes wrong,</span>
+    <span class="c1">// catch the error.</span>
+    <span class="k">try</span> <span class="o">{</span>
+      <span class="c1">// Ensure the camera is initialized</span>
+      <span class="n">await</span> <span class="n">_initializeControllerFuture</span><span class="o">;</span>
+
+      <span class="c1">// Construct the path where the image should be saved using the path</span>
+      <span class="c1">// package.</span>
+      <span class="kd">final</span> <span class="n">path</span> <span class="o">=</span> <span class="n">join</span><span class="o">(</span>
+        <span class="c1">// In this example, store the picture in the temp directory. Find</span>
+        <span class="c1">// the temp directory using the `path_provider` plugin.</span>
+        <span class="o">(</span><span class="n">await</span> <span class="n">getTemporaryDirectory</span><span class="o">()).</span><span class="na">path</span><span class="o">,</span>
+        <span class="s">'</span><span class="si">${DateTime.now()}</span><span class="s">.png'</span><span class="o">,</span>
+      <span class="o">);</span>
+
+      <span class="c1">// Attempt to take a picture and log where it's been saved</span>
+      <span class="n">await</span> <span class="n">_controller</span><span class="o">.</span><span class="na">takePicture</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+      <span class="c1">// If an error occurs, log the error to the console.</span>
+      <span class="n">print</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">},</span>
+<span class="o">)</span>
+</code></pre></div></div>
+<h2 id="6-display-the-picture-with-an-image-widget">
+<a id="6-display-the-picture-with-an-image-widget" class="anchor" href="#6-display-the-picture-with-an-image-widget" aria-hidden="true"><span class="octicon octicon-link"></span></a>6. Display the picture with an <code class="highlighter-rouge">Image</code> Widget</h2>
+
+<p>If you take the picture successfully, you can then display the saved picture
+using an <code class="highlighter-rouge">Image</code> widget. In this case, the picture is stored as a file on
+the device.</p>
+
+<p>Therefore, you must provide a <code class="highlighter-rouge">File</code> to the <code class="highlighter-rouge">Image.file</code> constructor. You
+can create an instance of the <code class="highlighter-rouge">File</code> class by passing in the path you created in
+the previous step.</p>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Image</span><span class="o">.</span><span class="na">file</span><span class="o">(</span><span class="n">File</span><span class="o">(</span><span class="s">'path/to/my/picture.png'</span><span class="o">))</span>
+</code></pre></div></div>
+
+<h2 id="complete-example">
+<a id="complete-example" class="anchor" href="#complete-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Complete Example</h2>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="s">'dart:async'</span><span class="o">;</span>
+<span class="kn">import</span> <span class="s">'dart:io'</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="s">'package:camera/camera.dart'</span><span class="o">;</span>
+<span class="kn">import</span> <span class="s">'package:flutter/material.dart'</span><span class="o">;</span>
+<span class="kn">import</span> <span class="s">'package:path/path.dart'</span> <span class="kd">show</span> <span class="n">join</span><span class="o">;</span>
+<span class="kn">import</span> <span class="s">'package:path_provider/path_provider.dart'</span><span class="o">;</span>
+
+<span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">main</span><span class="o">()</span> <span class="n">async</span> <span class="o">{</span>
+  <span class="c1">// Obtain a list of the available cameras on the device.</span>
+  <span class="kd">final</span> <span class="n">cameras</span> <span class="o">=</span> <span class="n">await</span> <span class="n">availableCameras</span><span class="o">();</span>
+
+  <span class="c1">// Get a specific camera from the list of available cameras</span>
+  <span class="kd">final</span> <span class="n">firstCamera</span> <span class="o">=</span> <span class="n">cameras</span><span class="o">.</span><span class="na">first</span><span class="o">;</span>
+
+  <span class="n">runApp</span><span class="o">(</span>
+    <span class="n">MaterialApp</span><span class="o">(</span>
+      <span class="nl">theme:</span> <span class="n">ThemeData</span><span class="o">.</span><span class="na">dark</span><span class="o">(),</span>
+      <span class="nl">home:</span> <span class="n">TakePictureScreen</span><span class="o">(</span>
+        <span class="c1">// Pass the appropriate camera to the TakePictureScreen Widget</span>
+        <span class="nl">camera:</span> <span class="n">firstCamera</span><span class="o">,</span>
+      <span class="o">),</span>
+    <span class="o">),</span>
+  <span class="o">);</span>
+<span class="o">}</span>
+
+<span class="c1">// A screen that allows users to take a picture using a given camera</span>
+<span class="kd">class</span> <span class="nc">TakePictureScreen</span> <span class="kd">extends</span> <span class="n">StatefulWidget</span> <span class="o">{</span>
+  <span class="kd">final</span> <span class="n">CameraDescription</span> <span class="n">camera</span><span class="o">;</span>
+
+  <span class="kd">const</span> <span class="n">TakePictureScreen</span><span class="o">({</span>
+    <span class="n">Key</span> <span class="n">key</span><span class="o">,</span>
+    <span class="nd">@required</span> <span class="k">this</span><span class="o">.</span><span class="na">camera</span><span class="o">,</span>
+  <span class="o">})</span> <span class="o">:</span> <span class="k">super</span><span class="o">(</span><span class="nl">key:</span> <span class="n">key</span><span class="o">);</span>
+
+  <span class="nd">@override</span>
+  <span class="n">TakePictureScreenState</span> <span class="n">createState</span><span class="o">()</span> <span class="o">=&gt;</span> <span class="n">TakePictureScreenState</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">TakePictureScreenState</span> <span class="kd">extends</span> <span class="n">State</span><span class="o">&lt;</span><span class="n">TakePictureScreen</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="n">CameraController</span> <span class="n">_controller</span><span class="o">;</span>
+  <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">_initializeControllerFuture</span><span class="o">;</span>
+
+  <span class="nd">@override</span>
+  <span class="kt">void</span> <span class="n">initState</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">super</span><span class="o">.</span><span class="na">initState</span><span class="o">();</span>
+    <span class="c1">// In order to display the current output from the Camera, you need to</span>
+    <span class="c1">// create a CameraController.</span>
+    <span class="n">_controller</span> <span class="o">=</span> <span class="n">CameraController</span><span class="o">(</span>
+      <span class="c1">// Get a specific camera from the list of available cameras</span>
+      <span class="n">widget</span><span class="o">.</span><span class="na">camera</span><span class="o">,</span>
+      <span class="c1">// Define the resolution to use</span>
+      <span class="n">ResolutionPreset</span><span class="o">.</span><span class="na">medium</span><span class="o">,</span>
+    <span class="o">);</span>
+
+    <span class="c1">// Next, you need to initialize the controller. This returns a Future</span>
+    <span class="n">_initializeControllerFuture</span> <span class="o">=</span> <span class="n">_controller</span><span class="o">.</span><span class="na">initialize</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="nd">@override</span>
+  <span class="kt">void</span> <span class="n">dispose</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// Make sure to dispose of the controller when the Widget is disposed</span>
+    <span class="n">_controller</span><span class="o">.</span><span class="na">dispose</span><span class="o">();</span>
+    <span class="k">super</span><span class="o">.</span><span class="na">dispose</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Scaffold</span><span class="o">(</span>
+      <span class="nl">appBar:</span> <span class="n">AppBar</span><span class="o">(</span><span class="nl">title:</span> <span class="n">Text</span><span class="o">(</span><span class="s">'Take a picture'</span><span class="o">)),</span>
+      <span class="c1">// You must wait until the controller is initialized before displaying the</span>
+      <span class="c1">// camera preview. Use a FutureBuilder to display a loading spinner until</span>
+      <span class="c1">// the controller has finished initializing</span>
+      <span class="nl">body:</span> <span class="n">FutureBuilder</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;(</span>
+        <span class="nl">future:</span> <span class="n">_initializeControllerFuture</span><span class="o">,</span>
+        <span class="nl">builder:</span> <span class="o">(</span><span class="n">context</span><span class="o">,</span> <span class="n">snapshot</span><span class="o">)</span> <span class="o">{</span>
+          <span class="k">if</span> <span class="o">(</span><span class="n">snapshot</span><span class="o">.</span><span class="na">connectionState</span> <span class="o">==</span> <span class="n">ConnectionState</span><span class="o">.</span><span class="na">done</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// If the Future is complete, display the preview</span>
+            <span class="k">return</span> <span class="n">CameraPreview</span><span class="o">(</span><span class="n">_controller</span><span class="o">);</span>
+          <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="c1">// Otherwise, display a loading indicator</span>
+            <span class="k">return</span> <span class="n">Center</span><span class="o">(</span><span class="nl">child:</span> <span class="n">CircularProgressIndicator</span><span class="o">());</span>
+          <span class="o">}</span>
+        <span class="o">},</span>
+      <span class="o">),</span>
+      <span class="nl">floatingActionButton:</span> <span class="n">FloatingActionButton</span><span class="o">(</span>
+        <span class="nl">child:</span> <span class="n">Icon</span><span class="o">(</span><span class="n">Icons</span><span class="o">.</span><span class="na">camera_alt</span><span class="o">),</span>
+        <span class="c1">// Provide an onPressed callback</span>
+        <span class="nl">onPressed:</span> <span class="o">()</span> <span class="n">async</span> <span class="o">{</span>
+          <span class="c1">// Take the Picture in a try / catch block. If anything goes wrong,</span>
+          <span class="c1">// catch the error.</span>
+          <span class="k">try</span> <span class="o">{</span>
+            <span class="c1">// Ensure the camera is initialized</span>
+            <span class="n">await</span> <span class="n">_initializeControllerFuture</span><span class="o">;</span>
+
+            <span class="c1">// Construct the path where the image should be saved using the path</span>
+            <span class="c1">// package.</span>
+            <span class="kd">final</span> <span class="n">path</span> <span class="o">=</span> <span class="n">join</span><span class="o">(</span>
+              <span class="c1">// In this example, store the picture in the temp directory. Find</span>
+              <span class="c1">// the temp directory using the `path_provider` plugin.</span>
+              <span class="o">(</span><span class="n">await</span> <span class="n">getTemporaryDirectory</span><span class="o">()).</span><span class="na">path</span><span class="o">,</span>
+              <span class="s">'</span><span class="si">${DateTime.now()}</span><span class="s">.png'</span><span class="o">,</span>
+            <span class="o">);</span>
+
+            <span class="c1">// Attempt to take a picture and log where it's been saved</span>
+            <span class="n">await</span> <span class="n">_controller</span><span class="o">.</span><span class="na">takePicture</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+
+            <span class="c1">// If the picture was taken, display it on a new screen</span>
+            <span class="n">Navigator</span><span class="o">.</span><span class="na">push</span><span class="o">(</span>
+              <span class="n">context</span><span class="o">,</span>
+              <span class="n">MaterialPageRoute</span><span class="o">(</span>
+                <span class="nl">builder:</span> <span class="o">(</span><span class="n">context</span><span class="o">)</span> <span class="o">=&gt;</span> <span class="n">DisplayPictureScreen</span><span class="o">(</span><span class="nl">imagePath:</span> <span class="n">path</span><span class="o">),</span>
+              <span class="o">),</span>
+            <span class="o">);</span>
+          <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// If an error occurs, log the error to the console.</span>
+            <span class="n">print</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+          <span class="o">}</span>
+        <span class="o">},</span>
+      <span class="o">),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// A Widget that displays the picture taken by the user</span>
+<span class="kd">class</span> <span class="nc">DisplayPictureScreen</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="o">{</span>
+  <span class="kd">final</span> <span class="kt">String</span> <span class="n">imagePath</span><span class="o">;</span>
+
+  <span class="kd">const</span> <span class="n">DisplayPictureScreen</span><span class="o">({</span><span class="n">Key</span> <span class="n">key</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">imagePath</span><span class="o">})</span> <span class="o">:</span> <span class="k">super</span><span class="o">(</span><span class="nl">key:</span> <span class="n">key</span><span class="o">);</span>
+
+  <span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Scaffold</span><span class="o">(</span>
+      <span class="nl">appBar:</span> <span class="n">AppBar</span><span class="o">(</span><span class="nl">title:</span> <span class="n">Text</span><span class="o">(</span><span class="s">'Display the Picture'</span><span class="o">)),</span>
+      <span class="c1">// The image is stored as a file on the device. Use the `Image.file`</span>
+      <span class="c1">// constructor with the given path to display the image</span>
+      <span class="nl">body:</span> <span class="n">Image</span><span class="o">.</span><span class="na">file</span><span class="o">(</span><span class="n">File</span><span class="o">(</span><span class="n">imagePath</span><span class="o">)),</span>
+    <span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+        <nav class="site-nextprev-nav">
+    <ul>
+      <li class="prev">
+          <a href="/docs/cookbook/plugins/play-video">视频的播放和暂停</a>
+      </li>
+      <li class="next">
+          <a href="/docs/cookbook/testing/integration/introduction">集成测试介绍</a>
+      </li>
+      </ul>
+  </nav>
+
+      </div>
+    </main>
+  </div>
+</div>
+<footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 site-footer__wrapper">
+        <div class="site-footer__logo">
+          <img src="/images/flutter-mono-81x100.png" alt="Flutter Logo" width="81" height="100">
+        </div>
+        <div class="site-footer__content">
+          <ul class="site-footer__link-list">
+              <li><a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a></li>
+              <li><a href="/tos">terms</a></li>
+              <li><a href="/security">security</a></li>
+              <li><a href="https://www.google.com/intl/en/policies/privacy">privacy</a></li>
+              <li><a href="https://flutter-es.io/">español</a></li>
+              <li><a href="https://flutter-io.cn" class="text-nowrap">社区中文资源</a></li>
+          </ul>
+
+          <p class="licenses" translation-origin="on">
+            Except as otherwise noted,
+            this work is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0">Creative
+            Commons Attribution 4.0 International License</a>,
+            and code samples are licensed under the BSD License.
+          </p>
+          <p class="licenses" translation-result="off">
+            除非特别说明，否则本站内容采用 <a rel="license" href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0 授权协议</a>，所有范例代码都采用 BSD 授权协议。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- <script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script> -->
+  
+
+<script src="/assets/translator/js/translator.js"></script></body></html>

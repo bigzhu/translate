@@ -1,0 +1,1299 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flutter 性能分析  - Flutter 中文文档 - Flutter 社区中文资源 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-ND4LWWZ');</script>
+  <!-- End Google Tag Manager -->
+
+  
+  <meta name="description" content="诊断 Flutter 里的 UI 性能问题。">
+  <meta name="keywords" content=" ">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@flutterdev">
+
+  <meta property="og:title" content="Flutter 性能分析">
+  <meta property="og:url" content="https://flutter.dev/docs/testing/ui-performance">
+  <meta property="og:description" content="诊断 Flutter 里的 UI 性能问题。">
+  
+  <meta property="og:image" content="https://flutter.dev/images/flutter-logo-sharing.png">
+
+  <link href="/assets/translator/css/material-roboto.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/assets/main-74a0c308218334fcd85291a957a514973015ea8e4eb76b9abae6e14bb5012f5e.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  <script src="/assets/main-d6b8b8d26e7b4122b3ddf6a5201966d6e2494aaffadaafaf7c571ce5e2fe0aab.js" type="text/javascript"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-122680122-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <!--<meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />-->
+<link href="/assets/translator/css/translator.css" rel="stylesheet"></head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-ND4LWWZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div id="overlay-under-drawer"></div>
+
+    <header class="site-header">
+  <nav class="navbar navbar-expand-md justify-content-start justify-content-md-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="material-icons">menu</i>
+    </button>
+
+    <a class="navbar-brand" href="/">
+      <img alt="Flutter by Google" height="37" width="129" class="align-middle" src="/assets/flutter-lockup-4cb0ee072ab312e59784d9fbf4fb7ad42688a7fdaea1270ccf6bbf4f34b7e03f.svg">
+    </a>
+
+    <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
+      <div class="site-header__sheet-bg" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></div>
+      <div class="site-header__sheet">
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <a class="nav-link active" href="/docs">开发文档</a>
+          </li>
+          <div class="site-sidebar site-sidebar--header d-md-none">
+            <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="false" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="false" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="true" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link active" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+          </div>
+
+<!-- 
+          <li class="nav-item">
+            <a class="nav-link" href="/showcase">Showcase</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/community">Community</a>
+          </li>
+ -->
+        </ul>
+        <form action="/search" class="site-header__search form-inline">
+          <input class="site-header__searchfield form-control" type="search" name="q" id="q" autocomplete="off" placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+    </div>
+    <div class="site-header__social navbar-nav flex-row">
+      <a class="nav-item nav-link" href="https://twitter.com/flutterdev"><i class="fab fa-twitter fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://www.youtube.com/flutterdev"><i class="fab fa-youtube fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://github.com/flutter"><i class="fab fa-github fa-lg"></i></a>
+    </div>
+    <a class="site-header__cta btn btn-primary" href="/docs/get-started/install/">Get started</a>
+    </nav>
+</header>
+<div class="site-banner site-banner--default" role="alert">
+    <p>
+      We are looking for a Flutter Infrastructure engineer!
+      <a href="/jobs/infrastructure" target="_blank" rel="noopener">Learn more</a>.
+    </p>
+
+  </div>
+<div class="container-fluid position-relative">
+  <div class="row flex-xl-nowrap">
+    <div class="fixed-col site-sidebar site-sidebar--fixed col-12 col-md-3 col-xl-2 d-none d-md-block" data-fixed-column="">
+      <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="false" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="false" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="true" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link active" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+    </div>
+    <div id="site-toc--side" class="site-toc site-toc--side fixed-col col-xl-2 order-3" data-fixed-column="">
+  <header class="site-toc__title">
+    Contents
+    <button type="button" class="btn site-toc--button__page-top" aria-label="Page top"></button>
+    </header>
+  <ul class="section-nav nav">
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#diagnosing-performance-problems">Diagnosing performance problems</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#connect-to-a-physical-device">Connect to a physical device</a>
+<ul class="nav">
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#run-in-profile-mode">Run in profile mode</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#the-performance-overlay">The performance overlay</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#displaying-the-performance-overlay">Displaying the performance overlay</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#from-the-flutter-inspector">From the Flutter inspector</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#in-vs-code">In VS Code</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#from-the-command-line">From the Command line</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#programmatically">Programmatically</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#identifying-problems-in-the-ui-graph">Identifying problems in the UI graph</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#performance-profiling-with-dart-devtools">Performance profiling with Dart DevTools</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#identifying-problems-in-the-gpu-graph">Identifying problems in the GPU graph</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#checking-for-offscreen-layers">Checking for offscreen layers</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#checking-for-non-cached-images">Checking for non-cached images</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#viewing-the-widget-rebuild-profiler">Viewing the widget rebuild profiler</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#debug-flags">Debug flags</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#benchmarking">Benchmarking</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#more-information">More information</a></li>
+</ul>
+</div>
+<main class="site-content col-12 col-md-9 offset-md-3 col-xl-8 offset-xl-2 col-xxl-8 offset-xxl-2" role="main">
+      <div class="container">
+        
+        
+        <header class="site-content__title">
+          <div id="page-github-links" class="btn-group" aria-label="Page GitHub links" role="group">
+  <a href="https://github.com/cfug/flutter.cn/tree/master/src/docs/testing/ui-performance/index.md" class="btn no-automatic-external" title="View page source" target="_blank" rel="noopener">
+    <i class="fas fa-file-alt fa-sm"></i>
+  </a>
+  <a href="https://github.com/cfug/flutter.cn/issues/new?title='Flutter 性能分析' page issue&amp;body=
+Page URL: https://flutter.dev/docs/testing/ui-performance/%0D%0A
+Page source: https://github.com/cfug/flutter.cn/tree/master/src/docs/testing/ui-performance/index.md%0D%0A
+%0D%0A
+Found a typo? You can fix it yourself by going to the page source and clicking the pencil icon. Or finish creating this issue.%0D%0A
+%0D%0A
+Description of issue:" class="btn no-automatic-external" title="Report an issue with this page" target="_blank" rel="noopener">
+    <i class="fas fa-bug fa-sm"></i>
+  </a>
+</div>
+
+          <h1 id="flutter-性能分析">Flutter 性能分析</h1>
+          </header>
+        <div id="site-toc--inline" class="site-toc site-toc--inline ">
+  <header class="site-toc__title">
+    Contents
+    </header>
+  <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#diagnosing-performance-problems">Diagnosing performance problems</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#connect-to-a-physical-device">Connect to a physical device</a>
+<ul>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#run-in-profile-mode">Run in profile mode</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#the-performance-overlay">The performance overlay</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#displaying-the-performance-overlay">Displaying the performance overlay</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#from-the-flutter-inspector">From the Flutter inspector</a></li>
+<li class="toc-entry toc-h4"><a href="#in-vs-code">In VS Code</a></li>
+<li class="toc-entry toc-h4"><a href="#from-the-command-line">From the Command line</a></li>
+<li class="toc-entry toc-h4"><a href="#programmatically">Programmatically</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#identifying-problems-in-the-ui-graph">Identifying problems in the UI graph</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#performance-profiling-with-dart-devtools">Performance profiling with Dart DevTools</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#identifying-problems-in-the-gpu-graph">Identifying problems in the GPU graph</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#checking-for-offscreen-layers">Checking for offscreen layers</a></li>
+<li class="toc-entry toc-h4"><a href="#checking-for-non-cached-images">Checking for non-cached images</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#viewing-the-widget-rebuild-profiler">Viewing the widget rebuild profiler</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#debug-flags">Debug flags</a></li>
+<li class="toc-entry toc-h2"><a href="#benchmarking">Benchmarking</a></li>
+<li class="toc-entry toc-h2"><a href="#more-information">More information</a></li>
+</ul>
+</div>
+<aside class="alert alert-secondary" role="alert">
+  <h4 class="no_toc" id="what-youll-learn">
+<a id="what-youll-learn" class="anchor" href="#what-youll-learn" aria-hidden="true"><span class="octicon octicon-link"></span></a>What you’ll learn</h4>
+
+  <ul>
+    <li>Flutter aims to provide 60 frames per second (fps) performance, or 120
+fps performance on devices capable of 120Hz updates.</li>
+    <li>For 60fps, frames need to render approximately every 16ms.</li>
+    <li>Jank occurs when the UI doesn’t render smoothly. For example, every so
+often, a frame takes 10 times longer to render, so it gets dropped, and
+the animation visibly jerks.</li>
+  </ul>
+</aside>
+
+<p>It’s been said that “a <em>fast</em> app is great, but a <em>smooth</em> app is even better.”
+If your app isn’t rendering smoothly, how do you fix it? Where do you begin?
+This guide shows you where to start, steps to take, and tools that can
+help.</p>
+
+<aside class="alert alert-info" role="alert">
+  <p><i class="fas fa-info-circle"></i> <strong>备忘：</strong></p>
+  <ul>
+    <li>An app’s performance is determined by more than one measure. Performance
+sometimes refers to raw speed, but also to the UI’s smoothness and lack of
+stutter. Other examples of performance include I/O or network speed. This
+page primarily focuses on the second type of performance (UI smoothness),
+but you can use most of the same tools to diagnose other performance
+problems.</li>
+    <li>To perform tracing inside your Dart code, see <a href="/docs/testing/debugging#tracing-any-dart-code-performance">Tracing any Dart code
+performance</a> in the <a href="/docs/testing/debugging">Debugging Flutter apps</a> page.</li>
+  </ul>
+</aside>
+
+<h2 id="diagnosing-performance-problems">
+<a id="diagnosing-performance-problems" class="anchor" href="#diagnosing-performance-problems" aria-hidden="true"><span class="octicon octicon-link"></span></a>Diagnosing performance problems</h2>
+
+<p>To diagnose an app with performance problems, you’ll enable
+the performance overlay to look at the UI and GPU threads. Before
+you begin, you want to make sure that you’re running in profile mode,
+and that you’re not using an emulator. For best results, you might
+choose the slowest device that your users might use.</p>
+
+<h3 id="connect-to-a-physical-device">
+<a id="connect-to-a-physical-device" class="anchor" href="#connect-to-a-physical-device" aria-hidden="true"><span class="octicon octicon-link"></span></a>Connect to a physical device</h3>
+
+<p>Almost all performance debugging for Flutter applications should be
+conducted on a physical Android or iOS device, with your Flutter application
+running in profile mode. Using debug mode, or running apps on simulators
+or emulators, is generally not indicative of the final
+behavior of release mode builds. <em>You should consider checking performance
+on the slowest device that your users might reasonably use.</em></p>
+
+<aside class="alert alert-secondary" role="alert">
+  <h4 class="no_toc" id="why-you-should-run-on-a-real-device">
+<a id="why-you-should-run-on-a-real-device" class="anchor" href="#why-you-should-run-on-a-real-device" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Why you should run on a real device:</strong>
+</h4>
+
+  <ul>
+    <li>Simulators and emulators don’t use the same hardware, so their
+performance characteristics are different—some operations are
+faster on simulators than real devices, and some are slower.</li>
+    <li>Debug mode enables additional checks (such as asserts) that don’t run
+in profile or release builds, and these checks can be expensive.</li>
+    <li>Debug mode also executes code in a different way than release mode.
+The debug build compiles the Dart code “just in time” (JIT)
+as the app runs, but profile and release builds are pre-compiled to native
+instructions (also called “ahead of time”, or AOT) before the app is
+loaded onto the device. JIT can cause the app to pause for JIT
+compilation, which itself can cause jank.</li>
+  </ul>
+</aside>
+
+<h3 id="run-in-profile-mode">
+<a id="run-in-profile-mode" class="anchor" href="#run-in-profile-mode" aria-hidden="true"><span class="octicon octicon-link"></span></a>Run in profile mode</h3>
+
+<p>Flutter’s profile mode compiles and launches your application almost
+identically to release mode, but with just enough additional
+functionality to allow debugging performance problems.
+For example, profile mode provides tracing information to
+profiling tools.</p>
+
+<p>Launch the app in profile mode as follows:</p>
+
+<ul>
+  <li>In Android Studio and IntelliJ, use the
+<strong>Run &gt; Flutter Run main.dart in Profile Mode</strong> menu item.</li>
+  <li>
+    <p>In VS Code, open your <code class="highlighter-rouge">launch.json</code> file, and set the
+<code class="highlighter-rouge">flutterMode</code> property to <code class="highlighter-rouge">profile</code>
+(when done profiling, change it back to <code class="highlighter-rouge">release</code> or <code class="highlighter-rouge">debug</code>):</p>
+
+    <div class="language-json highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="s2">"configurations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flutter"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"request"</span><span class="p">:</span><span class="w"> </span><span class="s2">"launch"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dart"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"flutterMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"profile"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>From the command line, use the <code class="highlighter-rouge">--profile</code> flag:</p>
+
+    <div class="language-terminal highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="gp">$</span> flutter run <span class="nt">--profile</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>For more information on how the different modes work, see
+<a href="/docs/testing/build-modes">Flutter’s build modes</a>.</p>
+
+<p>You’ll begin by enabling the performance overlay, as discussed
+in the next section.</p>
+
+<h2 id="the-performance-overlay">
+<a id="the-performance-overlay" class="anchor" href="#the-performance-overlay" aria-hidden="true"><span class="octicon octicon-link"></span></a>The performance overlay</h2>
+
+<p>The performance overlay displays statistics in two graphs
+that show where time is being spent in your app.
+If the UI is janky (skipping frames), these graphs help you figure out why.
+The graphs display on top of your running app, but they aren’t drawn
+like a normal widget—the Flutter engine itself paints the overlay
+and only minimally impacts performance.
+Each graph represents the last 300 frames for that thread.</p>
+
+<p>This section describes how to enable the <a href="https://api.flutter.dev/flutter/widgets/PerformanceOverlay-class.html">PerformanceOverlay</a>,
+and use it to diagnose the cause of jank in your application.
+The following screenshot shows the performance overlay running on the Flutter
+Gallery example:</p>
+
+<center><img src="/docs/testing/ui-performance/images/performance-overlay-green.png" alt="screenshot of performance overlay showing zero jank"></center>
+<center>Performance overlay showing the GPU thread (top), and UI thread (bottom).
+	The vertical green bars represent the current frame.</center>
+<p><br></p>
+
+<p>Flutter uses several threads to do its work. All your Dart code runs on
+the UI thread. Although you have no direct access to any other thread,
+your actions on the UI thread have performance consequences on other threads.</p>
+
+<ol>
+  <li>
+    <p>Platform thread<br>
+The platform’s main thread. Plugin code runs here.
+For more information, see the <a href="https://developer.apple.com/documentation/uikit">UIKit</a> documentation for iOS,
+or the <a href="https://developer.android.google.cn/reference/android/support/annotation/MainThread">MainThread</a> documentation for Android.
+This thread is not shown in the performance overlay.</p>
+  </li>
+  <li>
+    <p>UI thread<br>
+The UI thread executes Dart code in the Dart VM.
+This thread includes code that you wrote, and code executed by
+Flutter’s framework on your app’s behalf.
+When your app creates and displays a scene, the UI thread creates
+a <em>layer tree</em>, a lightweight object containing device-agnostic
+painting commands, and sends the layer tree to the GPU thread to
+be rendered on the device. <em>Don’t block this thread!</em>
+Shown in the bottom row of the performance overlay.</p>
+  </li>
+  <li>
+    <p>GPU thread<br>
+The GPU thread takes the layer tree and displays it by talking
+to the GPU (graphic processing unit). You cannot directly access
+the GPU thread or its data but, if this thread is slow,
+it’s a result of something you’ve done in the Dart code.
+Skia, the graphics library, runs on this thread, which is sometimes
+called the <em>rasterizer</em> thread.
+Shown in the top row of the performance overlay.</p>
+  </li>
+  <li>
+    <p>I/O thread<br>
+Performs expensive tasks (mostly I/O) that would otherwise block
+either the UI or GPU threads.
+This thread is not shown in the performance overlay.</p>
+  </li>
+</ol>
+
+<p>For more information on these threads, see <a href="https://github.com/flutter/engine/wiki#architecture-notes">Architecture notes</a>.</p>
+
+<p>Each frame should be created and displayed within 1/60th of a second
+(approximately 16ms). A frame exceeding this limit (in either graph)
+fails to display, resulting in jank, and a vertical red bar appears in one or
+both of the graphs.
+If a red bar appears in the UI graph, the Dart code is too expensive.
+If a red vertical bar appears in the GPU graph, the scene is too
+complicated to render quickly.</p>
+
+<center><img src="/docs/testing/ui-performance/images/performance-overlay-jank.png" alt="Screenshot of performance overlay showing jank with red bars."></center>
+<center>The vertical red bars indicate that the current frame is expensive to both render and paint.<br>When both graphs have red, start by diagnosing the UI thread (Dart VM).</center>
+<p><br></p>
+
+<h3 id="displaying-the-performance-overlay">
+<a id="displaying-the-performance-overlay" class="anchor" href="#displaying-the-performance-overlay" aria-hidden="true"><span class="octicon octicon-link"></span></a>Displaying the performance overlay</h3>
+
+<p>You can toggle display of the performance overlay as follows:</p>
+
+<ul>
+  <li>Using the Flutter Inspector</li>
+  <li>From the command line</li>
+  <li>Programmatically</li>
+</ul>
+
+<h4 id="from-the-flutter-inspector">
+<a id="from-the-flutter-inspector" class="anchor" href="#from-the-flutter-inspector" aria-hidden="true"><span class="octicon octicon-link"></span></a>From the Flutter inspector</h4>
+
+<p>The easiest way to enable the PerformanceOverlay widget is 
+in the Flutter inspector, which is available through the Flutter plugin
+for your IDE. The Inspector view opens by default when running an
+application. If the inspector isn’t open, you can display it as follows.</p>
+
+<p>In Android Studio and IntelliJ IDEA:</p>
+
+<ol>
+  <li>Select <strong>View &gt; Tool Windows &gt; Flutter Inspector</strong>.</li>
+  <li>
+    <p>In the toolbar, select the icon that looks like a bookshelf
+(<img src="/docs/testing/ui-performance/images/performance-overlay-icon.png" alt="bookshelf-like icon">).</p>
+
+    <p><img src="/assets/tools/android-studio/visual-debugging-f787bd4396ef1c019c7ab7bf9dc9e307d5e6695972d85fd85a240906f1830baa.png" alt="IntelliJ Flutter inspector window"></p>
+  </li>
+</ol>
+
+<p>The Flutter Inspector is available in Android Studio and IntelliJ.
+Learn more about what the Inspector can do in the
+<a href="/docs/development/tools/inspector">Widget inspector</a> doc, as well as the
+<a href="https://www.youtube.com/watch?v=JIcmJNT9DNI">Flutter Inspector talk</a> presented at DartConf 2018.</p>
+
+<h4 id="in-vs-code">
+<a id="in-vs-code" class="anchor" href="#in-vs-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>In VS Code</h4>
+
+<ol>
+  <li>Select <strong>View &gt; Command Palette…</strong> to bring up the command palette.</li>
+  <li>In the text field, enter “performance” and select
+<strong>Toggle Performance Overlay</strong> from the list that pops up.
+If this command isn’t available, make sure that the app is running.</li>
+</ol>
+
+<h4 id="from-the-command-line">
+<a id="from-the-command-line" class="anchor" href="#from-the-command-line" aria-hidden="true"><span class="octicon octicon-link"></span></a>From the Command line</h4>
+
+<p>Toggle the performance overlay using the <strong>P</strong> key from the command line.</p>
+
+<h4 id="programmatically">
+<a id="programmatically" class="anchor" href="#programmatically" aria-hidden="true"><span class="octicon octicon-link"></span></a>Programmatically</h4>
+
+<p>You can programmatically enable the PerformanceOverlay widget by
+setting the <code class="highlighter-rouge">showPerformanceOverlay</code> property to <code class="highlighter-rouge">true</code> on the MaterialApp
+or WidgetsApp constructor:</p>
+
+<!-- skip -->
+<pre class="prettyprint lang-dart">class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      <span class="highlight">showPerformanceOverlay: true,</span>
+      title: 'My Awesome App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(title: 'My Awesome App'),
+    );
+  }
+}</pre>
+
+<p>You are probably familiar with the Flutter Gallery example app.
+To use the performance overlay with Flutter Gallery,
+use the copy in the <a href="https://github.com/flutter/flutter/tree/master/examples/flutter_gallery">examples</a> directory that was installed with Flutter,
+and run the app in profile mode. The program is written
+so that the app menu allows you to dynamically toggle the overlay,
+as well as enable checks for calls to <code class="highlighter-rouge">saveLayer</code> and the presence of
+cached images.</p>
+
+<aside class="alert alert-info" role="alert">
+  <p><i class="fas fa-info-circle"></i> <strong>备忘：</strong>
+  You can’t enable the performance overlay in the Flutter
+  Gallery app downloaded from the App Store. That version of the app
+  is compiled to release mode (not profile mode), and doesn’t provide
+  a menu for enabling or disabling the overlay.</p>
+</aside>
+
+<h3 id="identifying-problems-in-the-ui-graph">
+<a id="identifying-problems-in-the-ui-graph" class="anchor" href="#identifying-problems-in-the-ui-graph" aria-hidden="true"><span class="octicon octicon-link"></span></a>Identifying problems in the UI graph</h3>
+
+<p>If the performance overlay shows red in the UI graph, start by profiling
+the Dart VM, even if the GPU graph also shows red.</p>
+
+<h4 id="performance-profiling-with-dart-devtools">
+<a id="performance-profiling-with-dart-devtools" class="anchor" href="#performance-profiling-with-dart-devtools" aria-hidden="true"><span class="octicon octicon-link"></span></a>Performance profiling with Dart DevTools</h4>
+
+<p>Dart DevTools provides features like profiling, examining the heap,
+and displaying code coverage. DevTool’s <em>timeline</em> view allows you
+to investigate the UI performance of your application on a frame-by-frame
+basis.</p>
+
+<aside class="alert alert-info" role="alert">
+  <p><i class="fas fa-info-circle"></i> <strong>备忘：</strong>
+  Observatory is being replaced by Dart DevTools.
+  This browser-based tool is still in development but is available to preview. For
+  installation and getting started instructions, see the <a href="https://flutter.github.io/devtools">DevTools’ docs</a>.</p>
+</aside>
+
+<h3 id="identifying-problems-in-the-gpu-graph">
+<a id="identifying-problems-in-the-gpu-graph" class="anchor" href="#identifying-problems-in-the-gpu-graph" aria-hidden="true"><span class="octicon octicon-link"></span></a>Identifying problems in the GPU graph</h3>
+
+<p>Sometimes a scene results in a layer tree that is easy to construct,
+but expensive to render on the GPU thread. When this happens,
+the UI graph has no red, but the GPU graph shows red.
+In this case, you’ll need to figure out what your code is doing that is causing
+rendering code to be slow. Specific kinds of workloads are more difficult for
+the GPU.  They may involve unnecessary calls to <a href="https://api.flutter.dev/flutter/dart-ui/Canvas/saveLayer.html"><code class="highlighter-rouge">saveLayer</code></a>,
+intersecting opacities with multiple objects, and clips or shadows in specific
+situations.</p>
+
+<p>If you suspect that the source of the slowness is during an animation,
+use the <a href="https://api.flutter.dev/flutter/scheduler/timeDilation.html">timeDilation</a> property to greatly slow the animation down.</p>
+
+<p>You can also slow the animation speed using the Flutter Inspector.
+In the inspector’s gear menu, select <strong>Enable Slow Animations</strong>.
+If you want more control of the animation speed, set the
+<a href="https://api.flutter.dev/flutter/scheduler/timeDilation.html">timeDilation</a> property in your code.</p>
+
+<p>Is the slowness on the first frame, or on the whole animation?
+If it’s the whole animation, is clipping causing the slow down?
+Maybe there’s an alternative way of drawing the scene that doesn’t
+use clipping. For example, overlay opaque corners onto a square
+instead of clipping to a rounded rectangle.
+If it’s a static scene that’s being faded, rotated, or otherwise manipluated,
+maybe a <a href="https://api.flutter.dev/flutter/widgets/RepaintBoundary-class.html">RepaintBoundary</a> can help.</p>
+
+<h4 id="checking-for-offscreen-layers">
+<a id="checking-for-offscreen-layers" class="anchor" href="#checking-for-offscreen-layers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Checking for offscreen layers</h4>
+
+<p>The <a href="https://api.flutter.dev/flutter/dart-ui/Canvas/saveLayer.html"><code class="highlighter-rouge">saveLayer</code></a> method is one of the most expensive methods in
+the Flutter framework.  It’s useful when applying post-processing to the scene,
+but it can slow your app and should be avoided if you don’t need it.
+Even if you don’t call <code class="highlighter-rouge">saveLayer</code> explicitly, implicit calls may happen
+on your behalf. You can check whether your scene is using <code class="highlighter-rouge">saveLayer</code> with the
+<a href="https://api.flutter.dev/flutter/rendering/PerformanceOverlayLayer/checkerboardOffscreenLayers.html">PerformanceOverlayLayer.checkerboardOffscreenLayers</a> switch.</p>
+
+<p>Once the switch is enabled, run the app and look for any images that are
+outlined with a flickering box. The box flickers from frame to frame if a
+new frame is being rendered.  For example, perhaps you have a group of
+objects with opacities that are rendered using <code class="highlighter-rouge">saveLayer</code>. In this case,
+it’s probably more performant to apply an opacity to each individual widget,
+rather than a parent widget higher up in the widget tree. The same goes for
+other potentially expensive operations, such as clipping or shadows.</p>
+
+<aside class="alert alert-info">
+  <p><strong>Note:</strong> Opacity, clipping, and shadows are not, in themselves, a bad idea.
+  However, applying them to the top of the widget tree might cause extra calls to
+  <code class="highlighter-rouge">saveLayer</code>, and needless processing.</p>
+</aside>
+
+<p>When you encounter calls to <code class="highlighter-rouge">saveLayer</code>, ask yourself these questions:</p>
+
+<ul>
+  <li>Does the app need this effect?</li>
+  <li>Can any of these calls be eliminated?</li>
+  <li>Can I apply the same effect to an individual element instead of a group?</li>
+</ul>
+
+<h4 id="checking-for-non-cached-images">
+<a id="checking-for-non-cached-images" class="anchor" href="#checking-for-non-cached-images" aria-hidden="true"><span class="octicon octicon-link"></span></a>Checking for non-cached images</h4>
+
+<p>Caching an image with <a href="https://api.flutter.dev/flutter/widgets/RepaintBoundary-class.html">RepaintBoundary</a> is good, <em>when it makes sense</em>.</p>
+
+<p>One of the most expensive operations, from a resource perspective,
+is rendering a texture using an image file. First, the compressed image
+is fetched from persistent storage.
+The image is decompressed into host memory (GPU memory), and transferred
+to device memory (RAM).</p>
+
+<p>In other words, image I/O can be expensive.
+The cache provides snapshots of complex hierarchies so they are easier to
+render in subsequent frames.
+<em>Because raster cache entries are expensive to construct and take up loads
+of GPU memory, cache images only where absolutely necessary.</em></p>
+
+<p>You can see which images are being cached by enabling the
+<a href="https://api.flutter.dev/flutter/rendering/PerformanceOverlayLayer/checkerboardRasterCacheImages.html">PerformanceOverlayLayer.checkerboardRasterCacheImages</a> switch.</p>
+
+<p>Run the app and look for images rendered with a randomly colored checkerboard,
+indicating that the image is cached. As you interact with the scene,
+the checkerboarded images should remain constant—you don’t want to see
+flickering, which would indicate that the cached image is being re-cached.</p>
+
+<p>In most cases, you want to see checkerboards on static images,
+but not on non-static images.  If a static image isn’t cached,
+you can cache it by placing it into a <a href="https://api.flutter.dev/flutter/widgets/RepaintBoundary-class.html">RepaintBoundary</a>
+widget. Though the engine may still ignore a repaint boundary if it
+thinks the image isn’t complex enough.</p>
+
+<h3 id="viewing-the-widget-rebuild-profiler">
+<a id="viewing-the-widget-rebuild-profiler" class="anchor" href="#viewing-the-widget-rebuild-profiler" aria-hidden="true"><span class="octicon octicon-link"></span></a>Viewing the widget rebuild profiler</h3>
+
+<p>The Flutter framework is designed to make it hard to create
+applications that are not 60fps and smooth. Often, if you have jank,
+it’s because there is a simple bug causing more of the UI to be
+rebuilt each frame than required. The Widget rebuild profiler
+helps you debug and fix performance problems due to these sorts
+of bugs.</p>
+
+<p>You can view the widget rebuilt counts for the current screen and
+frame in the widget inspector. For details on how to do this, see
+<a href="/docs/development/tools/android-studio#show-performance-data">Show performance data</a> in the <a href="/docs/development/tools/android-studio">Android Studio / IntelliJ</a> page.</p>
+
+<h2 id="debug-flags">
+<a id="debug-flags" class="anchor" href="#debug-flags" aria-hidden="true"><span class="octicon octicon-link"></span></a>Debug flags</h2>
+
+<p>Flutter provides a wide variety of debug flags and functions to help you
+debug your app at various points along the development cycle.
+To use these features, you must compile in debug mode.
+The following list, while not complete,
+highlights some of the more useful flags (and one function)
+from the <a href="https://api.flutter.dev/flutter/rendering/rendering-library.html">rendering library</a> for debugging performance issues.</p>
+
+<p>You can set these flags either by editing the framework code, or
+by importing the module and setting the value in your <code class="highlighter-rouge">main()</code>
+method, following by a hot restart.</p>
+
+<ul>
+  <li>
+<code class="highlighter-rouge">debugDumpRenderTree()</code><br>
+Rather than using this flag to dump the render tree to a file,
+view the render tree in the widget inspector.
+To do so, bring up the widget inspector and select the <strong>Render Tree</strong> tab.</li>
+  <li><a href="https://api.flutter.dev/flutter/rendering/debugPaintLayerBordersEnabled.html"><code class="highlighter-rouge">debugPaintLayerBordersEnabled</code></a></li>
+  <li>
+<a href="https://api.flutter.dev/flutter/rendering/debugRepaintRainbowEnabled.html"><code class="highlighter-rouge">debugRepaintRainbowEnabled</code></a><br>
+You can enable this flag in the widget inspector by bringing up the
+<strong>More Actions</strong> menu, and selecting <strong>Show Repaint Rainbow</strong>.
+If any static widgets are rotating through the colors of the rainbow
+(for example, a static header), those areas are candidates for adding
+repaint boundaries.</li>
+  <li>
+<a href="https://api.flutter.dev/flutter/rendering/debugPrintMarkNeedsLayoutStacks.html"><code class="highlighter-rouge">debugPrintMarkNeedsLayoutStack</code></a><br>
+Enable this flag if you’re seeing more layouts than you expect
+(for example, on the timeline, on a profile, or from a <code class="highlighter-rouge">print</code> statement
+inside a layout method). Once enabled, the console is flooded with
+stack traces showing why each render object is being marked dirty for
+layout.</li>
+  <li>
+<a href="https://api.flutter.dev/flutter/rendering/debugPrintMarkNeedsPaintStacks.html"><code class="highlighter-rouge">debugPrintMarkNeedsPaintStacks</code></a><br>
+Similar to <code class="highlighter-rouge">debugPrintMarkNeedsLayoutStack</code>, but for excess painting.</li>
+</ul>
+
+<p>You can learn about other debug flags in <a href="/docs/testing/debugging">Debugging Flutter apps</a>.</p>
+
+<h2 id="benchmarking">
+<a id="benchmarking" class="anchor" href="#benchmarking" aria-hidden="true"><span class="octicon octicon-link"></span></a>Benchmarking</h2>
+
+<p>You can measure and track your app’s performance by writing benchmark tests.
+The Flutter Driver library provides support for benchmarking. Using this
+integration test framework, you can generate metrics to track the following:</p>
+
+<ul>
+  <li>Jank</li>
+  <li>Download size</li>
+  <li>Battery efficiency</li>
+  <li>Startup time</li>
+</ul>
+
+<p>Tracking these benchmarks allows you to be informed when a regression is
+introduced that adversely affects performance.</p>
+
+<p>For more information, see <a href="/docs/testing#integration-testing">Integration testing</a>,
+a section in <a href="/docs/testing">Testing Flutter apps</a>.</p>
+
+<h2 id="more-information">
+<a id="more-information" class="anchor" href="#more-information" aria-hidden="true"><span class="octicon octicon-link"></span></a>More information</h2>
+
+<p>The following resources provide more information on using Flutter’s tools
+and debugging in Flutter:</p>
+
+<ul>
+  <li><a href="/docs/testing/debugging">Debugging Flutter apps</a></li>
+  <li><a href="/docs/development/tools/inspector">Widget inspector</a></li>
+  <li>
+<a href="https://www.youtube.com/watch?v=JIcmJNT9DNI">Flutter Inspector talk</a>, presented at DartConf 2018</li>
+  <li>
+<a href="https://hackernoon.com/why-flutter-uses-dart-dd635a054ebf">Why Flutter Uses Dart</a>, an article on Hackernoon</li>
+  <li>
+<a href="https://flutter.github.io/devtools">Dart DevTools</a>: performance tooling for Dart and Flutter apps</li>
+  <li>
+<a href="https://api.flutter.dev">Flutter API</a> docs, particularly the <a href="https://api.flutter.dev/flutter/widgets/PerformanceOverlay-class.html">PerformanceOverlay</a> class, and the
+<a href="https://api.flutter.dev/flutter/dart-developer/dart-developer-library.html">dart:developer</a> package</li>
+</ul>
+
+
+        
+      </div>
+    </main>
+  </div>
+</div>
+<footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 site-footer__wrapper">
+        <div class="site-footer__logo">
+          <img src="/images/flutter-mono-81x100.png" alt="Flutter Logo" width="81" height="100">
+        </div>
+        <div class="site-footer__content">
+          <ul class="site-footer__link-list">
+              <li><a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a></li>
+              <li><a href="/tos">terms</a></li>
+              <li><a href="/security">security</a></li>
+              <li><a href="https://www.google.com/intl/en/policies/privacy">privacy</a></li>
+              <li><a href="https://flutter-es.io/">español</a></li>
+              <li><a href="https://flutter-io.cn" class="text-nowrap">社区中文资源</a></li>
+          </ul>
+
+          <p class="licenses" translation-origin="on">
+            Except as otherwise noted,
+            this work is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0">Creative
+            Commons Attribution 4.0 International License</a>,
+            and code samples are licensed under the BSD License.
+          </p>
+          <p class="licenses" translation-result="off">
+            除非特别说明，否则本站内容采用 <a rel="license" href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0 授权协议</a>，所有范例代码都采用 BSD 授权协议。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- <script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script> -->
+  
+
+<script src="/assets/translator/js/translator.js"></script></body></html>

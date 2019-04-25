@@ -1,0 +1,1109 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>使用 Mockito 模拟依赖关系  - Flutter 中文文档 - Flutter 社区中文资源 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-ND4LWWZ');</script>
+  <!-- End Google Tag Manager -->
+
+  
+  <meta name="description" content="In certain cases, unit tests may depend on classes that fetch data from liveweb services or databases. This is inconvenient for a few reasons:某些情况下，单元测试可能会依赖需要从线上 Web 服务或数据库中获取数据的类。这样会带来一些不便，原因如下： * Calling live services or databases slow down test execution. 访问线上服务或数据库会拖慢测试执行效率。 * A passing test may start failing if a web service or database...">
+  <meta name="keywords" content=" ">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@flutterdev">
+
+  <meta property="og:title" content="使用 Mockito 模拟依赖关系">
+  <meta property="og:url" content="https://flutter.dev/docs/cookbook/testing/unit/mocking">
+  <meta property="og:description" content="In certain cases, unit tests may depend on classes that fetch data from liveweb services or databases. This is inconvenient for a few reasons:某些情况下，单元测试可能会依赖需要从线上 Web 服务或数据库中获取数据的类。这样会带来一些不便，原因如下： * Calling live services or databases slow down test execution. 访问线上服务或数据库会拖慢测试执行效率。 * A passing test may start failing if a web service or database...">
+  
+  <meta property="og:image" content="https://flutter.dev/images/flutter-logo-sharing.png">
+
+  <link href="/assets/translator/css/material-roboto.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/assets/main-74a0c308218334fcd85291a957a514973015ea8e4eb76b9abae6e14bb5012f5e.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  <script src="/assets/main-d6b8b8d26e7b4122b3ddf6a5201966d6e2494aaffadaafaf7c571ce5e2fe0aab.js" type="text/javascript"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-122680122-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <!--<meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />-->
+<link href="/assets/translator/css/translator.css" rel="stylesheet"></head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-ND4LWWZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div id="overlay-under-drawer"></div>
+
+    <header class="site-header">
+  <nav class="navbar navbar-expand-md justify-content-start justify-content-md-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="material-icons">menu</i>
+    </button>
+
+    <a class="navbar-brand" href="/">
+      <img alt="Flutter by Google" height="37" width="129" class="align-middle" src="/assets/flutter-lockup-4cb0ee072ab312e59784d9fbf4fb7ad42688a7fdaea1270ccf6bbf4f34b7e03f.svg">
+    </a>
+
+    <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
+      <div class="site-header__sheet-bg" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></div>
+      <div class="site-header__sheet">
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <a class="nav-link active" href="/docs">开发文档</a>
+          </li>
+          <div class="site-sidebar site-sidebar--header d-md-none">
+            <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="false" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="true" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link active" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+          </div>
+
+<!-- 
+          <li class="nav-item">
+            <a class="nav-link" href="/showcase">Showcase</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/community">Community</a>
+          </li>
+ -->
+        </ul>
+        <form action="/search" class="site-header__search form-inline">
+          <input class="site-header__searchfield form-control" type="search" name="q" id="q" autocomplete="off" placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+    </div>
+    <div class="site-header__social navbar-nav flex-row">
+      <a class="nav-item nav-link" href="https://twitter.com/flutterdev"><i class="fab fa-twitter fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://www.youtube.com/flutterdev"><i class="fab fa-youtube fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://github.com/flutter"><i class="fab fa-github fa-lg"></i></a>
+    </div>
+    <a class="site-header__cta btn btn-primary" href="/docs/get-started/install/">Get started</a>
+    </nav>
+</header>
+<div class="site-banner site-banner--default" role="alert">
+    <p>
+      We are looking for a Flutter Infrastructure engineer!
+      <a href="/jobs/infrastructure" target="_blank" rel="noopener">Learn more</a>.
+    </p>
+
+  </div>
+<div class="container-fluid position-relative">
+  <div class="row flex-xl-nowrap">
+    <div class="fixed-col site-sidebar site-sidebar--fixed col-12 col-md-3 col-xl-2 d-none d-md-block" data-fixed-column="">
+      <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="false" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="true" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link active" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+    </div>
+    <div id="site-toc--side" class="site-toc site-toc--side fixed-col col-xl-2 order-3" data-fixed-column="">
+  <header class="site-toc__title">
+    Contents
+    <button type="button" class="btn site-toc--button__page-top" aria-label="Page top"></button>
+    </header>
+  <ul class="section-nav nav">
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#directions">Directions</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#使用步骤">使用步骤</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#1-add-the-mockito-dependency">1. Add the mockito dependency</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#1-添加-mockito-依赖">1. 添加 mockito 依赖</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#2-create-a-function-to-test">2. Create a function to test</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#2-创建一个要测试的函数">2. 创建一个要测试的函数</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#3-create-a-test-file-with-a-mock-httpclient">3. Create a test file with a mock http.Client</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#3-创建一个模拟了-httpclient-的测试文件">3. 创建一个模拟了 http.Client 的测试文件</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#4-write-a-test-for-each-condition">4. Write a test for each condition</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#4-给每一个条件写一个测试">4. 给每一个条件写一个测试</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#5-run-the-tests">5. Run the tests</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#5-执行测试">5. 执行测试</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#summary">Summary</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#总结">总结</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<main class="site-content col-12 col-md-9 offset-md-3 col-xl-8 offset-xl-2 col-xxl-8 offset-xxl-2" role="main">
+      <div class="container">
+        
+        <nav class="site-nextprev-nav">
+    <ul>
+      <li class="prev">
+          <a href="/docs/cookbook/testing/unit/introduction">单元测试介绍</a>
+      </li>
+      <li class="next">
+          <a href="/docs/cookbook/testing/widget/introduction">Widget 测试介绍</a>
+      </li>
+      </ul>
+  </nav>
+
+        <header class="site-content__title">
+          <div id="page-github-links" class="btn-group" aria-label="Page GitHub links" role="group">
+  <a href="https://github.com/cfug/flutter.cn/tree/master/src/docs/cookbook/testing/unit/mocking.md" class="btn no-automatic-external" title="View page source" target="_blank" rel="noopener">
+    <i class="fas fa-file-alt fa-sm"></i>
+  </a>
+  <a href="https://github.com/cfug/flutter.cn/issues/new?title='使用 Mockito 模拟依赖关系' page issue&amp;body=
+Page URL: https://flutter.dev/docs/cookbook/testing/unit/mocking.html%0D%0A
+Page source: https://github.com/cfug/flutter.cn/tree/master/src/docs/cookbook/testing/unit/mocking.md%0D%0A
+%0D%0A
+Found a typo? You can fix it yourself by going to the page source and clicking the pencil icon. Or finish creating this issue.%0D%0A
+%0D%0A
+Description of issue:" class="btn no-automatic-external" title="Report an issue with this page" target="_blank" rel="noopener">
+    <i class="fas fa-bug fa-sm"></i>
+  </a>
+</div>
+
+          <h1 id="使用-mockito-模拟依赖关系">使用 Mockito 模拟依赖关系</h1>
+          
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="/docs" property="item" typeof="WebPage"><span property="name">文档</span>
+      </a>
+      <meta property="position" content="1">
+    </li>
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="/docs/cookbook" property="item" typeof="WebPage"><span property="name">实用教程</span>
+      </a>
+      <meta property="position" content="2">
+    </li>
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="/docs/cookbook/testing" property="item" typeof="WebPage"><span property="name">测试 (Testing)</span>
+      </a>
+      <meta property="position" content="3">
+    </li>
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="/docs/cookbook/testing/unit" property="item" typeof="WebPage"><span property="name">在 Flutter 里进行单元测试</span>
+      </a>
+      <meta property="position" content="4">
+    </li>
+  <li class="breadcrumb-item active" property="itemListElement" typeof="ListItem" aria-current="page"><a href="/docs/cookbook/testing/unit/mocking.html" property="item" typeof="WebPage"><span property="name">Mocking</span>
+      </a>
+      <meta property="position" content="5">
+    </li>
+  
+  </ol>
+</nav>
+          </header>
+        <div id="site-toc--inline" class="site-toc site-toc--inline ">
+  <header class="site-toc__title">
+    Contents
+    </header>
+  <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#directions">Directions</a></li>
+<li class="toc-entry toc-h2"><a href="#使用步骤">使用步骤</a></li>
+<li class="toc-entry toc-h2"><a href="#1-add-the-mockito-dependency">1. Add the mockito dependency</a></li>
+<li class="toc-entry toc-h2"><a href="#1-添加-mockito-依赖">1. 添加 mockito 依赖</a></li>
+<li class="toc-entry toc-h2"><a href="#2-create-a-function-to-test">2. Create a function to test</a></li>
+<li class="toc-entry toc-h2"><a href="#2-创建一个要测试的函数">2. 创建一个要测试的函数</a></li>
+<li class="toc-entry toc-h2"><a href="#3-create-a-test-file-with-a-mock-httpclient">3. Create a test file with a mock http.Client</a></li>
+<li class="toc-entry toc-h2"><a href="#3-创建一个模拟了-httpclient-的测试文件">3. 创建一个模拟了 http.Client 的测试文件</a></li>
+<li class="toc-entry toc-h2"><a href="#4-write-a-test-for-each-condition">4. Write a test for each condition</a></li>
+<li class="toc-entry toc-h2"><a href="#4-给每一个条件写一个测试">4. 给每一个条件写一个测试</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#5-run-the-tests">5. Run the tests</a></li>
+<li class="toc-entry toc-h3"><a href="#5-执行测试">5. 执行测试</a></li>
+<li class="toc-entry toc-h3"><a href="#summary">Summary</a></li>
+<li class="toc-entry toc-h3"><a href="#总结">总结</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p translation-origin="on">In certain cases, unit tests may depend on classes that fetch data from live
+web services or databases. This is inconvenient for a few reasons:</p>
+
+<p translation-result="off">某些情况下，单元测试可能会依赖需要从线上 Web 服务或数据库中获取数据的类。
+这样会带来一些不便，原因如下：</p>
+
+<ul>
+  <li>
+    <p translation-origin="on">Calling live services or databases slow down test execution.</p>
+
+    <p translation-result="off">访问线上服务或数据库会拖慢测试执行效率。</p>
+  </li>
+  <li>
+    <p translation-origin="on">A passing test may start failing if a web service or database returns
+  unexpected results. This is known as a “flaky test.”</p>
+
+    <p translation-result="off">原本可以通过的测试可能会失败，因为 Web 服务或数据库可能会返回不符合预期的结果。这种情况被称作“flaky test”。</p>
+  </li>
+  <li>
+    <p translation-origin="on">It is difficult to test all possible success &amp; failure scenarios using a
+live web service or database.</p>
+
+    <p translation-result="off">使用线上 web 服务或数据库来测试很难覆盖全所有可能成功或失败的场景。</p>
+  </li>
+</ul>
+
+<p translation-origin="on">Therefore, rather than relying on a live web service or database, we can “mock”
+these dependencies. Mocks allow us to emulate a live web service or database and
+return specific results depending on the situation.</p>
+
+<p translation-result="off">因此，最好不要依赖线上 web 服务或数据库，我们可以把这些依赖 “模拟（mock）”出来 。
+模拟（Mocks）允许我们仿造一个线上服务或数据库，并且可以根据条件返回特定结果。</p>
+
+<p translation-origin="on">Generally speaking, we can mock dependencies by creating an alternative
+implementation of a class. We can write these alternative implementations by
+hand or make use of the
+<a href="https://pub.flutter-io.cn/packages/mockito">Mockito package</a> as a shortcut.</p>
+
+<p translation-result="off">通常来说，可以通过创建类的另一种实现来模拟（mock）这种依赖。
+类的另一种实现可以手写，也可以借助 <a href="https://pub.flutter-io.cn/packages/mockito">Mockito 包</a>，后者简单一些。</p>
+
+<p translation-origin="on">This recipe demonstrates the basics of mocking using the Mockito package.
+For more information, please see the
+<a href="https://pub.flutter-io.cn/packages/mockito">Mockito package documentation</a>.</p>
+
+<p translation-result="off">本篇教程只介绍了 Mockito 包的基本用法，更多用法请参考 <a href="https://pub.flutter-io.cn/packages/mockito">Mockito 包文档</a>。</p>
+
+<h2 id="directions" translation-origin="on">
+<a id="directions" class="anchor" href="#directions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Directions</h2>
+
+<h2 id="使用步骤" translation-result="off">
+<a id="使用步骤" class="anchor" href="#directions" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用步骤</h2>
+
+<ol>
+  <li>
+    <p translation-origin="on">Add the <code class="highlighter-rouge">mockito</code> dependency</p>
+
+    <p translation-result="off">添加 <code class="highlighter-rouge">mockito</code> 和 <code class="highlighter-rouge">test</code> 依赖</p>
+  </li>
+  <li>
+    <p translation-origin="on">Create a function to test</p>
+
+    <p translation-result="off">创建一个要测试的函数</p>
+  </li>
+  <li>
+    <p translation-origin="on">Create a test file with a mock <code class="highlighter-rouge">http.Client</code></p>
+
+    <p translation-result="off">创建一个模拟了 <code class="highlighter-rouge">http.Client</code> 的测试文件</p>
+  </li>
+  <li>
+    <p translation-origin="on">Write a test for each condition</p>
+
+    <p translation-result="off">给每一个条件写一个测试</p>
+  </li>
+  <li>
+    <p translation-origin="on">Run the tests</p>
+
+    <p translation-result="off">执行这些测试</p>
+  </li>
+</ol>
+
+<h2 id="1-add-the-mockito-dependency" translation-origin="on">
+<a id="1-add-the-mockito-dependency" class="anchor" href="#1-add-the-mockito-dependency" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Add the <code class="highlighter-rouge">mockito</code> dependency</h2>
+
+<h2 id="1-添加-mockito-依赖" translation-result="off">
+<a id="1-添加-mockito-依赖" class="anchor" href="#1-add-the-mockito-dependency" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. 添加 <code class="highlighter-rouge">mockito</code> 依赖</h2>
+
+<p translation-origin="on">In order to use the <code class="highlighter-rouge">mockito</code> package, you first need to add it to the
+<code class="highlighter-rouge">pubspec.yaml</code> file along with the <code class="highlighter-rouge">flutter_test</code> dependency in the
+<code class="highlighter-rouge">dev_dependencies</code> section.</p>
+
+<p translation-result="off">为了使用 mockito 包，首先将其和 <code class="highlighter-rouge">flutter_test</code> 的依赖一起添加到 <code class="highlighter-rouge">pubspec.yaml</code> 文件的 <code class="highlighter-rouge">dev_dependencies</code> 部分：</p>
+
+<p translation-origin="on">You’ll also be using the <code class="highlighter-rouge">http</code> package in this example, and will define that
+dependency in the <code class="highlighter-rouge">dependencies</code> section.</p>
+
+<p translation-result="off">本例中还使用了 <code class="highlighter-rouge">http</code> 包，需要添加到 <code class="highlighter-rouge">dependencies</code> 部分：</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">dependencies</span><span class="pi">:</span>
+  <span class="na">http</span><span class="pi">:</span> <span class="s">&lt;newest_version&gt;</span>
+<span class="na">dev_dependencies</span><span class="pi">:</span>
+  <span class="na">test</span><span class="pi">:</span> <span class="s">&lt;newest_version&gt;</span>
+  <span class="na">mockito</span><span class="pi">:</span> <span class="s">&lt;newest_version&gt;</span>
+</code></pre></div></div>
+
+<h2 id="2-create-a-function-to-test" translation-origin="on">
+<a id="2-create-a-function-to-test" class="anchor" href="#2-create-a-function-to-test" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Create a function to test</h2>
+
+<h2 id="2-创建一个要测试的函数" translation-result="off">
+<a id="2-创建一个要测试的函数" class="anchor" href="#2-create-a-function-to-test" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. 创建一个要测试的函数</h2>
+
+<p translation-origin="on">In this example, you’ll want to unit test the <code class="highlighter-rouge">fetchPost</code> function from the
+<a href="/docs/cookbook/networking/fetch-data/">Fetch data from the internet</a> recipe.
+In order to test this function, you need to make two changes:</p>
+
+<p translation-result="off">本例中，我们要对<a href="/docs/cookbook/networking/fetch-data/">获取网络数据</a>章节的 <code class="highlighter-rouge">fetchPost</code> 函数进行单元测试。
+为了便于测试，我们需要做两个改动：</p>
+
+<ol>
+  <li>
+    <p translation-origin="on">Provide an <code class="highlighter-rouge">http.Client</code> to the function. This allows you to provide the 
+  correct <code class="highlighter-rouge">http.Client</code> depending on the situation.
+  For Flutter and server-side projects, you can provide an <code class="highlighter-rouge">http.IOClient</code>.
+  For Browser apps, you can provide an <code class="highlighter-rouge">http.BrowserClient</code>.
+  For tests, you provide a mock <code class="highlighter-rouge">http.Client</code>.</p>
+
+    <p translation-result="off">给函数提供一个 <code class="highlighter-rouge">http.Client</code>。这样的话我们可以在不同情形下提供相应的 <code class="highlighter-rouge">http.Client</code> 实例。如果是 Flutter 以及服务端项目，可以提供 <code class="highlighter-rouge">http.IOClient </code>。如果是浏览器应用，可以提供 <code class="highlighter-rouge">http.BrowserClient</code>。为了测试，我们要提供一个模拟的 <code class="highlighter-rouge">http.Client</code>。</p>
+  </li>
+  <li>
+    <p translation-origin="on">Use the provided <code class="highlighter-rouge">client</code> to fetch data from the internet, 
+  rather than the static <code class="highlighter-rouge">http.get</code> method, which is difficult to mock.</p>
+
+    <p translation-result="off">使用上面提供的 <code class="highlighter-rouge">client</code> 来请求网络数据，不要用 <code class="highlighter-rouge">http.get</code> 这个静态方法，因为它比较难以模拟。</p>
+  </li>
+</ol>
+
+<p translation-origin="on">The function should now look like this:</p>
+
+<p translation-result="off">函数经过改动之后：</p>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Future</span><span class="o">&lt;</span><span class="n">Post</span><span class="o">&gt;</span> <span class="n">fetchPost</span><span class="o">(</span><span class="n">http</span><span class="o">.</span><span class="na">Client</span> <span class="n">client</span><span class="o">)</span> <span class="n">async</span> <span class="o">{</span>
+  <span class="kd">final</span> <span class="n">response</span> <span class="o">=</span>
+      <span class="n">await</span> <span class="n">client</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">'https://jsonplaceholder.typicode.com/posts/1'</span><span class="o">);</span>
+
+  <span class="k">if</span> <span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">statusCode</span> <span class="o">==</span> <span class="mi">200</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// If the call to the server was successful, parse the JSON</span>
+    <span class="k">return</span> <span class="n">Post</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="n">json</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">body</span><span class="o">));</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="c1">// If that call was not successful, throw an error.</span>
+    <span class="k">throw</span> <span class="n">Exception</span><span class="o">(</span><span class="s">'Failed to load post'</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="3-create-a-test-file-with-a-mock-httpclient" translation-origin="on">
+<a id="3-create-a-test-file-with-a-mock-httpclient" class="anchor" href="#3-create-a-test-file-with-a-mock-httpclient" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Create a test file with a mock <code class="highlighter-rouge">http.Client</code>
+</h2>
+
+<h2 id="3-创建一个模拟了-httpclient-的测试文件" translation-result="off">
+<a id="3-创建一个模拟了-httpclient-的测试文件" class="anchor" href="#3-create-a-test-file-with-a-mock-httpclient" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. 创建一个模拟了 http.Client 的测试文件</h2>
+
+<p translation-origin="on">Next, create a test file along with a <code class="highlighter-rouge">MockClient</code> class.
+Following the advice in the <a href="/docs/cookbook/testing/unit/introduction">Introduction to unit
+testing</a> recipe,
+create a file called <code class="highlighter-rouge">fetch_post_test.dart</code> in the root <code class="highlighter-rouge">test</code> folder.</p>
+
+<p translation-result="off">接下来，创建测试文件，我们需要在文件中创建 <code class="highlighter-rouge">MockitoClient</code> 类。
+遵循<a href="/docs/cookbook/testing/unit/">单元测试介绍</a>章节的建议，
+我们在根目录下的 <code class="highlighter-rouge">test</code> 文件夹中创建一个名字为 <code class="highlighter-rouge">fetch_post_test.dart</code> 的文件。</p>
+
+<p translation-origin="on">The <code class="highlighter-rouge">MockClient</code> class implements the <code class="highlighter-rouge">http.Client</code> class. This allows
+you to pass the <code class="highlighter-rouge">MockClient</code> to the <code class="highlighter-rouge">fetchPost</code> function,
+and allow you to return different http responses in each test.</p>
+
+<p translation-result="off"><code class="highlighter-rouge">MockClient</code> 类会实现 <code class="highlighter-rouge">http.Client</code> 类。
+如此一来，我们就可以把 <code class="highlighter-rouge">MockClient</code> 传给 <code class="highlighter-rouge">fetchPost</code> 函数，
+还可以在每个测试中返回不同的 http 请求结果。</p>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Create a MockClient using the Mock class provided by the Mockito package.</span>
+<span class="c1">// Create new instances of this class in each test.</span>
+<span class="kd">class</span> <span class="nc">MockClient</span> <span class="kd">extends</span> <span class="n">Mock</span> <span class="kd">implements</span> <span class="n">http</span><span class="o">.</span><span class="na">Client</span> <span class="o">{}</span>
+
+<span class="n">main</span><span class="o">()</span> <span class="o">{</span>
+  <span class="c1">// Tests go here</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="4-write-a-test-for-each-condition" translation-origin="on">
+<a id="4-write-a-test-for-each-condition" class="anchor" href="#4-write-a-test-for-each-condition" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. Write a test for each condition</h2>
+
+<h2 id="4-给每一个条件写一个测试" translation-result="off">
+<a id="4-给每一个条件写一个测试" class="anchor" href="#4-write-a-test-for-each-condition" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. 给每一个条件写一个测试</h2>
+
+<p translation-origin="on">If you think about the <code class="highlighter-rouge">fetchPost</code> function, it will do one of two things:</p>
+
+<p translation-result="off">回过头来看，<code class="highlighter-rouge">fetchPost</code> 函数会完成下面两件事中的一件：</p>
+
+<ol>
+  <li>
+    <p translation-origin="on">Return a <code class="highlighter-rouge">Post</code> if the http call succeeds</p>
+
+    <p translation-result="off">如果 http 请求成功，返回 <code class="highlighter-rouge">Post</code></p>
+  </li>
+  <li>
+    <p translation-origin="on">Throw an <code class="highlighter-rouge">Exception</code> if the http call fails</p>
+
+    <p translation-result="off">如果 http 请求失败，抛出 <code class="highlighter-rouge">Exception</code></p>
+  </li>
+</ol>
+
+<p translation-origin="on">Therefore, you’ll want to test these two conditions.
+You can use the <code class="highlighter-rouge">MockClient</code> class to return an “Ok” response
+for the success test, and an error response for the unsuccessful test.</p>
+
+<p translation-result="off">因此，我们要测试这两种条件。可以使用 <code class="highlighter-rouge">MockClient</code> 类为成功的测试返回一个 “OK” 的请求结果，
+为不成功的测试返回一个错误的请求结果。</p>
+
+<p translation-origin="on">To achieve this, use the <code class="highlighter-rouge">when</code> function provided by Mockito.</p>
+
+<p translation-result="off">我们使用 Mockito 的 <code class="highlighter-rouge">when</code> 函数来达到以上目的：</p>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Create a MockClient using the Mock class provided by the Mockito package.</span>
+<span class="c1">// Create new instances of this class in each test.</span>
+<span class="kd">class</span> <span class="nc">MockClient</span> <span class="kd">extends</span> <span class="n">Mock</span> <span class="kd">implements</span> <span class="n">http</span><span class="o">.</span><span class="na">Client</span> <span class="o">{}</span>
+
+<span class="n">main</span><span class="o">()</span> <span class="o">{</span>
+  <span class="n">group</span><span class="o">(</span><span class="s">'fetchPost'</span><span class="o">,</span> <span class="o">()</span> <span class="o">{</span>
+    <span class="n">test</span><span class="o">(</span><span class="s">'returns a Post if the http call completes successfully'</span><span class="o">,</span> <span class="o">()</span> <span class="n">async</span> <span class="o">{</span>
+      <span class="kd">final</span> <span class="n">client</span> <span class="o">=</span> <span class="n">MockClient</span><span class="o">();</span>
+
+      <span class="c1">// Use Mockito to return a successful response when it calls the</span>
+      <span class="c1">// provided http.Client.</span>
+      <span class="n">when</span><span class="o">(</span><span class="n">client</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">'https://jsonplaceholder.typicode.com/posts/1'</span><span class="o">))</span>
+          <span class="o">.</span><span class="na">thenAnswer</span><span class="o">((</span><span class="n">_</span><span class="o">)</span> <span class="n">async</span> <span class="o">=&gt;</span> <span class="n">http</span><span class="o">.</span><span class="na">Response</span><span class="o">(</span><span class="s">'{"title": "Test"}'</span><span class="o">,</span> <span class="mi">200</span><span class="o">));</span>
+
+      <span class="n">expect</span><span class="o">(</span><span class="n">await</span> <span class="n">fetchPost</span><span class="o">(</span><span class="n">client</span><span class="o">),</span> <span class="n">isInstanceOf</span><span class="o">&lt;</span><span class="n">Post</span><span class="o">&gt;());</span>
+    <span class="o">});</span>
+
+    <span class="n">test</span><span class="o">(</span><span class="s">'throws an exception if the http call completes with an error'</span><span class="o">,</span> <span class="o">()</span> <span class="o">{</span>
+      <span class="kd">final</span> <span class="n">client</span> <span class="o">=</span> <span class="n">MockClient</span><span class="o">();</span>
+
+      <span class="c1">// Use Mockito to return an unsuccessful response when it calls the</span>
+      <span class="c1">// provided http.Client.</span>
+      <span class="n">when</span><span class="o">(</span><span class="n">client</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">'https://jsonplaceholder.typicode.com/posts/1'</span><span class="o">))</span>
+          <span class="o">.</span><span class="na">thenAnswer</span><span class="o">((</span><span class="n">_</span><span class="o">)</span> <span class="n">async</span> <span class="o">=&gt;</span> <span class="n">http</span><span class="o">.</span><span class="na">Response</span><span class="o">(</span><span class="s">'Not Found'</span><span class="o">,</span> <span class="mi">404</span><span class="o">));</span>
+
+      <span class="n">expect</span><span class="o">(</span><span class="n">fetchPost</span><span class="o">(</span><span class="n">client</span><span class="o">),</span> <span class="n">throwsException</span><span class="o">);</span>
+    <span class="o">});</span>
+  <span class="o">});</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="5-run-the-tests" translation-origin="on">
+<a id="5-run-the-tests" class="anchor" href="#5-run-the-tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>5. Run the tests</h3>
+
+<h3 id="5-执行测试" translation-result="off">
+<a id="5-执行测试" class="anchor" href="#5-run-the-tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>5. 执行测试</h3>
+
+<p translation-origin="on">Now that you have a <code class="highlighter-rouge">fetchPost</code> function with tests in place,
+run the tests.</p>
+
+<p translation-result="off">现在我们有了一个带测试的 <code class="highlighter-rouge">fetchPost</code> 函数，开始执行测试！</p>
+
+<div class="language-terminal highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> dart <span class="nb">test</span>/fetch_post_test.dart
+</code></pre></div></div>
+
+<p translation-origin="on">You can also run tests inside your favorite editor by following the
+instructions in the <a href="/docs/cookbook/testing/unit/introduction#run-tests-using-intellij-or-vscode">Introduction to unit
+testing</a>
+recipe.</p>
+
+<p translation-result="off">你也可以参考<a href="/docs/cookbook/testing/unit#run-tests-using-intellij-or-vscode">单元测试介绍</a>章节用自己喜欢的编辑器来执行测试。</p>
+
+<h3 id="summary" translation-origin="on">
+<a id="summary" class="anchor" href="#summary" aria-hidden="true"><span class="octicon octicon-link"></span></a>Summary</h3>
+
+<h3 id="总结" translation-result="off">
+<a id="总结" class="anchor" href="#summary" aria-hidden="true"><span class="octicon octicon-link"></span></a>总结</h3>
+
+<p translation-origin="on">In this example, you’ve learned how to use Mockito to test functions or classes
+that depend on web services or databases. This is only a short introduction to
+the Mockito library and the concept of mocking. For more information,
+see the documentation provided by the
+<a href="https://pub.flutter-io.cn/packages/mockito">Mockito package</a>.</p>
+
+<p translation-result="off">通过本例，我们已经学会了如何用 Mockito 来测试对 web 服务或数据库有依赖的函数或类。
+这里只是简短地介绍了 Mockito 库以及模拟（mocking）的概念。
+更多内容请移步至 <a href="https://pub.flutter-io.cn/packages/mockito">Mockito package</a>。</p>
+
+        <nav class="site-nextprev-nav">
+    <ul>
+      <li class="prev">
+          <a href="/docs/cookbook/testing/unit/introduction">单元测试介绍</a>
+      </li>
+      <li class="next">
+          <a href="/docs/cookbook/testing/widget/introduction">Widget 测试介绍</a>
+      </li>
+      </ul>
+  </nav>
+
+      </div>
+    </main>
+  </div>
+</div>
+<footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 site-footer__wrapper">
+        <div class="site-footer__logo">
+          <img src="/images/flutter-mono-81x100.png" alt="Flutter Logo" width="81" height="100">
+        </div>
+        <div class="site-footer__content">
+          <ul class="site-footer__link-list">
+              <li><a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a></li>
+              <li><a href="/tos">terms</a></li>
+              <li><a href="/security">security</a></li>
+              <li><a href="https://www.google.com/intl/en/policies/privacy">privacy</a></li>
+              <li><a href="https://flutter-es.io/">español</a></li>
+              <li><a href="https://flutter-io.cn" class="text-nowrap">社区中文资源</a></li>
+          </ul>
+
+          <p class="licenses" translation-origin="on">
+            Except as otherwise noted,
+            this work is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0">Creative
+            Commons Attribution 4.0 International License</a>,
+            and code samples are licensed under the BSD License.
+          </p>
+          <p class="licenses" translation-result="off">
+            除非特别说明，否则本站内容采用 <a rel="license" href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0 授权协议</a>，所有范例代码都采用 BSD 授权协议。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- <script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script> -->
+  
+
+<script src="/assets/translator/js/translator.js"></script></body></html>

@@ -1,0 +1,1201 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JSON 和序列化数据  - Flutter 中文文档 - Flutter 社区中文资源 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-ND4LWWZ');</script>
+  <!-- End Google Tag Manager -->
+
+  
+  <meta name="description" content="It is hard to think of a mobile app that doesn't need to communicate with aweb server or easily store structured data at some point. When makingnetwork-connected apps, the chances are that it needs to consume some good oldJSON, sooner or later.This guide looks into ways of using JSON with...">
+  <meta name="keywords" content=" ">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@flutterdev">
+
+  <meta property="og:title" content="JSON 和序列化数据">
+  <meta property="og:url" content="https://flutter.dev/docs/development/data-and-backend/json">
+  <meta property="og:description" content="It is hard to think of a mobile app that doesn't need to communicate with aweb server or easily store structured data at some point. When makingnetwork-connected apps, the chances are that it needs to consume some good oldJSON, sooner or later.This guide looks into ways of using JSON with...">
+  
+  <meta property="og:image" content="https://flutter.dev/images/flutter-logo-sharing.png">
+
+  <link href="/assets/translator/css/material-roboto.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/assets/main-74a0c308218334fcd85291a957a514973015ea8e4eb76b9abae6e14bb5012f5e.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  <script src="/assets/main-d6b8b8d26e7b4122b3ddf6a5201966d6e2494aaffadaafaf7c571ce5e2fe0aab.js" type="text/javascript"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-122680122-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <!--<meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />-->
+<link href="/assets/translator/css/translator.css" rel="stylesheet"></head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-ND4LWWZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div id="overlay-under-drawer"></div>
+
+    <header class="site-header">
+  <nav class="navbar navbar-expand-md justify-content-start justify-content-md-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="material-icons">menu</i>
+    </button>
+
+    <a class="navbar-brand" href="/">
+      <img alt="Flutter by Google" height="37" width="129" class="align-middle" src="/assets/flutter-lockup-4cb0ee072ab312e59784d9fbf4fb7ad42688a7fdaea1270ccf6bbf4f34b7e03f.svg">
+    </a>
+
+    <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
+      <div class="site-header__sheet-bg" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></div>
+      <div class="site-header__sheet">
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <a class="nav-link active" href="/docs">开发文档</a>
+          </li>
+          <div class="site-sidebar site-sidebar--header d-md-none">
+            <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="false" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="false" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link active collapsable" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="true" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link active" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+          </div>
+
+<!-- 
+          <li class="nav-item">
+            <a class="nav-link" href="/showcase">Showcase</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/community">Community</a>
+          </li>
+ -->
+        </ul>
+        <form action="/search" class="site-header__search form-inline">
+          <input class="site-header__searchfield form-control" type="search" name="q" id="q" autocomplete="off" placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+    </div>
+    <div class="site-header__social navbar-nav flex-row">
+      <a class="nav-item nav-link" href="https://twitter.com/flutterdev"><i class="fab fa-twitter fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://www.youtube.com/flutterdev"><i class="fab fa-youtube fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://github.com/flutter"><i class="fab fa-github fa-lg"></i></a>
+    </div>
+    <a class="site-header__cta btn btn-primary" href="/docs/get-started/install/">Get started</a>
+    </nav>
+</header>
+<div class="site-banner site-banner--default" role="alert">
+    <p>
+      We are looking for a Flutter Infrastructure engineer!
+      <a href="/jobs/infrastructure" target="_blank" rel="noopener">Learn more</a>.
+    </p>
+
+  </div>
+<div class="container-fluid position-relative">
+  <div class="row flex-xl-nowrap">
+    <div class="fixed-col site-sidebar site-sidebar--fixed col-12 col-md-3 col-xl-2 d-none d-md-block" data-fixed-column="">
+      <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="false" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="false" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link active collapsable" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="true" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link active" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+    </div>
+    <div id="site-toc--side" class="site-toc site-toc--side fixed-col col-xl-2 order-3" data-fixed-column="">
+  <header class="site-toc__title">
+    Contents
+    <button type="button" class="btn site-toc--button__page-top" aria-label="Page top"></button>
+    </header>
+  <ul class="section-nav nav">
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#which-json-serialization-method-is-right-for-me">Which JSON serialization method is right for me?</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#use-manual-serialization-for-smaller-projects">Use manual serialization for smaller projects</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#use-code-generation-for-medium-to-large-projects">Use code generation for medium to large projects</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#is-there-a-gsonjacksonmoshi-equivalent-in-flutter">Is there a GSON/Jackson/Moshi equivalent in Flutter?</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#serializing-json-manually-using-dartconvert">Serializing JSON manually using dart:convert</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#serializing-json-inline">Serializing JSON inline</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#serializing-json-inside-model-classes">Serializing JSON inside model classes</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#serializing-json-using-code-generation-libraries">Serializing JSON using code generation libraries</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#setting-up-json_serializable-in-a-project">Setting up json_serializable in a project</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#creating-model-classes-the-json_serializable-way">Creating model classes the json_serializable way</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#running-the-code-generation-utility">Running the code generation utility</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#one-time-code-generation">One-time code generation</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#generating-code-continuously">Generating code continuously</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#consuming-json_serializable-models">Consuming json_serializable models</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#further-references">Further references</a></li>
+</ul>
+</div>
+<main class="site-content col-12 col-md-9 offset-md-3 col-xl-8 offset-xl-2 col-xxl-8 offset-xxl-2" role="main">
+      <div class="container">
+        
+        
+        <header class="site-content__title">
+          <div id="page-github-links" class="btn-group" aria-label="Page GitHub links" role="group">
+  <a href="https://github.com/cfug/flutter.cn/tree/master/src/docs/development/data-and-backend/json.md" class="btn no-automatic-external" title="View page source" target="_blank" rel="noopener">
+    <i class="fas fa-file-alt fa-sm"></i>
+  </a>
+  <a href="https://github.com/cfug/flutter.cn/issues/new?title='JSON 和序列化数据' page issue&amp;body=
+Page URL: https://flutter.dev/docs/development/data-and-backend/json.html%0D%0A
+Page source: https://github.com/cfug/flutter.cn/tree/master/src/docs/development/data-and-backend/json.md%0D%0A
+%0D%0A
+Found a typo? You can fix it yourself by going to the page source and clicking the pencil icon. Or finish creating this issue.%0D%0A
+%0D%0A
+Description of issue:" class="btn no-automatic-external" title="Report an issue with this page" target="_blank" rel="noopener">
+    <i class="fas fa-bug fa-sm"></i>
+  </a>
+</div>
+
+          <h1 id="json-和序列化数据">JSON 和序列化数据</h1>
+          
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="/docs" property="item" typeof="WebPage"><span property="name">文档</span>
+      </a>
+      <meta property="position" content="1">
+    </li>
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="/docs/development" property="item" typeof="WebPage"><span property="name">开发文档</span>
+      </a>
+      <meta property="position" content="2">
+    </li>
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="/docs/development/data-and-backend" property="item" typeof="WebPage"><span property="name">数据调用和后端</span>
+      </a>
+      <meta property="position" content="3">
+    </li>
+  <li class="breadcrumb-item active" property="itemListElement" typeof="ListItem" aria-current="page"><a href="/docs/development/data-and-backend/json.html" property="item" typeof="WebPage"><span property="name">JSON 和序列化数据</span>
+      </a>
+      <meta property="position" content="4">
+    </li>
+  
+  </ol>
+</nav>
+          </header>
+        <div id="site-toc--inline" class="site-toc site-toc--inline ">
+  <header class="site-toc__title">
+    Contents
+    </header>
+  <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#which-json-serialization-method-is-right-for-me">Which JSON serialization method is right for me?</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#use-manual-serialization-for-smaller-projects">Use manual serialization for smaller projects</a></li>
+<li class="toc-entry toc-h3"><a href="#use-code-generation-for-medium-to-large-projects">Use code generation for medium to large projects</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#is-there-a-gsonjacksonmoshi-equivalent-in-flutter">Is there a GSON/Jackson/Moshi equivalent in Flutter?</a></li>
+<li class="toc-entry toc-h2"><a href="#serializing-json-manually-using-dartconvert">Serializing JSON manually using dart:convert</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#serializing-json-inline">Serializing JSON inline</a></li>
+<li class="toc-entry toc-h3"><a href="#serializing-json-inside-model-classes">Serializing JSON inside model classes</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#serializing-json-using-code-generation-libraries">Serializing JSON using code generation libraries</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#setting-up-json_serializable-in-a-project">Setting up json_serializable in a project</a></li>
+<li class="toc-entry toc-h3"><a href="#creating-model-classes-the-json_serializable-way">Creating model classes the json_serializable way</a></li>
+<li class="toc-entry toc-h3"><a href="#running-the-code-generation-utility">Running the code generation utility</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#one-time-code-generation">One-time code generation</a></li>
+<li class="toc-entry toc-h4"><a href="#generating-code-continuously">Generating code continuously</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#consuming-json_serializable-models">Consuming json_serializable models</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#further-references">Further references</a></li>
+</ul>
+</div>
+<p>It is hard to think of a mobile app that doesn’t need to communicate with a
+web server or easily store structured data at some point. When making
+network-connected apps, the chances are that it needs to consume some good old
+JSON, sooner or later.</p>
+
+<p>This guide looks into ways of using JSON with Flutter. It covers which
+JSON solution to use in different scenarios, and why.</p>
+
+<aside class="alert alert-info" role="alert">
+  <p><i class="fas fa-info-circle"></i>
+  <strong>Terminology:</strong> <em>Encoding</em> and <em>serialization</em> are the same thing—turning
+  a data structure into a string. <em>Decoding</em> and <em>deserialization</em> are the
+  opposite process—turning a string into a data structure.
+  However, <em>serialization</em> also commonly refers to the entire process of
+  translating data structures to and from a more easily readable format.</p>
+
+  <p>To avoid confusion, this doc uses “serialization” when referring to the
+  overall process, and “encoding” and “decoding” when specifically
+  referring to those processes.</p>
+</aside>
+
+<h2 id="which-json-serialization-method-is-right-for-me">
+<a id="which-json-serialization-method-is-right-for-me" class="anchor" href="#which-json-serialization-method-is-right-for-me" aria-hidden="true"><span class="octicon octicon-link"></span></a>Which JSON serialization method is right for me?</h2>
+
+<p>This article covers two general strategies for working with JSON:</p>
+
+<ul>
+  <li>Manual serialization</li>
+  <li>Automated serialization using code generation</li>
+</ul>
+
+<p>Different projects come with different complexities and use cases. For smaller
+proof-of-concept projects or quick prototypes, using code generators might be
+overkill. For apps with several JSON models with more complexity, encoding
+by hand can quickly become tedious, repetitive, and lend itself to many
+small errors.</p>
+
+<h3 id="use-manual-serialization-for-smaller-projects">
+<a id="use-manual-serialization-for-smaller-projects" class="anchor" href="#use-manual-serialization-for-smaller-projects" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use manual serialization for smaller projects</h3>
+
+<p>Manual JSON decoding refers to using the built-in JSON decoder in
+<code class="highlighter-rouge">dart:convert</code>. It involves passing the raw JSON string to the <code class="highlighter-rouge">jsonDecode()</code>
+function, and then looking up the values you need in the resulting
+<code class="highlighter-rouge">Map&lt;String, dynamic&gt;</code>. It has no external dependencies or particular setup process,
+and it’s good for a quick proof of concept.</p>
+
+<p>Manual decoding does not perform well when your project becomes bigger.
+Writing decoding logic by hand can become hard to manage and error-prone.
+If you have a typo when accessing an nonexistent JSON
+field, your code throws an error during runtime.</p>
+
+<p>If you do not have many JSON models in your project and are looking to test a
+concept quickly, manual serialization might be the way you want to start.
+For an example of manual encoding, see
+<a href="#manual-encoding">Serializing JSON manually using dart:convert</a>.</p>
+
+<h3 id="use-code-generation-for-medium-to-large-projects">
+<a id="use-code-generation-for-medium-to-large-projects" class="anchor" href="#use-code-generation-for-medium-to-large-projects" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use code generation for medium to large projects</h3>
+
+<p>JSON serialization with code generation means having an external library
+generate the encoding boilerplate for you. After some initial setup,
+you run a file watcher that generates the code from your model classes.
+For example,
+<a href="https://pub.flutter-io.cn/packages/json_serializable">json_serializable</a> and
+<a href="https://pub.flutter-io.cn/packages/built_value">built_value</a>
+are these kinds of libraries.</p>
+
+<p>This approach scales well for a larger project. No hand-written
+boilerplate is needed, and typos when accessing JSON fields are caught at
+compile-time. The downside with code generation is that it requires some
+initial setup. Also, the generated source files may produce visual clutter
+in your project navigator.</p>
+
+<p>You might want to use generated code for JSON serialization when you have a
+medium or a larger project. To see an example of code generation based JSON
+encoding, see
+<a href="#code-generation">Serializing JSON using code generation libraries</a>.</p>
+
+<h2 id="is-there-a-gsonjacksonmoshi-equivalent-in-flutter">
+<a id="is-there-a-gsonjacksonmoshi-equivalent-in-flutter" class="anchor" href="#is-there-a-gsonjacksonmoshi-equivalent-in-flutter" aria-hidden="true"><span class="octicon octicon-link"></span></a>Is there a GSON/<wbr>Jackson/<wbr>Moshi equivalent in Flutter?</h2>
+
+<p>The simple answer is no.</p>
+
+<p>Such a library would require using runtime <a href="https://en.wikipedia.org/wiki/Reflection_(computer_programming)">reflection</a>, which is disabled in
+Flutter. Runtime reflection interferes with <a href="https://en.wikipedia.org/wiki/Tree_shaking">tree shaking</a>, which Dart has
+supported for quite a long time. With tree shaking, you can “shake off” unused
+code from your release builds. This optimizes the app’s size significantly.</p>
+
+<p>Since reflection makes all code implicitly used by default, it makes tree
+shaking difficult. The tools cannot know what parts are unused at runtime, so
+the redundant code is hard to strip away. App sizes cannot be easily optimized
+when using reflection.</p>
+
+<aside class="alert alert-info" role="alert">
+  <p><i class="fas fa-info-circle"></i>
+  <strong>What about dartson?</strong> The
+  <a href="https://pub.flutter-io.cn/packages/dartson">dartson</a> library uses runtime
+  <a href="https://en.wikipedia.org/wiki/Reflection_(computer_programming)">reflection</a>, which makes it incompatible with Flutter.</p>
+</aside>
+
+<p>Although you cannot use runtime reflection with Flutter, some libraries give
+you similarly easy to use APIs but are based on code generation instead. This
+approach is covered in more detail in the <a href="#code-generation">code generation
+libraries</a> section.</p>
+
+<p><a name="manual-encoding"></a></p>
+<h2 id="serializing-json-manually-using-dartconvert">
+<a id="serializing-json-manually-using-dartconvert" class="anchor" href="#serializing-json-manually-using-dartconvert" aria-hidden="true"><span class="octicon octicon-link"></span></a>Serializing JSON manually using dart:convert</h2>
+
+<p>Basic JSON encoding in Flutter is very simple. Flutter has a built-in
+<code class="highlighter-rouge">dart:convert</code> library that includes a straightforward JSON encoder and
+decoder.</p>
+
+<p>Here is an example JSON for a simple user model.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Smith"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john@example.com"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>With <code class="highlighter-rouge">dart:convert</code>, you can encode this JSON model in two ways.</p>
+
+<h3 id="serializing-json-inline">
+<a id="serializing-json-inline" class="anchor" href="#serializing-json-inline" aria-hidden="true"><span class="octicon octicon-link"></span></a>Serializing JSON inline</h3>
+
+<p>By looking at the <a href="https://api.dartlang.org/stable/dart-convert">dart:convert</a> documentation,
+you’ll see that you can decode the JSON by calling the <code class="highlighter-rouge">jsonDecode()</code> function,
+with the JSON string as the method argument.</p>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Map</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">,</span> <span class="kd">dynamic</span><span class="o">&gt;</span> <span class="n">user</span> <span class="o">=</span> <span class="n">jsonDecode</span><span class="o">(</span><span class="n">jsonString</span><span class="o">);</span>
+
+<span class="n">print</span><span class="o">(</span><span class="s">'Howdy, </span><span class="si">${user['name']}</span><span class="s">!'</span><span class="o">);</span>
+<span class="n">print</span><span class="o">(</span><span class="s">'We sent the verification link to </span><span class="si">${user['email']}</span><span class="s">.'</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Unfortunately, <code class="highlighter-rouge">jsonDecode()</code> returns a <code class="highlighter-rouge">Map&lt;String, dynamic&gt;</code>, meaning
+that you do not know the types of the values until runtime. With this approach,
+you lose most of the statically typed language features: type safety,
+autocompletion and most importantly, compile-time exceptions. Your code will
+become instantly more error-prone.</p>
+
+<p>For example, whenever you access the <code class="highlighter-rouge">name</code> or <code class="highlighter-rouge">email</code> fields, you could quickly
+introduce a typo. A typo that the compiler doesn’t know about since the
+JSON lives in a map structure.</p>
+
+<h3 id="serializing-json-inside-model-classes">
+<a id="serializing-json-inside-model-classes" class="anchor" href="#serializing-json-inside-model-classes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Serializing JSON inside model classes</h3>
+
+<p>Combat the previously mentioned problems by introducing a plain model
+class, called <code class="highlighter-rouge">User</code> in this example. Inside the <code class="highlighter-rouge">User</code> class, you’ll find:</p>
+
+<ul>
+  <li>A <code class="highlighter-rouge">User.fromJson()</code> constructor, for constructing a new <code class="highlighter-rouge">User</code> instance from a
+map structure.</li>
+  <li>A <code class="highlighter-rouge">toJson()</code> method, which converts a <code class="highlighter-rouge">User</code> instance into a map.</li>
+</ul>
+
+<p>With this approach, the <em>calling code</em> can have type safety,
+autocompletion for the <code class="highlighter-rouge">name</code> and <code class="highlighter-rouge">email</code> fields, and compile-time exceptions.
+If you make typos or treat the fields as <code class="highlighter-rouge">int</code>s instead of <code class="highlighter-rouge">String</code>s,
+the app won’t compile, instead of crashing at runtime.</p>
+
+<p><strong>user.dart</strong></p>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
+  <span class="kd">final</span> <span class="kt">String</span> <span class="n">name</span><span class="o">;</span>
+  <span class="kd">final</span> <span class="kt">String</span> <span class="n">email</span><span class="o">;</span>
+
+  <span class="n">User</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">email</span><span class="o">);</span>
+
+  <span class="n">User</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">,</span> <span class="kd">dynamic</span><span class="o">&gt;</span> <span class="n">json</span><span class="o">)</span>
+      <span class="o">:</span> <span class="n">name</span> <span class="o">=</span> <span class="n">json</span><span class="o">[</span><span class="s">'name'</span><span class="o">],</span>
+        <span class="n">email</span> <span class="o">=</span> <span class="n">json</span><span class="o">[</span><span class="s">'email'</span><span class="o">];</span>
+
+  <span class="n">Map</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">,</span> <span class="kd">dynamic</span><span class="o">&gt;</span> <span class="n">toJson</span><span class="o">()</span> <span class="o">=&gt;</span>
+    <span class="o">{</span>
+      <span class="s">'name'</span><span class="o">:</span> <span class="n">name</span><span class="o">,</span>
+      <span class="s">'email'</span><span class="o">:</span> <span class="n">email</span><span class="o">,</span>
+    <span class="o">};</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The responsibility of the decoding logic is now moved inside the model
+itself. With this new approach, you can decode a user easily.</p>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Map</span> <span class="n">userMap</span> <span class="o">=</span> <span class="n">jsonDecode</span><span class="o">(</span><span class="n">jsonString</span><span class="o">);</span>
+<span class="kd">var</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="n">User</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="n">userMap</span><span class="o">);</span>
+
+<span class="n">print</span><span class="o">(</span><span class="s">'Howdy, </span><span class="si">${user.name}</span><span class="s">!'</span><span class="o">);</span>
+<span class="n">print</span><span class="o">(</span><span class="s">'We sent the verification link to </span><span class="si">${user.email}</span><span class="s">.'</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>To encode a user, pass the <code class="highlighter-rouge">User</code> object to the <code class="highlighter-rouge">jsonEncode()</code> function.
+You don’t need to call the <code class="highlighter-rouge">toJson()</code> method, since <code class="highlighter-rouge">jsonEncode()</code>
+already does it for you.</p>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">String</span> <span class="n">json</span> <span class="o">=</span> <span class="n">jsonEncode</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>With this approach, the calling code doesn’t have to worry about JSON
+serialization at all. However, the model class still definitely has to.
+In a production app, you would want to ensure that the serialization
+works properly. In practice, the <code class="highlighter-rouge">User.fromJson()</code> and <code class="highlighter-rouge">User.toJson()</code>
+methods both need to have unit tests in place to verify correct behavior.</p>
+
+<p>However, real-world scenarios are not usually that simple.
+It’s unlikely that you would use such small JSON responses.
+Nested JSON objects are also commonly used.</p>
+
+<p>It would be nice if there were something that handled the JSON encoding
+and decoding for you.  Luckily, there is!</p>
+
+<p><a name="code-generation"></a></p>
+<h2 id="serializing-json-using-code-generation-libraries">
+<a id="serializing-json-using-code-generation-libraries" class="anchor" href="#serializing-json-using-code-generation-libraries" aria-hidden="true"><span class="octicon octicon-link"></span></a>Serializing JSON using code generation libraries</h2>
+
+<p>Although there are other libraries available, this guide uses the
+<a href="https://pub.flutter-io.cn/packages/json_serializable">json_serializable
+package</a>,
+an automated source code generator that generates the JSON serialization
+boilerplate for you.</p>
+
+<p>Since the serialization code is not handwritten or maintained manually
+anymore, you minimize the risk of having JSON serialization exceptions at
+runtime.</p>
+
+<h3 id="setting-up-json_serializable-in-a-project">
+<a id="setting-up-json_serializable-in-a-project" class="anchor" href="#setting-up-json_serializable-in-a-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setting up json_serializable in a project</h3>
+
+<p>To include <code class="highlighter-rouge">json_serializable</code> in your project, you need one regular
+dependency, and two <em>dev dependencies</em>. In short, <em>dev dependencies</em>
+are dependencies that are not included in our app source code—they
+are only used in the development environment.</p>
+
+<p>The latest versions of these required dependencies can be seen by following
+<a href="https://raw.githubusercontent.com/dart-lang/json_serializable/master/example/pubspec.yaml">the pubspec
+file</a>
+in the JSON serializable example.</p>
+
+<p><strong>pubspec.yaml</strong></p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">dependencies</span><span class="pi">:</span>
+  <span class="c1"># Your other regular dependencies here</span>
+  <span class="na">json_annotation</span><span class="pi">:</span> <span class="s">^2.0.0</span>
+
+<span class="na">dev_dependencies</span><span class="pi">:</span>
+  <span class="c1"># Your other dev_dependencies here</span>
+  <span class="na">build_runner</span><span class="pi">:</span> <span class="s">^1.0.0</span>
+  <span class="na">json_serializable</span><span class="pi">:</span> <span class="s">^2.0.0</span>
+</code></pre></div></div>
+
+<p>Run <code class="highlighter-rouge">flutter packages get</code> inside your project root folder (or click
+<strong>Packages Get</strong> in your editor) to make these new dependencies available
+in your project.</p>
+
+<h3 id="creating-model-classes-the-json_serializable-way">
+<a id="creating-model-classes-the-json_serializable-way" class="anchor" href="#creating-model-classes-the-json_serializable-way" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating model classes the json_serializable way</h3>
+
+<p>The following shows how to convert the <code class="highlighter-rouge">User</code> class to a <code class="highlighter-rouge">json_serializable</code>
+one. For the sake of simplicity, this code uses the simplified JSON model
+from the previous samples.</p>
+
+<p><strong>user.dart</strong></p>
+
+<pre class="prettyprint lang-dart">import 'package:json_annotation/json_annotation.dart';
+
+/// This allows the `User` class to access private members in
+/// the generated file. The value for this is *.g.dart, where
+/// the star denotes the source file name.
+part '<span class="highlight">user</span>.g.dart';
+
+/// An annotation for the code generator to know that this class needs the
+/// JSON serialization logic to be generated.
+<span class="highlight">@JsonSerializable()</span>
+
+class User {
+  User(this.name, this.email);
+
+  String name;
+  String email;
+
+  /// A necessary factory constructor for creating a new User instance
+  /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.
+  /// The constructor is named after the source class, in this case User.
+  factory User.fromJson(Map&lt;String, dynamic&gt; json) =&gt; _$<span class="highlight">User</span>FromJson(json);
+
+  /// `toJson` is the convention for a class to declare support for serialization
+  /// to JSON. The implementation simply calls the private, generated
+  /// helper method `_$UserToJson`.
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$<span class="highlight">User</span>ToJson(this);
+}</pre>
+
+<p>With this setup, the source code generator generates code for encoding
+and decoding the <code class="highlighter-rouge">name</code> and <code class="highlighter-rouge">email</code> fields from JSON.</p>
+
+<p>If needed, it is also easy to customize the naming strategy. For example, if the
+API returns objects with <em>snake_case</em>, and you want to use
+<em>lowerCamelCase</em> in your models,
+you can use the <code class="highlighter-rouge">@JsonKey</code> annotation with a name parameter:</p>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">/// Tell json_serializable that "registration_date_millis" should be</span>
+<span class="c1">/// mapped to this property.</span>
+<span class="nd">@JsonKey</span><span class="o">(</span><span class="nl">name:</span> <span class="s">'registration_date_millis'</span><span class="o">)</span>
+<span class="kd">final</span> <span class="kt">int</span> <span class="n">registrationDateMillis</span><span class="o">;</span>
+</code></pre></div></div>
+
+<h3 id="running-the-code-generation-utility">
+<a id="running-the-code-generation-utility" class="anchor" href="#running-the-code-generation-utility" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running the code generation utility</h3>
+
+<p>When creating <code class="highlighter-rouge">json_serializable</code> classes the first time, you’ll get errors
+similar to what is shown in the image below.</p>
+
+<p><img src="/images/json/ide_warning.png" alt="IDE warning when the generated code for a model class does not exist
+yet." class="mw-100"></p>
+
+<p>These errors are entirely normal and are simply because the generated code for
+the model class does not exist yet. To resolve this, run the code
+generator that generates the serialization boilerplate.</p>
+
+<p>There are two ways of running the code generator.</p>
+
+<h4 id="one-time-code-generation">
+<a id="one-time-code-generation" class="anchor" href="#one-time-code-generation" aria-hidden="true"><span class="octicon octicon-link"></span></a>One-time code generation</h4>
+
+<p>By running <code class="highlighter-rouge">flutter packages pub run build_runner build</code> in the project root,
+you generate JSON serialization code for your models whenever they are needed.
+This triggers a one-time build that goes through the source files, picks the
+relevant ones, and generates the necessary serialization code for them.</p>
+
+<p>While this is convenient, it would be nice if you did not have to run the
+build manually every time you make changes in your model classes.</p>
+
+<h4 id="generating-code-continuously">
+<a id="generating-code-continuously" class="anchor" href="#generating-code-continuously" aria-hidden="true"><span class="octicon octicon-link"></span></a>Generating code continuously</h4>
+
+<p>A <em>watcher</em> makes our source code generation process more convenient. It
+watches changes in our project files and automatically builds the necessary
+files when needed. Start the watcher by running
+<code class="highlighter-rouge">flutter packages pub run build_runner watch</code> in the project root.</p>
+
+<p>It is safe to start the watcher once and leave it running in the background.</p>
+
+<h3 id="consuming-json_serializable-models">
+<a id="consuming-json_serializable-models" class="anchor" href="#consuming-json_serializable-models" aria-hidden="true"><span class="octicon octicon-link"></span></a>Consuming json_serializable models</h3>
+
+<p>To decode a JSON string the <code class="highlighter-rouge">json_serializable</code> way,
+you do not have actually to make any changes to our previous code.</p>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Map</span> <span class="n">userMap</span> <span class="o">=</span> <span class="n">jsonDecode</span><span class="o">(</span><span class="n">jsonString</span><span class="o">);</span>
+<span class="kd">var</span> <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="n">userMap</span><span class="o">);</span>
+</code></pre></div></div>
+<p>The same goes for encoding. The calling API is the same as before.</p>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">String</span> <span class="n">json</span> <span class="o">=</span> <span class="n">jsonEncode</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>With <code class="highlighter-rouge">json_serializable</code>, you can forget any manual JSON serialization in the
+<code class="highlighter-rouge">User</code> class. The source code generator creates a file called <code class="highlighter-rouge">user.g.dart</code>,
+that has all the necessary serialization logic. You no longer have
+to write automated tests to ensure that the serialization works—it’s
+now <em>the library’s responsibility</em> to make sure the serialization works
+appropriately.</p>
+
+<h2 id="further-references">
+<a id="further-references" class="anchor" href="#further-references" aria-hidden="true"><span class="octicon octicon-link"></span></a>Further references</h2>
+
+<p>For more information, see the following resources:</p>
+
+<ul>
+  <li>
+<a href="https://api.dartlang.org/stable/dart-convert">dart:convert</a> and <a href="https://api.dartlang.org/stable/dart-convert/JsonCodec-class.html">JsonCodec</a> documentation</li>
+  <li><a href="https://pub.flutter-io.cn/packages/json_serializable">The
+json_serializable package in Pub</a></li>
+  <li><a href="https://github.com/dart-lang/json_serializable/blob/master/example/lib/example.dart">json_serializable
+examples in GitHub</a></li>
+  <li><a href="https://github.com/flutter/flutter/issues/1150">Discussion
+about dart:mirrors in Flutter</a></li>
+</ul>
+
+
+        
+      </div>
+    </main>
+  </div>
+</div>
+<footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 site-footer__wrapper">
+        <div class="site-footer__logo">
+          <img src="/images/flutter-mono-81x100.png" alt="Flutter Logo" width="81" height="100">
+        </div>
+        <div class="site-footer__content">
+          <ul class="site-footer__link-list">
+              <li><a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a></li>
+              <li><a href="/tos">terms</a></li>
+              <li><a href="/security">security</a></li>
+              <li><a href="https://www.google.com/intl/en/policies/privacy">privacy</a></li>
+              <li><a href="https://flutter-es.io/">español</a></li>
+              <li><a href="https://flutter-io.cn" class="text-nowrap">社区中文资源</a></li>
+          </ul>
+
+          <p class="licenses" translation-origin="on">
+            Except as otherwise noted,
+            this work is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0">Creative
+            Commons Attribution 4.0 International License</a>,
+            and code samples are licensed under the BSD License.
+          </p>
+          <p class="licenses" translation-result="off">
+            除非特别说明，否则本站内容采用 <a rel="license" href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0 授权协议</a>，所有范例代码都采用 BSD 授权协议。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- <script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script> -->
+  
+
+<script src="/assets/translator/js/translator.js"></script></body></html>

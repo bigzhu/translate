@@ -1,0 +1,1928 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>给 Web 开发者的 Flutter 指南  - Flutter 中文文档 - Flutter 社区中文资源 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-ND4LWWZ');</script>
+  <!-- End Google Tag Manager -->
+
+  
+  <meta name="description" content="学习如何把 Web 的开发经验应用到 Flutter 应用的开发中。">
+  <meta name="keywords" content=" ">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@flutterdev">
+
+  <meta property="og:title" content="给 Web 开发者的 Flutter 指南">
+  <meta property="og:url" content="https://flutter.dev/docs/get-started/flutter-for/web-devs">
+  <meta property="og:description" content="学习如何把 Web 的开发经验应用到 Flutter 应用的开发中。">
+  
+  <meta property="og:image" content="https://flutter.dev/images/flutter-logo-sharing.png">
+
+  <link href="/assets/translator/css/material-roboto.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/assets/main-74a0c308218334fcd85291a957a514973015ea8e4eb76b9abae6e14bb5012f5e.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  <script src="/assets/main-d6b8b8d26e7b4122b3ddf6a5201966d6e2494aaffadaafaf7c571ce5e2fe0aab.js" type="text/javascript"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-122680122-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <!--<meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />-->
+<link href="/assets/translator/css/translator.css" rel="stylesheet"></head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-ND4LWWZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div id="overlay-under-drawer"></div>
+
+    <header class="site-header">
+  <nav class="navbar navbar-expand-md justify-content-start justify-content-md-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="material-icons">menu</i>
+    </button>
+
+    <a class="navbar-brand" href="/">
+      <img alt="Flutter by Google" height="37" width="129" class="align-middle" src="/assets/flutter-lockup-4cb0ee072ab312e59784d9fbf4fb7ad42688a7fdaea1270ccf6bbf4f34b7e03f.svg">
+    </a>
+
+    <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
+      <div class="site-header__sheet-bg" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></div>
+      <div class="site-header__sheet">
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <a class="nav-link active" href="/docs">开发文档</a>
+          </li>
+          <div class="site-sidebar site-sidebar--header d-md-none">
+            <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="true" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link active collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link active" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="false" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+          </div>
+
+<!-- 
+          <li class="nav-item">
+            <a class="nav-link" href="/showcase">Showcase</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/community">Community</a>
+          </li>
+ -->
+        </ul>
+        <form action="/search" class="site-header__search form-inline">
+          <input class="site-header__searchfield form-control" type="search" name="q" id="q" autocomplete="off" placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+    </div>
+    <div class="site-header__social navbar-nav flex-row">
+      <a class="nav-item nav-link" href="https://twitter.com/flutterdev"><i class="fab fa-twitter fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://www.youtube.com/flutterdev"><i class="fab fa-youtube fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://github.com/flutter"><i class="fab fa-github fa-lg"></i></a>
+    </div>
+    <a class="site-header__cta btn btn-primary" href="/docs/get-started/install/">Get started</a>
+    </nav>
+</header>
+<div class="site-banner site-banner--default" role="alert">
+    <p>
+      We are looking for a Flutter Infrastructure engineer!
+      <a href="/jobs/infrastructure" target="_blank" rel="noopener">Learn more</a>.
+    </p>
+
+  </div>
+<div class="container-fluid position-relative">
+  <div class="row flex-xl-nowrap">
+    <div class="fixed-col site-sidebar site-sidebar--fixed col-12 col-md-3 col-xl-2 d-none d-md-block" data-fixed-column="">
+      <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="true" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link active collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link active" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="false" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+    </div>
+    <div id="site-toc--side" class="site-toc site-toc--side fixed-col col-xl-2 order-3" data-fixed-column="">
+  <header class="site-toc__title">
+    Contents
+    <button type="button" class="btn site-toc--button__page-top" aria-label="Page top"></button>
+    </header>
+  <ul class="section-nav nav">
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#performing-basic-layout-operations">Performing basic layout operations</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#执行基础布局操作">执行基础布局操作</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#styling-and-aligning-text">Styling and aligning text</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#文本样式与对齐">文本样式与对齐</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#setting-background-color">Setting background color</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#设置背景颜色">设置背景颜色</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#centering-components">Centering components</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#居中元素">居中元素</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#setting-container-width">Setting container width</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#设置容器宽度">设置容器宽度</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#manipulating-position-and-size">Manipulating position and size</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#操控位置与大小">操控位置与大小</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#setting-absolute-position">Setting absolute position</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#设置绝对位置">设置绝对位置</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#rotating-components">Rotating components</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#旋转元素">旋转元素</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#scaling-components">Scaling components</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#缩放元素">缩放元素</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#applying-a-linear-gradient">Applying a linear gradient</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#应用线性变换">应用线性变换</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#vertical-gradient">Vertical Gradient</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#垂直变换">垂直变换</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#horizontal-gradient">Horizontal gradient</a></li>
+<li class="toc-entry nav-item toc-h4"><a class="nav-link" href="#水平变换">水平变换</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#manipulating-shapes">Manipulating shapes</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#操控图形">操控图形</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#rounding-corners">Rounding corners</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#圆角">圆角</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#adding-box-shadows">Adding box shadows</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#添加盒阴影">添加盒阴影</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#making-circles-and-ellipses">Making circles and ellipses</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#生成圆与椭圆">生成圆与椭圆</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#manipulating-text">Manipulating text</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#操控文本">操控文本</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#adjusting-text-spacing">Adjusting text spacing</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#文字间距调整">文字间距调整</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#making-inline-formatting-changes">Making inline formatting changes</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#内联样式更改">内联样式更改</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#creating-text-excerpts">Creating text excerpts</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#生成文本摘要">生成文本摘要</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<main class="site-content col-12 col-md-9 offset-md-3 col-xl-8 offset-xl-2 col-xxl-8 offset-xxl-2" role="main">
+      <div class="container">
+        
+        
+        <header class="site-content__title">
+          <div id="page-github-links" class="btn-group" aria-label="Page GitHub links" role="group">
+  <a href="https://github.com/cfug/flutter.cn/tree/master/src/docs/get-started/flutter-for/web-devs.md" class="btn no-automatic-external" title="View page source" target="_blank" rel="noopener">
+    <i class="fas fa-file-alt fa-sm"></i>
+  </a>
+  <a href="https://github.com/cfug/flutter.cn/issues/new?title='给 Web 开发者的 Flutter 指南' page issue&amp;body=
+Page URL: https://flutter.dev/docs/get-started/flutter-for/web-devs.html%0D%0A
+Page source: https://github.com/cfug/flutter.cn/tree/master/src/docs/get-started/flutter-for/web-devs.md%0D%0A
+%0D%0A
+Found a typo? You can fix it yourself by going to the page source and clicking the pencil icon. Or finish creating this issue.%0D%0A
+%0D%0A
+Description of issue:" class="btn no-automatic-external" title="Report an issue with this page" target="_blank" rel="noopener">
+    <i class="fas fa-bug fa-sm"></i>
+  </a>
+</div>
+
+          <h1 id="给-web-开发者的-flutter-指南">给 Web 开发者的 Flutter 指南</h1>
+          </header>
+        <div id="site-toc--inline" class="site-toc site-toc--inline ">
+  <header class="site-toc__title">
+    Contents
+    </header>
+  <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#performing-basic-layout-operations">Performing basic layout operations</a></li>
+<li class="toc-entry toc-h2"><a href="#执行基础布局操作">执行基础布局操作</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#styling-and-aligning-text">Styling and aligning text</a></li>
+<li class="toc-entry toc-h3"><a href="#文本样式与对齐">文本样式与对齐</a></li>
+<li class="toc-entry toc-h3"><a href="#setting-background-color">Setting background color</a></li>
+<li class="toc-entry toc-h3"><a href="#设置背景颜色">设置背景颜色</a></li>
+<li class="toc-entry toc-h3"><a href="#centering-components">Centering components</a></li>
+<li class="toc-entry toc-h3"><a href="#居中元素">居中元素</a></li>
+<li class="toc-entry toc-h3"><a href="#setting-container-width">Setting container width</a></li>
+<li class="toc-entry toc-h3"><a href="#设置容器宽度">设置容器宽度</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#manipulating-position-and-size">Manipulating position and size</a></li>
+<li class="toc-entry toc-h2"><a href="#操控位置与大小">操控位置与大小</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#setting-absolute-position">Setting absolute position</a></li>
+<li class="toc-entry toc-h3"><a href="#设置绝对位置">设置绝对位置</a></li>
+<li class="toc-entry toc-h3"><a href="#rotating-components">Rotating components</a></li>
+<li class="toc-entry toc-h3"><a href="#旋转元素">旋转元素</a></li>
+<li class="toc-entry toc-h3"><a href="#scaling-components">Scaling components</a></li>
+<li class="toc-entry toc-h3"><a href="#缩放元素">缩放元素</a></li>
+<li class="toc-entry toc-h3"><a href="#applying-a-linear-gradient">Applying a linear gradient</a></li>
+<li class="toc-entry toc-h3"><a href="#应用线性变换">应用线性变换</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#vertical-gradient">Vertical Gradient</a></li>
+<li class="toc-entry toc-h4"><a href="#垂直变换">垂直变换</a></li>
+<li class="toc-entry toc-h4"><a href="#horizontal-gradient">Horizontal gradient</a></li>
+<li class="toc-entry toc-h4"><a href="#水平变换">水平变换</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#manipulating-shapes">Manipulating shapes</a></li>
+<li class="toc-entry toc-h2"><a href="#操控图形">操控图形</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#rounding-corners">Rounding corners</a></li>
+<li class="toc-entry toc-h3"><a href="#圆角">圆角</a></li>
+<li class="toc-entry toc-h3"><a href="#adding-box-shadows">Adding box shadows</a></li>
+<li class="toc-entry toc-h3"><a href="#添加盒阴影">添加盒阴影</a></li>
+<li class="toc-entry toc-h3"><a href="#making-circles-and-ellipses">Making circles and ellipses</a></li>
+<li class="toc-entry toc-h3"><a href="#生成圆与椭圆">生成圆与椭圆</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#manipulating-text">Manipulating text</a></li>
+<li class="toc-entry toc-h2"><a href="#操控文本">操控文本</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#adjusting-text-spacing">Adjusting text spacing</a></li>
+<li class="toc-entry toc-h3"><a href="#文字间距调整">文字间距调整</a></li>
+<li class="toc-entry toc-h3"><a href="#making-inline-formatting-changes">Making inline formatting changes</a></li>
+<li class="toc-entry toc-h3"><a href="#内联样式更改">内联样式更改</a></li>
+<li class="toc-entry toc-h3"><a href="#creating-text-excerpts">Creating text excerpts</a></li>
+<li class="toc-entry toc-h3"><a href="#生成文本摘要">生成文本摘要</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p translation-origin="on">This page is for users who are familiar with the HTML and CSS syntax for
+arranging components of an application’s UI. It maps HTML/CSS code snippets to
+their Flutter/Dart code equivalents.</p>
+
+<p translation-result="off">本文是为那些熟悉用 HTML 与 CSS 语法来管理应用页面中元素的开发者准备的。本文会将 HTML/CSS 代码片段替换为等价的 Flutter/Dart 代码。</p>
+
+<p translation-origin="on">The examples assume:</p>
+
+<p translation-result="off">这些示例包含如下假设：</p>
+
+<ul>
+  <li>
+    <p translation-origin="on">The HTML document starts with <code class="highlighter-rouge"><span class="cp">&lt;!DOCTYPE html&gt;</span></code>, and the CSS box model
+for all HTML elements is set to
+<a href="https://css-tricks.com/box-sizing/"><code class="highlighter-rouge">border-box</code></a>,
+for consistency with the Flutter model.</p>
+
+    <p translation-result="off">HTML 文件以 <code class="highlighter-rouge"><span class="cp">&lt;!DOCTYPE html&gt;</span></code> 开头，且为了与 Flutter 模型保持一致，
+所有 HTML 元素的 CSS 盒模型被设置为 <a href="https://css-tricks.com/box-sizing/"><code class="highlighter-rouge">border-box</code></a>。</p>
+
+    <div class="language-css highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">box-sizing</span><span class="p">:</span> <span class="n">border-box</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p translation-origin="on">In Flutter, the default styling of the “Lorem ipsum” text is defined by the
+<code class="highlighter-rouge">bold24Roboto</code> variable as follows, to keep the syntax simple:</p>
+
+    <p translation-result="off">在 Flutter 中，为了保持语法简洁，”Lorem ipsum” 文本的默认样式由如下 <code class="highlighter-rouge">bold24Roboto</code> 变量定义：</p>
+
+    <div class="language-dart highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="n">TextStyle</span> <span class="n">bold24Roboto</span> <span class="o">=</span> <span class="n">TextStyle</span><span class="o">(</span>
+  <span class="nl">color:</span> <span class="n">Colors</span><span class="o">.</span><span class="na">white</span><span class="o">,</span>
+  <span class="nl">fontSize:</span> <span class="mf">24.0</span><span class="o">,</span>
+  <span class="nl">fontWeight:</span> <span class="n">FontWeight</span><span class="o">.</span><span class="na">w900</span><span class="o">,</span>
+<span class="o">);</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<aside class="alert alert-secondary" role="alert">
+
+  <p translation-origin="on">How is react-style, or <em>declarative</em>, programming different than the
+traditional imperative style?</p>
+
+  <p translation-result="off">react-style 或 <em>声明式</em> 编程与传统的命令式风格有何不同？</p>
+
+  <p translation-origin="on">For a comparison, see <a href="/docs/get-started/flutter-for/declarative">Introduction to declarative
+UI</a>.</p>
+
+  <p translation-result="off">为了对比，请查阅<a href="/docs/get-started/flutter-for/declarative">声明式 UI 介绍</a>。</p>
+</aside>
+
+<h2 id="performing-basic-layout-operations" translation-origin="on">
+<a id="performing-basic-layout-operations" class="anchor" href="#performing-basic-layout-operations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Performing basic layout operations</h2>
+<h2 id="执行基础布局操作" translation-result="off">
+<a id="执行基础布局操作" class="anchor" href="#performing-basic-layout-operations" aria-hidden="true"><span class="octicon octicon-link"></span></a>执行基础布局操作</h2>
+
+<p translation-origin="on">The following examples show how to perform the most common UI layout tasks.</p>
+
+<p translation-result="off">以下示例将向你展示如何执行最常见的 UI 布局操作。</p>
+
+<h3 id="styling-and-aligning-text" translation-origin="on">
+<a id="styling-and-aligning-text" class="anchor" href="#styling-and-aligning-text" aria-hidden="true"><span class="octicon octicon-link"></span></a>Styling and aligning text</h3>
+<h3 id="文本样式与对齐" translation-result="off">
+<a id="文本样式与对齐" class="anchor" href="#styling-and-aligning-text" aria-hidden="true"><span class="octicon octicon-link"></span></a>文本样式与对齐</h3>
+
+<p translation-origin="on">Font style, size, and other text attributes that CSS handles with the font and
+color properties are individual properties of a
+<a href="https://api.flutter.dev/flutter/painting/TextStyle-class.html">TextStyle</a>
+child of a
+<a href="https://api.flutter.dev/flutter/widgets/Text-class.html">Text</a> widget.</p>
+
+<p translation-result="off">CSS 所处理的字体样式、大小以及其他文本属性，都是一个 <a href="https://docs.flutter.io/flutter/widgets/Text-class.html">Text</a> widget 子元素 <a href="https://docs.flutter.io/flutter/painting/TextStyle-class.html">TextStyle</a> 中单独的属性。</p>
+
+<p translation-origin="on">In both HTML and Flutter, child elements or widgets are anchored at
+the top left, by default.</p>
+
+<p translation-result="off">在 HTML 和 Flutter 中，子元素或者 widget 都默认锚定在左上方。</p>
+
+<div class="lefthighlight">
+<pre class="prettyprint lang-css">&lt;div class="greybox"&gt;
+    Lorem ipsum
+&lt;/div&gt;
+
+.greybox {
+      background-color: #e0e0e0; /* grey 300 */
+      width: 320px;
+      height: 240px;
+<span class="highlight">      font: 900 24px Georgia;</span>
+    }</pre>
+</div>
+<div class="righthighlight">
+<pre class="prettyprint lang-dart">var container = Container( // grey box
+  child: Text(
+    "Lorem ipsum",
+    style: <span class="highlight">TextStyle(
+      fontSize: 24.0,
+      fontWeight: FontWeight.w900,
+      fontFamily: "Georgia",
+    ),</span>
+  ),
+  width: 320.0,
+  height: 240.0,
+  color: Colors.grey[300],
+);</pre>
+</div>
+
+<h3 id="setting-background-color" translation-origin="on">
+<a id="setting-background-color" class="anchor" href="#setting-background-color" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setting background color</h3>
+<h3 id="设置背景颜色" translation-result="off">
+<a id="设置背景颜色" class="anchor" href="#setting-background-color" aria-hidden="true"><span class="octicon octicon-link"></span></a>设置背景颜色</h3>
+
+<p translation-origin="on">In Flutter, you set the background color using a
+<a href="https://api.flutter.dev/flutter/widgets/Container-class.html">Container</a>’s
+<code class="highlighter-rouge">decoration</code> property.</p>
+
+<p translation-result="off">在 Flutter 中，你可以通过 <a href="https://docs.flutter.io/flutter/widgets/Container-class.html">Container</a> 的 <code class="highlighter-rouge">decoration</code> 属性来设置背景颜色。</p>
+
+<p translation-origin="on">The CSS examples use the hex color equivalents to the Material color palette.</p>
+
+<p translation-result="off">CSS 示例使用十六进制颜色，这等价于材质调色板。</p>
+
+<div class="lefthighlight">
+<pre class="prettyprint lang-css">&lt;div class="greybox"&gt;
+  Lorem ipsum
+&lt;/div&gt;
+
+.greybox {
+<span class="highlight">      background-color: #e0e0e0;</span>  /* grey 300 */
+      width: 320px;
+      height: 240px;
+      font: 900 24px Roboto;
+    }</pre>
+</div>
+
+<div class="righthighlight">
+<pre class="prettyprint lang-dart">var container = Container( // grey box
+    child: Text(
+      "Lorem ipsum",
+      style: bold24Roboto,
+    ),
+    width: 320.0,
+    height: 240.0,
+<span class="highlight">    color: Colors.grey[300],</span>
+  );</pre>
+</div>
+
+<h3 id="centering-components" translation-origin="on">
+<a id="centering-components" class="anchor" href="#centering-components" aria-hidden="true"><span class="octicon octicon-link"></span></a>Centering components</h3>
+<h3 id="居中元素" translation-result="off">
+<a id="居中元素" class="anchor" href="#centering-components" aria-hidden="true"><span class="octicon octicon-link"></span></a>居中元素</h3>
+
+<p translation-origin="on">A <a href="https://api.flutter.dev/flutter/widgets/Center-class.html">Center</a> widget
+centers its child both horizontally and vertically.</p>
+
+<p translation-result="off">一个 <a href="https://docs.flutter.io/flutter/widgets/Center-class.html">Center</a> widget 可以将它的子元素水平和垂直居中。</p>
+
+<p translation-origin="on">To accomplish a similar effect in CSS, the parent element uses either a flex
+or table-cell display behavior. The examples on this page show the flex
+behavior.</p>
+
+<p translation-result="off">要用 CSS 实现相似的效果，父元素需要使用一个 flex 或者 table-cell 显示布局。本节示例使用的是 flex 布局。</p>
+
+<div class="lefthighlight">
+<pre class="prettyprint lang-css">&lt;div class="greybox"&gt;
+  Lorem ipsum
+&lt;/div&gt;
+
+.greybox {
+  background-color: #e0e0e0; /* grey 300 */
+  width: 320px;
+  height: 240px;
+  font: 900 24px Roboto;
+<span class="highlight">  display: flex;
+  align-items: center;
+  justify-content: center; </span>
+}</pre>
+</div>
+
+<div class="righthighlight">
+<pre class="prettyprint lang-dart">var container = Container( // grey box
+  child: <span class="highlight"> Center(
+    child: </span> Text(
+      "Lorem ipsum",
+      style: bold24Roboto,
+    ),
+  ),
+  width: 320.0,
+  height: 240.0,
+  color: Colors.grey[300],
+);</pre>
+</div>
+
+<h3 id="setting-container-width" translation-origin="on">
+<a id="setting-container-width" class="anchor" href="#setting-container-width" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setting container width</h3>
+<h3 id="设置容器宽度" translation-result="off">
+<a id="设置容器宽度" class="anchor" href="#setting-container-width" aria-hidden="true"><span class="octicon octicon-link"></span></a>设置容器宽度</h3>
+
+<p translation-origin="on">To specify the width of a
+<a href="https://api.flutter.dev/flutter/widgets/Container-class.html">Container</a>
+widget, use its <code class="highlighter-rouge">width</code> property. This is a fixed width, unlike the
+CSS max-width property that adjusts the container width up to a maximum value.
+To mimic that effect in Flutter, use the <code class="highlighter-rouge">constraints</code> property of the
+Container. Create a new
+<a href="https://api.flutter.dev/flutter/rendering/BoxConstraints-class.html">BoxConstraints</a>
+widget with a <code class="highlighter-rouge">minWidth</code> or <code class="highlighter-rouge">maxWidth</code>.</p>
+
+<p translation-result="off">要指定一个 <a href="https://docs.flutter.io/flutter/widgets/Container-class.html">Container</a>
+widget 的宽度，请使用它的 <code class="highlighter-rouge">width</code> 属性。和 CSS 中的 max-width 属性用于指定容器可调整的宽度最大值不同的是，这里指定的是一个固定宽度。要在 Flutter 中模拟该效果，可以使用 Container 的 <code class="highlighter-rouge">constraints</code> 属性。新建一个带有 <code class="highlighter-rouge">minWidth</code> 和 <code class="highlighter-rouge">maxWidth</code> 属性的 <a href="https://docs.flutter.io/flutter/rendering/BoxConstraints-class.html">BoxConstraints</a> widget。</p>
+
+<p translation-origin="on">For nested Containers, if the parent’s width is less than the child’s width,
+the child Container sizes itself to match the parent.</p>
+
+<p translation-result="off">对嵌套的 Container 来说，如果其父元素宽度小于子元素宽度，则子元素会调整尺寸以匹配父元素大小。</p>
+
+<div class="lefthighlight">
+<pre class="prettyprint lang-css">&lt;div class="greybox"&gt;
+  &lt;div class="redbox"&gt;
+    Lorem ipsum
+  &lt;/div&gt;
+&lt;/div&gt;
+
+.greybox {
+  background-color: #e0e0e0; /* grey 300 */
+<span class="highlight">  width: 320px; </span>
+  height: 240px;
+  font: 900 24px Roboto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.redbox {
+  background-color: #ef5350; /* red 400 */
+  padding: 16px;
+  color: #ffffff;
+<span class="highlight">  width: 100%;
+  max-width: 240px; </span>
+}</pre>
+</div>
+
+<div class="righthighlight">
+<pre class="prettyprint lang-dart">var container = Container( // grey box
+  child: Center(
+    child: Container( // red box
+      child: Text(
+        "Lorem ipsum",
+        style: bold24Roboto,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.red[400],
+      ),
+      padding: EdgeInsets.all(16.0),
+<span class="highlight">      width: 240.0, </span>//max-width is 240.0
+    ),
+  ),
+<span class="highlight">  width: 320.0, </span>
+  height: 240.0,
+  color: Colors.grey[300],
+);</pre>
+</div>
+
+<h2 id="manipulating-position-and-size" translation-origin="on">
+<a id="manipulating-position-and-size" class="anchor" href="#manipulating-position-and-size" aria-hidden="true"><span class="octicon octicon-link"></span></a>Manipulating position and size</h2>
+<h2 id="操控位置与大小" translation-result="off">
+<a id="操控位置与大小" class="anchor" href="#manipulating-position-and-size" aria-hidden="true"><span class="octicon octicon-link"></span></a>操控位置与大小</h2>
+
+<p translation-origin="on">The following examples show how to perform more complex operations on widget
+position, size, and background.</p>
+
+<p translation-result="off">以下示例将展示如何对 widget 的位置、大小以及背景进行更复杂的操作。</p>
+
+<h3 id="setting-absolute-position" translation-origin="on">
+<a id="setting-absolute-position" class="anchor" href="#setting-absolute-position" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setting absolute position</h3>
+<h3 id="设置绝对位置" translation-result="off">
+<a id="设置绝对位置" class="anchor" href="#setting-absolute-position" aria-hidden="true"><span class="octicon octicon-link"></span></a>设置绝对位置</h3>
+
+<p translation-origin="on">By default, widgets are positioned relative to their parent.</p>
+
+<p translation-result="off">默认情况下， widget 相对于其父元素定位。</p>
+
+<p translation-origin="on">To specify an absolute position for a widget as x-y coordinates, nest it in a
+<a href="https://api.flutter.dev/flutter/widgets/Positioned-class.html">Positioned</a>
+widget that is, in turn, nested in a 
+<a href="https://api.flutter.dev/flutter/widgets/Stack-class.html">Stack</a> widget.</p>
+
+<p translation-result="off">要通过 x-y 坐标指定一个 widget 的绝对位置，把它嵌套在一个 <a href="https://https://api.flutter.dev/flutter/widgets/Positioned-class.html">Positioned</a>
+widget 中，而该 widget 则需被嵌套在一个 
+<a href="https://https://api.flutter.dev/flutter/widgets/Stack-class.html">Stack</a> widget 中。</p>
+
+<p>=======</p>
+<div class="lefthighlight">
+<pre class="prettyprint lang-css">&lt;div class="greybox"&gt;
+  &lt;div class="redbox"&gt;
+    Lorem ipsum
+  &lt;/div&gt;
+&lt;/div&gt;
+
+.greybox {
+  background-color: #e0e0e0; /* grey 300 */
+  width: 320px;
+  height: 240px;
+  font: 900 24px Roboto;
+<span class="highlight">  position: relative; </span>
+}
+.redbox {
+  background-color: #ef5350; /* red 400 */
+  padding: 16px;
+  color: #ffffff;
+<span class="highlight">  position: absolute;
+  top: 24px;
+  left: 24px; </span>
+}</pre>
+</div>
+
+<div class="righthighlight">
+<pre class="prettyprint lang-dart">var container = Container( // grey box
+<span class="highlight">  child: Stack(
+    children: [
+      Positioned( // red box
+        child: </span> Container(
+          child: Text(
+            "Lorem ipsum",
+            style: bold24Roboto,
+          ),
+          decoration: BoxDecoration(
+            color: Colors.red[400],
+          ),
+          padding: EdgeInsets.all(16.0),
+        ),
+<span class="highlight">        left: 24.0,
+        top: 24.0,
+      ),
+    ],
+  ), </span>
+  width: 320.0,
+  height: 240.0,
+  color: Colors.grey[300],
+);</pre>
+</div>
+
+<h3 id="rotating-components" translation-origin="on">
+<a id="rotating-components" class="anchor" href="#rotating-components" aria-hidden="true"><span class="octicon octicon-link"></span></a>Rotating components</h3>
+<h3 id="旋转元素" translation-result="off">
+<a id="旋转元素" class="anchor" href="#rotating-components" aria-hidden="true"><span class="octicon octicon-link"></span></a>旋转元素</h3>
+
+<p translation-origin="on">To rotate a widget, nest it in a
+<a href="https://api.flutter.dev/flutter/widgets/Transform-class.html">Transform</a>
+widget. Use the Transform widget’s <code class="highlighter-rouge">alignment</code> and <code class="highlighter-rouge">origin</code> properties to
+specify the transform origin (fulcrum) in relative and absolute terms,
+respectively.</p>
+
+<p translation-result="off">要旋转一个 widget，请将它嵌套在 <a href="https://docs.flutter.io/flutter/widgets/Transform-class.html">Transform</a>
+widget 中。使用 Transform widget 的 <code class="highlighter-rouge">alignment</code> 和 <code class="highlighter-rouge">origin</code> 属性分别来指定转换原点（支点）的相对和绝对位置信息。</p>
+
+<p translation-origin="on">For a simple 2D rotation, the widget is rotated on the Z axis using radians.
+(degrees × π / 180)</p>
+
+<p translation-result="off">对于简单的 2D 旋转，widget 是依据弧度在 Z 轴上旋转的。(角度 × π / 180)</p>
+<div class="lefthighlight">
+<pre class="prettyprint lang-css">&lt;div class="greybox"&gt;
+  &lt;div class="redbox"&gt;
+    Lorem ipsum
+  &lt;/div&gt;
+&lt;/div&gt;
+
+.greybox {
+  background-color: #e0e0e0; /* grey 300 */
+  width: 320px;
+  height: 240px;
+  font: 900 24px Roboto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.redbox {
+  background-color: #ef5350; /* red 400 */
+  padding: 16px;
+  color: #ffffff;
+<span class="highlight">  transform: rotate(15deg); </span>
+}</pre>
+</div>
+
+<div class="righthighlight">
+<pre class="prettyprint lang-dart">var container = Container( // gray box
+  child: Center(
+    child: <span class="highlight"> Transform(
+      child: </span> Container( // red box
+        child: Text(
+          "Lorem ipsum",
+          style: bold24Roboto,
+          textAlign: TextAlign.center,
+        ),
+        decoration: BoxDecoration(
+          color: Colors.red[400],
+        ),
+        padding: EdgeInsets.all(16.0),
+      ),
+<span class="highlight">      alignment: Alignment.center,
+      transform: Matrix4.identity()
+        ..rotateZ(15 * 3.1415927 / 180),
+    ), </span>
+  ),
+  width: 320.0,
+  height: 240.0,
+  color: Colors.grey[300],
+);</pre>
+</div>
+
+<h3 id="scaling-components" translation-origin="on">
+<a id="scaling-components" class="anchor" href="#scaling-components" aria-hidden="true"><span class="octicon octicon-link"></span></a>Scaling components</h3>
+<h3 id="缩放元素" translation-result="off">
+<a id="缩放元素" class="anchor" href="#scaling-components" aria-hidden="true"><span class="octicon octicon-link"></span></a>缩放元素</h3>
+
+<p translation-origin="on">To scale a widget up or down, nest it in a
+<a href="https://api.flutter.dev/flutter/widgets/Transform-class.html">Transform</a>
+widget. Use the Transform widget’s <code class="highlighter-rouge">alignment</code> and <code class="highlighter-rouge">origin</code>
+properties to specify the transform origin (fulcrum) in relative or
+absolute terms, respectively.</p>
+
+<p translation-result="off">要缩放或放大一个 widget，请将它嵌套在一个 <a href="https://docs.flutter.io/flutter/widgets/Transform-class.html">Transform</a>
+widget 中。使用 Transform widget 的 <code class="highlighter-rouge">alignment</code> 和 <code class="highlighter-rouge">origin</code> 属性分别来指定缩放原点（支点）的相对和绝对信息。</p>
+
+<p translation-origin="on">For a simple scaling operation along the x-axis, create a new
+<a href="https://api.flutter.dev/flutter/vector_math_64/Matrix4-class.html">Matrix4</a>
+identity object and use its scale() method to specify the scaling factor.</p>
+
+<p translation-result="off">对于沿 x 轴的简单缩放操作，新建一个 <a href="https://docs.flutter.io/flutter/vector_math_64/Matrix4-class.html">Matrix4</a> 标识对象并用它的 scale() 方法来指定缩放因系数。</p>
+
+<p translation-origin="on">When you scale a parent widget, its child widgets are scaled accordingly.</p>
+
+<p translation-result="off">当你缩放一个父 widget 时，它的子 widget 也会相应被缩放。</p>
+<div class="lefthighlight">
+<pre class="prettyprint lang-css">&lt;div class="greybox"&gt;
+  &lt;div class="redbox"&gt;
+    Lorem ipsum
+  &lt;/div&gt;
+&lt;/div&gt;
+
+.greybox {
+  background-color: #e0e0e0; /* grey 300 */
+  width: 320px;
+  height: 240px;
+  font: 900 24px Roboto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.redbox {
+  background-color: #ef5350; /* red 400 */
+  padding: 16px;
+  color: #ffffff;
+<span class="highlight">  transform: scale(1.5); </span>
+}</pre>
+</div>
+
+<div class="righthighlight">
+<pre class="prettyprint lang-dart">var container = Container( // gray box
+  child: Center(
+    child: <span class="highlight"> Transform(
+      child: </span> Container( // red box
+        child: Text(
+          "Lorem ipsum",
+          style: bold24Roboto,
+          textAlign: TextAlign.center,
+        ),
+        decoration: BoxDecoration(
+          color: Colors.red[400],
+        ),
+        padding: EdgeInsets.all(16.0),
+      ),
+<span class="highlight">      alignment: Alignment.center,
+      transform: Matrix4.identity()
+        ..scale(1.5),
+     ), </span>
+  width: 320.0,
+  height: 240.0,
+  color: Colors.grey[300],
+);</pre>
+</div>
+
+<h3 id="applying-a-linear-gradient" translation-origin="on">
+<a id="applying-a-linear-gradient" class="anchor" href="#applying-a-linear-gradient" aria-hidden="true"><span class="octicon octicon-link"></span></a>Applying a linear gradient</h3>
+<h3 id="应用线性变换" translation-result="off">
+<a id="应用线性变换" class="anchor" href="#applying-a-linear-gradient" aria-hidden="true"><span class="octicon octicon-link"></span></a>应用线性变换</h3>
+
+<p translation-origin="on">To apply a linear gradient to a widget’s background, nest it in a
+<a href="https://api.flutter.dev/flutter/widgets/Container-class.html">Container</a>
+widget.  Then use the Container widget’s <code class="highlighter-rouge">decoration</code> property to create a
+<a href="https://api.flutter.dev/flutter/painting/BoxDecoration-class.html">BoxDecoration</a>
+object, and use BoxDecoration’s <code class="highlighter-rouge">gradient</code> property to transform the
+background
+fill.</p>
+
+<p translation-result="off">要将线性变换应用在 widget 的背景上，请将它嵌套在一个 <a href="https://docs.flutter.io/flutter/widgets/Container-class.html">Container</a> widget 中。然后用 Container widget 的 <code class="highlighter-rouge">decoration</code> 属性生成一个 <a href="https://docs.flutter.io/flutter/painting/BoxDecoration-class.html">BoxDecoration</a> 对象，然后使用 BoxDecoration 的 <code class="highlighter-rouge">gradient</code> 属性来变换背景填充内容。</p>
+
+<p translation-origin="on">The gradient “angle” is based on the Alignment (x, y) values:</p>
+
+<p translation-result="off">变换“角度”基于 Alignment (x, y) 取值来定：</p>
+
+<ul>
+  <li>If the beginning and ending x values are equal, the gradient is vertical
+(0° | 180°).</li>
+  <li>
+    <p>If the beginning and ending y values are equal, the gradient is horizontal
+(90° | 270°).</p>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>如果开始和结束的 x 值相同，变换将是垂直的（0°</td>
+          <td>180°）。</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>如果开始和结束的 y 值相同，变换将是水平的（90°</td>
+          <td>270°）。</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h4 id="vertical-gradient" translation-origin="on">
+<a id="vertical-gradient" class="anchor" href="#vertical-gradient" aria-hidden="true"><span class="octicon octicon-link"></span></a>Vertical Gradient</h4>
+<h4 id="垂直变换" translation-result="off">
+<a id="垂直变换" class="anchor" href="#vertical-gradient" aria-hidden="true"><span class="octicon octicon-link"></span></a>垂直变换</h4>
+
+<div class="lefthighlight">
+<pre class="prettyprint lang-css">&lt;div class="greybox"&gt;
+  &lt;div class="redbox"&gt;
+    Lorem ipsum
+  &lt;/div&gt;
+&lt;/div&gt;
+
+.greybox {
+  background-color: #e0e0e0; /* grey 300 */
+  width: 320px;
+  height: 240px;
+  font: 900 24px Roboto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.redbox {
+  padding: 16px;
+  color: #ffffff;
+<span class="highlight">  background: linear-gradient(180deg, #ef5350, rgba(0, 0, 0, 0) 80%); </span>
+}</pre>
+</div>
+<div class="righthighlight">
+<pre class="prettyprint lang-dart">var container = Container( // grey box
+  child: Center(
+    child: Container( // red box
+      child: Text(
+        "Lorem ipsum",
+        style: bold24Roboto,
+      ),
+<span class="highlight">      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: const Alignment(0.0, -1.0),
+          end: const Alignment(0.0, 0.6),
+          colors: &lt;Color&gt;[
+            const Color(0xffef5350),
+            const Color(0x00ef5350)
+          ],
+        ),
+      ), </span>
+      padding: EdgeInsets.all(16.0),
+    ),
+  ),
+  width: 320.0,
+  height: 240.0,
+  color: Colors.grey[300],
+);</pre>
+</div>
+
+<h4 id="horizontal-gradient" translation-origin="on">
+<a id="horizontal-gradient" class="anchor" href="#horizontal-gradient" aria-hidden="true"><span class="octicon octicon-link"></span></a>Horizontal gradient</h4>
+<h4 id="水平变换" translation-result="off">
+<a id="水平变换" class="anchor" href="#horizontal-gradient" aria-hidden="true"><span class="octicon octicon-link"></span></a>水平变换</h4>
+<div class="lefthighlight">
+<pre class="prettyprint lang-css">&lt;div class="greybox"&gt;
+  &lt;div class="redbox"&gt;
+    Lorem ipsum
+  &lt;/div&gt;
+&lt;/div&gt;
+
+.greybox {
+  background-color: #e0e0e0; /* grey 300 */
+  width: 320px;
+  height: 240px;
+  font: 900 24px Roboto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.redbox {
+  padding: 16px;
+  color: #ffffff;
+<span class="highlight">  background: linear-gradient(90deg, #ef5350, rgba(0, 0, 0, 0) 80%); </span>
+}</pre>
+</div>
+<div class="righthighlight">
+<pre class="prettyprint lang-dart">var container = Container( // grey box
+  child: Center(
+    child: Container( // red box
+      child: Text(
+        "Lorem ipsum",
+        style: bold24Roboto,
+      ),
+<span class="highlight">      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: const Alignment(-1.0, 0.0),
+          end: const Alignment(0.6, 0.0),
+          colors: &lt;Color&gt;[
+            const Color(0xffef5350),
+            const Color(0x00ef5350)
+          ],
+        ),
+      ), </span>
+      padding: EdgeInsets.all(16.0),
+    ),
+  ),
+  width: 320.0,
+  height: 240.0,
+  color: Colors.grey[300],
+);</pre>
+</div>
+
+<h2 id="manipulating-shapes" translation-origin="on">
+<a id="manipulating-shapes" class="anchor" href="#manipulating-shapes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Manipulating shapes</h2>
+<h2 id="操控图形" translation-result="off">
+<a id="操控图形" class="anchor" href="#manipulating-shapes" aria-hidden="true"><span class="octicon octicon-link"></span></a>操控图形</h2>
+
+<p translation-origin="on">The following examples show how to make and customize shapes.</p>
+
+<p translation-result="off">以下示例将展示如何新建和自定义图形。</p>
+
+<h3 id="rounding-corners" translation-origin="on">
+<a id="rounding-corners" class="anchor" href="#rounding-corners" aria-hidden="true"><span class="octicon octicon-link"></span></a>Rounding corners</h3>
+<h3 id="圆角" translation-result="off">
+<a id="圆角" class="anchor" href="#rounding-corners" aria-hidden="true"><span class="octicon octicon-link"></span></a>圆角</h3>
+
+<p translation-origin="on">To round the corners of a rectangular shape, use the <code class="highlighter-rouge">borderRadius</code> property
+of a
+<a href="https://api.flutter.dev/flutter/painting/BoxDecoration-class.html">BoxDecoration</a>
+object. Create a new
+<a href="https://api.flutter.dev/flutter/painting/BorderRadius-class.html">BorderRadius</a>
+object that specifies the radii for rounding each corner.</p>
+
+<p translation-result="off">在矩形上实现圆角，请用 <a href="https://docs.flutter.io/flutter/painting/BoxDecoration-class.html">BoxDecoration</a> 对象的 <code class="highlighter-rouge">borderRadius</code> 属性。新建一个 <a href="https://docs.flutter.io/flutter/painting/BorderRadius-class.html">BorderRadius</a> 对象来指定每个圆角的半径大小。</p>
+<div class="lefthighlight">
+<pre class="prettyprint lang-css">&lt;div class="greybox"&gt;
+  &lt;div class="redbox"&gt;
+    Lorem ipsum
+  &lt;/div&gt;
+&lt;/div&gt;
+
+.greybox {
+  background-color: #e0e0e0; /* gray 300 */
+  width: 320px;
+  height: 240px;
+  font: 900 24px Roboto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.redbox {
+  background-color: #ef5350; /* red 400 */
+  padding: 16px;
+  color: #ffffff;
+<span class="highlight">  border-radius: 8px; </span>
+}</pre>
+</div>
+<div class="righthighlight">
+<pre class="prettyprint lang-dart">var container = Container( // grey box
+  child: Center(
+    child: Container( // red circle
+      child: Text(
+        "Lorem ipsum",
+        style: bold24Roboto,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.red[400],
+<span class="highlight">        borderRadius: BorderRadius.all(
+          const Radius.circular(8.0),
+        ), </span>
+      ),
+      padding: EdgeInsets.all(16.0),
+    ),
+  ),
+  width: 320.0,
+  height: 240.0,
+  color: Colors.grey[300],
+);</pre>
+</div>
+
+<h3 id="adding-box-shadows" translation-origin="on">
+<a id="adding-box-shadows" class="anchor" href="#adding-box-shadows" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding box shadows</h3>
+<h3 id="添加盒阴影" translation-result="off">
+<a id="添加盒阴影" class="anchor" href="#adding-box-shadows" aria-hidden="true"><span class="octicon octicon-link"></span></a>添加盒阴影</h3>
+
+<p translation-origin="on">In CSS you can specify shadow offset and blur in shorthand,
+using the box-shadow property. This example shows two box shadows,
+with properties:</p>
+
+<p translation-result="off">在 CSS 中你可以通过 box-shadow 属性快速指定阴影偏移与模糊范围。本例展示了两个盒阴影的属性设置：</p>
+
+<ul>
+  <li><code class="highlighter-rouge">xOffset: 0px, yOffset: 2px, blur: 4px, color: black @80% alpha</code></li>
+  <li><code class="highlighter-rouge">xOffset: 0px, yOffset: 06x, blur: 20px, color: black @50% alpha</code></li>
+</ul>
+
+<p translation-origin="on">In Flutter, each property and value is specified separately.
+Use the <code class="highlighter-rouge">boxShadow</code> property of BoxDecoration to create a list of
+<a href="https://api.flutter.dev/flutter/painting/BoxShadow-class.html">BoxShadow</a>
+widgets. You can define one or multiple BoxShadow widgets, which can be stacked
+to customize the shadow depth, color, etc.</p>
+
+<p translation-result="off">在 Flutter 中，每个属性与其取值都是单独指定的。请使用 BoxDecoration 的 <code class="highlighter-rouge">boxShadow</code> 属性来生成一系列 <a href="https://docs.flutter.io/flutter/painting/BoxShadow-class.html">BoxShadow</a>
+widget。你可以定义一个或多个 BoxShadow widget，这些 widget 共同用于设置阴影深度、颜色等等。</p>
+
+<div class="lefthighlight">
+<pre class="prettyprint lang-css">&lt;div class="greybox"&gt;
+  &lt;div class="redbox"&gt;
+    Lorem ipsum
+  &lt;/div&gt;
+&lt;/div&gt;
+
+.greybox {
+  background-color: #e0e0e0; /* grey 300 */
+  width: 320px;
+  height: 240px;
+  font: 900 24px Roboto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.redbox {
+  background-color: #ef5350; /* red 400 */
+  padding: 16px;
+  color: #ffffff;
+<span class="highlight">  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8),
+              0 6px 20px rgba(0, 0, 0, 0.5);</span>
+}</pre>
+</div>
+<div class="righthighlight">
+<pre class="prettyprint lang-dart">var container = Container( // grey box
+  child: Center(
+    child: Container( // red box
+      child: Text(
+        "Lorem ipsum",
+        style: bold24Roboto,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.red[400],
+<span class="highlight">        boxShadow: &lt;BoxShadow&gt;[
+          BoxShadow (
+            color: const Color(0xcc000000),
+            offset: Offset(0.0, 2.0),
+            blurRadius: 4.0,
+          ),
+          BoxShadow (
+            color: const Color(0x80000000),
+            offset: Offset(0.0, 6.0),
+            blurRadius: 20.0,
+          ),
+        ], </span>
+      ),
+      padding: EdgeInsets.all(16.0),
+    ),
+  ),
+  width: 320.0,
+  height: 240.0,
+  decoration: BoxDecoration(
+    color: Colors.grey[300],
+  ),
+  margin: EdgeInsets.only(bottom: 16.0),
+);</pre>
+</div>
+
+<h3 id="making-circles-and-ellipses" translation-origin="on">
+<a id="making-circles-and-ellipses" class="anchor" href="#making-circles-and-ellipses" aria-hidden="true"><span class="octicon octicon-link"></span></a>Making circles and ellipses</h3>
+<h3 id="生成圆与椭圆" translation-result="off">
+<a id="生成圆与椭圆" class="anchor" href="#making-circles-and-ellipses" aria-hidden="true"><span class="octicon octicon-link"></span></a>生成圆与椭圆</h3>
+
+<p translation-origin="on">Making a circle in CSS requires a workaround of applying a border-radius of
+50% to all four sides of a rectangle, though there are
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/basic-shape">basic shapes</a>.</p>
+
+<p translation-result="off">尽管 CSS 中有<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/basic-shape">基础图形</a>，用 CSS 生成圆可以用一个变通方案，即将矩形的四边 border-radius 均设成50%。</p>
+
+<p translation-origin="on">While this approach is supported with the <code class="highlighter-rouge">borderRadius</code> property of
+<a href="https://api.flutter.dev/flutter/painting/BoxDecoration-class.html">BoxDecoration</a>,
+Flutter provides a <code class="highlighter-rouge">shape</code> property with
+<a href="https://api.flutter.dev/flutter/painting/BoxShape-class.html">BoxShape enum</a>
+for this purpose.</p>
+
+<p translation-result="off">虽然 <a href="https://docs.flutter.io/flutter/painting/BoxDecoration-class.html">BoxDecoration</a> 的 <code class="highlighter-rouge">borderRadius</code> 属性支持这样设置，Flutter 为 <a href="https://docs.flutter.io/flutter/painting/BoxShape-class.html">BoxShape enum</a> 提供一个 <code class="highlighter-rouge">shape</code> 属性用于实现同样的目的。</p>
+
+<div class="lefthighlight">
+<pre class="prettyprint lang-css">&lt;div class="greybox"&gt;
+  &lt;div class="redcircle"&gt;
+    Lorem ipsum
+  &lt;/div&gt;
+&lt;/div&gt;
+
+.greybox {
+  background-color: #e0e0e0; /* gray 300 */
+  width: 320px;
+  height: 240px;
+  font: 900 24px Roboto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.redcircle {
+  background-color: #ef5350; /* red 400 */
+  padding: 16px;
+  color: #ffffff;
+<span class="highlight">  text-align: center;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%; </span>
+}</pre>
+</div>
+<div class="righthighlight">
+<pre class="prettyprint lang-dart">var container = Container( // grey box
+  child: Center(
+    child: Container( // red circle
+      child: Text(
+        "Lorem ipsum",
+        style: bold24Roboto,
+<span class="highlight">        textAlign: TextAlign.center, </span>
+      ),
+      decoration: BoxDecoration(
+        color: Colors.red[400],
+<span class="highlight">        shape: BoxShape.circle, </span>
+      ),
+      padding: EdgeInsets.all(16.0),
+<span class="highlight">      width: 160.0,
+      height: 160.0, </span>
+    ),
+  ),
+  width: 320.0,
+  height: 240.0,
+  color: Colors.grey[300],
+);</pre>
+</div>
+
+<h2 id="manipulating-text" translation-origin="on">
+<a id="manipulating-text" class="anchor" href="#manipulating-text" aria-hidden="true"><span class="octicon octicon-link"></span></a>Manipulating text</h2>
+<h2 id="操控文本" translation-result="off">
+<a id="操控文本" class="anchor" href="#manipulating-text" aria-hidden="true"><span class="octicon octicon-link"></span></a>操控文本</h2>
+
+<p translation-origin="on">The following examples show how to specify fonts and other text attributes. They
+also show how to transform text strings, customize spacing, and create excerpts.</p>
+
+<p translation-result="off">以下示例展示了如何设置字体和其他文本属性。他们同时还展示了如何变换文本字符、自定义间距以及生成摘要。</p>
+
+<h3 id="adjusting-text-spacing" translation-origin="on">
+<a id="adjusting-text-spacing" class="anchor" href="#adjusting-text-spacing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adjusting text spacing</h3>
+<h3 id="文字间距调整" translation-result="off">
+<a id="文字间距调整" class="anchor" href="#adjusting-text-spacing" aria-hidden="true"><span class="octicon octicon-link"></span></a>文字间距调整</h3>
+
+<p translation-origin="on">In CSS you specify the amount of white space between each letter or word by
+giving a length value for the letter-spacing and word-spacing properties,
+respectively. The amount of space can be in px, pt, cm, em, etc.</p>
+
+<p translation-result="off">在 CSS 中你可以通过分别给 letter-spacing 和 word-spacing 属性的长度赋值来指定每个字母以及每个单词间的空白距离。距离的单位可以是 px, pt, cm, em 等等。</p>
+
+<p translation-origin="on">In Flutter, you specify white space as logical pixels
+(negative values are allowed)
+for the <code class="highlighter-rouge">letterSpacing</code> and <code class="highlighter-rouge">wordSpacing</code> properties of a
+<a href="https://api.flutter.dev/flutter/painting/TextStyle-class.html">TextStyle</a>
+child of a Text widget.</p>
+
+<p translation-result="off">在 Flutter 中，你可以在 Text widget 子元素 <a href="https://docs.flutter.io/flutter/painting/TextStyle-class.html">TextStyle</a> 的 <code class="highlighter-rouge">letterSpacing</code> 与 <code class="highlighter-rouge">wordSpacing</code> 属性中将间距设置为逻辑像素（允许负值）。</p>
+
+<div class="lefthighlight">
+<pre class="prettyprint lang-css">&lt;div class="greybox"&gt;
+  &lt;div class="redbox"&gt;
+    Lorem ipsum
+  &lt;/div&gt;
+&lt;/div&gt;
+
+.greybox {
+  background-color: #e0e0e0; /* grey 300 */
+  width: 320px;
+  height: 240px;
+  font: 900 24px Roboto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.redbox {
+  background-color: #ef5350; /* red 400 */
+  padding: 16px;
+  color: #ffffff;
+<span class="highlight">  letter-spacing: 4px; </span>
+}</pre>
+</div>
+<div class="righthighlight">
+<pre class="prettyprint lang-dart">var container = Container( // grey box
+  child: Center(
+    child: Container( // red box
+      child: Text(
+        "Lorem ipsum",
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 24.0,
+          fontWeight: FontWeight.w900,
+<span class="highlight">          letterSpacing: 4.0, </span>
+        ),
+      ),
+      decoration: BoxDecoration(
+        color: Colors.red[400],
+      ),
+      padding: EdgeInsets.all(16.0),
+    ),
+  ),
+  width: 320.0,
+  height: 240.0,
+  color: Colors.grey[300],
+);</pre>
+</div>
+
+<h3 id="making-inline-formatting-changes" translation-origin="on">
+<a id="making-inline-formatting-changes" class="anchor" href="#making-inline-formatting-changes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Making inline formatting changes</h3>
+<h3 id="内联样式更改" translation-result="off">
+<a id="内联样式更改" class="anchor" href="#making-inline-formatting-changes" aria-hidden="true"><span class="octicon octicon-link"></span></a>内联样式更改</h3>
+
+<p translation-origin="on">A <a href="https://api.flutter.dev/flutter/widgets/Text-class.html">Text</a> widget lets
+you display text with the same formatting characteristics. To
+display text that uses multiple styles (in this example, a single word with
+emphasis), use a
+<a href="https://api.flutter.dev/flutter/widgets/RichText-class.html">RichText</a>
+widget instead. Its <code class="highlighter-rouge">text</code> property can specify one or more
+<a href="https://api.flutter.dev/flutter/painting/TextSpan-class.html">TextSpan</a> widgets
+that can be individually styled.</p>
+
+<p translation-result="off">一个 <a href="https://docs.flutter.io/flutter/widgets/Text-class.html">Text</a> widget 允许你展示同一类样式的文本。为了展现具有多种样式（本例中，是一个带重音的单词）的文本，需要改用 <a href="https://docs.flutter.io/flutter/widgets/RichText-class.html">RichText</a> widget。它的 <code class="highlighter-rouge">text</code> 属性可以指定一个或多个可以单独设置样式的 <a href="https://docs.flutter.io/flutter/painting/TextSpan-class.html">TextSpan</a> widget。</p>
+
+<p translation-origin="on">In the following example, “Lorem” is in a TextSpan widget with the default
+(inherited) text styling, and “ipsum” is in a separate TextSpan with custom
+styling.</p>
+
+<p translation-result="off">在接下来的示例中，”Lorem” 位于 TextSpan widget 中，具有默认（继承）文本样式，”ipsum” 位于具有自定义样式、单独的一个 TextSpan 中。</p>
+
+<div class="lefthighlight">
+<pre class="prettyprint lang-css">&lt;div class="greybox"&gt;
+  &lt;div class="redbox"&gt;
+<span class="highlight">    Lorem &lt;em&gt;ipsum&lt;/em&gt; </span>
+  &lt;/div&gt;
+&lt;/div&gt;
+
+.greybox {
+  background-color: #e0e0e0; /* grey 300 */
+  width: 320px;
+  height: 240px;
+<span class="highlight">  font: 900 24px Roboto; </span>
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.redbox {
+  background-color: #ef5350; /* red 400 */
+  padding: 16px;
+  color: #ffffff;
+}
+<span class="highlight"> .redbox em {
+  font: 300 48px Roboto;
+  font-style: italic;
+} </span></pre>
+</div>
+<div class="righthighlight">
+<pre class="prettyprint lang-dart">var container = Container( // grey box
+  child: Center(
+    child: Container( // red box
+      child: <span class="highlight"> RichText(
+        text: TextSpan(
+          style: bold24Roboto,
+          children: &lt;TextSpan&gt;[
+            TextSpan(text: "Lorem "),
+            TextSpan(
+              text: "ipsum",
+              style: TextStyle(
+                fontWeight: FontWeight.w300,
+                fontStyle: FontStyle.italic,
+                fontSize: 48.0,
+              ),
+            ),
+          ],
+        ),
+      ), </span>
+      decoration: BoxDecoration(
+        backgroundColor: Colors.red[400],
+      ),
+      padding: EdgeInsets.all(16.0),
+    ),
+  ),
+  width: 320.0,
+  height: 240.0,
+  color: Colors.grey[300],
+);</pre>
+</div>
+
+<h3 id="creating-text-excerpts" translation-origin="on">
+<a id="creating-text-excerpts" class="anchor" href="#creating-text-excerpts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating text excerpts</h3>
+<h3 id="生成文本摘要" translation-result="off">
+<a id="生成文本摘要" class="anchor" href="#creating-text-excerpts" aria-hidden="true"><span class="octicon octicon-link"></span></a>生成文本摘要</h3>
+
+<p translation-origin="on">An excerpt displays the initial line(s) of text in a paragraph, and handles the
+overflow text, often using an ellipsis. In HTML/CSS an excerpt can be no longer
+than one line. Truncating after multiple lines requires some JavaScript code.</p>
+
+<p translation-result="off">一个摘要会展示一个段落中文本的初始行内容，并常用省略号处理溢出的文本内容。在 HTML/CSS 中，摘录不能超过一行。 在多行之后进行截断需要运行一些 JavaScript 代码。</p>
+
+<p translation-origin="on">In Flutter, use the <code class="highlighter-rouge">maxLines</code> property of a
+<a href="https://api.flutter.dev/flutter/widgets/Text-class.html">Text</a>
+widget to specify the number of lines to include in the excerpt, and the
+<code class="highlighter-rouge">overflow</code> property for handling overflow text.</p>
+
+<p translation-result="off">在 Flutter 中，使用 <a href="https://docs.flutter.io/flutter/widgets/Text-class.html">Text</a> widget 的 <code class="highlighter-rouge">maxLines</code> 属性来指定包含在摘要中的行数，以及 <code class="highlighter-rouge">overflow</code> 属性来处理溢出文本。</p>
+
+<div class="lefthighlight">
+<pre class="prettyprint lang-css">&lt;div class="greybox"&gt;
+  &lt;div class="redbox"&gt;
+    Lorem ipsum dolor sit amet, consec etur
+  &lt;/div&gt;
+&lt;/div&gt;
+
+.greybox {
+  background-color: #e0e0e0; /* grey 300 */
+  width: 320px;
+  height: 240px;
+  font: 900 24px Roboto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.redbox {
+  background-color: #ef5350; /* red 400 */
+  padding: 16px;
+  color: #ffffff;
+<span class="highlight">  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; </span>
+}</pre>
+</div>
+<div class="righthighlight">
+<pre class="prettyprint lang-dart">var container = Container( // grey box
+  child: Center(
+    child: Container( // red box
+      child: Text(
+        "Lorem ipsum dolor sit amet, consec etur",
+        style: bold24Roboto,
+<span class="highlight">        overflow: TextOverflow.ellipsis,
+        maxLines: 1, </span>
+      ),
+      decoration: BoxDecoration(
+        backgroundColor: Colors.red[400],
+      ),
+      padding: EdgeInsets.all(16.0),
+    ),
+  ),
+  width: 320.0,
+  height: 240.0,
+  color: Colors.grey[300],
+);</pre>
+</div>
+<div class="end-examples"></div>
+
+        
+      </div>
+    </main>
+  </div>
+</div>
+<footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 site-footer__wrapper">
+        <div class="site-footer__logo">
+          <img src="/images/flutter-mono-81x100.png" alt="Flutter Logo" width="81" height="100">
+        </div>
+        <div class="site-footer__content">
+          <ul class="site-footer__link-list">
+              <li><a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a></li>
+              <li><a href="/tos">terms</a></li>
+              <li><a href="/security">security</a></li>
+              <li><a href="https://www.google.com/intl/en/policies/privacy">privacy</a></li>
+              <li><a href="https://flutter-es.io/">español</a></li>
+              <li><a href="https://flutter-io.cn" class="text-nowrap">社区中文资源</a></li>
+          </ul>
+
+          <p class="licenses" translation-origin="on">
+            Except as otherwise noted,
+            this work is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0">Creative
+            Commons Attribution 4.0 International License</a>,
+            and code samples are licensed under the BSD License.
+          </p>
+          <p class="licenses" translation-result="off">
+            除非特别说明，否则本站内容采用 <a rel="license" href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0 授权协议</a>，所有范例代码都采用 BSD 授权协议。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- <script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script> -->
+  
+
+<script src="/assets/translator/js/translator.js"></script></body></html>

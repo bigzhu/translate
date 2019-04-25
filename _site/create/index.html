@@ -1,0 +1,747 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flutter Create  - Flutter 中文文档 - Flutter 社区中文资源 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-ND4LWWZ');</script>
+  <!-- End Google Tag Manager -->
+
+  
+  <meta name="description" content="A contest that challenges developers to build something interesting, inspiring, and beautiful with Flutter">
+  <meta name="keywords" content=" ">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@flutterdev">
+
+  <meta property="og:title" content="Flutter Create">
+  <meta property="og:url" content="https://flutter.dev/create">
+  <meta property="og:description" content="A contest that challenges developers to build something interesting, inspiring, and beautiful with Flutter">
+  
+  <meta property="og:image" content="https://flutter.dev/images/flutter-create-social.png">
+
+  <link href="/assets/translator/css/material-roboto.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/assets/main-74a0c308218334fcd85291a957a514973015ea8e4eb76b9abae6e14bb5012f5e.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  <script src="/assets/main-d6b8b8d26e7b4122b3ddf6a5201966d6e2494aaffadaafaf7c571ce5e2fe0aab.js" type="text/javascript"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-122680122-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <!--<meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />-->
+<link href="/assets/translator/css/translator.css" rel="stylesheet"></head>
+<body class="landing-page create">
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-ND4LWWZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div id="overlay-under-drawer"></div>
+
+    <header class="site-header">
+  <nav class="navbar navbar-expand-md justify-content-start justify-content-md-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="material-icons">menu</i>
+    </button>
+
+    <a class="navbar-brand" href="/">
+      <img alt="Flutter by Google" height="37" width="129" class="align-middle" src="/assets/flutter-lockup-4cb0ee072ab312e59784d9fbf4fb7ad42688a7fdaea1270ccf6bbf4f34b7e03f.svg">
+    </a>
+
+    <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
+      <div class="site-header__sheet-bg" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></div>
+      <div class="site-header__sheet">
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <a class="nav-link" href="/docs">开发文档</a>
+          </li>
+          <div class="site-sidebar site-sidebar--header d-md-none">
+            <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="false" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="false" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+          </div>
+
+<!-- 
+          <li class="nav-item">
+            <a class="nav-link" href="/showcase">Showcase</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/community">Community</a>
+          </li>
+ -->
+        </ul>
+        <form action="/search" class="site-header__search form-inline">
+          <input class="site-header__searchfield form-control" type="search" name="q" id="q" autocomplete="off" placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+    </div>
+    <div class="site-header__social navbar-nav flex-row">
+      <a class="nav-item nav-link" href="https://twitter.com/flutterdev"><i class="fab fa-twitter fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://www.youtube.com/flutterdev"><i class="fab fa-youtube fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://github.com/flutter"><i class="fab fa-github fa-lg"></i></a>
+    </div>
+    <a class="site-header__cta btn btn-primary" href="/docs/get-started/install/">Get started</a>
+    </nav>
+</header>
+<div class="site-banner site-banner--default" role="alert">
+    <p>
+      We are looking for a Flutter Infrastructure engineer!
+      <a href="/jobs/infrastructure" target="_blank" rel="noopener">Learn more</a>.
+    </p>
+
+  </div>
+<div class="container">
+  <div class="row">
+    <main class="col-12" role="main">
+      <section class="create__row row">
+    <div class="col-md-6 align-self-center">
+        <img class="mb-4 mb-md-0 mw-100" src="/assets/create/create-hero-illo-9da494ad02275eb43e8db8bacfea4bbc5e44efa21db57efc23c3d6ead3f36c14.png"></div>
+    <div class="col-md-5 align-self-center">
+        <h2 id="flutter-create">Flutter Create</h2>
+        <p>
+            Flutter Create is a contest that challenges you to build something
+            interesting, inspiring, and beautiful with Flutter using 5KB or less
+            of Dart code. Whether you're a beginner or an expert with Flutter,
+            we invite you to join us and see what you can create. We also have
+            over $10,000 in prizes for a few winners!
+        </p>
+        <a class="btn" target="_blank" rel="noopener nofollow" href="//twitter.com/intent/tweet?hashtags=FlutterCreate&amp;url=https%3A%2F%2Fflutter.dev%2Fcreate">
+            <i class="fab fa-twitter fa-lg"></i>&nbsp;&nbsp;&nbsp;Share #FlutterCreate with your friends
+        </a>
+    </div>
+</section>
+
+<hr>
+
+<section class="create__row row text-center">
+    <div class="col-md-8 offset-md-2">
+        <h6 id="what-to-make">What to make:</h6>
+        <h2 class="mt-0" id="create-a-novel-experience-with-flutter-in-5kb-or-----------less-of-dart-code">Create a novel experience with Flutter in 5KB or
+          less of Dart&nbsp;code</h2> 
+        <p>This contest is now closed.
+           The winners will be announced at Google I/O 2019.</p>
+    </div>
+</section>
+
+<hr>
+
+<section class="create__row row">
+    <div class="col-lg-5 offset-lg-1 mb-8 mb-lg-0">
+        <h4 id="judging">Judging:</h4>
+        <p>Entries will be judged by a panel of Flutter experts against the
+           following four criteria:</p>
+    </div>
+    <div class="col-lg-5">
+        <ul class="create__criteria">
+            <li>
+                <img class="create__criteria__icon" width="46" height="46" src="/assets/create/icon-beauty-fa4f5fef3f568a7dd41523c23ce06fe156d79fb9c9ea56d1ec529664b2e9a92a.png">Visual beauty
+            </li>
+            <li>
+                <img class="create__criteria__icon" width="46" height="46" src="/assets/create/icon-code-073d0dd8ed50af3d735701a66e4c6e4f538501249f09f8d972c9f195611d5d64.png">Code quality
+            </li>
+            <li>
+                <img class="create__criteria__icon" width="46" height="46" src="/assets/create/icon-idea-466c6f00f5cadf8fb9f410a8616f61f506809693393eac63f047bcd6d4610b36.png">Novelty of idea
+            </li>
+            <li>
+                <img class="create__criteria__icon" width="46" height="46" src="/assets/create/icon-execution-42a7ce4b579ace9f07aa69854c1c7e71874d4ddbe6111b69092b76feecd38ed0.png">Overall execution
+            </li>
+        </ul>
+    </div>
+</section>
+
+<hr>
+
+<section class="create__row row">
+    <div class="col-12 col-md-10 offset-md-1">
+        <h4 id="prizes">Prizes:</h4>
+        <div class="row">
+            <div class="col-12 col-md-5 create__prizes">
+                <div class="create__prizes__image">
+                    <img style="max-width: 272px;" src="/assets/create/prize-iMac-ea8acca679b76053c2eb3454ae7a22299a99932b849bae30b792e97716f19826.png"></div>
+                <h6 class="text-muted" id="grand-prize">Grand prize:</h6>
+                <h3 id="fully-loaded-apple-imac-pro">Fully-loaded Apple iMac Pro</h3>
+                <p>(worth over $10,000)</p>
+            </div>
+            <div class="col-12 col-md-4 create__prizes">
+                <div class="create__prizes__image">
+                    <img style="max-width: 242px; transform: translate(-10%);" src="/assets/create/prize-home-max-acbc4fb5b25c84f8772ad0299bb4505d3b9eb9e2bd4c63545ab46d93ba9a0f47.png"></div>
+                <h6 class="text-muted" id="4-winners">4 Winners:</h6>
+                <h3 id="google-home-max">Google Home Max</h3>
+            </div>
+            <div class="col-12 col-md-3 create__prizes">
+                <div class="create__prizes__image">
+                    <img style="max-width: 224px; transform: translate(-27%);" src="/assets/create/prize-home-mini-f22ca799944e6f073687322c5ccd6c321463770e83521d17d0a44e8a70f05fbc.png"></div>
+                <h6 class="text-muted" id="up-to-25-winners">Up to 25 Winners:</h6>
+                <h3 id="google-home-mini">Google Home Mini</h3>
+            </div>
+            <div class="col-12 mt-8">In addition, all submissions will receive
+                 a digital certificate of completion.</div>
+        </div>
+    </div>
+</section>
+
+<hr>
+
+<section class="create__row row">
+    <div class="col-12 col-md-10 offset-md-1">
+        <h4 id="submission-guidelines">Submission guidelines:</h4>
+        <div class="create__text-columns">
+            <p>Your application must be submitted in the form of a ZIP file
+               containing everything needed to run it on a target Android or
+               iOS device.</p>
+            <p>You should include a <code>README.md</code> file that includes a
+               brief description of the application and any special instructions
+               for running it (for example, if the application is designed for a
+               specific platform target).</p>
+            <p>Code should be licensed with an open source license (we recommend
+               BSD, MIT or Apache), so that we can judge it and others can
+               benefit from your work.</p>
+            <p>We will run the application by unpacking the ZIP file and running
+               the command <code>flutter run --release</code> to execute it
+               on an attached Android or iOS device.</p>
+            <p>The ZIP file may contain other files and directories that are
+               created using the flutter create command, such as
+               <code>pubspec.yaml</code>; it may also include asset files
+               (e.g. images, fonts) or data. We recommend running
+               <code>flutter clean</code> before creating the ZIP file to
+               strip out unnecessary binaries.</p>
+            <p>With the exception of packages (see below), all executable content
+               must be included in the ZIP file.</p>
+            <p>All code needed to load and execute the application must be
+               written in Dart, with the exception of any packages
+               (as mentioned below).</p>
+            <p>Dart code must appear in a file that has a filename ending in
+               <code>.dart</code>. The total size of all Dart files in the ZIP
+               file, excluding unit tests that are not executed, must be no
+               more than 5,120 bytes as (for example) measured by the
+               command <code>find . -name "*.dart" | xargs cat | wc -c</code>.</p>
+            <p>The application may use Flutter packages that are a) published
+               on <a href="https://pub.dartlang.org">pub.dartlang.org</a>;
+               b) have broad applicability (e.g. not written solely for the
+               purpose of circumventing the 5KB file limit, in the opinion
+               of the judges).</p>
+        </div>
+    </div>
+</section>
+
+<section class="create__row row">
+    <div class="col-12 col-md-10 offset-md-1">
+        <h4 id="contest-rules">Contest rules:</h4>
+        <div class="create__text-columns">
+            <p>Full details and rules in our
+               <a href="https://docs.google.com/document/d/12GT0_LT9Pet9eWTPYtziQjzKdc8mTfAL1zB-um2WoJQ/edit">Official Rules</a>.
+               But here’s a quick summary of some of the key points:</p>
+            <p>All work must be that of the contest entrant.</p>
+            <p>Only one submission per entrant.</p>
+            <p>Do not submit a project that already existed before the
+               announcement of this contest.</p>
+            <p>Entries may not be submitted by any person who is a minor at the
+               time of entry.</p>
+            <p>Google employees and contractors, contest judges, and members of
+               their immediate families are not eligible to enter.</p>
+            <p>Persons from the following countries or regions can submit but will not
+               be considered eligible for the contest due to local rules,
+               including exclusion from judging and prizes: Italy, Brazil, Quebec,
+               and Mexico.</p>
+            <p>Submissions from the following embargoed countries will not be
+               considered eligible for the contest, including exclusion from
+               judging and prizes: Crimea, Cuba, Iran, Syria, North Korea, and Sudan.</p>
+            <p>Entries will be collected via the website using an online form.</p>
+            <p>Submissions must not be derogatory, offensive, threatening, defamatory,
+               disparaging, libellous or contain any content that is inappropriate,
+               indecent, sexual, profane, tortuous, slanderous, discriminatory
+               in any way, or that promotes hatred or harm against any group or
+               person, or otherwise does not comply with the theme and spirit
+               of the contest.</p>
+            <p>They must not contain content, material or any element that is unlawful,
+               or otherwise in violation of or contrary to all applicable federal,
+               state, or local laws and regulation including the laws or regulations
+               in any state where the doodle and supporting statement are created.</p>
+            <p>They must not contain any content, material or element that displays
+               any third party advertising, slogan, logo, trademark, representation
+               of characters indicating a sponsorship or endorsement by a third party,
+               commercial entity or that is not within the spirit of the Contest,
+               as determined by Sponsor, in its sole discretion.</p>
+            <p>They must be original, unpublished works that do not contain,
+               incorporate or otherwise use any content, material or element
+               that is owned by a third party or entity.</p>
+            <p>They cannot contain any content, element, or material that violates
+               a third party's publicity, privacy or intellectual property rights.</p>
+            <p>The submission is not the subject of any actual or threatened
+               litigation or claim.</p>
+            <p>The entrant does not include any disparaging remarks relating to
+               the Sponsor or a third party.</p>
+        </div>
+    </div>
+</section>
+
+<hr>
+
+<section class="create__row row">
+    <div class="col-12 col-md-10 offset-md-1">
+        <h4 id="faq">FAQ:</h4>
+        <div class="create__text-columns">
+            <p>
+                <b>What is Flutter Create?</b><br>
+                Flutter Create is a contest where new and experienced developers
+                can submit a project built using Flutter. It’s a fun way to learn
+                Flutter, try building out interfaces, and possibly win prizes.
+            </p>
+            <p>
+                <b>What is the judging criteria?</b><br>
+                Each entry will be rated against the following rubric: visual beauty,
+                code quality, novelty of idea, and overall execution.
+            </p>
+            <p>
+                <b>Who are the judges?</b><br>
+                Entries will be judged by members of the Flutter team and
+                experienced developers from the Flutter community.
+            </p>
+            <p>
+                <b>What are the deadlines for the project?</b><br>
+                You need to have your project submitted by April 7th at
+                11:59pm PDT (GMT-7).
+            </p>
+            <p>
+                <b>I submitted my project, can I make changes to it?</b><br>
+                Yes, as long as your change occurs before April 7th at
+                11:59pm PDT (GMT-7).
+            </p>
+            <p>
+                <b>How will the winners be selected?</b><br>
+                Judges will evaluate the entries based on four criteria:
+                visual beauty, code quality, novelty of idea, and overall execution.
+            </p>
+            <p>
+                <b>When will the winners be selected?</b><br>
+                Winners will be selected around April 25 and announced at Google I/O
+                and online.
+            </p>
+            <p>
+                <b>What are the prizes?</b><br>
+                One grand prize winner will receive a customized
+                <a href="https://www.apple.com/imac-pro/">iMac Pro 5K</a>;<br>
+                Four additional winners will receive a Google Home Max;<br>
+                Up to 25 additional winners will receive a Google Home Mini.
+            </p>
+            <p>
+                <b>Can I submit more than one entry?</b><br>
+                We limit entries to one project per participant. We encourage you
+                to submit your best entry!
+            </p>
+            <p>
+                <b>I already have an approved app, can I submit that for the
+                   challenge?</b><br>
+                Unfortunately, no. Only new apps or UIs can be submitted for approval.
+            </p>
+            <p>
+                <b>Is there an age limit to participate?</b><br>
+                You must not be a minor (per your local law) to be eligible to win.
+            </p>
+            <p>
+                <b>Can you use Flare animations? If so, does it count towards the
+                   byte size?</b><br>
+            </p>
+            <p>
+                Image, video, font, and other binary asset types are not included
+                in the 5KB Dart code limit. 
+            </p>
+            <p>
+                <b>Can you store data in a separate file? For example,
+                   for a catalog of dogs, can you store the dog data in a json?</b><br>
+            </p>
+            <p>
+                Data is OK. However, we're counting all Dart code in the 5KB limit,
+                so the JSON loader would be included.
+            </p>
+            <p>
+                <b>Do Flutter Create contest submissions have to be formatted
+                   by dartfmt?</b><br>
+            </p>
+            <p>
+                We can run dartfmt on our side. We believe code quality is
+                primarily driven by good structure, rather than indentation.
+                But of course, if the code is impenetrable to the judges even
+                after running dartfmt, it may be challenging for them to score
+                it well for code quality.
+            </p>
+            <p>
+                <b>Can a team of people submit a single project?</b><br>
+            </p>
+            <p>
+                A team of people can submit a single project, but the person
+                submitting the project through our form should be authorized
+                to submit the project on behalf of the entire team or entity,
+                and a winning project from a team is only eligible for 1 prize.
+            </p>
+            <p>
+                <b>Should we send just a .dart file or all the files as the
+                   given size is 5 kb and all the files would be above 5 kb?</b><br>
+            </p>
+            <p>
+                Please submit whatever it takes to build and run your application with
+                `flutter run`.
+            </p>
+            <p>
+                <b>Should the size of the app be 5kb after creating a zip file
+                   or without zipping the file?</b><br>
+            </p>
+            <p>
+                We are measuring Dart files, not the ZIP files, so the 5KB is
+                measured without zipping the file.
+            </p>
+            <p>
+                <b>Do assets (art and audio) also have to be created by
+                   participants?</b><br>
+            </p>
+            <p>
+                All assets must comply with our Official Rules for submissions,
+                and participants must either create or have permission to use and
+                submit all parts of their submission.
+            </p>
+            <p>
+                <b>If I have more questions, where should I go?</b><br>
+            </p>
+            <p>
+                Take a look through our
+                <a href="https://docs.google.com/document/d/12GT0_LT9Pet9eWTPYtziQjzKdc8mTfAL1zB-um2WoJQ/edit">official rules</a>.
+            </p>
+        </div>
+    </div>
+</section>
+
+<hr>
+
+<section class="create__row row text-center">
+    <div class="col-md-8 offset-md-2">
+        <h2 class="mt-0" id="create-a-novel-user-experience-with-flutter-using-5kb-or-less-of-dart-code">Create a novel user experience with Flutter using 5KB or less of Dart&nbsp;code</h2>
+        <a class="create__cta btn btn-primary mb-8" href="https://docs.google.com/forms/d/1YrsnBlMFenKDrmGlcaPbKTbxbdWsua8_TMExoRwgyv4">Submit your app</a>
+    </div>
+</section>
+
+    </main>
+  </div>
+</div>
+<footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 site-footer__wrapper">
+        <div class="site-footer__logo">
+          <img src="/images/flutter-mono-81x100.png" alt="Flutter Logo" width="81" height="100">
+        </div>
+        <div class="site-footer__content">
+          <ul class="site-footer__link-list">
+              <li><a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a></li>
+              <li><a href="/tos">terms</a></li>
+              <li><a href="/security">security</a></li>
+              <li><a href="https://www.google.com/intl/en/policies/privacy">privacy</a></li>
+              <li><a href="https://flutter-es.io/">español</a></li>
+              <li><a href="https://flutter-io.cn" class="text-nowrap">社区中文资源</a></li>
+          </ul>
+
+          <p class="licenses" translation-origin="on">
+            Except as otherwise noted,
+            this work is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0">Creative
+            Commons Attribution 4.0 International License</a>,
+            and code samples are licensed under the BSD License.
+          </p>
+          <p class="licenses" translation-result="off">
+            除非特别说明，否则本站内容采用 <a rel="license" href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0 授权协议</a>，所有范例代码都采用 BSD 授权协议。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- <script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script> -->
+  
+
+<script src="/assets/translator/js/translator.js"></script></body></html>

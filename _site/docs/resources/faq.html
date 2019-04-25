@@ -1,0 +1,1915 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>常见问题与解答  - Flutter 中文文档 - Flutter 社区中文资源 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-ND4LWWZ');</script>
+  <!-- End Google Tag Manager -->
+
+  
+  <meta name="description" content="常见问题与解答">
+  <meta name="keywords" content=" ">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@flutterdev">
+
+  <meta property="og:title" content="常见问题与解答">
+  <meta property="og:url" content="https://flutter.dev/docs/resources/faq">
+  <meta property="og:description" content="常见问题与解答">
+  
+  <meta property="og:image" content="https://flutter.dev/images/flutter-logo-sharing.png">
+
+  <link href="/assets/translator/css/material-roboto.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/assets/main-74a0c308218334fcd85291a957a514973015ea8e4eb76b9abae6e14bb5012f5e.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  <script src="/assets/main-d6b8b8d26e7b4122b3ddf6a5201966d6e2494aaffadaafaf7c571ce5e2fe0aab.js" type="text/javascript"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-122680122-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <!--<meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />-->
+<link href="/assets/translator/css/translator.css" rel="stylesheet"></head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-ND4LWWZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div id="overlay-under-drawer"></div>
+
+    <header class="site-header">
+  <nav class="navbar navbar-expand-md justify-content-start justify-content-md-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="material-icons">menu</i>
+    </button>
+
+    <a class="navbar-brand" href="/">
+      <img alt="Flutter by Google" height="37" width="129" class="align-middle" src="/assets/flutter-lockup-4cb0ee072ab312e59784d9fbf4fb7ad42688a7fdaea1270ccf6bbf4f34b7e03f.svg">
+    </a>
+
+    <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
+      <div class="site-header__sheet-bg" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></div>
+      <div class="site-header__sheet">
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <a class="nav-link active" href="/docs">开发文档</a>
+          </li>
+          <div class="site-sidebar site-sidebar--header d-md-none">
+            <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="false" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="false" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="true" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link active" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+          </div>
+
+<!-- 
+          <li class="nav-item">
+            <a class="nav-link" href="/showcase">Showcase</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/community">Community</a>
+          </li>
+ -->
+        </ul>
+        <form action="/search" class="site-header__search form-inline">
+          <input class="site-header__searchfield form-control" type="search" name="q" id="q" autocomplete="off" placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+    </div>
+    <div class="site-header__social navbar-nav flex-row">
+      <a class="nav-item nav-link" href="https://twitter.com/flutterdev"><i class="fab fa-twitter fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://www.youtube.com/flutterdev"><i class="fab fa-youtube fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://github.com/flutter"><i class="fab fa-github fa-lg"></i></a>
+    </div>
+    <a class="site-header__cta btn btn-primary" href="/docs/get-started/install/">Get started</a>
+    </nav>
+</header>
+<div class="site-banner site-banner--default" role="alert">
+    <p>
+      We are looking for a Flutter Infrastructure engineer!
+      <a href="/jobs/infrastructure" target="_blank" rel="noopener">Learn more</a>.
+    </p>
+
+  </div>
+<div class="container-fluid position-relative">
+  <div class="row flex-xl-nowrap">
+    <div class="fixed-col site-sidebar site-sidebar--fixed col-12 col-md-3 col-xl-2 d-none d-md-block" data-fixed-column="">
+      <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="false" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="false" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="true" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link active" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+    </div>
+    <div id="site-toc--side" class="site-toc site-toc--side fixed-col col-xl-2 order-3" data-fixed-column="">
+  <header class="site-toc__title">
+    Contents
+    <button type="button" class="btn site-toc--button__page-top" aria-label="Page top"></button>
+    </header>
+  <ul class="section-nav nav">
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#简介">简介</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#what-is-flutter">What is Flutter?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#什么是-flutter">什么是 Flutter？</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#what-does-flutter-do">What does Flutter do?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#flutter-是干什么的">Flutter 是干什么的？</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#who-is-flutter-for">Who is Flutter for?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-experienced-of-a-programmerdeveloper-do-i-have-to-be-to-use-flutter">How experienced of a programmer/developer do I have to be to use Flutter?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#what-kinds-of-apps-can-i-build-with-flutter">What kinds of apps can I build with Flutter?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#who-makes-flutter">Who makes Flutter?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#who-uses-flutter">Who uses Flutter?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#what-makes-flutter-unique">What makes Flutter unique?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#should-i-build-my-next-production-app-with-flutter">Should I build my next production app with Flutter?</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#what-does-flutter-provide">What does Flutter provide?</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#what-is-inside-the-flutter-sdk">What is inside the Flutter SDK?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#does-flutter-work-with-any-editors-or-ides">Does Flutter work with any editors or IDEs?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#does-flutter-come-with-a-framework">Does Flutter come with a framework?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#does-flutter-come-with-widgets">Does Flutter come with widgets?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#does-flutter-support-material-theming">Does Flutter support Material Theming?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#does-flutter-come-with-a-testing-framework">Does Flutter come with a testing framework?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#does-flutter-come-with-a-dependency-injection-framework-or-solution">Does Flutter come with a dependency injection framework or solution?</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#technology">Technology</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#what-technology-is-flutter-built-with">What technology is Flutter built with?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-does-flutter-run-my-code-on-android">How does Flutter run my code on Android?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-does-flutter-run-my-code-on-ios">How does Flutter run my code on iOS?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#does-flutter-use-my-systems-oem-widgets">Does Flutter use my system’s OEM widgets?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#what-happens-when-my-mobile-os-updates-and-introduces-new-widgets">What happens when my mobile OS updates and introduces new widgets?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#what-happens-when-my-mobile-os-updates-and-introduces-new-platform-capabilities">What happens when my mobile OS updates and introduces new platform capabilities?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#what-operating-systems-can-i-use-to-build-a-flutter-app">What operating systems can I use to build a Flutter app?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#what-language-is-flutter-written-in">What language is Flutter written in?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#why-did-flutter-choose-to-use-dart">Why did Flutter choose to use Dart?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#can-flutter-run-any-dart-code">Can Flutter run any Dart code?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-big-is-the-flutter-engine">How big is the Flutter engine?</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#capabilities">Capabilities</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#what-kind-of-app-performance-can-i-expect">What kind of app performance can I expect?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#what-kind-of-developer-cycles-can-i-expect-how-long-between-edit-and-refresh">What kind of developer cycles can I expect? How long between edit and refresh?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-is-hot-reload-different-from-hot-restart">How is ‘hot reload’ different from ‘hot restart’?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#where-can-i-deploy-my-flutter-app">Where can I deploy my Flutter app?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#what-devices-and-os-versions-does-flutter-run-on">What devices and OS versions does Flutter run on?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#does-flutter-run-on-the-web">Does Flutter run on the web?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#can-i-use-flutter-to-build-desktop-apps">Can I use Flutter to build desktop apps?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#can-i-use-flutter-inside-of-my-existing-native-app">Can I use Flutter inside of my existing native app?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#can-i-access-platform-services-and-apis-like-sensors-and-local-storage">Can I access platform services and APIs like sensors and local storage?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#can-i-extend-and-customize-the-bundled-widgets">Can I extend and customize the bundled widgets?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#why-would-i-want-to-share-layout-code-across-ios-and-android">Why would I want to share layout code across iOS and Android?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#can-i-interop-with-my-mobile-platforms-default-programming-language">Can I interop with my mobile platform’s default programming language?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#does-flutter-come-with-a-reflectionmirrors-system">Does Flutter come with a reflection/mirrors system?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-do-internationalization-i18n-localization-l10n-and-accessibility-a11y-in-flutter">How do I do international­ization (i18n), localization (l10n), and accessibility (a11y) in Flutter?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-write-parallel-andor-concurrent-apps-for-flutter">How do I write parallel and/or concurrent apps for Flutter?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#can-i-run-dart-code-in-the-background-of-an-flutter-app">Can I run Dart code in the background of an Flutter app?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#can-i-use-jsonxmlprotobuffers-etc-with-flutter">Can I use JSON/XML/protobuffers, etc. with Flutter?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#can-i-build-3d-opengl-apps-with-flutter">Can I build 3D (OpenGL) apps with Flutter?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#why-is-my-apk-or-ipa-so-big">Why is my APK or IPA so big?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#do-flutter-apps-run-on-chromebooks">Do Flutter apps run on Chromebooks?</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#framework">Framework</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#why-is-the-build-method-on-state-not-statefulwidget">Why is the build() method on State, not StatefulWidget?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#where-is-flutters-markup-language-why-doesnt-flutter-have-a-markup-syntax">Where is Flutter’s markup language? Why doesn’t Flutter have a markup syntax?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#my-app-has-a-debug-bannerribbon-in-the-upper-right-why-am-i-seeing-that">My app has a Debug banner/ribbon in the upper right. Why am I seeing that?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#what-programming-paradigm-does-flutters-framework-use">What programming paradigm does Flutter’s framework use?</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#project">Project</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#where-can-i-get-support">Where can I get support?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-do-i-get-involved">How do I get involved?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#is-flutter-open-source">Is Flutter open source?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#which-software-licenses-apply-to-flutter-and-its-dependencies">Which software license(s) apply to Flutter and its dependencies?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#how-can-i-determine-the-licenses-my-flutter-application-needs-to-show">How can I determine the licenses my Flutter application needs to show?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#who-works-on-flutter">Who works on Flutter?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#what-are-flutters-guiding-principles">What are Flutter’s guiding principles?</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#will-apple-reject-my-flutter-app">Will Apple reject my Flutter app?</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<main class="site-content col-12 col-md-9 offset-md-3 col-xl-8 offset-xl-2 col-xxl-8 offset-xxl-2" role="main">
+      <div class="container">
+        
+        
+        <header class="site-content__title">
+          <div id="page-github-links" class="btn-group" aria-label="Page GitHub links" role="group">
+  <a href="https://github.com/cfug/flutter.cn/tree/master/src/docs/resources/faq.md" class="btn no-automatic-external" title="View page source" target="_blank" rel="noopener">
+    <i class="fas fa-file-alt fa-sm"></i>
+  </a>
+  <a href="https://github.com/cfug/flutter.cn/issues/new?title='常见问题与解答' page issue&amp;body=
+Page URL: https://flutter.dev/docs/resources/faq.html%0D%0A
+Page source: https://github.com/cfug/flutter.cn/tree/master/src/docs/resources/faq.md%0D%0A
+%0D%0A
+Found a typo? You can fix it yourself by going to the page source and clicking the pencil icon. Or finish creating this issue.%0D%0A
+%0D%0A
+Description of issue:" class="btn no-automatic-external" title="Report an issue with this page" target="_blank" rel="noopener">
+    <i class="fas fa-bug fa-sm"></i>
+  </a>
+</div>
+
+          <h1 id="常见问题与解答">常见问题与解答</h1>
+          </header>
+        <div id="site-toc--inline" class="site-toc site-toc--inline ">
+  <header class="site-toc__title">
+    Contents
+    </header>
+  <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#introduction">Introduction</a></li>
+<li class="toc-entry toc-h2"><a href="#简介">简介</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#what-is-flutter">What is Flutter?</a></li>
+<li class="toc-entry toc-h3"><a href="#什么是-flutter">什么是 Flutter？</a></li>
+<li class="toc-entry toc-h3"><a href="#what-does-flutter-do">What does Flutter do?</a></li>
+<li class="toc-entry toc-h3"><a href="#flutter-是干什么的">Flutter 是干什么的？</a></li>
+<li class="toc-entry toc-h3"><a href="#who-is-flutter-for">Who is Flutter for?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-experienced-of-a-programmerdeveloper-do-i-have-to-be-to-use-flutter">How experienced of a programmer/developer do I have to be to use Flutter?</a></li>
+<li class="toc-entry toc-h3"><a href="#what-kinds-of-apps-can-i-build-with-flutter">What kinds of apps can I build with Flutter?</a></li>
+<li class="toc-entry toc-h3"><a href="#who-makes-flutter">Who makes Flutter?</a></li>
+<li class="toc-entry toc-h3"><a href="#who-uses-flutter">Who uses Flutter?</a></li>
+<li class="toc-entry toc-h3"><a href="#what-makes-flutter-unique">What makes Flutter unique?</a></li>
+<li class="toc-entry toc-h3"><a href="#should-i-build-my-next-production-app-with-flutter">Should I build my next production app with Flutter?</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#what-does-flutter-provide">What does Flutter provide?</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#what-is-inside-the-flutter-sdk">What is inside the Flutter SDK?</a></li>
+<li class="toc-entry toc-h3"><a href="#does-flutter-work-with-any-editors-or-ides">Does Flutter work with any editors or IDEs?</a></li>
+<li class="toc-entry toc-h3"><a href="#does-flutter-come-with-a-framework">Does Flutter come with a framework?</a></li>
+<li class="toc-entry toc-h3"><a href="#does-flutter-come-with-widgets">Does Flutter come with widgets?</a></li>
+<li class="toc-entry toc-h3"><a href="#does-flutter-support-material-theming">Does Flutter support Material Theming?</a></li>
+<li class="toc-entry toc-h3"><a href="#does-flutter-come-with-a-testing-framework">Does Flutter come with a testing framework?</a></li>
+<li class="toc-entry toc-h3"><a href="#does-flutter-come-with-a-dependency-injection-framework-or-solution">Does Flutter come with a dependency injection framework or solution?</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#technology">Technology</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#what-technology-is-flutter-built-with">What technology is Flutter built with?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-does-flutter-run-my-code-on-android">How does Flutter run my code on Android?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-does-flutter-run-my-code-on-ios">How does Flutter run my code on iOS?</a></li>
+<li class="toc-entry toc-h3"><a href="#does-flutter-use-my-systems-oem-widgets">Does Flutter use my system’s OEM widgets?</a></li>
+<li class="toc-entry toc-h3"><a href="#what-happens-when-my-mobile-os-updates-and-introduces-new-widgets">What happens when my mobile OS updates and introduces new widgets?</a></li>
+<li class="toc-entry toc-h3"><a href="#what-happens-when-my-mobile-os-updates-and-introduces-new-platform-capabilities">What happens when my mobile OS updates and introduces new platform capabilities?</a></li>
+<li class="toc-entry toc-h3"><a href="#what-operating-systems-can-i-use-to-build-a-flutter-app">What operating systems can I use to build a Flutter app?</a></li>
+<li class="toc-entry toc-h3"><a href="#what-language-is-flutter-written-in">What language is Flutter written in?</a></li>
+<li class="toc-entry toc-h3"><a href="#why-did-flutter-choose-to-use-dart">Why did Flutter choose to use Dart?</a></li>
+<li class="toc-entry toc-h3"><a href="#can-flutter-run-any-dart-code">Can Flutter run any Dart code?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-big-is-the-flutter-engine">How big is the Flutter engine?</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#capabilities">Capabilities</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#what-kind-of-app-performance-can-i-expect">What kind of app performance can I expect?</a></li>
+<li class="toc-entry toc-h3"><a href="#what-kind-of-developer-cycles-can-i-expect-how-long-between-edit-and-refresh">What kind of developer cycles can I expect? How long between edit and refresh?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-is-hot-reload-different-from-hot-restart">How is ‘hot reload’ different from ‘hot restart’?</a></li>
+<li class="toc-entry toc-h3"><a href="#where-can-i-deploy-my-flutter-app">Where can I deploy my Flutter app?</a></li>
+<li class="toc-entry toc-h3"><a href="#what-devices-and-os-versions-does-flutter-run-on">What devices and OS versions does Flutter run on?</a></li>
+<li class="toc-entry toc-h3"><a href="#does-flutter-run-on-the-web">Does Flutter run on the web?</a></li>
+<li class="toc-entry toc-h3"><a href="#can-i-use-flutter-to-build-desktop-apps">Can I use Flutter to build desktop apps?</a></li>
+<li class="toc-entry toc-h3"><a href="#can-i-use-flutter-inside-of-my-existing-native-app">Can I use Flutter inside of my existing native app?</a></li>
+<li class="toc-entry toc-h3"><a href="#can-i-access-platform-services-and-apis-like-sensors-and-local-storage">Can I access platform services and APIs like sensors and local storage?</a></li>
+<li class="toc-entry toc-h3"><a href="#can-i-extend-and-customize-the-bundled-widgets">Can I extend and customize the bundled widgets?</a></li>
+<li class="toc-entry toc-h3"><a href="#why-would-i-want-to-share-layout-code-across-ios-and-android">Why would I want to share layout code across iOS and Android?</a></li>
+<li class="toc-entry toc-h3"><a href="#can-i-interop-with-my-mobile-platforms-default-programming-language">Can I interop with my mobile platform’s default programming language?</a></li>
+<li class="toc-entry toc-h3"><a href="#does-flutter-come-with-a-reflectionmirrors-system">Does Flutter come with a reflection/mirrors system?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-do-i-do-internationalization-i18n-localization-l10n-and-accessibility-a11y-in-flutter">How do I do international­ization (i18n), localization (l10n), and accessibility (a11y) in Flutter?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-do-i-write-parallel-andor-concurrent-apps-for-flutter">How do I write parallel and/or concurrent apps for Flutter?</a></li>
+<li class="toc-entry toc-h3"><a href="#can-i-run-dart-code-in-the-background-of-an-flutter-app">Can I run Dart code in the background of an Flutter app?</a></li>
+<li class="toc-entry toc-h3"><a href="#can-i-use-jsonxmlprotobuffers-etc-with-flutter">Can I use JSON/XML/protobuffers, etc. with Flutter?</a></li>
+<li class="toc-entry toc-h3"><a href="#can-i-build-3d-opengl-apps-with-flutter">Can I build 3D (OpenGL) apps with Flutter?</a></li>
+<li class="toc-entry toc-h3"><a href="#why-is-my-apk-or-ipa-so-big">Why is my APK or IPA so big?</a></li>
+<li class="toc-entry toc-h3"><a href="#do-flutter-apps-run-on-chromebooks">Do Flutter apps run on Chromebooks?</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#framework">Framework</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#why-is-the-build-method-on-state-not-statefulwidget">Why is the build() method on State, not StatefulWidget?</a></li>
+<li class="toc-entry toc-h3"><a href="#where-is-flutters-markup-language-why-doesnt-flutter-have-a-markup-syntax">Where is Flutter’s markup language? Why doesn’t Flutter have a markup syntax?</a></li>
+<li class="toc-entry toc-h3"><a href="#my-app-has-a-debug-bannerribbon-in-the-upper-right-why-am-i-seeing-that">My app has a Debug banner/ribbon in the upper right. Why am I seeing that?</a></li>
+<li class="toc-entry toc-h3"><a href="#what-programming-paradigm-does-flutters-framework-use">What programming paradigm does Flutter’s framework use?</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#project">Project</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#where-can-i-get-support">Where can I get support?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-do-i-get-involved">How do I get involved?</a></li>
+<li class="toc-entry toc-h3"><a href="#is-flutter-open-source">Is Flutter open source?</a></li>
+<li class="toc-entry toc-h3"><a href="#which-software-licenses-apply-to-flutter-and-its-dependencies">Which software license(s) apply to Flutter and its dependencies?</a></li>
+<li class="toc-entry toc-h3"><a href="#how-can-i-determine-the-licenses-my-flutter-application-needs-to-show">How can I determine the licenses my Flutter application needs to show?</a></li>
+<li class="toc-entry toc-h3"><a href="#who-works-on-flutter">Who works on Flutter?</a></li>
+<li class="toc-entry toc-h3"><a href="#what-are-flutters-guiding-principles">What are Flutter’s guiding principles?</a></li>
+<li class="toc-entry toc-h3"><a href="#will-apple-reject-my-flutter-app">Will Apple reject my Flutter app?</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="introduction" translation-origin="on">
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h2>
+
+<h2 id="简介" translation-result="off">
+<a id="简介" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>简介</h2>
+
+<h3 id="what-is-flutter" translation-origin="on">
+<a id="what-is-flutter" class="anchor" href="#what-is-flutter" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is Flutter?</h3>
+
+<h3 id="什么是-flutter" translation-result="off">
+<a id="什么是-flutter" class="anchor" href="#what-is-flutter" aria-hidden="true"><span class="octicon octicon-link"></span></a>什么是 Flutter？</h3>
+
+<p translation-origin="on">Flutter is Google’s mobile app SDK for crafting high-quality
+native experiences on iOS and Android in record time.
+Flutter works with existing code, is used by developers
+and organizations around the world, and is free and open source.</p>
+
+<p translation-result="off">Flutter 是 Google 的一个移动 UI 框架，用于在 iOS 和 Android 上创造高质量的绝妙原生体验。
+Flutter 可以和世界上的开发人员和开发组织广泛使用的那些现存代码一起使用，并且是开源的、免费的。</p>
+
+<h3 id="what-does-flutter-do" translation-origin="on">
+<a id="what-does-flutter-do" class="anchor" href="#what-does-flutter-do" aria-hidden="true"><span class="octicon octicon-link"></span></a>What does Flutter do?</h3>
+
+<h3 id="flutter-是干什么的" translation-result="off">
+<a id="flutter-是干什么的" class="anchor" href="#what-does-flutter-do" aria-hidden="true"><span class="octicon octicon-link"></span></a>Flutter 是干什么的？</h3>
+
+<p translation-origin="on">For users, Flutter makes beautiful app UIs come to life.</p>
+
+<p translation-result="off">对于用户来说，Flutter 让漂亮的应用 UI 变得生动有趣。</p>
+
+<p>For developers, Flutter lowers the bar to entry
+for building mobile apps. It speeds up development of
+mobile apps and reduces the cost and complexity
+of app production across iOS and Android.</p>
+
+<p>For designers, Flutter helps deliver the original design vision,
+without loss of fidelity or compromises. It also
+acts as a productive prototyping tool.</p>
+
+<h3 id="who-is-flutter-for">
+<a id="who-is-flutter-for" class="anchor" href="#who-is-flutter-for" aria-hidden="true"><span class="octicon octicon-link"></span></a>Who is Flutter for?</h3>
+
+<p>Flutter is for <em>developers</em> that want a faster
+way to build beautiful mobile apps, or
+a way to reach more users with a single investment.</p>
+
+<p>Flutter is also for <em>engineering managers</em> that need to lead
+mobile development teams. Flutter allows eng managers
+to create a single <em>mobile app dev team</em>, unifying their
+development investments to ship more features faster,
+ship the same feature set to iOS and Android at the same
+time, and lower maintenance costs.</p>
+
+<p>While not the initial target audience,
+Flutter is also for <em>designers</em>
+that want their original design visions delivered
+consistently, with high fidelity, to all users on mobile.</p>
+
+<p>Fundamentally, Flutter is for users that want beautiful apps,
+with delightful motion and animation, and UIs with character
+and an identity all their own.</p>
+
+<h3 id="how-experienced-of-a-programmerdeveloper-do-i-have-to-be-to-use-flutter">
+<a id="how-experienced-of-a-programmerdeveloper-do-i-have-to-be-to-use-flutter" class="anchor" href="#how-experienced-of-a-programmerdeveloper-do-i-have-to-be-to-use-flutter" aria-hidden="true"><span class="octicon octicon-link"></span></a>How experienced of a programmer/<wbr>developer do I have to be to use Flutter?</h3>
+
+<p>Flutter is approachable to programmers familiar with object-oriented
+concepts (classes, methods, variables, etc) and imperative programming
+concepts (loops, conditionals, etc).</p>
+
+<p>No prior mobile experience is required in order to learn and use Flutter.</p>
+
+<p>We have seen people with very little programming experience learn
+and use Flutter for prototyping and app development.</p>
+
+<h3 id="what-kinds-of-apps-can-i-build-with-flutter">
+<a id="what-kinds-of-apps-can-i-build-with-flutter" class="anchor" href="#what-kinds-of-apps-can-i-build-with-flutter" aria-hidden="true"><span class="octicon octicon-link"></span></a>What kinds of apps can I build with Flutter?</h3>
+
+<p>Flutter is optimized for 2D mobile apps that want to run on
+both Android and iOS.</p>
+
+<p>Apps that need to deliver brand-first designs are particularly
+well suited for Flutter. However, apps that need to look like
+stock platform apps can also be built with Flutter.</p>
+
+<p>You can build full-featured apps with Flutter, including
+camera, geolocation, network, storage, 3rd-party SDKs, and more.</p>
+
+<h3 id="who-makes-flutter">
+<a id="who-makes-flutter" class="anchor" href="#who-makes-flutter" aria-hidden="true"><span class="octicon octicon-link"></span></a>Who makes Flutter?</h3>
+
+<p>Flutter is an open source project, with contributions from Google
+and the community.</p>
+
+<h3 id="who-uses-flutter">
+<a id="who-uses-flutter" class="anchor" href="#who-uses-flutter" aria-hidden="true"><span class="octicon octicon-link"></span></a>Who uses Flutter?</h3>
+
+<p>Developers inside and outside of Google use Flutter to build
+beautiful native apps for iOS and Android.
+To learn about some of these apps, visit the <a href="/showcase">showcase</a>.</p>
+
+<h3 id="what-makes-flutter-unique">
+<a id="what-makes-flutter-unique" class="anchor" href="#what-makes-flutter-unique" aria-hidden="true"><span class="octicon octicon-link"></span></a>What makes Flutter unique?</h3>
+
+<p>Flutter is different than most other options for building
+mobile apps because Flutter uses neither WebView nor the OEM widgets
+that shipped with the device. Instead, Flutter uses its own high-performance
+rendering engine to draw widgets.</p>
+
+<p>In addition, Flutter is different because it only has a thin layer of
+C/C++ code. Flutter implements most of its system (compositing, gestures,
+animation, framework, widgets, etc) in <em>Dart</em> (a modern, concise,
+object-oriented language) that developers can
+easily approach read, change, replace, or remove.
+This gives developers tremendous
+control over the system, as well as significantly lowers the bar
+to approachability for the majority of the system.</p>
+
+<h3 id="should-i-build-my-next-production-app-with-flutter">
+<a id="should-i-build-my-next-production-app-with-flutter" class="anchor" href="#should-i-build-my-next-production-app-with-flutter" aria-hidden="true"><span class="octicon octicon-link"></span></a>Should I build my next production app with Flutter?</h3>
+
+<p>Flutter 1.0 was launched on Dec 4th, 2018. Thousands of apps
+have shipped with Flutter to hundreds of millions of devices.
+See some sample apps in the <a href="/showcase">showcase</a>.</p>
+
+<p>For more information on the launch and subsequent releases,
+see <a href="https://developers.googleblog.com/2018/12/flutter-10-googles-portable-ui-toolkit.html">Flutter 1.0: Google’s Portable UI
+Toolkit</a>.</p>
+
+<h2 id="what-does-flutter-provide">
+<a id="what-does-flutter-provide" class="anchor" href="#what-does-flutter-provide" aria-hidden="true"><span class="octicon octicon-link"></span></a>What does Flutter provide?</h2>
+
+<h3 id="what-is-inside-the-flutter-sdk">
+<a id="what-is-inside-the-flutter-sdk" class="anchor" href="#what-is-inside-the-flutter-sdk" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is inside the Flutter SDK?</h3>
+
+<ul>
+  <li>Heavily optimized, mobile-first 2D rendering engine with excellent support for
+text</li>
+  <li>Modern react-style framework</li>
+  <li>Rich set of widgets for Android and iOS</li>
+  <li>APIs for unit and integration tests</li>
+  <li>Interop and plugin APIs to connect to the system and 3rd-party SDKs</li>
+  <li>Headless test runner for running tests on Windows, Linux, and Mac</li>
+  <li>Command-line tools for creating, building, testing, and compiling your apps</li>
+</ul>
+
+<h3 id="does-flutter-work-with-any-editors-or-ides">
+<a id="does-flutter-work-with-any-editors-or-ides" class="anchor" href="#does-flutter-work-with-any-editors-or-ides" aria-hidden="true"><span class="octicon octicon-link"></span></a>Does Flutter work with any editors or IDEs?</h3>
+
+<p>We support plugins for <a href="https://developer.android.google.cn/studio">Android
+Studio</a>,
+<a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>,
+and <a href="https://code.visualstudio.com/">VS Code</a>.</p>
+
+<p>See <a href="/docs/get-started/editor">editor configuration</a> for setup details, and
+<a href="/docs/development/tools/android-studio">‘Developing Flutter apps in an IDE’</a>
+for tips on how to use the plugins.</p>
+
+<p>Alternatively, you can use a combination of the <code class="highlighter-rouge">flutter</code> command in a terminal
+and one of the many editors that support <a href="https://www.dartlang.org/tools">editing
+Dart</a>.</p>
+
+<h3 id="does-flutter-come-with-a-framework">
+<a id="does-flutter-come-with-a-framework" class="anchor" href="#does-flutter-come-with-a-framework" aria-hidden="true"><span class="octicon octicon-link"></span></a>Does Flutter come with a framework?</h3>
+
+<p>Yes! Flutter ships with a modern framework, inspired by React.
+Flutter’s framework is designed to be layered and customizable (and optional).
+Developers can choose to use only parts of the framework, or a different
+framework.</p>
+
+<h3 id="does-flutter-come-with-widgets">
+<a id="does-flutter-come-with-widgets" class="anchor" href="#does-flutter-come-with-widgets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Does Flutter come with widgets?</h3>
+
+<p>Yes! Flutter ships with a set of
+<a href="/docs/development/ui/widgets">high quality Material Design and Cupertino (iOS-style) widgets</a>,
+layouts, and themes. Of course, these widgets are only a starting point.
+Flutter is designed to make it easy to
+create your own widgets, or customize the existing widgets.</p>
+
+<h3 id="does-flutter-support-material-theming">
+<a id="does-flutter-support-material-theming" class="anchor" href="#does-flutter-support-material-theming" aria-hidden="true"><span class="octicon octicon-link"></span></a>Does Flutter support Material Theming?</h3>
+
+<p>Yes! The Flutter and Material teams collaborate closely,
+and Material Theming is fully supported. A number of
+examples of this are shown in the <a href="https://codelabs.flutter-io.cn/codelabs/mdc-103-flutter">MDC-103 Flutter: Material
+Theming</a> codelab.</p>
+
+<h3 id="does-flutter-come-with-a-testing-framework">
+<a id="does-flutter-come-with-a-testing-framework" class="anchor" href="#does-flutter-come-with-a-testing-framework" aria-hidden="true"><span class="octicon octicon-link"></span></a>Does Flutter come with a testing framework?</h3>
+
+<p>Yes, Flutter provides APIs for writing unit and integration
+tests. Learn more about
+<a href="/docs/testing">testing with Flutter</a>.</p>
+
+<p>We use our own testing capabilities to test our SDK. We measure our
+<a href="https://coveralls.io/github/flutter/flutter?branch=master">test coverage</a>
+on every commit.</p>
+
+<h3 id="does-flutter-come-with-a-dependency-injection-framework-or-solution">
+<a id="does-flutter-come-with-a-dependency-injection-framework-or-solution" class="anchor" href="#does-flutter-come-with-a-dependency-injection-framework-or-solution" aria-hidden="true"><span class="octicon octicon-link"></span></a>Does Flutter come with a dependency injection framework or solution?</h3>
+
+<p>Not at this time. Please share your ideas at
+<a href="mailto:flutter-dev@googlegroups.com">flutter-dev@googlegroups.com</a>.</p>
+
+<h2 id="technology">
+<a id="technology" class="anchor" href="#technology" aria-hidden="true"><span class="octicon octicon-link"></span></a>Technology</h2>
+
+<h3 id="what-technology-is-flutter-built-with">
+<a id="what-technology-is-flutter-built-with" class="anchor" href="#what-technology-is-flutter-built-with" aria-hidden="true"><span class="octicon octicon-link"></span></a>What technology is Flutter built with?</h3>
+
+<p>Flutter is built with C, C++, Dart, and Skia (a 2D rendering engine). See this
+<a href="https://docs.google.com/presentation/d/1cw7A4HbvM_Abv320rVgPVGiUP2msVs7tfGbkgdrTy0I/edit#slide=id.gbb3c3233b_0_162">architecture
+diagram</a>
+for a better picture of the main components.</p>
+
+<h3 id="run-android">
+<a id="how-does-flutter-run-my-code-on-android" class="anchor" href="#how-does-flutter-run-my-code-on-android" aria-hidden="true"><span class="octicon octicon-link"></span></a>How does Flutter run my code on Android?</h3>
+
+<p>The engine’s C and C++ code are compiled with Android’s NDK. The Dart code
+(both the SDK’s and yours) are ahead-of-time (AOT) compiled into a native, ARM and x86
+libraries. Those libraries are included in a “runner” Android project, and the whole
+thing is built into an APK. When launched, the app loads the Flutter library.
+Any rendering, input or event handling, and so on, are delegated to the compiled
+Flutter and app code. This is similar to the way many game engines work.</p>
+
+<p>Debug mode builds use a virtual machine (VM) to run Dart code (hence the “debug”
+banner they show to remind people that they’re slightly slower) in order to
+enable stateful hot reload.</p>
+
+<h3 id="run-ios">
+<a id="how-does-flutter-run-my-code-on-ios" class="anchor" href="#how-does-flutter-run-my-code-on-ios" aria-hidden="true"><span class="octicon octicon-link"></span></a>How does Flutter run my code on iOS?</h3>
+
+<p>The engine’s C and C++ code are compiled with LLVM. The Dart code (both the
+SDK’s and yours) are ahead-of-time (AOT) compiled into a native, ARM library.
+That library is included in a “runner” iOS project, and the whole thing is built
+into an <code class="highlighter-rouge">.ipa</code>. When launched, the app loads the Flutter library. Any rendering,
+input or event handling, and so on, are delegated to the compiled Flutter and
+app code. This is similar to the way many game engines work.</p>
+
+<p>Debug mode builds use a virtual machine (VM) to run Dart code (hence the “debug”
+banner they show to remind people that they’re slightly slower) in order to
+enable stateful hot reload.</p>
+
+<h3 id="does-flutter-use-my-systems-oem-widgets">
+<a id="does-flutter-use-my-systems-oem-widgets" class="anchor" href="#does-flutter-use-my-systems-oem-widgets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Does Flutter use my system’s OEM widgets?</h3>
+
+<p>No. Instead, Flutter provides a set of widgets
+(including Material Design and Cupertino (iOS-styled) widgets),
+managed and rendered by Flutter’s framework and engine.
+You can browse a
+<a href="/docs/development/ui/widgets">catalog of Flutter’s widgets</a>.</p>
+
+<p>We are hoping the end-result will be higher quality apps. If we reused
+the OEM widgets, the quality and performance of Flutter apps would be
+limited by the quality of those widgets.</p>
+
+<p>In Android, for example, there’s a hard-coded set of gestures and fixed
+rules for disambiguating them. In Flutter, you can write your
+own gesture recognizer that is a first-class participant in the
+<a href="/docs/development/ui/advanced/gestures">gesture system</a>. Moreover, two widgets
+authored by different people can coordinate to disambiguate gestures.</p>
+
+<p>Modern app design trends point towards designers and users wanting
+more motion-rich UIs and brand-first designs.
+In order to achieve that level of customized, beautiful design,
+Flutter is architectured to drive pixels instead of the OEM widgets.</p>
+
+<p>By using the same renderer, framework, and set of widgets, it’s
+easier to publish for both iOS and Android concurrently, without having to do
+careful and costly planning to align two separate codebases and feature sets.</p>
+
+<p>By using a single language, a single framework,
+and a single set of libraries for all of your UI
+(regardless if your UI is different for each mobile platform
+or largely consistent), we also aim to
+help lower app development and maintenance costs.</p>
+
+<h3 id="what-happens-when-my-mobile-os-updates-and-introduces-new-widgets">
+<a id="what-happens-when-my-mobile-os-updates-and-introduces-new-widgets" class="anchor" href="#what-happens-when-my-mobile-os-updates-and-introduces-new-widgets" aria-hidden="true"><span class="octicon octicon-link"></span></a>What happens when my mobile OS updates and introduces new widgets?</h3>
+
+<p>The Flutter team watches the adoption and demand for new mobile
+widgets from iOS and Android, and aims to work with the community
+to build support for new widgets. This work may come in the form
+of lower-level framework features, new composable widgets, or new
+widget implementations.</p>
+
+<p>Flutter’s layered architecture is designed to support numerous
+widget libraries, and we encourage and support the community in
+building and maintaining widget libraries.</p>
+
+<h3 id="what-happens-when-my-mobile-os-updates-and-introduces-new-platform-capabilities">
+<a id="what-happens-when-my-mobile-os-updates-and-introduces-new-platform-capabilities" class="anchor" href="#what-happens-when-my-mobile-os-updates-and-introduces-new-platform-capabilities" aria-hidden="true"><span class="octicon octicon-link"></span></a>What happens when my mobile OS updates and introduces new platform capabilities?</h3>
+
+<p>Flutter’s interop and plugin system is designed to allow
+developers to access new mobile OS features and capabilities
+immediately. Developers don’t have to wait for the Flutter team
+to expose the new mobile OS capability.</p>
+
+<h3 id="what-operating-systems-can-i-use-to-build-a-flutter-app">
+<a id="what-operating-systems-can-i-use-to-build-a-flutter-app" class="anchor" href="#what-operating-systems-can-i-use-to-build-a-flutter-app" aria-hidden="true"><span class="octicon octicon-link"></span></a>What operating systems can I use to build a Flutter app?</h3>
+
+<p>Flutter supports development on Linux, Mac, and, Windows.</p>
+
+<h3 id="what-language-is-flutter-written-in">
+<a id="what-language-is-flutter-written-in" class="anchor" href="#what-language-is-flutter-written-in" aria-hidden="true"><span class="octicon octicon-link"></span></a>What language is Flutter written in?</h3>
+
+<p>We looked at a lot of languages and runtimes, and ultimately adopted Dart for
+the framework and widgets. The underlying graphics framework and the Dart
+virtual machine are implemented in C/C++.</p>
+
+<h3 id="why-did-flutter-choose-to-use-dart">
+<a id="why-did-flutter-choose-to-use-dart" class="anchor" href="#why-did-flutter-choose-to-use-dart" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why did Flutter choose to use Dart?</h3>
+
+<p>Flutter used four primary dimensions for evaluation, and considered the needs
+of framework authors, developers, and end users. We found some languages met
+some requirements, but Dart scored highly on all of our evaluation dimensions
+and met all our requirements and criteria.</p>
+
+<p>Dart runtimes and compilers support the combination of two critical features for
+Flutter: a JIT-based fast development cycle that allows for shape changing and
+stateful hot reloads in a language with types, plus an Ahead-of-Time compiler
+that emits efficient ARM code for fast startup and predictable performance of
+production deployments.</p>
+
+<p>In addition, we have the opportunity to work closely with the Dart community,
+which is actively investing resources in improving Dart for use in Flutter. For
+example, when we adopted Dart, the language did not have an ahead-of-time
+toolchain for producing native binaries, which is instrumental in achieving
+predictable, high performance, but now the language does because the Dart team
+built it for Flutter. Similarly, the Dart VM has previously been optimized for
+throughput but the team is now optimizing the VM for latency, which is more
+important for Flutter’s workload.</p>
+
+<p>Dart scores highly for us on the following primary criteria:</p>
+
+<ul>
+  <li>
+    <p translation-origin="on"><em>Developer productivity</em>. One of Flutter’s main value propositions is that it
+saves engineering resources by letting developers create apps for both iOS and
+Android with the same codebase. Using a highly productive language
+accelerates developers further and makes Flutter more attractive.
+This was very important to both our framework team as well as our developers.
+The majority of Flutter is built in the same language we give to our users, so
+we need to stay productive at 100k’s lines of code, without sacrificing
+approachability or readability of the framework and widgets for our developers.</p>
+
+    <p translation-result="off"><strong>开发人员生产力</strong>。Flutter 的主要价值之一是通过让开发人员用同一套代码创建适用于 iOS 和 Android 的应用而节省开发资源。使用高生产力的语言加速开发，并提升 Flutter 的吸引力。
+这对于我们的框架团队和开发人员都很重要。
+Flutter 本身的大部分内容所用的语言都和我们提供给用户的一样，所以我们要让十万行代码保持生产力，而不会牺牲框架和部件对我们开发人员的可达性和可读性。</p>
+  </li>
+  <li>
+    <p><em>Object-orientation</em>. For Flutter, we want a language that’s suited to
+Flutter’s problem domain: creating visual user experiences. The industry has
+multiple decades of experience building user interface frameworks in
+object-oriented languages. While we could use a non-object-oriented language,
+this would mean reinventing the wheel to solve several hard problems.
+Plus, the vast majority of developers have experience with object-oriented
+development, making it easier to learn how to develop with Flutter.</p>
+  </li>
+  <li>
+    <p><em>Predictable, high performance</em>. With Flutter, we want to empower developers
+to create fast, fluid user experiences. In order to achieve that, we need to
+be able to run a significant amount of end-developer code during every
+animation frame. That means we need a language that both delivers high
+performance and delivers predictable performance, without periodic
+pauses that would cause dropped frames.</p>
+  </li>
+  <li>
+    <p><em>Fast allocation</em>. The Flutter framework uses a functional-style flow
+that depends heavily on the underlying memory
+allocator efficiently handling small, short-lived allocations.
+This style was developed in languages with this property and does
+not work efficiently in languages that lack this facility.</p>
+  </li>
+</ul>
+
+<h3 id="can-flutter-run-any-dart-code">
+<a id="can-flutter-run-any-dart-code" class="anchor" href="#can-flutter-run-any-dart-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Can Flutter run any Dart code?</h3>
+
+<p>Flutter should be able to run most Dart code that does not import (transitively,
+or directly) dart:mirrors or dart:html.</p>
+
+<h3 id="how-big-is-the-flutter-engine">
+<a id="how-big-is-the-flutter-engine" class="anchor" href="#how-big-is-the-flutter-engine" aria-hidden="true"><span class="octicon octicon-link"></span></a>How big is the Flutter engine?</h3>
+
+<p>In December 2018, we measured the download size of a <a href="https://github.com/flutter/flutter/tree/75228a59dacc24f617272f7759677e242bbf74ec/examples/hello_world">minimal Flutter
+app</a>
+(no Material Components, just a single <code class="highlighter-rouge">Center</code> widget, built with
+<code class="highlighter-rouge">flutter build apk</code>), bundled and compressed as a release APK, to be
+approximately 4.06&nbsp;MB.</p>
+
+<p>For this simple app,
+the core engine is approximately 2.7&nbsp;MB (compressed),
+the framework + app code is approximately 820.6&nbsp;KB (compressed),
+the LICENSE file is 53.5&nbsp;KB (compressed),
+necessary Java code (classes.dex) is 61.8&nbsp;KB (compressed),
+and there is approximately 450.4&nbsp;KB of (compressed) ICU data.</p>
+
+<p>These numbers were measured using
+<a href="https://developer.android.google.cn/studio/command-line/apkanalyzer">apkanalyzer</a>,
+which is also built into <a href="https://developer.android.google.cn/studio/build/apk-analyzer">Android
+Studio</a>.</p>
+
+<p>On iOS, a release IPA of the same app has a download size of 10.8&nbsp;MB on an
+iPhone X, as reported by Apple’s App Store Connect. The IPA is larger than the
+APK mainly because Apple encrypts binaries within the IPA,
+making the compression less efficient (see the <a href="https://developer.apple.com/library/archive/qa/qa1795/_index.html#//apple_ref/doc/uid/DTS40014195-CH1-APP_STORE_CONSIDERATIONS">iOS App Store Specific
+Considerations</a>
+section of Apple’s
+<a href="https://developer.apple.com/library/archive/qa/qa1795/_index.html">QA1795</a>).</p>
+
+<p>Of course, YMMV, and we recommend that you measure your own app. To measure an
+Android app, run <code class="highlighter-rouge">flutter build apk</code> and load the APK
+(<code class="highlighter-rouge">build/app/outputs/apk/release/app-release.apk</code>) into Android Studio
+(<a href="https://developer.android.google.cn/studio/build/apk-analyzer">instructions</a>) for a
+detailed size report. To measure an iOS app, upload a release IPA to Apple’s
+App Store Connect (<a href="/docs/deployment/ios">instructions</a>) and
+obtain the size report from there.</p>
+
+<h2 id="capabilities">
+<a id="capabilities" class="anchor" href="#capabilities" aria-hidden="true"><span class="octicon octicon-link"></span></a>Capabilities</h2>
+
+<h3 id="what-kind-of-app-performance-can-i-expect">
+<a id="what-kind-of-app-performance-can-i-expect" class="anchor" href="#what-kind-of-app-performance-can-i-expect" aria-hidden="true"><span class="octicon octicon-link"></span></a>What kind of app performance can I expect?</h3>
+
+<p>You can expect excellent performance. Flutter is
+designed to help developers easily achieve a constant 60fps. Flutter apps run
+via natively compiled code – no interpreters are involved.
+This means Flutter apps start quickly.</p>
+
+<h3 id="hot-reload">
+<a id="what-kind-of-developer-cycles-can-i-expect-how-long-between-edit-and-refresh" class="anchor" href="#what-kind-of-developer-cycles-can-i-expect-how-long-between-edit-and-refresh" aria-hidden="true"><span class="octicon octicon-link"></span></a>What kind of developer cycles can I expect? How long between edit and refresh?</h3>
+
+<p>Flutter implements a <em>hot reload</em> developer cycle. You can expect
+sub-second reload times, on a device or an emulator/simulator.</p>
+
+<p>Flutter’s hot reload is <em>stateful</em>, which means the app state
+is retained after a reload. This means you can quickly iterate
+on a screen deeply nested in your app, without starting
+from the home screen after every reload.</p>
+
+<h3 id="how-is-hot-reload-different-from-hot-restart">
+<a id="how-is-hot-reload-different-from-hot-restart" class="anchor" href="#how-is-hot-reload-different-from-hot-restart" aria-hidden="true"><span class="octicon octicon-link"></span></a>How is ‘hot reload’ different from ‘hot restart’?</h3>
+
+<p>Hot reload works by injecting updated source code files into the running Dart VM
+(Virtual Machine). This includes not only adding new classes, but also adding
+methods and fields to existing classes, and changing existing functions. A few
+types of code changes cannot be hot reloaded though:</p>
+
+<ul>
+  <li>Global variable initializers.</li>
+  <li>Static field initializers.</li>
+  <li>The <code class="highlighter-rouge">main()</code> method of the app.</li>
+</ul>
+
+<p>See <a href="/docs/development/tools/hot-reload">Using Hot Reload</a> for additional details.</p>
+
+<h3 id="where-can-i-deploy-my-flutter-app">
+<a id="where-can-i-deploy-my-flutter-app" class="anchor" href="#where-can-i-deploy-my-flutter-app" aria-hidden="true"><span class="octicon octicon-link"></span></a>Where can I deploy my Flutter app?</h3>
+
+<p>You can compile and deploy your Flutter app to iOS and Android.</p>
+
+<h3 id="what-devices-and-os-versions-does-flutter-run-on">
+<a id="what-devices-and-os-versions-does-flutter-run-on" class="anchor" href="#what-devices-and-os-versions-does-flutter-run-on" aria-hidden="true"><span class="octicon octicon-link"></span></a>What devices and OS versions does Flutter run on?</h3>
+
+<p>Mobile operating systems: Android Jelly Bean, v16, 4.1.x or newer, and
+iOS 8 or newer.</p>
+
+<p>Mobile hardware: iOS devices (iPhone 4S or newer) and ARM Android devices.</p>
+
+<p>Note Flutter currently does not support building for x86 Android
+(issue <a href="https://github.com/flutter/flutter/issues/9253">#9253</a>)
+directly, however apps built for ARMv7 or ARM64 run fine (via ARM emulation)
+on many x86 Android devices.</p>
+
+<p>We support developing Flutter apps with Android and iOS devices, as
+well as with Android emulators and the iOS simulator.</p>
+
+<p>We test on a variety of low-end to high-end phones
+but we don’t yet have an official device compatibility guarantee.</p>
+
+<p>We believe Flutter works well on tablets. We do not currently implement
+all of the tablet-specific adaptations recommended by Material Design,
+though we are planning further investment in this area.</p>
+
+<h3 id="does-flutter-run-on-the-web">
+<a id="does-flutter-run-on-the-web" class="anchor" href="#does-flutter-run-on-the-web" aria-hidden="true"><span class="octicon octicon-link"></span></a>Does Flutter run on the web?</h3>
+
+<p>We’re <a href="https://medium.com/flutter-io/hummingbird-building-flutter-for-the-web-e687c2a023a8">working on porting Flutter to the Web</a>,
+by taking advantage of the capability of the Dart platform to compile to JavaScript.
+This will enable Flutter code to run on the standards-based Web without change.
+This is not currently available.</p>
+
+<h3 id="can-i-use-flutter-to-build-desktop-apps">
+<a id="can-i-use-flutter-to-build-desktop-apps" class="anchor" href="#can-i-use-flutter-to-build-desktop-apps" aria-hidden="true"><span class="octicon octicon-link"></span></a>Can I use Flutter to build desktop apps?</h3>
+
+<p>Yes, but right now it’s not very well supported.
+We’re working on making this a first class experience.
+Our current progress is documented <a href="https://github.com/flutter/flutter/wiki/Desktop-shells">on our wiki</a>.</p>
+
+<h3 id="can-i-use-flutter-inside-of-my-existing-native-app">
+<a id="can-i-use-flutter-inside-of-my-existing-native-app" class="anchor" href="#can-i-use-flutter-inside-of-my-existing-native-app" aria-hidden="true"><span class="octicon octicon-link"></span></a>Can I use Flutter inside of my existing native app?</h3>
+
+<p>Yes, you can embed a Flutter view in your existing Android or iOS app, however
+our tooling is currently not fully optimized for this use case (see
+<a href="https://github.com/flutter/flutter/issues/14821">issue #14821</a> for details).</p>
+
+<p>Two current demonstrations of this are the
+<a href="https://github.com/flutter/flutter/tree/master/examples/platform_view">platform_view</a>
+and <a href="https://github.com/flutter/flutter/tree/master/examples/flutter_view">flutter_view</a>
+examples. Some initial documentation is available in the wiki page
+<a href="https://github.com/flutter/flutter/wiki/Add-Flutter-to-existing-apps">Add Flutter to existing
+apps</a>.</p>
+
+<h3 id="can-i-access-platform-services-and-apis-like-sensors-and-local-storage">
+<a id="can-i-access-platform-services-and-apis-like-sensors-and-local-storage" class="anchor" href="#can-i-access-platform-services-and-apis-like-sensors-and-local-storage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Can I access platform services and APIs like sensors and local storage?</h3>
+
+<p>Yes. Flutter gives developers out-of-the-box access to <em>some</em> platform-specific
+services and APIs from the operating system. However, we want to avoid the
+“lowest common denominator” problem with most cross-platform APIs, so we do not
+intend to build cross-platform APIs for all native services and APIs.</p>
+
+<p>A number of platform services and APIs have <a href="https://pub.flutter-io.cn/flutter/">ready-made
+packages</a> available in the Pub
+site. Using an existing package <a href="/docs/development/packages-and-plugins/using-packages">is
+easy</a>.</p>
+
+<p>Finally, we encourage developers to use Flutter’s asynchronous message passing
+system to create your own integrations with <a href="/docs/development/platform-integration/platform-channels">platform and third-party
+APIs</a>.
+Developers can expose as much or as little of the
+platform APIs as they need, and build layers of abstractions that are a best fit
+for their project.</p>
+
+<h3 id="can-i-extend-and-customize-the-bundled-widgets">
+<a id="can-i-extend-and-customize-the-bundled-widgets" class="anchor" href="#can-i-extend-and-customize-the-bundled-widgets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Can I extend and customize the bundled widgets?</h3>
+
+<p>Absolutely. Flutter’s widget system was designed to be easily customizable.</p>
+
+<p>Rather than having each widget provide a large number of parameters, Flutter
+embraces composition. Widgets are built out of smaller widgets that you can
+reuse and combine in novel ways to make custom widgets. For example, rather
+than subclassing a generic button widget, RaisedButton combines a Material
+widget with a GestureDetector widget. The Material widget provides the visual
+design and the GestureDetector widget provides the interaction design.</p>
+
+<p>To create a button with a custom visual design, you can combine widgets that
+implement your visual design with a GestureDetector, which provides the
+interaction design. For example, CupertinoButton follows this approach and
+combines a GestureDetector with several other widgets that implement its
+visual design.</p>
+
+<p>Composition gives you maximum control over the visual and interaction design
+of your widgets while also allowing a large amount of code reuse. In the
+framework, we’ve decomposed complex widgets to pieces that separately implement
+the visual, interaction, and motion design. You can remix these widgets however
+you like to make your own custom widgets that have full range of expression.</p>
+
+<h3 id="why-would-i-want-to-share-layout-code-across-ios-and-android">
+<a id="why-would-i-want-to-share-layout-code-across-ios-and-android" class="anchor" href="#why-would-i-want-to-share-layout-code-across-ios-and-android" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why would I want to share layout code across iOS and Android?</h3>
+
+<p>You can choose to implement different app layouts for iOS and Android.
+Developers are free to check the mobile OS at runtime
+and render different layouts, though we find this practice to be rare.</p>
+
+<p>More and more, we see mobile app layouts and designs evolving
+to be more brand-driven and unified across platforms. This implies
+a strong motivation to share layout and UI code across iOS and
+Android.</p>
+
+<p>The brand identity and customization of the app’s aesthetic design is now
+becoming more important than strictly adhering to traditional platform
+aesthetics. For example, app designs often require custom fonts, colors,
+shapes, motion, and more in order to clearly convey their brand identity.</p>
+
+<p>We also see common layout patterns deployed across iOS and Android.
+For example, the “bottom nav bar” pattern can now be naturally found
+across iOS and Android. There seems to be a convergence of design ideas
+across mobile platforms.</p>
+
+<h3 id="can-i-interop-with-my-mobile-platforms-default-programming-language">
+<a id="can-i-interop-with-my-mobile-platforms-default-programming-language" class="anchor" href="#can-i-interop-with-my-mobile-platforms-default-programming-language" aria-hidden="true"><span class="octicon octicon-link"></span></a>Can I interop with my mobile platform’s default programming language?</h3>
+
+<p>Yes, Flutter supports calling into the platform, including integrating with
+Java or Kotlin code on Android, and ObjectiveC or Swift code on iOS.
+This is enabled via a flexible message passing style where a Flutter app
+may send and receive messages to the mobile platform using a
+<a href="https://api.flutter.dev/flutter/services/BasicMessageChannel-class.html"><code class="highlighter-rouge">BasicMessageChannel</code></a>.</p>
+
+<p>Learn more about accessing platform and third-party services in Flutter with
+<a href="/docs/development/platform-integration/platform-channels">platform channels</a>.</p>
+
+<p>Here is an <a href="https://github.com/flutter/flutter/tree/master/examples/platform_channel">example
+project</a>
+that shows how to use a platform channel to access battery state information on
+iOS and Android.</p>
+
+<h3 id="does-flutter-come-with-a-reflectionmirrors-system">
+<a id="does-flutter-come-with-a-reflectionmirrors-system" class="anchor" href="#does-flutter-come-with-a-reflectionmirrors-system" aria-hidden="true"><span class="octicon octicon-link"></span></a>Does Flutter come with a reflection/mirrors system?</h3>
+
+<p>Not at this time. Because Flutter apps are pre-compiled for production,
+and binary size is always a concern with mobile apps, we disabled
+dart:mirrors. We are curious what you might need reflection/mirrors
+for—please let us know at <a href="mailto:flutter-dev@googlegroups.com">flutter-dev@googlegroups.com</a>.</p>
+
+<h3 id="how-do-i-do-internationalization-i18n-localization-l10n-and-accessibility-a11y-in-flutter">
+<a id="how-do-i-do-internationalization-i18n-localization-l10n-and-accessibility-a11y-in-flutter" class="anchor" href="#how-do-i-do-internationalization-i18n-localization-l10n-and-accessibility-a11y-in-flutter" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I do international­ization (i18n), localization (l10n), and accessibility (a11y) in Flutter?</h3>
+
+<p>Learn more about i18n and l10n in the
+<a href="/docs/development/accessibility-and-localization/internationalization">internationalization tutorial</a>.</p>
+
+<p>Learn more about a11y in the <a href="/docs/development/accessibility-and-localization/accessibility">accessibility documentation</a>.</p>
+
+<h3 id="how-do-i-write-parallel-andor-concurrent-apps-for-flutter">
+<a id="how-do-i-write-parallel-andor-concurrent-apps-for-flutter" class="anchor" href="#how-do-i-write-parallel-andor-concurrent-apps-for-flutter" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I write parallel and/or concurrent apps for Flutter?</h3>
+
+<p>Flutter supports isolates. Isolates are separate heaps in Flutter’s VM, and they
+are able to run in parallel (usually implemented as separate threads). Isolates
+communicate by sending and receiving asynchronous messages. Flutter does not
+currently have a shared-memory parallelism solution, although we are evaluating
+solutions for this.</p>
+
+<p>Check out an <a href="https://github.com/flutter/flutter/blob/master/examples/layers/services/isolate.dart">example of using isolates with
+Flutter</a>.</p>
+
+<h3 id="can-i-run-dart-code-in-the-background-of-an-flutter-app">
+<a id="can-i-run-dart-code-in-the-background-of-an-flutter-app" class="anchor" href="#can-i-run-dart-code-in-the-background-of-an-flutter-app" aria-hidden="true"><span class="octicon octicon-link"></span></a>Can I run Dart code in the background of an Flutter app?</h3>
+
+<p>Yes, you can run Dart code in a background process on both iOS and Android.
+For more information, see the Medium article
+<a href="https://medium.com/flutter-io/executing-dart-in-the-background-with-flutter-plugins-and-geofencing-2b3e40a1a124">Executing Dart in the Background with Flutter Plugins and
+Geofencing</a>.</p>
+
+<h3 id="can-i-use-jsonxmlprotobuffers-etc-with-flutter">
+<a id="can-i-use-jsonxmlprotobuffers-etc-with-flutter" class="anchor" href="#can-i-use-jsonxmlprotobuffers-etc-with-flutter" aria-hidden="true"><span class="octicon octicon-link"></span></a>Can I use JSON/XML/<wbr>protobuffers, etc. with Flutter?</h3>
+
+<p>Absolutely. There are libraries on the
+<a href="https://pub.flutter-io.cn">Pub site</a> for JSON, XML,
+protobufs, and many other utilities and formats.</p>
+
+<p>For a detailed writeup on using JSON with Flutter, check out <a href="/docs/development/data-and-backend/json">the JSON
+tutorial</a>.</p>
+
+<h3 id="can-i-build-3d-opengl-apps-with-flutter">
+<a id="can-i-build-3d-opengl-apps-with-flutter" class="anchor" href="#can-i-build-3d-opengl-apps-with-flutter" aria-hidden="true"><span class="octicon octicon-link"></span></a>Can I build 3D (OpenGL) apps with Flutter?</h3>
+
+<p>Today we don’t support for 3D via OpenGL ES or similar. We have long-term plans
+to expose an optimized 3D API, but right now we’re focused on 2D.</p>
+
+<h3 id="why-is-my-apk-or-ipa-so-big">
+<a id="why-is-my-apk-or-ipa-so-big" class="anchor" href="#why-is-my-apk-or-ipa-so-big" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why is my APK or IPA so big?</h3>
+
+<p>Usually, assets including images, sound files, fonts, etc, are the bulk
+of an APK or IPA.
+Various tools in the Android and iOS ecosystems can help you understand
+what’s inside of your APK or IPA.</p>
+
+<p>Also, be sure to create a
+<em>release build</em>
+of your APK or IPA with the Flutter tools.
+A release build is usually <em>much</em> smaller
+than a <em>debug build</em>.</p>
+
+<p>Learn more about creating a
+<a href="/docs/deployment/android">release build of your Android app</a>,
+and creating a <a href="/docs/deployment/ios">release build of your iOS app</a>.</p>
+
+<h3 id="do-flutter-apps-run-on-chromebooks">
+<a id="do-flutter-apps-run-on-chromebooks" class="anchor" href="#do-flutter-apps-run-on-chromebooks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Do Flutter apps run on Chromebooks?</h3>
+
+<p>We have seen Flutter apps run on some Chromebooks.
+We are tracking <a href="https://github.com/flutter/flutter/labels/platform-arc">issues related to running Flutter on
+Chromebooks</a>.</p>
+
+<h2 id="framework">
+<a id="framework" class="anchor" href="#framework" aria-hidden="true"><span class="octicon octicon-link"></span></a>Framework</h2>
+
+<h3 id="why-is-the-build-method-on-state-not-statefulwidget">
+<a id="why-is-the-build-method-on-state-not-statefulwidget" class="anchor" href="#why-is-the-build-method-on-state-not-statefulwidget" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why is the build() method on State, not StatefulWidget?</h3>
+
+<p>Putting a <code class="highlighter-rouge">Widget build(BuildContext context)</code> method on State
+rather putting a <code class="highlighter-rouge">Widget build(BuildContext context, State state)</code>
+method on StatefulWidget gives developers more flexibility when
+subclassing StatefulWidget. You can read a more
+<a href="https://api.flutter.dev/flutter/widgets/State/build.html">detailed discussion on the API docs for
+State.build</a>.</p>
+
+<h3 id="where-is-flutters-markup-language-why-doesnt-flutter-have-a-markup-syntax">
+<a id="where-is-flutters-markup-language-why-doesnt-flutter-have-a-markup-syntax" class="anchor" href="#where-is-flutters-markup-language-why-doesnt-flutter-have-a-markup-syntax" aria-hidden="true"><span class="octicon octicon-link"></span></a>Where is Flutter’s markup language? Why doesn’t Flutter have a markup syntax?</h3>
+
+<p>Flutter UIs are built with an imperative, object-oriented
+language (Dart, the same language used to build Flutter’s framework). Flutter
+does not ship with a declarative markup.</p>
+
+<p>We found that UIs dynamically built with code allow for
+more flexibility. For example, we have found it difficult
+for a rigid markup system to express and produce
+customized widgets with bespoke behaviours.</p>
+
+<p>We have also found that our “code-first” better allows for features like
+hot reload and dynamic environment adaptations.</p>
+
+<p>It is possible to create a custom language that is then
+converted to widgets on the fly. Because build methods are “just code”, they
+can do anything, including interpreting markup and turning it into widgets.</p>
+
+<h3 id="my-app-has-a-debug-bannerribbon-in-the-upper-right-why-am-i-seeing-that">
+<a id="my-app-has-a-debug-bannerribbon-in-the-upper-right-why-am-i-seeing-that" class="anchor" href="#my-app-has-a-debug-bannerribbon-in-the-upper-right-why-am-i-seeing-that" aria-hidden="true"><span class="octicon octicon-link"></span></a>My app has a Debug banner/ribbon in the upper right. Why am I seeing that?</h3>
+
+<p>By default <code class="highlighter-rouge">flutter run</code> command uses the debug build configuration.</p>
+
+<p>The debug configuration runs your Dart code in a VM (Virtual Machine) enabling a
+fast development cycle with <a href="#hot-reload">hot reload</a> (release builds are
+compiled using the standard <a href="#run-android">Android</a> and <a href="#run-ios">iOS</a>
+toolchains).</p>
+
+<p>The debug configuration also checks all asserts, which helps you catch errors
+early during development, but imposes a runtime cost. The “Debug” banner
+indicates that these checks are enabled. You can run your app without these
+checks by using either the <code class="highlighter-rouge">--profile</code> or <code class="highlighter-rouge">--release</code> flag to <code class="highlighter-rouge">flutter run</code>.</p>
+
+<p>If you are using the Flutter plugin for IntelliJ, you can launch the app in
+profile or release mode using the menu entries
+<strong>Run &gt; Flutter Run in Profile Mode</strong> or <strong>Release Mode</strong>.</p>
+
+<h3 id="what-programming-paradigm-does-flutters-framework-use">
+<a id="what-programming-paradigm-does-flutters-framework-use" class="anchor" href="#what-programming-paradigm-does-flutters-framework-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>What programming paradigm does Flutter’s framework use?</h3>
+
+<p>Flutter is a multi-paradigm programming environment. Many programming techniques
+developed over the past few decades are used in Flutter. We use each one where
+we believe the strengths of the technique make it particularly well-suited. In
+no particular order:</p>
+
+<ul>
+  <li>
+    <p>Composition: The primary paradigm used by Flutter is that of using
+small objects with narrow scopes of behavior, composed together to
+obtain more complicated effects. Most widgets in the Flutter widget
+library are built in this way. For example, the Material
+<a href="https://api.flutter.dev/flutter/material/FlatButton-class.html">FlatButton</a>
+class is built using a
+<a href="https://api.flutter.dev/flutter/material/MaterialButton-class.html">MaterialButton</a>
+class, which itself is built using
+an <a href="https://api.flutter.dev/flutter/widgets/IconTheme-class.html">IconTheme</a>,
+an <a href="https://api.flutter.dev/flutter/material/InkWell-class.html">InkWell</a>,
+a <a href="https://api.flutter.dev/flutter/widgets/Padding-class.html">Padding</a>,
+a <a href="https://api.flutter.dev/flutter/widgets/Center-class.html">Center</a>,
+a <a href="https://api.flutter.dev/flutter/material/Material-class.html">Material</a>,
+an <a href="https://api.flutter.dev/flutter/widgets/AnimatedDefaultTextStyle-class.html">AnimatedDefaultTextStyle</a>,
+and a <a href="https://api.flutter.dev/flutter/widgets/ConstrainedBox-class.html">ConstrainedBox</a>.
+The <a href="https://api.flutter.dev/flutter/material/InkWell-class.html">InkWell</a>
+is built using a <a href="https://api.flutter.dev/flutter/widgets/GestureDetector-class.html">GestureDetector</a>.
+The <a href="https://api.flutter.dev/flutter/material/Material-class.html">Material</a>
+is built using an <a href="https://api.flutter.dev/flutter/widgets/AnimatedDefaultTextStyle-class.html">AnimatedDefaultTextStyle</a>,
+a <a href="https://api.flutter.dev/flutter/widgets/NotificationListener-class.html">NotificationListener</a>,
+and an <a href="https://api.flutter.dev/flutter/widgets/AnimatedPhysicalModel-class.html">AnimatedPhysicalModel</a>.
+And so on. It’s widgets all the way down.</p>
+  </li>
+  <li>
+    <p>Functional programming: Entire applications can be built with only
+<a href="https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html">StatelessWidget</a>s,
+which are essentially functions that describe how arguments map to other
+functions, bottoming out in primitives that compute layouts or paint graphics.
+(Such applications can’t easily have state, so are typically non-interactive.)
+For example, the <a href="https://api.flutter.dev/flutter/widgets/Icon-class.html">Icon</a>
+widget is essentially a function that maps its arguments
+(<a href="https://api.flutter.dev/flutter/widgets/Icon/color.html">color</a>,
+<a href="https://api.flutter.dev/flutter/widgets/Icon/icon.html">icon</a>,
+<a href="https://api.flutter.dev/flutter/widgets/Icon/size.html">size</a>) into layout
+primitives. Additionally, heavy use is made of immutable data structures,
+including the entire
+<a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a> class
+hierarchy as well as numerous supporting classes such as
+<a href="https://api.flutter.dev/flutter/dart-ui/Rect-class.html">Rect</a> and
+<a href="https://api.flutter.dev/flutter/painting/TextStyle-class.html">TextStyle</a>. On a
+smaller scale, Dart’s
+<a href="https://api.flutter.dev/flutter/dart-core/Iterable-class.html">Iterable</a> API,
+which makes heavy use of the functional style (map, reduce, where, etc), is
+frequently used to process lists of values in the framework.</p>
+  </li>
+  <li>
+    <p>Event-driven programming: User interactions are represented by event objects
+that are dispatched to callbacks registered with event handlers. Screen updates
+are triggered by a similar callback mechanism. The
+<a href="https://api.flutter.dev/flutter/foundation/Listenable-class.html">Listenable</a>
+class, which is used as the basis of the animation system, formalizes a
+subscription model for events with multiple listeners.</p>
+  </li>
+  <li>
+    <p>Class-based object-oriented programming: Most of the APIs of the framework
+are built using classes with inheritance. We use an approach whereby we define
+very high-level APIs in our base classes, then specialize them iteratively in
+subclasses. For example, our render objects have a base class
+(<a href="https://api.flutter.dev/flutter/rendering/RenderObject-class.html">RenderObject</a>)
+that is agnostic regarding the coordinate system, and then we have a subclass
+(<a href="https://api.flutter.dev/flutter/rendering/RenderBox-class.html">RenderBox</a>)
+that introduces the opinion that the geometry should be based on the Cartesian
+coordinate system (x/width and y/height).</p>
+  </li>
+  <li>
+    <p>Prototype-based object-oriented programming: The
+<a href="https://api.flutter.dev/flutter/widgets/ScrollPhysics-class.html">ScrollPhysics</a>
+class chains instances to compose the physics that apply to scrolling
+dynamically at runtime. This lets the system compose, for example, paging
+physics with platform-specific physics, without the platform having to be
+selected at compile time.</p>
+  </li>
+  <li>
+    <p>Imperative programming: Straightforward imperative programming, usually
+paired with state encapsulated within an object, is used where it provides the
+most intuitive solution. For example, tests are written in an imperative style,
+first describing the situation under test, then listing the invariants that the
+test must match, then advancing the clock or inserting events as necessary for
+the test.</p>
+  </li>
+  <li>
+    <p>Reactive programming: The widget and element trees are sometimes described as
+reactive, because new inputs provided in a widget’s constructor are immediately
+propagated as changes to lower-level widgets by the widget’s build method, and
+changes made in the lower widgets (e.g., in response to user input) propagate
+back up the tree via event handlers. Aspects of both functional-reactive and
+imperative-reactive are present in the framework, depending on the needs of the
+widgets. Widgets with build methods that consist of just an expression
+describing how the widget reacts to changes in its configuration are functional
+reactive widgets (e.g., the Material
+<a href="https://api.flutter.dev/flutter/material/Divider-class.html">Divider</a> class).
+Widgets whose build methods construct a list of children over several
+statements, describing how the widget reacts to changes in its configuration,
+are imperative reactive widgets (e.g., the
+<a href="https://api.flutter.dev/flutter/material/Chip-class.html">Chip</a> class).</p>
+  </li>
+  <li>
+    <p>Declarative programming: The build methods of widgets are often a single
+expression with multiple levels of nested constructors, written using a strictly
+declarative subset of Dart. Such nested expressions could be mechanically
+transformed to or from any suitably expressive markup language. For example,
+the
+<a href="https://api.flutter.dev/flutter/material/UserAccountsDrawerHeader-class.html">UserAccountsDrawerHeader</a>
+widget has a long build method (20+ lines), consisting of a single nested
+expression. This can also be combined with the imperative style to build UIs
+that would be harder to describe in a pure-declarative approach.</p>
+  </li>
+  <li>
+    <p>Generic programming: Types can be used to help developers catch programming
+errors early. The Flutter framework uses generic programming to help in this
+regard. For example, the
+<a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a> class is
+parameterized in terms of the type of its associated widget, so that the Dart
+analyzer can catch mismatches of states and widgets. Similarly, the
+<a href="https://api.flutter.dev/flutter/widgets/GlobalKey-class.html">GlobalKey</a> class
+takes a type parameter so that it can access a remote widget’s state in a
+type-safe manner (using runtime checking), the
+<a href="https://api.flutter.dev/flutter/widgets/Route-class.html">Route</a> interface is
+parameterized with the type that it is expected to use when
+<a href="https://api.flutter.dev/flutter/widgets/Navigator/pop.html">popped</a>, and
+collections such as
+<a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a>s,
+<a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a>s, and
+<a href="https://api.flutter.dev/flutter/dart-core/Set-class.html">Set</a>s are all
+parameterized so that mismatched elements can be caught early either during
+analysis or at runtime during debugging.</p>
+  </li>
+  <li>
+    <p>Concurrent programming: Flutter makes heavy use of
+<a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a>s and
+other asynchronous APIs. For example, the animation system reports when an
+animation is finished by completing a future. The image loading system similarly
+uses futures to report when a load is complete.</p>
+  </li>
+  <li>
+    <p>Constraint programming: The layout system in Flutter uses a weak form of
+constraint programming to determine the geometry of a scene. Constraints (e.g.,
+for cartesian boxes, a minimum and maximum width and a minimum and maximum
+height) are passed from parent to child, and the child selects a resulting
+geometry (e.g., for cartesian boxes, a size, specifically a width and a height)
+that fulfills those constraints. By using this technique, Flutter can usually
+lay out an entire scene with a single pass.</p>
+  </li>
+</ul>
+
+<h2 id="project">
+<a id="project" class="anchor" href="#project" aria-hidden="true"><span class="octicon octicon-link"></span></a>Project</h2>
+
+<h3 id="where-can-i-get-support">
+<a id="where-can-i-get-support" class="anchor" href="#where-can-i-get-support" aria-hidden="true"><span class="octicon octicon-link"></span></a>Where can I get support?</h3>
+
+<p>If you think you’ve encountered a bug, please file it in our
+<a href="https://github.com/flutter/flutter/issues">issue tracker</a>. We
+encourage you to use
+<a href="https://stackoverflow.com/tags/flutter">Stack Overflow</a> for “HOWTO” type questions.
+For discussions, please join our mailing list at
+<a href="mailto:flutter-dev@googlegroups.com">flutter-dev@googlegroups.com</a>.</p>
+
+<h3 id="how-do-i-get-involved">
+<a id="how-do-i-get-involved" class="anchor" href="#how-do-i-get-involved" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I get involved?</h3>
+
+<p>Flutter is open source, and we encourage you to contribute. You can start by
+simply filing issues for feature requests and bugs in our
+<a href="https://github.com/flutter/flutter/issues">issue tracker</a>.</p>
+
+<p>We recommend that you join our mailing list at
+<a href="mailto:flutter-dev@googlegroups.com">flutter-dev@googlegroups.com</a> and let us
+know how you’re using Flutter and what you’d like to do with it.</p>
+
+<p>If you’re
+interested in contributing code, you can start by reading our
+<a href="https://github.com/flutter/flutter/blob/master/CONTRIBUTING.md">Contributing
+Guide</a>
+and check out our list of
+<a href="https://github.com/flutter/flutter/issues?q=is%3Aopen+is%3Aissue+label%3A%22easy+fix%22">easy starter issues</a>.</p>
+
+<h3 id="is-flutter-open-source">
+<a id="is-flutter-open-source" class="anchor" href="#is-flutter-open-source" aria-hidden="true"><span class="octicon octicon-link"></span></a>Is Flutter open source?</h3>
+
+<p>Yes, Flutter is open source technology. You can find the project
+on <a href="https://github.com/flutter/flutter">GitHub</a>.</p>
+
+<h3 id="which-software-licenses-apply-to-flutter-and-its-dependencies">
+<a id="which-software-licenses-apply-to-flutter-and-its-dependencies" class="anchor" href="#which-software-licenses-apply-to-flutter-and-its-dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Which software license(s) apply to Flutter and its dependencies?</h3>
+
+<p>Flutter includes two components: an engine that ships as a dynamically linked
+binary, and the Dart framework as a separate binary that the engine loads.
+The engine uses multiple software components with many dependencies; view the
+complete list in its <a href="https://raw.githubusercontent.com/flutter/engine/master/sky/packages/sky_engine/LICENSE">license
+file</a>.</p>
+
+<p>The framework is entirely self-contained and requires <a href="https://github.com/flutter/flutter/blob/master/LICENSE">only one
+license</a>.</p>
+
+<p>In addition, any Dart packages you use may have their own license requirements.</p>
+
+<h3 id="how-can-i-determine-the-licenses-my-flutter-application-needs-to-show">
+<a id="how-can-i-determine-the-licenses-my-flutter-application-needs-to-show" class="anchor" href="#how-can-i-determine-the-licenses-my-flutter-application-needs-to-show" aria-hidden="true"><span class="octicon octicon-link"></span></a>How can I determine the licenses my Flutter application needs to show?</h3>
+
+<p>There’s an API to find the list of licenses you need to show:</p>
+
+<ul>
+  <li>
+    <p>If your application has a
+<a href="https://api.flutter.dev/flutter/material/Drawer-class.html">Drawer</a>,
+add an
+<a href="https://api.flutter.dev/flutter/material/AboutListTile-class.html">AboutListTile</a>.</p>
+  </li>
+  <li>
+    <p>If your application doesn’t have a Drawer but does use the Material Components
+library, call either
+<a href="https://api.flutter.dev/flutter/material/showAboutDialog.html">showAboutDialog</a>
+or <a href="https://api.flutter.dev/flutter/material/showLicensePage.html">showLicensePage</a>.</p>
+  </li>
+  <li>
+    <p>For a more custom approach, you can get the raw licenses from the
+<a href="https://api.flutter.dev/flutter/foundation/LicenseRegistry-class.html">LicenseRegistry</a>.</p>
+  </li>
+</ul>
+
+<h3 id="who-works-on-flutter">
+<a id="who-works-on-flutter" class="anchor" href="#who-works-on-flutter" aria-hidden="true"><span class="octicon octicon-link"></span></a>Who works on Flutter?</h3>
+
+<p>Flutter is an open source project. Currently, the bulk of the development is
+done by engineers at Google. If you’re excited about Flutter, we encourage
+you to join the community and contribute to Flutter!</p>
+
+<h3 id="what-are-flutters-guiding-principles">
+<a id="what-are-flutters-guiding-principles" class="anchor" href="#what-are-flutters-guiding-principles" aria-hidden="true"><span class="octicon octicon-link"></span></a>What are Flutter’s guiding principles?</h3>
+
+<p>We believe that:</p>
+
+<ul>
+  <li>In order to reach every potential user, developers need to target multiple
+mobile platforms.</li>
+  <li>HTML and WebViews as they exist today make it challenging to
+consistently hit high frame rates and deliver high-fidelity experiences,
+due to automatic behavior (scrolling, layout) and legacy support.</li>
+  <li>Today, it’s too costly to build the same app multiple times: it
+requires different teams, different code bases, different workflows,
+different tools, etc.</li>
+  <li>Developers want an easier, better way to use a single codebase to
+build mobile apps for multiple target platforms, and they don’t want
+to sacrifice quality, control, or performance.</li>
+</ul>
+
+<p>We are focused on three things:</p>
+
+<ul>
+  <li>
+<em>Control</em> - Developers deserve access to, and control over, all layers of the
+system. Which leads to:</li>
+  <li>
+<em>Performance</em> - Users deserve perfectly fluid, responsive,
+jank-free apps. Which leads to:</li>
+  <li>
+<em>Fidelity</em> - Everyone deserves precise, beautiful,
+delightful mobile app experiences.</li>
+</ul>
+
+<h3 id="will-apple-reject-my-flutter-app">
+<a id="will-apple-reject-my-flutter-app" class="anchor" href="#will-apple-reject-my-flutter-app" aria-hidden="true"><span class="octicon octicon-link"></span></a>Will Apple reject my Flutter app?</h3>
+
+<p>We can’t speak for Apple, but Apple’s policies have changed over the
+years, and their App Store contains many apps built with technologies
+like Unity and Flutter.
+Apple has even featured Flutter apps such as <a href="https://itunes.apple.com/us/app/hamilton-the-official-app/id1255231054?mt=8">Hamilton.</a></p>
+
+<p>Of course, Apple is ultimately in charge of their ecosystem, but our goal
+is to continue doing everything we can to ensure that Flutter apps can be
+deployed to Apple’s App Store.</p>
+
+
+        
+      </div>
+    </main>
+  </div>
+</div>
+<footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 site-footer__wrapper">
+        <div class="site-footer__logo">
+          <img src="/images/flutter-mono-81x100.png" alt="Flutter Logo" width="81" height="100">
+        </div>
+        <div class="site-footer__content">
+          <ul class="site-footer__link-list">
+              <li><a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a></li>
+              <li><a href="/tos">terms</a></li>
+              <li><a href="/security">security</a></li>
+              <li><a href="https://www.google.com/intl/en/policies/privacy">privacy</a></li>
+              <li><a href="https://flutter-es.io/">español</a></li>
+              <li><a href="https://flutter-io.cn" class="text-nowrap">社区中文资源</a></li>
+          </ul>
+
+          <p class="licenses" translation-origin="on">
+            Except as otherwise noted,
+            this work is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0">Creative
+            Commons Attribution 4.0 International License</a>,
+            and code samples are licensed under the BSD License.
+          </p>
+          <p class="licenses" translation-result="off">
+            除非特别说明，否则本站内容采用 <a rel="license" href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0 授权协议</a>，所有范例代码都采用 BSD 授权协议。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- <script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script> -->
+  
+
+<script src="/assets/translator/js/translator.js"></script></body></html>

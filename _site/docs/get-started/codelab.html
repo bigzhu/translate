@@ -1,0 +1,2492 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>编写第一个 Flutter 应用  - Flutter 中文文档 - Flutter 社区中文资源 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-ND4LWWZ');</script>
+  <!-- End Google Tag Manager -->
+
+  
+  <meta name="description" content="">
+  <meta name="keywords" content=" ">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@flutterdev">
+
+  <meta property="og:title" content="编写第一个 Flutter 应用">
+  <meta property="og:url" content="https://flutter.dev/docs/get-started/codelab">
+  <meta property="og:description" content="">
+  
+  <meta property="og:image" content="https://flutter.dev/images/flutter-logo-sharing.png">
+
+  <link href="/assets/translator/css/material-roboto.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/assets/main-74a0c308218334fcd85291a957a514973015ea8e4eb76b9abae6e14bb5012f5e.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  <script src="/assets/main-d6b8b8d26e7b4122b3ddf6a5201966d6e2494aaffadaafaf7c571ce5e2fe0aab.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="/assets/translator/css/github.min.css">
+<link rel="stylesheet" href="/assets/translator/css/diff2html.min.css">
+<script src="/assets/translator/js/diff2html.min.js"></script>
+<script src="/assets/translator/js/diff2html-ui.min.js"></script>
+<script src="/assets/translator/js/highlight.min.js"></script>
+<script src="/assets/translator/js/languages/dart.min.js"></script>
+<script src="/assets/translator/js/languages/yaml.min.js"></script>
+<script>$(document).ready(function() {
+  var diff2htmlUi = new Diff2HtmlUI();
+  diff2htmlUi.highlightCode(".d2h-wrapper");
+});</script>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-122680122-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <!--<meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />-->
+<link href="/assets/translator/css/translator.css" rel="stylesheet"></head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-ND4LWWZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div id="overlay-under-drawer"></div>
+
+    <header class="site-header">
+  <nav class="navbar navbar-expand-md justify-content-start justify-content-md-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="material-icons">menu</i>
+    </button>
+
+    <a class="navbar-brand" href="/">
+      <img alt="Flutter by Google" height="37" width="129" class="align-middle" src="/assets/flutter-lockup-4cb0ee072ab312e59784d9fbf4fb7ad42688a7fdaea1270ccf6bbf4f34b7e03f.svg">
+    </a>
+
+    <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
+      <div class="site-header__sheet-bg" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></div>
+      <div class="site-header__sheet">
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <a class="nav-link active" href="/docs">开发文档</a>
+          </li>
+          <div class="site-sidebar site-sidebar--header d-md-none">
+            <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="true" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link active" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="false" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+          </div>
+
+<!-- 
+          <li class="nav-item">
+            <a class="nav-link" href="/showcase">Showcase</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/community">Community</a>
+          </li>
+ -->
+        </ul>
+        <form action="/search" class="site-header__search form-inline">
+          <input class="site-header__searchfield form-control" type="search" name="q" id="q" autocomplete="off" placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+    </div>
+    <div class="site-header__social navbar-nav flex-row">
+      <a class="nav-item nav-link" href="https://twitter.com/flutterdev"><i class="fab fa-twitter fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://www.youtube.com/flutterdev"><i class="fab fa-youtube fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://github.com/flutter"><i class="fab fa-github fa-lg"></i></a>
+    </div>
+    <a class="site-header__cta btn btn-primary" href="/docs/get-started/install/">Get started</a>
+    </nav>
+</header>
+<div class="site-banner site-banner--default" role="alert">
+    <p>
+      We are looking for a Flutter Infrastructure engineer!
+      <a href="/jobs/infrastructure" target="_blank" rel="noopener">Learn more</a>.
+    </p>
+
+  </div>
+<div class="container-fluid position-relative">
+  <div class="row flex-xl-nowrap">
+    <div class="fixed-col site-sidebar site-sidebar--fixed col-12 col-md-3 col-xl-2 d-none d-md-block" data-fixed-column="">
+      <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="true" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link active" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="false" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="false" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+    </div>
+    <div id="site-toc--side" class="site-toc site-toc--side fixed-col col-xl-2 order-3" data-fixed-column="">
+  <header class="site-toc__title">
+    Contents
+    <button type="button" class="btn site-toc--button__page-top" aria-label="Page top"></button>
+    </header>
+  <ul class="section-nav nav">
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#step-1-create-the-starter-flutter-app">Step 1: Create the starter Flutter app</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#第一步创建初始化工程">第一步：创建初始化工程</a>
+<ul class="nav">
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#step-2-use-an-external-package">Step 2: Use an external package</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#第二步使用外部-package">第二步：使用外部 package</a>
+<ul class="nav">
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#step-3-add-a-stateful-widget">Step 3: Add a Stateful widget</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#第三步添加一个-stateful-widget">第三步：添加一个 Stateful widget</a>
+<ul class="nav">
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#step-4-create-an-infinite-scrolling-listview">Step 4: Create an infinite scrolling ListView</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#第四步创建一个无限滚动的-listview">第四步：创建一个无限滚动的 ListView</a>
+<ul class="nav">
+</ul>
+</li>
+</ul>
+</div>
+<main class="site-content col-12 col-md-9 offset-md-3 col-xl-8 offset-xl-2 col-xxl-8 offset-xxl-2" role="main">
+      <div class="container">
+        
+        <nav class="site-nextprev-nav">
+    <ul>
+      <li class="prev">
+          <a href="/docs/get-started/test-drive">开发体验初探</a>
+      </li>
+      <li class="next">
+          <a href="/docs/get-started/learn-more">了解更多</a>
+      </li>
+      </ul>
+  </nav>
+
+        <header class="site-content__title">
+          <div id="page-github-links" class="btn-group" aria-label="Page GitHub links" role="group">
+  <a href="https://github.com/cfug/flutter.cn/tree/master/src/docs/get-started/codelab.md" class="btn no-automatic-external" title="View page source" target="_blank" rel="noopener">
+    <i class="fas fa-file-alt fa-sm"></i>
+  </a>
+  <a href="https://github.com/cfug/flutter.cn/issues/new?title='编写第一个 Flutter 应用' page issue&amp;body=
+Page URL: https://flutter.dev/docs/get-started/codelab.html%0D%0A
+Page source: https://github.com/cfug/flutter.cn/tree/master/src/docs/get-started/codelab.md%0D%0A
+%0D%0A
+Found a typo? You can fix it yourself by going to the page source and clicking the pencil icon. Or finish creating this issue.%0D%0A
+%0D%0A
+Description of issue:" class="btn no-automatic-external" title="Report an issue with this page" target="_blank" rel="noopener">
+    <i class="fas fa-bug fa-sm"></i>
+  </a>
+</div>
+
+          <h1 id="编写第一个-flutter-应用">编写第一个 Flutter 应用</h1>
+          
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="/docs" property="item" typeof="WebPage"><span property="name">文档</span>
+      </a>
+      <meta property="position" content="1">
+    </li>
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="/docs/get-started" property="item" typeof="WebPage"><span property="name">开始使用</span>
+      </a>
+      <meta property="position" content="2">
+    </li>
+  <li class="breadcrumb-item active" property="itemListElement" typeof="ListItem" aria-current="page"><a href="/docs/get-started/codelab.html" property="item" typeof="WebPage"><span property="name">编写第一个 Flutter 应用</span>
+      </a>
+      <meta property="position" content="3">
+    </li>
+  
+  </ol>
+</nav>
+          </header>
+        <div id="site-toc--inline" class="site-toc site-toc--inline ">
+  <header class="site-toc__title">
+    Contents
+    </header>
+  <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#step-1-create-the-starter-flutter-app">Step 1: Create the starter Flutter app</a></li>
+<li class="toc-entry toc-h2"><a href="#第一步创建初始化工程">第一步：创建初始化工程</a>
+<ul>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#step-2-use-an-external-package">Step 2: Use an external package</a></li>
+<li class="toc-entry toc-h2"><a href="#第二步使用外部-package">第二步：使用外部 package</a>
+<ul>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#step-3-add-a-stateful-widget">Step 3: Add a Stateful widget</a></li>
+<li class="toc-entry toc-h2"><a href="#第三步添加一个-stateful-widget">第三步：添加一个 Stateful widget</a>
+<ul>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#step-4-create-an-infinite-scrolling-listview">Step 4: Create an infinite scrolling ListView</a></li>
+<li class="toc-entry toc-h2"><a href="#第四步创建一个无限滚动的-listview">第四步：创建一个无限滚动的 ListView</a>
+<ul>
+</ul>
+</li>
+</ul>
+</div>
+<p><img alt="The app that you'll be building" class="site-image-right" src="/assets/get-started/startup-namer-part-1-9db323d8383da0000c8be4e1a12e3d9ff6ab3a0eb8b86984451b329f1f3b4196.gif"><style>pre .highlight { background-color: #dfd; }</style></p>
+
+<p translation-origin="on">This is a guide to creating your first Flutter app. If you
+are familiar with object-oriented code and basic programming
+concepts such as variables, loops, and conditionals,
+you can complete this tutorial. You don’t need
+previous experience with Dart or mobile programming.</p>
+
+<p translation-result="off">这是一个指引你完成第一个 Flutter 应用的手把手操作教程（我们也称之为是 codelab）。
+我们将会着手创建一个简单的 Flutter 应用，无需 Dart 语言和移动开发语言经验，
+只需你具备面向对象语言开发基础（如变量，循环和条件语句）即可。</p>
+
+<p translation-origin="on">This guide is part 1 of a two-part codelab. You can find
+<a href="https://codelabs.flutter-io.cn/codelabs/first-flutter-app-pt2">part 2</a>
+on <a href="https://codelabs.flutter-io.cn">Google Developers</a>.
+<a href="https://codelabs.flutter-io.cn/codelabs/first-flutter-app-pt1">Part 1</a>
+can also be found on <a href="https://codelabs.flutter-io.cn">Google Developers</a>.</p>
+
+<p translation-result="off">完整的教程分为两部分，本页面是第一部分的内容，
+你可以在这里查看<a href="https://codelabs.flutter-io.cn/codelabs/first-flutter-app-pt2-cn/index.html#0">第二部分</a>的内容。</p>
+
+<h2 class="no_toc" id="what-youll-build-in-part-1" translation-origin="on">
+<a id="what-youll-build-in-part-1" class="anchor" href="#what-youll-build-in-part-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>What you’ll build in part 1</h2>
+
+<h2 class="no_toc" id="第一部分的内容概览" translation-result="off">
+<a id="第一部分的内容概览" class="anchor" href="#what-youll-build-in-part-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>第一部分的内容概览</h2>
+
+<p translation-origin="on">You’ll implement a simple mobile app that generates proposed names for a
+startup company. The user can select and unselect names,
+saving the best ones. The code lazily generates names.
+As the user scrolls, more names are generated.
+There is no limit to how far a user can scroll.</p>
+
+<p translation-result="off">你将完成一个简单的移动应用程序，功能是：为一个创业公司生成建议的公司名称。
+用户可以选择和取消选择的名称、保存喜欢的名称。该代码一次生成十个名称，当用户滚动时，会生成一新批名称。</p>
+
+<p translation-origin="on">The animated GIF shows how the app works at the completion of part 1.</p>
+
+<p translation-result="off">页面上方的这个 GIF 可以引导你预览本 codelab 做完之后的应用效果图。</p>
+
+<aside class="alert alert-secondary" role="alert">
+
+  <h4 class="no_toc" id="what-youll-learn-in-part-1" translation-origin="on">
+<a id="what-youll-learn-in-part-1" class="anchor" href="#what-youll-learn-in-part-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>What you’ll learn in part 1</h4>
+
+  <h4 class="no_toc" id="第一部分，我们将共同构建：" translation-result="off">
+<a id="第一部分我们将共同构建" class="anchor" href="#what-youll-learn-in-part-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>第一部分，我们将共同构建：</h4>
+
+  <ul>
+    <li>
+      <p translation-origin="on">How to write a Flutter app that looks natural on both iOS and Android.</p>
+
+      <p translation-result="off">Flutter 如何在 Android 和 iOS 系统里自动适应不同的 UI 体系</p>
+    </li>
+    <li>
+      <p translation-origin="on">Basic structure of a Flutter app.</p>
+
+      <p translation-result="off">Flutter 工程/项目的基本结构</p>
+    </li>
+    <li>
+      <p translation-origin="on">Finding and using packages to extend functionality.</p>
+
+      <p translation-result="off">查找和使用 packages 来扩展功能</p>
+    </li>
+    <li>
+      <p translation-origin="on">Using hot reload for a quicker development cycle.</p>
+
+      <p translation-result="off">使用热重载 (hot reload) 加快开发周期</p>
+    </li>
+    <li>
+      <p translation-origin="on">How to implement a stateful widget.</p>
+
+      <p translation-result="off">如何实现有状态的 widget</p>
+    </li>
+    <li>
+      <p translation-origin="on">How to create an infinite, lazily loaded list.</p>
+
+      <p translation-result="off">如何创建一个无限的、延迟加载的列表</p>
+    </li>
+  </ul>
+
+  <p translation-origin="on">In <a href="https://codelabs.flutter-io.cn/codelabs/first-flutter-app-pt2">part 2</a>
+  of this codelab, you’ll add interactivity, modify the app’s theme, and
+  add the ability to navigate to a new screen (called a <em>route</em> in Flutter).</p>
+
+  <p translation-result="off">在本 codelab 的 <a href="https://codelabs.flutter-io.cn/codelabs/first-flutter-app-pt2-cn/index.html#0">第二部分</a>，
+  你还将学到添加交互，修改应用的主题，以及为应用添加一个新的页面（在 Flutter，我们称之为 route）</p>
+
+</aside>
+
+<aside class="alert alert-secondary" role="alert">
+
+  <h4 class="no_toc" id="what-youll-use" translation-origin="on">
+<a id="what-youll-use" class="anchor" href="#what-youll-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>What you'll use</h4>
+
+  <h4 class="no_toc" id="所需工具" translation-result="off">
+<a id="所需工具" class="anchor" href="#what-youll-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>所需工具</h4>
+
+  <p translation-origin="on">You need two pieces of software to complete this lab: the
+  <a href="/docs/get-started/install">Flutter SDK</a> and <a href="/docs/get-started/editor">an editor</a>.
+  This codelab assumes Android Studio, but you can use your preferred
+  editor.</p>
+
+  <p translation-result="off">你需要安装两部分内容来完成本次实验：<a href="/docs/get-started/install">Flutter SDK 安装</a> 和
+  <a href="/docs/get-started/editor">编辑器 (editor)</a>设置。
+  本 codelab 里，我们以 macOS 环境下的 Android Studio 以做演示，
+  但你可以选用更顺手的配置。</p>
+
+  <p translation-origin="on">You can run this codelab using any of the following devices:</p>
+
+  <p translation-result="off">你可以通过如下任何设备完成本 codelab：</p>
+
+  <ul>
+    <li>
+      <p translation-origin="on">A physical device (<a href="install/macos#set-up-your-android-device">Android</a>
+or <a href="install/macos#deploy-to-ios-devices">iOS</a>) connected to your
+computer and set to developer mode.</p>
+
+      <p translation-result="off">开启开发者模式 (developer mode) 的 <a href="install/macos#set-up-your-android-device">Android</a> 和 / 或 <a href="install/macos#deploy-to-ios-devices">iOS</a> 真机；</p>
+    </li>
+    <li>
+      <p translation-origin="on">The <a href="install/macos#set-up-the-ios-simulator">iOS simulator</a>.</p>
+
+      <p translation-result="off"><a href="install/macos#set-up-the-ios-simulator">iOS 模拟器</a>；</p>
+    </li>
+    <li>
+      <p translation-origin="on">The <a href="install/macos#set-up-the-android-emulator">Android emulator</a>.</p>
+
+      <p translation-result="off"><a href="install/macos#set-up-the-android-emulator">Android 模拟器</a>。</p>
+    </li>
+  </ul>
+
+</aside>
+
+<h2 id="step-1-create-the-starter-flutter-app" translation-origin="on">
+<a id="step-1-create-the-starter-flutter-app" class="anchor" href="#step-1-create-the-starter-flutter-app" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 1: Create the starter Flutter app</h2>
+
+<h2 id="第一步创建初始化工程" translation-result="off">
+<a id="第一步创建初始化工程" class="anchor" href="#step-1-create-the-starter-flutter-app" aria-hidden="true"><span class="octicon octicon-link"></span></a>第一步：创建初始化工程</h2>
+
+<p translation-origin="on">Create a simple, templated Flutter app, using the instructions in
+<a href="/docs/get-started/test-drive#create-app">Getting Started with your first Flutter app.</a>
+Name the project <strong>startup_namer</strong> (instead of <em>myapp</em>).</p>
+
+<p translation-result="off">按照 <a href="/docs/get-started/test-drive#create-app">这个指南</a> 中所描述的步骤，
+创建一个简单的、基于模板的 Flutter 工程，然后将项目命名为 startup_namer (而不是 myapp)，
+接下来你将会修改这个工程来完成最终的 App。</p>
+
+<aside class="alert alert-success" role="alert">
+  <p><i class="far fa-lightbulb"></i> <strong>小提示：</strong></p>
+
+  <p translation-origin="on">If you don’t see “New Flutter Project” as an option in your IDE, make
+  sure you have the <a href="/docs/get-started/editor">plugins installed for Flutter and
+  Dart</a>.</p>
+
+  <p translation-result="off">如果你没有在你的集成开发环境（IDE）里看到”New Flutter Project”（新建一个 Flutter 工程），
+  请按照本文档完成 <a href="/docs/get-started/editor">Dart 和 Flutter 插件的安装</a>。</p>
+
+</aside>
+
+<p translation-origin="on">In this codelab, you’ll mostly be editing <strong>lib/main.dart</strong>,
+where the Dart code lives.</p>
+
+<p translation-result="off">在这个示例中，你将主要编辑 Dart 代码所在的 <strong>lib/main.dart</strong> 文件,</p>
+
+<ol>
+  <li>
+    <p translation-origin="on">Replace the contents of <code class="highlighter-rouge">lib/main.dart</code>.<br>
+Delete all of the code from <strong>lib/main.dart</strong>.
+Replace with the following code, which displays “Hello World” in the center
+of the screen.</p>
+
+    <p translation-result="off">替换 lib/main.dart <br>
+删除 lib/main.dart 中的所有代码，然后替换为下面的代码，它将在屏幕的中心显示”Hello World”。</p>
+
+    <div class="code-excerpt">
+<div class="code-excerpt__header">lib/main.dart</div>
+<div class="code-excerpt__code"><pre class="prettyprint lang-dart">import 'package:flutter/material.dart';
+
+void main() =&gt; runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Welcome to Flutter',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Welcome to Flutter'),
+        ),
+        body: Center(
+          child: Text('Hello World'),
+        ),
+      ),
+    );
+  }
+}</pre></div>
+</div>
+
+    <aside class="alert alert-success" role="alert">
+      <p><i class="far fa-lightbulb"></i> <strong>小提示：</strong></p>
+
+      <p translation-origin="on">When pasting code into your app, indentation can become skewed.
+  You can fix this automatically with the Flutter tools:</p>
+
+      <p translation-result="off">在向你的工程项目中粘贴代码的时候，缩进可能会变形。
+  你可以使用 Flutter 工具自动修复此问题：</p>
+
+      <ul>
+        <li>
+          <p translation-origin="on">Android Studio / IntelliJ IDEA: Right-click the code and
+select <strong>Reformat Code with dartfmt</strong>.</p>
+
+          <p translation-result="off">Android Studio / IntelliJ IDEA: 右键单击Dart代码，然后选择 <strong>Reformat Code with dartfmt</strong></p>
+        </li>
+        <li>
+          <p translation-origin="on">VS Code: Right-click and select <strong>Format Document</strong>.</p>
+
+          <p translation-result="off">VS Code: 右键单击并选择 Format Document.、</p>
+        </li>
+        <li>
+          <p translation-origin="on">Terminal: Run <code class="highlighter-rouge">flutter format &lt;filename&gt;</code>.</p>
+
+          <p translation-result="off">Terminal: 运行 <code class="highlighter-rouge">flutter format &lt;filename&gt;</code></p>
+        </li>
+      </ul>
+
+    </aside>
+  </li>
+  <li>
+    <p translation-origin="on">Run the app <a href="/docs/get-started/test-drive">in the way your IDE describes</a>.
+You should see either Android or iOS output, depending on your device.</p>
+
+    <p translation-result="off"><a href="/docs/get-started/test-drive#androidstudio">运行</a>你的工程项目，
+根据不同的操作系统，你会看到如下运行结果界面：</p>
+
+    <figure class="site-figure">
+  <div class="site-figure-container">
+  <img alt="Hello world app on Android" class="" src="/assets/get-started/android/hello-world-fadb9765c01d33f0fea92d7ac767e036ea90e9159335ea1841277bc6bef3a10a.png">
+  <figcaption class="figure-caption">Android</figcaption>
+  </div>
+  <div class="site-figure-container">
+  <img alt="Hello world app on iOS" class="" src="/assets/get-started/ios/hello-world-ed7cf47213953bfca5eaa74fba63a78538d782f2c63a7c575068f3c2f7298bde.png">
+  <figcaption class="figure-caption">iOS</figcaption>
+  </div>
+</figure>
+
+    <aside class="alert alert-success" role="alert">
+      <p><i class="far fa-lightbulb"></i> <strong>小提示：</strong></p>
+
+      <p translation-origin="on">The first time you run on a physical device, it can take awhile to load.
+  After this, you can use hot reload for quick updates. <strong>Save</strong> also
+  performs a hot reload if the app is running.</p>
+
+      <p translation-result="off">第一次真机运行的时候可能会需要更多的等待时间，但是这是值得的，
+  因为接下来你就可以使用热重载（hot reload）功能，真正的为下次运行时更新的预览<strong>节省</strong>更多时间。</p>
+
+    </aside>
+  </li>
+</ol>
+
+<h3 class="no_toc" id="observations" translation-origin="on">
+<a id="observations" class="anchor" href="#observations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Observations</h3>
+
+<h3 class="no_toc" id="观察和分析" translation-result="off">
+<a id="观察和分析" class="anchor" href="#observations" aria-hidden="true"><span class="octicon octicon-link"></span></a>观察和分析</h3>
+
+<ul>
+  <li>
+    <p translation-origin="on">This example creates a Material app.
+<a href="https://material-io.cn/guidelines">Material</a> is a visual design language
+that is standard on mobile and the web. Flutter offers a rich set
+of Material widgets.</p>
+
+    <p translation-result="off">本示例创建了一个具有 Material Design 风格的应用，
+<a href="https://material-io.cn/guidelines">Material</a> 是一种移动端和网页端通用的视觉设计语言，
+Flutter 提供了丰富的 Material 风格的 widgets。</p>
+  </li>
+  <li>
+    <p translation-origin="on">The <code class="highlighter-rouge">main()</code> method uses arrow (<code class="highlighter-rouge">=&gt;</code>) notation.
+Use arrow notation for one-line functions or methods.</p>
+
+    <p translation-result="off">主函数（main）使用了 (<code class="highlighter-rouge">=&gt;</code>) 符号，这是 Dart 中单行函数或方法的简写。</p>
+  </li>
+  <li>
+    <p translation-origin="on">The app extends <code class="highlighter-rouge">StatelessWidget</code> which makes the app itself a
+widget. In Flutter, almost everything is a widget, including
+alignment, padding, and layout.</p>
+
+    <p translation-result="off">该应用程序继承了 <code class="highlighter-rouge">StatelessWidget</code>，这将会使应用本身也成为一个 widget。
+在 Flutter 中，几乎所有都是 widget，
+包括对齐 (alignment)、填充 (padding) 和布局 (layout)。</p>
+  </li>
+  <li>
+    <p translation-origin="on">The <code class="highlighter-rouge">Scaffold</code> widget, from the Material library,
+provides a default app bar, title, and a body property that
+holds the widget tree for the home screen. The widget subtree
+can be quite complex.</p>
+
+    <p translation-result="off"><code class="highlighter-rouge">Scaffold</code> 是 Material 库中提供的一个 widget，
+它提供了默认的导航栏、标题和包含主屏幕 widget 树的 body 属性。
+widget 树可以很复杂。</p>
+  </li>
+  <li>
+    <p translation-origin="on">A widget’s main job is to provide a <code class="highlighter-rouge">build()</code> method
+that describes how to display the widget in terms of other,
+lower level widgets.</p>
+
+    <p translation-result="off">一个 widget 的主要工作是提供一个 <code class="highlighter-rouge">build()</code> 方法来描述如何
+根据其他较低级别的 widgets 来显示自己。</p>
+  </li>
+  <li>
+    <p translation-origin="on">The body for this example consists of a <code class="highlighter-rouge">Center</code> widget containing
+a <code class="highlighter-rouge">Text</code> child widget. The Center widget aligns its widget subtree
+to the center of the screen.</p>
+
+    <p translation-result="off">本示例中的 body 的 widget 树中包含了一个 <code class="highlighter-rouge">Center</code> widget，
+Center widget 又包含一个 <code class="highlighter-rouge">Text</code> 子 widget，
+Center widget 可以将其子 widget 树对其到屏幕中心。</p>
+  </li>
+</ul>
+
+<h2 id="step-2-use-an-external-package" translation-origin="on">
+<a id="step-2-use-an-external-package" class="anchor" href="#step-2-use-an-external-package" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 2: Use an external package</h2>
+
+<h2 id="第二步使用外部-package" translation-result="off">
+<a id="第二步使用外部-package" class="anchor" href="#step-2-use-an-external-package" aria-hidden="true"><span class="octicon octicon-link"></span></a>第二步：使用外部 package</h2>
+
+<p translation-origin="on">In this step, you’ll start using an open-source package named
+<a href="https://pub.flutter-io.cn/packages/english_words">english_words</a>,
+which contains a few thousand of the most used
+English words plus some utility functions.</p>
+
+<p translation-result="off">在这一步中，你将开始使用一个名为 <a href="https://pub.flutter-io.cn/packages/english_words">english_words</a>
+的开源软件包，其中包含数千个最常用的英文单词以及一些实用功能。</p>
+
+<p translation-origin="on">You can find the <code class="highlighter-rouge">english_words</code> package, as well as many other open source
+packages, on the <a href="https://pub.flutter-io.cn/flutter">Pub site</a>.</p>
+
+<p translation-result="off">你可以在 <a href="https://pub.flutter-io.cn/flutter">Pub site</a> 上找到
+<code class="highlighter-rouge">english_words</code> 软件包以及其他许多开源软件包。</p>
+
+<ol>
+  <li>
+    <p translation-origin="on">The pubspec file manages the assets and dependencies for a Flutter app. In
+<code class="highlighter-rouge">pubspec.yaml</code>, add <code class="highlighter-rouge">english_words</code> (3.1.0 or higher) to the dependencies
+list:</p>
+
+    <p translation-result="off">pubspec 文件管理 Flutter 应用程序的 assets（资源，如图片、package等）。
+在pubspec.yaml 中，将 english_words（3.1.0或更高版本）添加到依赖项列表，
+如下面高亮显示的行：</p>
+
+    <div class="d2h-wrapper">
+    <div id="d2h-740644" class="d2h-file-wrapper" data-lang="yaml">
+    <div class="d2h-file-header">
+    <span class="d2h-file-name-wrapper">
+    <svg aria-hidden="true" class="d2h-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12">
+        <path d="M6 5H2v-1h4v1zM2 8h7v-1H2v1z m0 2h7v-1H2v1z m0 2h7v-1H2v1z m10-7.5v9.5c0 0.55-0.45 1-1 1H1c-0.55 0-1-0.45-1-1V2c0-0.55 0.45-1 1-1h7.5l3.5 3.5z m-1 0.5L8 2H1v12h10V5z"></path>
+    </svg>    <span class="d2h-file-name">{step1_base → step2_use_package}/pubspec.yaml</span>
+    </span>
+    </div>
+    <div class="d2h-file-diff">
+        <div class="d2h-code-wrapper">
+            <table class="d2h-diff-table">
+                <tbody class="d2h-diff-tbody">
+                <tr>
+    <td class="d2h-code-linenumber d2h-info"></td>
+    <td class="d2h-info">
+        <div class="d2h-code-line d2h-info">@@ -5,4 +5,5 @@</div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">5</div>
+<div class="line-num2">5</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">dependencies:</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">6</div>
+<div class="line-num2">6</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">  flutter:</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">7</div>
+<div class="line-num2">7</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">    sdk: flutter</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">8</div>
+<div class="line-num2">8</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">  cupertino_icons: ^0.1.2</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-ins">
+      <div class="line-num1"></div>
+<div class="line-num2">9</div>
+    </td>
+    <td class="d2h-ins">
+        <div class="d2h-code-line d2h-ins">
+            <span class="d2h-code-line-prefix">+</span>
+            <span class="d2h-code-line-ctn">  english_words: ^3.1.0</span>
+        </div>
+    </td>
+</tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+  </li>
+  <li>
+    <p translation-origin="on">While viewing the pubspec in Android Studio’s editor view,
+click <strong>Packages get</strong>. This pulls the package into
+your project. You should see the following in the console:</p>
+
+    <p translation-result="off">在Android Studio 的编辑器视图中查看 pubspec 时，
+单击右上角的 Packages get，这会将依赖包安装到你的项目。
+你可以在控制台中看到以下内容：</p>
+
+    <div class="language-terminal highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="gp">$</span> flutter packages get
+<span class="go">Running "flutter packages get" in startup_namer...
+Process finished with exit code 0
+</span></code></pre></div>    </div>
+
+    <p translation-origin="on">Performing <code class="highlighter-rouge">Packages get</code> also auto-generates the <code class="highlighter-rouge">pubspec.lock</code>
+file with a list of all packages pulled into the project and
+their version numbers.</p>
+
+    <p translation-result="off">在执行 <code class="highlighter-rouge">Packages get</code> 命令的时候，同时会自动生成一个名为 <code class="highlighter-rouge">pubspec.lock</code>
+的文件，这里包含了你依赖 packages 的名称和版本。</p>
+  </li>
+  <li>
+    <p translation-origin="on">In <code class="highlighter-rouge">lib/main.dart</code>, import the new package:</p>
+
+    <p translation-result="off">在 <code class="highlighter-rouge">lib/main.dart</code> 中引入，如下所示：</p>
+
+    <div class="code-excerpt">
+<div class="code-excerpt__header">lib/main.dart</div>
+<div class="code-excerpt__code"><pre class="prettyprint lang-dart">import 'package:flutter/material.dart';
+<span class="highlight">import 'package:english_words/english_words.dart';</span></pre></div>
+</div>
+
+    <p translation-origin="on">As you type, Android Studio gives you suggestions for libraries to import.
+It then renders the import string in gray, letting you know that the
+imported library is unused (so far).</p>
+
+    <p translation-result="off">在你输入时，Android Studio会为你提供有关库导入的建议。
+然后它将呈现灰色的导入字符串，让你知道导入的库截至目前尚未被使用。</p>
+  </li>
+  <li>
+    <p translation-origin="on">Use the English words package to generate the text instead of
+using the string “Hello World”:</p>
+
+    <p translation-result="off">接下来，我们使用 English words 包生成文本来替换字符串”Hello World”：</p>
+
+    <div class="d2h-wrapper">
+    <div id="d2h-507307" class="d2h-file-wrapper" data-lang="dart">
+    <div class="d2h-file-header">
+    <span class="d2h-file-name-wrapper">
+    <svg aria-hidden="true" class="d2h-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12">
+        <path d="M6 5H2v-1h4v1zM2 8h7v-1H2v1z m0 2h7v-1H2v1z m0 2h7v-1H2v1z m10-7.5v9.5c0 0.55-0.45 1-1 1H1c-0.55 0-1-0.45-1-1V2c0-0.55 0.45-1 1-1h7.5l3.5 3.5z m-1 0.5L8 2H1v12h10V5z"></path>
+    </svg>    <span class="d2h-file-name">{step1_base → step2_use_package}/lib/main.dart</span>
+    </span>
+    </div>
+    <div class="d2h-file-diff">
+        <div class="d2h-code-wrapper">
+            <table class="d2h-diff-table">
+                <tbody class="d2h-diff-tbody">
+                <tr>
+    <td class="d2h-code-linenumber d2h-info"></td>
+    <td class="d2h-info">
+        <div class="d2h-code-line d2h-info">@@ -5,6 +6,7 @@</div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">5</div>
+<div class="line-num2">6</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">class MyApp extends StatelessWidget {</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">6</div>
+<div class="line-num2">7</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">  @override</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">7</div>
+<div class="line-num2">8</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">  Widget build(BuildContext context) {</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-ins">
+      <div class="line-num1"></div>
+<div class="line-num2">9</div>
+    </td>
+    <td class="d2h-ins">
+        <div class="d2h-code-line d2h-ins">
+            <span class="d2h-code-line-prefix">+</span>
+            <span class="d2h-code-line-ctn">    final wordPair = WordPair.random();</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">8</div>
+<div class="line-num2">10</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">    return MaterialApp(</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">9</div>
+<div class="line-num2">11</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">      title: 'Welcome to Flutter',</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">10</div>
+<div class="line-num2">12</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">      home: Scaffold(</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-info"></td>
+    <td class="d2h-info">
+        <div class="d2h-code-line d2h-info">@@ -12,7 +14,7 @@</div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">12</div>
+<div class="line-num2">14</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">          title: Text('Welcome to Flutter'),</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">13</div>
+<div class="line-num2">15</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">        ),</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">14</div>
+<div class="line-num2">16</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">        body: Center(</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-del">
+      <div class="line-num1">15</div>
+<div class="line-num2"></div>
+    </td>
+    <td class="d2h-del">
+        <div class="d2h-code-line d2h-del">
+            <span class="d2h-code-line-prefix">-</span>
+            <span class="d2h-code-line-ctn">          child: Text<del>('Hello World'),</del></span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-ins">
+      <div class="line-num1"></div>
+<div class="line-num2">17</div>
+    </td>
+    <td class="d2h-ins">
+        <div class="d2h-code-line d2h-ins">
+            <span class="d2h-code-line-prefix">+</span>
+            <span class="d2h-code-line-ctn">          child: Text<ins>(wordPair.asPascalCase),</ins></span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">16</div>
+<div class="line-num2">18</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">        ),</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">17</div>
+<div class="line-num2">19</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">      ),</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">18</div>
+<div class="line-num2">20</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">    );</span>
+        </div>
+    </td>
+</tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+
+    <aside class="alert alert-info" role="alert">
+      <p><i class="fas fa-info-circle"></i> <strong>备忘：</strong></p>
+
+      <p translation-origin="on">“Pascal case” (also known as “upper camel case”),
+  means that each word in the string, including the first one,
+  begins with an uppercase letter. So, “uppercamelcase” becomes
+  “UpperCamelCase”.</p>
+
+      <p translation-result="off">「大驼峰式命名法」也称为 upper camel case 或 Pascal case，
+  表示字符串中的每个单词（包括第一个单词）都以大写字母开头。
+  所以，uppercamelcase 会变成 UpperCamelCase。</p>
+
+    </aside>
+  </li>
+  <li>
+    <p translation-origin="on">If the app is running, <a href="/docs/get-started/test-drive">hot reload</a>
+to update the running app. Each time you click hot reload,
+or save the project, you should see a different word pair,
+chosen at random, in the running app.
+This is because the word pairing is generated inside the build
+method, which is run each time the MaterialApp requires rendering,
+or when toggling the Platform in Flutter Inspector.</p>
+
+    <p translation-result="off">如果应用程序正在运行，请使用热重载按钮 <i class="material-icons align-bottom">offline_bolt</i>
+更新正在运行的应用程序。每次单击热重载或保存项目时，都会在正在运行的应用程序中随机选择不同的单词对。
+这是因为单词对是在 build 方法内部生成的。每次 MaterialApp 需要渲染时或者在 Flutter Inspector 中切换平台时 build 都会运行。</p>
+
+    <figure class="site-figure">
+  <div class="site-figure-container">
+  <img alt="App at completion of second step on Android" class="" src="/assets/get-started/android/step2-45e5a16e59926599e09b25b1c6d37372f77b69151cbebd070d2f94f657b1abde.png">
+  <figcaption class="figure-caption">Android</figcaption>
+  </div>
+  <div class="site-figure-container">
+  <img alt="App at completion of second step on iOS" class="" src="/assets/get-started/ios/step2-de9da90d2a90351c8d651c50f345c822472dbcd93cd8bad099e4edf2aa499c43.png">
+  <figcaption class="figure-caption">iOS</figcaption>
+  </div>
+</figure>
+  </li>
+</ol>
+
+<h3 class="no_toc" id="problems" translation-origin="on">
+<a id="problems" class="anchor" href="#problems" aria-hidden="true"><span class="octicon octicon-link"></span></a>Problems?</h3>
+
+<h3 class="no_toc" id="遇到问题" translation-result="off">
+<a id="遇到问题" class="anchor" href="#problems" aria-hidden="true"><span class="octicon octicon-link"></span></a>遇到问题?</h3>
+
+<p translation-origin="on">If your app is not running correctly, look for typos. If needed,
+use the code at the following links to get back on track.</p>
+
+<p translation-result="off">如果你的应用程序运行不正常，请查找是否有拼写错误。如果需要，使用下面链接中的代码来对比更正。</p>
+
+<ul>
+  <li><a href="https://raw.githubusercontent.com/flutter/codelabs/master/startup_namer/step2_use_package/pubspec.yaml">pubspec.yaml</a></li>
+  <li><a href="https://raw.githubusercontent.com/flutter/codelabs/master/startup_namer/step2_use_package/lib/main.dart">lib/main.dart</a></li>
+</ul>
+
+<h2 id="step-3-add-a-stateful-widget" translation-origin="on">
+<a id="step-3-add-a-stateful-widget" class="anchor" href="#step-3-add-a-stateful-widget" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 3: Add a Stateful widget</h2>
+
+<h2 id="第三步添加一个-stateful-widget" translation-result="off">
+<a id="第三步添加一个-stateful-widget" class="anchor" href="#step-3-add-a-stateful-widget" aria-hidden="true"><span class="octicon octicon-link"></span></a>第三步：添加一个 Stateful widget</h2>
+
+<p translation-origin="on">State<em>less</em> widgets are immutable, meaning that their
+properties can’t change—all values are final.</p>
+
+<p translation-result="off">State<em>less</em> widgets 是不可变的，这意味着它们的属性不能改变
+—— 所有的值都是 final。</p>
+
+<p translation-origin="on">State<em>ful</em> widgets maintain state that might change
+during the lifetime of the widget. Implementing a stateful
+widget requires at least two classes: 1) a StatefulWidget class
+that creates an instance of 2) a State class. The StatefulWidget
+class is, itself, immutable, but the State class persists over the
+lifetime of the widget.</p>
+
+<p translation-result="off">State<em>ful</em> widgets 持有的状态可能在 widget 生命周期中发生变化，
+实现一个 stateful widget 至少需要两个类：
+1）一个 StatefulWidget 类；2）一个 State 类，StatefulWidget 类本身是不变的，
+但是 State 类在 widget 生命周期中始终存在。</p>
+
+<p translation-origin="on">In this step, you’ll add a stateful widget, <code class="highlighter-rouge">RandomWords</code>, which creates
+its <code class="highlighter-rouge">State</code> class, <code class="highlighter-rouge">RandomWordsState</code>. You’ll then use <code class="highlighter-rouge">RandomWords</code> as
+a child inside the existing <code class="highlighter-rouge">MyApp</code> stateless widget.</p>
+
+<p translation-result="off">在这一步，你将添加一个 stateful widget（有状态的控件）—— <code class="highlighter-rouge">RandomWords</code>，
+它会创建自己的状态类 —— <code class="highlighter-rouge">RandomWordsState</code>，然后你需要将 <code class="highlighter-rouge">RandomWords</code>
+内嵌到已有的无状态的 <code class="highlighter-rouge">MyApp</code> widget。</p>
+
+<ol>
+  <li>
+    <p translation-origin="on">Create a minimal state class. Add the following to the bottom
+of <code class="highlighter-rouge">main.dart</code>:</p>
+
+    <p translation-result="off">创建一个最简的 state 类，这个类可以在任意地方创建而不一定非要在 MyApp 里，
+我们的示例代码是放在 MyApp 类的最下面了：</p>
+
+    <div class="code-excerpt">
+<div class="code-excerpt__header">lib/main.dart (RandomWordsState)</div>
+<div class="code-excerpt__code"><pre class="prettyprint lang-dart">class RandomWordsState extends State&lt;RandomWords&gt; {
+  // TODO Add build() method
+}</pre></div>
+</div>
+
+    <p translation-origin="on">Notice the declaration <code class="highlighter-rouge">State&lt;RandomWords&gt;</code>. This indicates that we’re
+using the generic
+<a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a>
+class specialized for use with <code class="highlighter-rouge">RandomWords</code>. Most of the app’s logic
+and state resides here—it maintains the state for the <code class="highlighter-rouge">RandomWords</code>
+widget. This class saves the generated word pairs, which grows infinitely
+as the user scrolls, and favorite word pairs (in
+<a href="https://codelabs.flutter-io.cn/codelabs/first-flutter-app-pt2">part 2</a>),
+as the user adds or removes them from the list by toggling the heart icon.</p>
+
+    <p translation-result="off">注意一下 <code class="highlighter-rouge">State&lt;RandomWords&gt;</code> 的声明。这表明我们在使用专门用于 <code class="highlighter-rouge">RandomWords</code> 的 
+<a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a> 泛型类。
+应用的大部分逻辑和状态都在这里 —— 它会维护 RandomWords 控件的状态。
+这个类会保存代码生成的单词对，这个单词对列表会随着用户滑动而无限增长，
+另外还会保存用户喜爱的单词对（第二部分），
+也即当用户点击爱心图标的时候会从喜爱的列表中添加或者移除当前单词对。</p>
+
+    <p translation-origin="on"><code class="highlighter-rouge">RandomWordsState</code> depends on the <code class="highlighter-rouge">RandomWords</code> class. You’ll add that next.</p>
+
+    <p translation-result="off"><code class="highlighter-rouge">RandomWordsState</code> 依赖 <code class="highlighter-rouge">RandomWords</code>，我们接下来会创建这个类。</p>
+  </li>
+  <li>
+    <p translation-origin="on">Add the stateful <code class="highlighter-rouge">RandomWords</code> widget to <code class="highlighter-rouge">main.dart</code>.
+The <code class="highlighter-rouge">RandomWords</code> widget does little else beside creating its State class:</p>
+
+    <p translation-result="off">添加有状态的 <code class="highlighter-rouge">RandomWords</code> widget 到 <code class="highlighter-rouge">main.dart</code>，<code class="highlighter-rouge">RandomWords</code> widget
+除了创建 State 类之外几乎没有其他任何东西：</p>
+
+    <div class="code-excerpt">
+<div class="code-excerpt__header">lib/main.dart (RandomWords)</div>
+<div class="code-excerpt__code"><pre class="prettyprint lang-dart">class RandomWords extends StatefulWidget {
+  @override
+  RandomWordsState createState() =&gt; new RandomWordsState();
+}</pre></div>
+</div>
+
+    <p translation-origin="on">After adding the state class, the IDE complains that
+the class is missing a build method. Next, you’ll add a basic
+build method that generates the word pairs by moving the
+word generation code from <code class="highlighter-rouge">MyApp</code> to <code class="highlighter-rouge">RandomWordsState</code>.</p>
+
+    <p translation-result="off">在添加状态类后，IDE 会提示该类缺少 build 方法。
+接下来，你将添加一个基本的 build 方法，
+该方法通过将生成单词对的代码从 <code class="highlighter-rouge">MyApp</code> 移动到 <code class="highlighter-rouge">RandomWordsState</code> 来生成单词对。</p>
+  </li>
+  <li>
+    <p translation-origin="on">Add the <code class="highlighter-rouge">build()</code> method to <code class="highlighter-rouge">RandomWordsState</code>:</p>
+
+    <p translation-result="off">将 <code class="highlighter-rouge">build()</code> 方法添加到 <code class="highlighter-rouge">RandomWordState</code> 中，如下所示：</p>
+
+    <div class="code-excerpt">
+<div class="code-excerpt__header">lib/main.dart (RandomWordsState)</div>
+<div class="code-excerpt__code"><pre class="prettyprint lang-dart">class RandomWordsState extends State&lt;RandomWords&gt; {
+  <span class="highlight">@override</span>
+  <span class="highlight">Widget build(BuildContext context) {</span>
+  <span class="highlight">  final wordPair = WordPair.random();</span>
+  <span class="highlight">  return Text(wordPair.asPascalCase);</span>
+  <span class="highlight">}</span>
+}</pre></div>
+</div>
+  </li>
+  <li>
+    <p translation-origin="on">Remove the word generation code from <code class="highlighter-rouge">MyApp</code> by making the changes shown in
+the following diff:</p>
+
+    <p translation-result="off">如下所示，删除 <code class="highlighter-rouge">MyApp</code> 里生成文字的代码：</p>
+
+    <div class="d2h-wrapper">
+    <div id="d2h-006483" class="d2h-file-wrapper" data-lang="dart">
+    <div class="d2h-file-header">
+    <span class="d2h-file-name-wrapper">
+    <svg aria-hidden="true" class="d2h-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12">
+        <path d="M6 5H2v-1h4v1zM2 8h7v-1H2v1z m0 2h7v-1H2v1z m0 2h7v-1H2v1z m10-7.5v9.5c0 0.55-0.45 1-1 1H1c-0.55 0-1-0.45-1-1V2c0-0.55 0.45-1 1-1h7.5l3.5 3.5z m-1 0.5L8 2H1v12h10V5z"></path>
+    </svg>    <span class="d2h-file-name">{step2_use_package → step3_stateful_widget}/lib/main.dart</span>
+    </span>
+    </div>
+    <div class="d2h-file-diff">
+        <div class="d2h-code-wrapper">
+            <table class="d2h-diff-table">
+                <tbody class="d2h-diff-tbody">
+                <tr>
+    <td class="d2h-code-linenumber d2h-info"></td>
+    <td class="d2h-info">
+        <div class="d2h-code-line d2h-info">@@ -6,7 +6,6 @@</div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">6</div>
+<div class="line-num2">6</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">class MyApp extends StatelessWidget {</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">7</div>
+<div class="line-num2">7</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">  @override</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">8</div>
+<div class="line-num2">8</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">  Widget build(BuildContext context) {</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-del">
+      <div class="line-num1">9</div>
+<div class="line-num2"></div>
+    </td>
+    <td class="d2h-del">
+        <div class="d2h-code-line d2h-del">
+            <span class="d2h-code-line-prefix">-</span>
+            <span class="d2h-code-line-ctn">    final wordPair = WordPair.random();</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">10</div>
+<div class="line-num2">9</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">    return MaterialApp(</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">11</div>
+<div class="line-num2">10</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">      title: 'Welcome to Flutter',</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">12</div>
+<div class="line-num2">11</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">      home: Scaffold(</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-info"></td>
+    <td class="d2h-info">
+        <div class="d2h-code-line d2h-info">@@ -14,8 +13,8 @@</div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">14</div>
+<div class="line-num2">13</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">          title: Text('Welcome to Flutter'),</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">15</div>
+<div class="line-num2">14</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">        ),</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">16</div>
+<div class="line-num2">15</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">        body: Center(</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-del">
+      <div class="line-num1">17</div>
+<div class="line-num2"></div>
+    </td>
+    <td class="d2h-del">
+        <div class="d2h-code-line d2h-del">
+            <span class="d2h-code-line-prefix">-</span>
+            <span class="d2h-code-line-ctn">          child: <del>Text(wordPair.asPascalCase),</del></span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-ins">
+      <div class="line-num1"></div>
+<div class="line-num2">16</div>
+    </td>
+    <td class="d2h-ins">
+        <div class="d2h-code-line d2h-ins">
+            <span class="d2h-code-line-prefix">+</span>
+            <span class="d2h-code-line-ctn">          child: <ins>RandomWords(),</ins></span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">18</div>
+<div class="line-num2">17</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">        ),</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">19</div>
+<div class="line-num2">18</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">      ),</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">20</div>
+<div class="line-num2">19</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">    );</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">21</div>
+<div class="line-num2">20</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">  }</span>
+        </div>
+    </td>
+</tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+  </li>
+  <li>
+    <p translation-origin="on">Restart the app.
+The app should behave as before, displaying a word
+pairing each time you hot reload or save the app.</p>
+
+    <p translation-result="off">重启应用。
+应用应该像之前一样运行，每次热重载或保存应用程序时都会显示一个单词对。</p>
+  </li>
+</ol>
+
+<aside class="alert alert-success" role="alert">
+  <p><i class="far fa-lightbulb"></i> <strong>小提示：</strong></p>
+
+  <p translation-origin="on">If you see the following warning on a hot reload, consider restarting
+  the app:</p>
+
+  <p translation-result="off">如果你尝试热重载，则可能会看到一条警告，考虑重新启动当前应用：</p>
+
+  <p><strong>Reloading…<br>
+  Some program elements were changed during reload but did not run when
+  the view was reassembled; you may need to restart the app (by pressing “R”)
+  for the changes to have an effect.</strong></p>
+
+  <p translation-origin="on">It may be a false positive, but restarting ensures that your changes
+  are reflected in the app’s UI.</p>
+
+  <p translation-result="off">因为重启应用之后就可以生效，故这可能是误报。</p>
+
+</aside>
+
+<h3 class="no_toc" id="problems-1" translation-origin="on">
+<a id="problems-1" class="anchor" href="#problems-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Problems?</h3>
+
+<h3 class="no_toc" id="遇到问题-1" translation-result="off">
+<a id="遇到问题-1" class="anchor" href="#problems-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>遇到问题？</h3>
+
+<p translation-origin="on">If your app is not running correctly, you can use the code
+at the following link to get back on track.</p>
+
+<p translation-result="off">如果你的应用程序运行不正常，可以使用下面链接中的代码来对比更正。</p>
+
+<ul>
+  <li><a href="https://raw.githubusercontent.com/flutter/codelabs/master/startup_namer/step3_stateful_widget/lib/main.dart">lib/main.dart</a></li>
+</ul>
+
+<h2 id="step-4-create-an-infinite-scrolling-listview" translation-origin="on">
+<a id="step-4-create-an-infinite-scrolling-listview" class="anchor" href="#step-4-create-an-infinite-scrolling-listview" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 4: Create an infinite scrolling ListView</h2>
+
+<h2 id="第四步创建一个无限滚动的-listview" translation-result="off">
+<a id="第四步创建一个无限滚动的-listview" class="anchor" href="#step-4-create-an-infinite-scrolling-listview" aria-hidden="true"><span class="octicon octicon-link"></span></a>第四步：创建一个无限滚动的 ListView</h2>
+
+<p translation-origin="on">In this step, you’ll expand <code class="highlighter-rouge">RandomWordsState</code> to generate
+and display a list of word pairings. As the user scrolls, the list
+displayed in a <code class="highlighter-rouge">ListView</code> widget, grows infinitely. <code class="highlighter-rouge">ListView</code>’s
+<code class="highlighter-rouge">builder</code> factory constructor allows you to build a list view
+lazily, on demand.</p>
+
+<p translation-result="off">在这一步中，你将扩展（继承）<code class="highlighter-rouge">RandomWordsState</code> 类，以生成并显示单词对列表。
+当用户滚动时，<code class="highlighter-rouge">ListView</code> 中显示的列表将无限增长。
+<code class="highlighter-rouge">ListView</code> 的 <code class="highlighter-rouge">builder</code> 工厂构造函数允许你按需建立一个懒加载的列表视图。</p>
+
+<ol>
+  <li>
+    <p translation-origin="on">Add a <code class="highlighter-rouge">_suggestions</code> list to the <code class="highlighter-rouge">RandomWordsState</code>
+class for saving suggested word pairings.
+Also, add a <code class="highlighter-rouge">_biggerFont</code> variable for making the font size larger.</p>
+
+    <p translation-result="off">向 <code class="highlighter-rouge">RandomWordsState</code> 类中添加一个 <code class="highlighter-rouge">_suggestions</code> 列表以保存建议的单词对，
+同时，添加一个 <code class="highlighter-rouge">_biggerFont</code> 变量来增大字体大小。</p>
+
+    <div class="code-excerpt">
+<div class="code-excerpt__header">lib/main.dart</div>
+<div class="code-excerpt__code"><pre class="prettyprint lang-dart">class RandomWordsState extends State&lt;RandomWords&gt; {
+  <span class="highlight">final _suggestions = &lt;WordPair&gt;[];</span>
+  <span class="highlight">final _biggerFont = const TextStyle(fontSize: 18.0);</span>
+  // ···
+}</pre></div>
+</div>
+
+    <aside class="alert alert-info" role="alert">
+      <p><i class="fas fa-info-circle"></i> <strong>备忘：</strong></p>
+
+      <p translation-origin="on">Prefixing an identifier with an underscore <a href="https://www.dartlang.org/guides/language/language-tour">enforces
+  privacy</a>
+  in the Dart language.</p>
+
+      <p translation-result="off">在 Dart 语言中使用下划线前缀标识符，会<a href="https://www.dartlang.org/guides/language/language-tour">强制其变成私有</a>。</p>
+
+    </aside>
+
+    <p translation-origin="on">Next, you’ll add a <code class="highlighter-rouge">_buildSuggestions()</code> function to the <code class="highlighter-rouge">RandomWordsState</code>
+class. This method builds the <code class="highlighter-rouge">ListView</code> that displays the suggested
+word pairing.</p>
+
+    <p translation-result="off">接下来，我们将向 <code class="highlighter-rouge">RandomWordsState</code> 类添加一个 <code class="highlighter-rouge">_buildSuggestions()</code> 方法，
+此方法构建显示建议单词对的 <code class="highlighter-rouge">ListView</code>。</p>
+
+    <p translation-origin="on">The <code class="highlighter-rouge">ListView</code> class provides a builder property, <code class="highlighter-rouge">itemBuilder</code>, that’s a
+factory builder and callback function specified as an anonymous function.
+Two parameters are passed to the function—the <code class="highlighter-rouge">BuildContext</code>,
+and the row iterator, <code class="highlighter-rouge">i</code>. The iterator begins at 0 and increments each
+time the function is called. It increments twice for every suggested word pairing: 
+once for the ListTile, and once for the Divider. This model allows the suggested
+list to grow infinitely as the user scrolls.</p>
+
+    <p translation-result="off"><code class="highlighter-rouge">ListView</code> 类提供了一个名为 <code class="highlighter-rouge">itemBuilder</code> 的 builder 属性，这是一个工厂匿名回调函数，
+接受两个参数 <code class="highlighter-rouge">BuildContext</code> 和行迭代器 <code class="highlighter-rouge">i</code>。迭代器从 0 开始，每调用一次该函数 <code class="highlighter-rouge">i</code> 就会自增，
+每次建议的单词对都会让其递增两次，一次是 ListTile，另一次是 Divider。
+它用于创建一个在用户滚动时候无限增长的列表。</p>
+  </li>
+  <li>
+    <p translation-origin="on">Add a <code class="highlighter-rouge">_buildSuggestions()</code> function to the <code class="highlighter-rouge">RandomWordsState</code> class:</p>
+
+    <p translation-result="off">向 <code class="highlighter-rouge">RandomWordsState</code> 类添加 <code class="highlighter-rouge">_buildSuggestions()</code> 方法，内容如下：</p>
+
+    <div class="code-excerpt">
+<div class="code-excerpt__header">lib/main.dart (_buildSuggestions)</div>
+<div class="code-excerpt__code"><pre class="prettyprint lang-dart">Widget _buildSuggestions() {
+  return ListView.builder(
+      padding: const EdgeInsets.all(16.0),
+      itemBuilder: /*1*/ (context, i) {
+        if (i.isOdd) return Divider(); /*2*/
+
+        final index = i ~/ 2; /*3*/
+        if (index &gt;= _suggestions.length) {
+          _suggestions.addAll(generateWordPairs().take(10)); /*4*/
+        }
+        return _buildRow(_suggestions[index]);
+      });
+}</pre></div>
+</div>
+
+    <ol class="numbered-code-notes">
+      <li>
+        <p translation-origin="on">The <code class="highlighter-rouge">itemBuilder</code> callback is called once per suggested word pairing,
+and places each suggestion into a <code class="highlighter-rouge">ListTile</code> row. For even rows, the
+function adds a <code class="highlighter-rouge">ListTile</code> row for the word pairing. For odd rows, the
+function adds a <code class="highlighter-rouge">Divider</code> widget to visually separate the entries. Note
+that the divider may be difficult to see on smaller devices.</p>
+
+        <p translation-result="off">对于每个建议的单词对都会调用一次 itemBuilder，然后将单词对添加到 ListTile 行中。
+在偶数行，该函数会为单词对添加一个 ListTile row，
+在奇数行，该函数会添加一个分割线的 widget，来分隔相邻的词对。
+注意，在小屏幕上，分割线看起来可能比较吃力。</p>
+      </li>
+      <li>
+        <p translation-origin="on">Add a one-pixel-high divider widget before each row in the <code class="highlighter-rouge">ListView</code>.</p>
+
+        <p translation-result="off">在每一列之前，添加一个1像素高的分隔线 widget。</p>
+      </li>
+      <li>
+        <p translation-origin="on">The expression <code class="highlighter-rouge">i ~/ 2</code> divides <code class="highlighter-rouge">i</code> by 2 and returns an integer result.
+For example: 1, 2, 3, 4, 5 becomes 0, 1, 1, 2, 2. This calculates the
+actual number of word pairings in the <code class="highlighter-rouge">ListView</code>, minus the divider
+widgets.</p>
+
+        <p translation-result="off">语法 “i ~/ 2” 表示i除以2，但返回值是整形（向下取整），
+比如 i 为：1, 2, 3, 4, 5 时，结果为 0, 1, 1, 2, 2，
+这个可以计算出 ListView 中减去分隔线后的实际单词对数量。</p>
+      </li>
+      <li>
+        <p translation-origin="on">If you’ve reached the end of the available word pairings, then generate
+10 more and add them to the suggestions list.</p>
+
+        <p translation-result="off">如果是建议列表中最后一个单词对，接着再生成10个单词对，然后添加到建议列表。</p>
+      </li>
+    </ol>
+
+    <p translation-origin="on">The <code class="highlighter-rouge">_buildSuggestions()</code> function calls <code class="highlighter-rouge">_buildRow()</code> once per
+word pair. This function displays each new pair in a <code class="highlighter-rouge">ListTile</code>,
+which allows you to make the rows more attractive in the next step.</p>
+
+    <p translation-result="off">对于每一个单词对，<code class="highlighter-rouge">_buildSuggestions()</code> 都会调用一次 <code class="highlighter-rouge">_buildRow()</code>。
+这个函数在 <code class="highlighter-rouge">ListTile</code> 中显示每个新词对，
+这使你在下一步中可以生成更漂亮的显示行，详见本 codelab 的第二部分。</p>
+  </li>
+  <li>
+    <p translation-origin="on">Add a <code class="highlighter-rouge">_buildRow()</code> function to <code class="highlighter-rouge">RandomWordsState</code>:</p>
+
+    <p translation-result="off">在 <code class="highlighter-rouge">RandomWordsState</code> 中添加 <code class="highlighter-rouge">_buildRow()</code> 函数 :</p>
+
+    <div class="code-excerpt">
+<div class="code-excerpt__header">lib/main.dart (_buildRow)</div>
+<div class="code-excerpt__code"><pre class="prettyprint lang-dart">Widget _buildRow(WordPair pair) {
+  return ListTile(
+    title: Text(
+      pair.asPascalCase,
+      style: _biggerFont,
+    ),
+  );
+}</pre></div>
+</div>
+  </li>
+  <li>
+    <p translation-origin="on">In the <code class="highlighter-rouge">RandomWordsState</code> class, update the <code class="highlighter-rouge">build()</code> method to use
+<code class="highlighter-rouge">_buildSuggestions()</code>, rather than directly calling the word
+generation library.
+(<a href="https://api.flutter.dev/flutter/material/Scaffold-class.html">Scaffold</a>
+implements the basic Material Design visual layout.)
+Replace the method body with the highlighted code:</p>
+
+    <p translation-result="off">更新 RandomWordsState 的 build 方法以使用 _buildSuggestions()，
+而不是直接调用单词生成库，代码更改后如下：
+（使用 (<a href="https://api.flutter.dev/flutter/material/Scaffold-class.html">Scaffold</a>
+类实现基础的 Material Design 布局）</p>
+
+    <div class="code-excerpt">
+<div class="code-excerpt__header">lib/main.dart (build)</div>
+<div class="code-excerpt__code"><pre class="prettyprint lang-dart">@override
+Widget build(BuildContext context) {
+  <span class="highlight">return Scaffold(</span>
+  <span class="highlight">  appBar: AppBar(</span>
+  <span class="highlight">    title: Text('Startup Name Generator'),</span>
+  <span class="highlight">  ),</span>
+  <span class="highlight">  body: _buildSuggestions(),</span>
+  <span class="highlight">);</span>
+}</pre></div>
+</div>
+  </li>
+  <li>
+    <p translation-origin="on">In the <code class="highlighter-rouge">MyApp</code> class, update the <code class="highlighter-rouge">build()</code> method by changing the title, and
+changing the home to be a <code class="highlighter-rouge">RandomWords</code> widget:</p>
+
+    <p translation-result="off">更新 <code class="highlighter-rouge">MyApp</code> 的 <code class="highlighter-rouge">build()</code> 方法，修改 <code class="highlighter-rouge">title</code> 的值来改变标题，
+修改 <code class="highlighter-rouge">home</code> 的值为 <code class="highlighter-rouge">RandomWords</code> widget。</p>
+
+    <div class="d2h-wrapper">
+    <div id="d2h-021936" class="d2h-file-wrapper" data-lang="dart">
+    <div class="d2h-file-header">
+    <span class="d2h-file-name-wrapper">
+    <svg aria-hidden="true" class="d2h-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12">
+        <path d="M6 5H2v-1h4v1zM2 8h7v-1H2v1z m0 2h7v-1H2v1z m0 2h7v-1H2v1z m10-7.5v9.5c0 0.55-0.45 1-1 1H1c-0.55 0-1-0.45-1-1V2c0-0.55 0.45-1 1-1h7.5l3.5 3.5z m-1 0.5L8 2H1v12h10V5z"></path>
+    </svg>    <span class="d2h-file-name">{step3_stateful_widget → step4_infinite_list}/lib/main.dart</span>
+    </span>
+    </div>
+    <div class="d2h-file-diff">
+        <div class="d2h-code-wrapper">
+            <table class="d2h-diff-table">
+                <tbody class="d2h-diff-tbody">
+                <tr>
+    <td class="d2h-code-linenumber d2h-info"></td>
+    <td class="d2h-info">
+        <div class="d2h-code-line d2h-info">@@ -6,15 +6,8 @@</div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">6</div>
+<div class="line-num2">6</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">class MyApp extends StatelessWidget {</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">7</div>
+<div class="line-num2">7</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">  @override</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">8</div>
+<div class="line-num2">8</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">  Widget build(BuildContext context) {</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">9</div>
+<div class="line-num2">9</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">    return MaterialApp(</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-del">
+      <div class="line-num1">10</div>
+<div class="line-num2"></div>
+    </td>
+    <td class="d2h-del">
+        <div class="d2h-code-line d2h-del">
+            <span class="d2h-code-line-prefix">-</span>
+            <span class="d2h-code-line-ctn">      title: '<del>Welcome</del> <del>to</del> <del>Flutter</del>',</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-del">
+      <div class="line-num1">11</div>
+<div class="line-num2"></div>
+    </td>
+    <td class="d2h-del">
+        <div class="d2h-code-line d2h-del">
+            <span class="d2h-code-line-prefix">-</span>
+            <span class="d2h-code-line-ctn">      home: <del>Scaffold(</del></span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-ins">
+      <div class="line-num1"></div>
+<div class="line-num2">10</div>
+    </td>
+    <td class="d2h-ins">
+        <div class="d2h-code-line d2h-ins">
+            <span class="d2h-code-line-prefix">+</span>
+            <span class="d2h-code-line-ctn">      title: '<ins>Startup</ins> <ins>Name</ins> <ins>Generator</ins>',</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-ins">
+      <div class="line-num1"></div>
+<div class="line-num2">11</div>
+    </td>
+    <td class="d2h-ins">
+        <div class="d2h-code-line d2h-ins">
+            <span class="d2h-code-line-prefix">+</span>
+            <span class="d2h-code-line-ctn">      home: <ins>RandomWords(),</ins></span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-del">
+      <div class="line-num1">12</div>
+<div class="line-num2"></div>
+    </td>
+    <td class="d2h-del">
+        <div class="d2h-code-line d2h-del">
+            <span class="d2h-code-line-prefix">-</span>
+            <span class="d2h-code-line-ctn">        appBar: AppBar(</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-del">
+      <div class="line-num1">13</div>
+<div class="line-num2"></div>
+    </td>
+    <td class="d2h-del">
+        <div class="d2h-code-line d2h-del">
+            <span class="d2h-code-line-prefix">-</span>
+            <span class="d2h-code-line-ctn">          title: Text('Welcome to Flutter'),</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-del">
+      <div class="line-num1">14</div>
+<div class="line-num2"></div>
+    </td>
+    <td class="d2h-del">
+        <div class="d2h-code-line d2h-del">
+            <span class="d2h-code-line-prefix">-</span>
+            <span class="d2h-code-line-ctn">        ),</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-del">
+      <div class="line-num1">15</div>
+<div class="line-num2"></div>
+    </td>
+    <td class="d2h-del">
+        <div class="d2h-code-line d2h-del">
+            <span class="d2h-code-line-prefix">-</span>
+            <span class="d2h-code-line-ctn">        body: Center(</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-del">
+      <div class="line-num1">16</div>
+<div class="line-num2"></div>
+    </td>
+    <td class="d2h-del">
+        <div class="d2h-code-line d2h-del">
+            <span class="d2h-code-line-prefix">-</span>
+            <span class="d2h-code-line-ctn">          child: RandomWords(),</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-del">
+      <div class="line-num1">17</div>
+<div class="line-num2"></div>
+    </td>
+    <td class="d2h-del">
+        <div class="d2h-code-line d2h-del">
+            <span class="d2h-code-line-prefix">-</span>
+            <span class="d2h-code-line-ctn">        ),</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-del">
+      <div class="line-num1">18</div>
+<div class="line-num2"></div>
+    </td>
+    <td class="d2h-del">
+        <div class="d2h-code-line d2h-del">
+            <span class="d2h-code-line-prefix">-</span>
+            <span class="d2h-code-line-ctn">      ),</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">19</div>
+<div class="line-num2">12</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">    );</span>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td class="d2h-code-linenumber d2h-cntx">
+      <div class="line-num1">20</div>
+<div class="line-num2">13</div>
+    </td>
+    <td class="d2h-cntx">
+        <div class="d2h-code-line d2h-cntx">
+            <span class="d2h-code-line-prefix"> </span>
+            <span class="d2h-code-line-ctn">  }</span>
+        </div>
+    </td>
+</tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+  </li>
+  <li>
+    <p translation-origin="on">Restart the app. You should see a list of word pairings no matter how far
+you scroll.</p>
+
+    <p translation-result="off">重新启动你的项目工程应用，你应该看到一个单词对列表。
+尽可能地向下滚动，你将继续看到新的单词对。</p>
+
+    <figure class="site-figure">
+  <div class="site-figure-container">
+  <img alt="App at completion of fourth step on Android" class="" src="/assets/get-started/android/step4-infinite-list-69f7c62bf16f67eaade07551db4b18b065d6c7a81e042a10cd34d31ecb7f2514.png">
+  <figcaption class="figure-caption">Android</figcaption>
+  </div>
+  <div class="site-figure-container">
+  <img alt="App at completion of fourth step on iOS" class="" src="/assets/get-started/ios/step4-infinite-list-70ea9d8fd7191fb3726f1743bb03499815f93df4f42b687cfd7916052c35eb07.png">
+  <figcaption class="figure-caption">iOS</figcaption>
+  </div>
+</figure>
+  </li>
+</ol>
+
+<h3 class="no_toc" id="problems-2" translation-origin="on">
+<a id="problems-2" class="anchor" href="#problems-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Problems?</h3>
+
+<h3 class="no_toc" id="遇到问题-2" translation-result="off">
+<a id="遇到问题-2" class="anchor" href="#problems-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>遇到问题？</h3>
+
+<p translation-origin="on">If your app is not running correctly, you can use the code at the following link
+to get back on track.</p>
+
+<p translation-result="off">如果你的应用没有正常运行，你可以使用一下链接中的代码对比更正。</p>
+
+<ul>
+  <li><a href="https://raw.githubusercontent.com/flutter/codelabs/master/startup_namer/step4_infinite_list/lib/main.dart">lib/main.dart</a></li>
+</ul>
+
+<h2 class="no_toc" id="next-steps" translation-origin="on">
+<a id="next-steps" class="anchor" href="#next-steps" aria-hidden="true"><span class="octicon octicon-link"></span></a>Next steps</h2>
+
+<h2 class="no_toc" id="下一步" translation-result="off">
+<a id="下一步" class="anchor" href="#next-steps" aria-hidden="true"><span class="octicon octicon-link"></span></a>下一步</h2>
+
+<figure class="site-figure site-image-right">
+  <div class="site-figure-container">
+    <img class="border" alt="The app from part 2" src="/assets/get-started/startup-namer-b85740ef920a57e28524f84e9c06cfb380128d10780e91eaf2c7613a56f3f511.gif">
+    <figcaption class="figure-caption">The app from part 2</figcaption>
+    </div>
+</figure>
+
+<p translation-origin="on">Congratulations!</p>
+
+<p translation-result="off">祝贺你！</p>
+
+<p translation-origin="on">You’ve written an interactive Flutter app that runs on both iOS and Android.
+In this codelab, you’ve:</p>
+
+<p translation-result="off">你已经完成了一个可以同时运行在 iOS 和 Android 平台的 Flutter 应用！
+同时收获了如下内容：</p>
+
+<ul>
+  <li>
+    <p translation-origin="on">Created a Flutter app from the ground up.</p>
+
+    <p translation-result="off">从零开始创建了一个 Flutter 应用；</p>
+  </li>
+  <li>
+    <p translation-origin="on">Written Dart code.</p>
+
+    <p translation-result="off">编写 Dart 代码；</p>
+  </li>
+  <li>
+    <p translation-origin="on">Leveraged an external, third-party library.</p>
+
+    <p translation-result="off">使用外部的第三方库（package）；</p>
+  </li>
+  <li>
+    <p translation-origin="on">Used hot reload for a faster development cycle.</p>
+
+    <p translation-result="off">在开发过程中试用了热重载 (hot reload)；</p>
+  </li>
+  <li>
+    <p translation-origin="on">Implemented a stateful widget.</p>
+
+    <p translation-result="off">实现了一个有状态的 widget；</p>
+  </li>
+  <li>
+    <p translation-origin="on">Created a lazily loaded, infinite scrolling list.</p>
+
+    <p translation-result="off">创建了一个懒加载的，无限滚动的列表。</p>
+  </li>
+</ul>
+
+<p translation-origin="on">If you would like to extend this app, proceed to
+<a href="https://codelabs.flutter-io.cn/codelabs/first-flutter-app-pt2/index.html">part 2</a>
+on the
+<a href="https://codelabs.flutter-io.cn">Google Developers Codelabs</a> site,
+where you add the following functionality:</p>
+
+<p translation-result="off">如果你想继续扩展你的应用，在这里进行 <a href="https://codelabs.flutter-io.cn/codelabs/first-flutter-app-pt2-cn/index.html">第二部分</a>，
+你将会从以下方面修改你的应用：</p>
+
+<ul>
+  <li>
+    <p translation-origin="on">Implement interactivity by adding a clickable heart icon to save
+favorite pairings.</p>
+
+    <p translation-result="off">为应用添加交互功能，一个能点击的小心心，来保存喜欢的公司名字；</p>
+  </li>
+  <li>
+    <p translation-origin="on">Implement navigation to a new route by adding a new screen
+containing the saved favorites.</p>
+
+    <p translation-result="off">为应用添加一个新的页面（Route），查看收藏列表；</p>
+  </li>
+  <li>
+    <p translation-origin="on">Modify the theme color, making an all-white app.</p>
+
+    <p translation-result="off">修改应用的主题，变成一个白色系的应用。</p>
+  </li>
+</ul>
+
+        <nav class="site-nextprev-nav">
+    <ul>
+      <li class="prev">
+          <a href="/docs/get-started/test-drive">开发体验初探</a>
+      </li>
+      <li class="next">
+          <a href="/docs/get-started/learn-more">了解更多</a>
+      </li>
+      </ul>
+  </nav>
+
+      </div>
+    </main>
+  </div>
+</div>
+<footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 site-footer__wrapper">
+        <div class="site-footer__logo">
+          <img src="/images/flutter-mono-81x100.png" alt="Flutter Logo" width="81" height="100">
+        </div>
+        <div class="site-footer__content">
+          <ul class="site-footer__link-list">
+              <li><a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a></li>
+              <li><a href="/tos">terms</a></li>
+              <li><a href="/security">security</a></li>
+              <li><a href="https://www.google.com/intl/en/policies/privacy">privacy</a></li>
+              <li><a href="https://flutter-es.io/">español</a></li>
+              <li><a href="https://flutter-io.cn" class="text-nowrap">社区中文资源</a></li>
+          </ul>
+
+          <p class="licenses" translation-origin="on">
+            Except as otherwise noted,
+            this work is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0">Creative
+            Commons Attribution 4.0 International License</a>,
+            and code samples are licensed under the BSD License.
+          </p>
+          <p class="licenses" translation-result="off">
+            除非特别说明，否则本站内容采用 <a rel="license" href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0 授权协议</a>，所有范例代码都采用 BSD 授权协议。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- <script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script> -->
+  
+
+<script src="/assets/translator/js/translator.js"></script></body></html>

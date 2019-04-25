@@ -1,0 +1,998 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+  <loc>https://flutter.dev</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/brand</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/community</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/community/china</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/create</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/disclaimer</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/catalog/samples</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/catalog/samples/AnimatedList</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/catalog/samples/AnimatedListState</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/catalog/samples/AppBar</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/catalog/samples/DefaultTabController</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/catalog/samples/ExpansionTile</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/catalog/samples/IconButton</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/catalog/samples/ListView</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/catalog/samples/PopupMenuButton</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/catalog/samples/PreferredSize</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/catalog/samples/Scaffold</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/catalog/samples/TabBar</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/catalog/samples/TabBarView</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/catalog/samples/TabController</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/catalog/samples/animated-list</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/catalog/samples/app-bar-bottom</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/catalog/samples/basic-app-bar</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/catalog/samples/expansion-tile-sample</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/catalog/samples/tabbed-app-bar</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/codelabs</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/animation</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/animation/animated-container</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/animation/opacity-animation</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/design</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/design/drawer</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/design/fonts</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/design/orientation</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/design/package-fonts</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/design/snackbars</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/design/tabs</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/design/themes</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/forms</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/forms/focus</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/forms/retrieve-input</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/forms/text-field-changes</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/forms/text-input</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/forms/validation</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/gestures</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/gestures/dismissible</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/gestures/handling-taps</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/gestures/ripples</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/images</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/images/cached-images</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/images/fading-in-images</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/images/network-image</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/lists</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/lists/basic-list</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/lists/floating-app-bar</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/lists/grid-lists</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/lists/horizontal-list</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/lists/long-lists</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/lists/mixed-list</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/maintenance</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/maintenance/error-reporting</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/navigation</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/navigation/hero-animations</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/navigation/named-routes</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/navigation/navigate-with-arguments</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/navigation/navigation-basics</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/navigation/passing-data</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/navigation/returning-data</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/networking</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/networking/authenticated-requests</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/networking/background-parsing</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/networking/fetch-data</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/networking/web-sockets</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/persistence</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/persistence/key-value</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/persistence/reading-writing-files</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/persistence/sqlite</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/plugins</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/plugins/picture-using-camera</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/plugins/play-video</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/testing</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/testing/integration</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/testing/integration/introduction</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/testing/integration/profiling</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/testing/integration/scrolling</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/testing/unit</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/testing/unit/introduction</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/testing/unit/mocking</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/testing/widget</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/testing/widget/finders</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/testing/widget/introduction</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/cookbook/testing/widget/tap-drag</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/deployment/android</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/deployment/fastlane-cd</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/deployment/flavors</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/deployment/ios</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/accessibility-and-localization</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/accessibility-and-localization/accessibility</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/accessibility-and-localization/internationalization</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/data-and-backend</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/data-and-backend/firebase</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/data-and-backend/json</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/data-and-backend/state-mgmt</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/data-and-backend/state-mgmt/declarative</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/data-and-backend/state-mgmt/intro</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/data-and-backend/state-mgmt/options</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/data-and-backend/state-mgmt/simple</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/packages-and-plugins</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/packages-and-plugins/androidx-compatibility</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/packages-and-plugins/background-processes</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/packages-and-plugins/developing-packages</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/packages-and-plugins/using-packages</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/platform-integration</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/platform-integration/platform-channels</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/tools</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/tools/android-studio</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/tools/formatting</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/tools/hot-reload</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/tools/inspector</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/tools/sdk</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/tools/sdk/releases</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/tools/sdk/upgrading</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/tools/vs-code</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/advanced</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/advanced/gestures</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/advanced/slivers</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/animations</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/animations/hero-animations</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/animations/hero-animations</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/animations/overview</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/animations/staggered-animations</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/animations/tutorial</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/assets-and-images</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/interactive</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/interactive</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/layout</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/layout/box-constraints</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/layout/tutorial</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/navigation</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/widgets-intro</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/widgets</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/widgets/accessibility</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/widgets/animation</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/widgets/assets</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/widgets/async</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/widgets/basics</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/widgets/cupertino</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/widgets/input</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/widgets/interaction</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/widgets/layout</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/widgets/material</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/widgets/painting</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/widgets/scrolling</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/widgets/styling</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/development/ui/widgets/text</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/get-started</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/get-started/codelab</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/get-started/editor</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/get-started/flutter-for/android-devs</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/get-started/flutter-for/declarative</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/get-started/flutter-for/ios-devs</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/get-started/flutter-for/react-native-devs</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/get-started/flutter-for/web-devs</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/get-started/flutter-for/xamarin-forms-devs</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/get-started/install</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/get-started/install/linux</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/get-started/install/macos</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/get-started/install/windows</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/get-started/learn-more</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/get-started/test-drive</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/reference/tutorials</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/reference/widgets</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/resources/bootstrap-into-dart</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/resources/bug-reports</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/resources/faq</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/resources/inside-flutter</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/resources/platform-adaptations</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/resources/rendering</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/resources/technical-overview</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/resources/videos</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/testing</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/testing/best-practices</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/testing/build-modes</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/testing/debugging</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/testing/oem-debuggers</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/testing/ui-performance</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/docs/whats-new-archive</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/jobs/infrastructure</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/posts/launching-flutter-12-at-mobile-world</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/robots.txt</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/search</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/security</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/showcase</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/tos</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+<url>
+  <loc>https://flutter.dev/web</loc>
+  <lastmod>2019-04-25T00:08:12+08:00</lastmod>
+  <changefreq>monthly</changefreq>
+  </url>
+</urlset>

@@ -1,0 +1,1502 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>撰写双端平台代码（插件编写实现）  - Flutter 中文文档 - Flutter 社区中文资源 </title>
+  <link rel="shortcut icon" href="/images/favicon.png">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-ND4LWWZ');</script>
+  <!-- End Google Tag Manager -->
+
+  
+  <meta name="description" content="This guide describes how to write custom platform-specific code. Someplatform-specific functionality is available through existing packages;please see [using packages](/docs/development/packages-and-plugins/using-packages).Flutter uses a flexible system that allows you to call platform-specific APIswhether available in Java or Kotlin code on Android, or in ObjectiveC or Swiftcode on iOS.Flutter's platform-specific API support does not...">
+  <meta name="keywords" content=" ">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@flutterdev">
+
+  <meta property="og:title" content="撰写双端平台代码（插件编写实现）">
+  <meta property="og:url" content="https://flutter.dev/docs/development/platform-integration/platform-channels">
+  <meta property="og:description" content="This guide describes how to write custom platform-specific code. Someplatform-specific functionality is available through existing packages;please see [using packages](/docs/development/packages-and-plugins/using-packages).Flutter uses a flexible system that allows you to call platform-specific APIswhether available in Java or Kotlin code on Android, or in ObjectiveC or Swiftcode on iOS.Flutter's platform-specific API support does not...">
+  
+  <meta property="og:image" content="https://flutter.dev/images/flutter-logo-sharing.png">
+
+  <link href="/assets/translator/css/material-roboto.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/assets/main-74a0c308218334fcd85291a957a514973015ea8e4eb76b9abae6e14bb5012f5e.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  <script src="/assets/main-d6b8b8d26e7b4122b3ddf6a5201966d6e2494aaffadaafaf7c571ce5e2fe0aab.js" type="text/javascript"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-122680122-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <!--<meta name="google-site-verification" content="HFqxhSbf9YA_0rBglNLzDiWnrHiK_w4cqDh2YD2GEY4" />-->
+<link href="/assets/translator/css/translator.css" rel="stylesheet"></head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-ND4LWWZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div id="overlay-under-drawer"></div>
+
+    <header class="site-header">
+  <nav class="navbar navbar-expand-md justify-content-start justify-content-md-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="material-icons">menu</i>
+    </button>
+
+    <a class="navbar-brand" href="/">
+      <img alt="Flutter by Google" height="37" width="129" class="align-middle" src="/assets/flutter-lockup-4cb0ee072ab312e59784d9fbf4fb7ad42688a7fdaea1270ccf6bbf4f34b7e03f.svg">
+    </a>
+
+    <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
+      <div class="site-header__sheet-bg" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></div>
+      <div class="site-header__sheet">
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <a class="nav-link active" href="/docs">开发文档</a>
+          </li>
+          <div class="site-sidebar site-sidebar--header d-md-none">
+            <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="false" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="false" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link active collapsable" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="true" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link active" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+          </div>
+
+<!-- 
+          <li class="nav-item">
+            <a class="nav-link" href="/showcase">Showcase</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/community">Community</a>
+          </li>
+ -->
+        </ul>
+        <form action="/search" class="site-header__search form-inline">
+          <input class="site-header__searchfield form-control" type="search" name="q" id="q" autocomplete="off" placeholder="Search" aria-label="Search">
+        </form>
+      </div>
+    </div>
+    <div class="site-header__social navbar-nav flex-row">
+      <a class="nav-item nav-link" href="https://twitter.com/flutterdev"><i class="fab fa-twitter fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://www.youtube.com/flutterdev"><i class="fab fa-youtube fa-lg"></i></a>
+      <a class="nav-item nav-link" href="https://github.com/flutter"><i class="fab fa-github fa-lg"></i></a>
+    </div>
+    <a class="site-header__cta btn btn-primary" href="/docs/get-started/install/">Get started</a>
+    </nav>
+</header>
+<div class="site-banner site-banner--default" role="alert">
+    <p>
+      We are looking for a Flutter Infrastructure engineer!
+      <a href="/jobs/infrastructure" target="_blank" rel="noopener">Learn more</a>.
+    </p>
+
+  </div>
+<div class="container-fluid position-relative">
+  <div class="row flex-xl-nowrap">
+    <div class="fixed-col site-sidebar site-sidebar--fixed col-12 col-md-3 col-xl-2 d-none d-md-block" data-fixed-column="">
+      <ul class="nav flex-column"><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-1" role="button" aria-expanded="false" aria-controls="sidenav-1">开始使用 Flutter</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-1">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/install">1. 安装和环境配置</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/editor">2. 编辑工具设定</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/test-drive">3. 开发体验初探</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/codelab">4. 编写第一个 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/learn-more">5. 了解更多</a>
+  </li><div class="dropdown-divider"></div><li class="nav-item">
+    <a class="nav-link collapsable" data-toggle="collapse" data-target="#sidenav-1-7" href="#sidenav-1-7" role="button" aria-expanded="true" aria-controls="sidenav-1-7">拥有其他平台开发经验？
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/android-devs">给 Android 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/ios-devs">给 iOS 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/react-native-devs">给 React Native 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/web-devs">给 Web 开发者的 Flutter 指南</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/get-started/flutter-for/xamarin-forms-devs">给 Xamarin.Forms 开发者的 Flutter 指南</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="https://www.dartlang.org/guides/language" target="_blank" rel="noopener">Dart 语言概览<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-2" role="button" aria-expanded="false" aria-controls="sidenav-2">教程和样例代码</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-2">
+        <li class="nav-item">
+    <a class="nav-link" href="https://github.com/flutter/samples/blob/master/INDEX.md" target="_blank" rel="noopener">GitHub 上样例应用<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/cookbook">实用教程 (Cookbook)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/codelabs">Codelabs</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/reference/tutorials">实践教程</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link active" data-toggle="collapse" href="#sidenav-3" role="button" aria-expanded="true" aria-controls="sidenav-3">开发文档</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3">
+        <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1" href="/docs/development/ui" role="button" aria-expanded="false" aria-controls="sidenav-3-1">用户界面
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets-intro">Widgets 介绍</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-2" href="#sidenav-3-1-2" role="button" aria-expanded="false" aria-controls="sidenav-3-1-2">布局构建
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout">Flutter 中的布局</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/tutorial">布局构建教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/layout/box-constraints">边界约束 (Box constraints)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/interactive">交互添加</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/assets-and-images">资源和图片</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/navigation">路由和导航</a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-6" href="/docs/development/ui/animations" role="button" aria-expanded="false" aria-controls="sidenav-3-1-6">动画效果
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations">介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/overview">概览</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/tutorial">教程</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/hero-animations">主动画 (Hero animations)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/animations/staggered-animations">交织动画 (Staggered animations)</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-1-7" href="/docs/development/ui/advanced" role="button" aria-expanded="false" aria-controls="sidenav-3-1-7">用户界面 (UI) 进阶
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/slivers">滑动效果 (Slivers)</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/advanced/gestures">手势</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/ui/widgets">核心 Widget 目录</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2" href="/docs/development/data-and-backend" role="button" aria-expanded="false" aria-controls="sidenav-3-2">数据调用和后端
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2">
+      <li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-2-1" href="/docs/development/data-and-backend/state-mgmt" role="button" aria-expanded="false" aria-controls="sidenav-3-2-1">状态 (State) 管理
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-2-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/intro">状态管理介绍</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/declarative">声明式的编程思维</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app">短时 (ephemeral) 和共享 (app) 状态</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/simple">简单的共享 (app) 状态管理</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/state-mgmt/options">状态管理参考</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/json">JSON 和序列化数据</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/data-and-backend/firebase">使用 Firebase</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-3" href="/docs/development/accessibility-and-localization" role="button" aria-expanded="false" aria-controls="sidenav-3-3">应用的无障碍和国际化
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/accessibility">无障碍</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/accessibility-and-localization/internationalization">国际化</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link active collapsable" data-toggle="collapse" data-target="#sidenav-3-4" href="/docs/development/platform-integration" role="button" aria-expanded="true" aria-controls="sidenav-3-4">平台集成
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-3-4">
+      <li class="nav-item">
+    <a class="nav-link active" href="/docs/development/platform-integration/platform-channels">撰写双端平台代码 (插件编写实现)</a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-5" href="/docs/development/packages-and-plugins" role="button" aria-expanded="false" aria-controls="sidenav-3-5">Packages (纯 Dart 和原生插件)
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/using-packages">使用 Packages</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/developing-packages">Package 的开发和提交</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/packages-and-plugins/background-processes">后台进程</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6" href="/docs/development/tools" role="button" aria-expanded="false" aria-controls="sidenav-3-6">开发工具和技术细节
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/android-studio">Android Studio 或类 IntelliJ 系列</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/vs-code">Visual Studio Code</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/" target="_blank" rel="noopener">Dart 调试工具<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link collapsable collapsed" data-toggle="collapse" data-target="#sidenav-3-6-4" href="/docs/development/tools/sdk" role="button" aria-expanded="false" aria-controls="sidenav-3-6-4">Flutter SDK
+    </a>
+    <ul class="nav flex-column flex-nowrap collapse " id="sidenav-3-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/upgrading">版本升级</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/sdk/releases">版本列表</a>
+  </li>
+  </ul>
+  </li>
+<li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/hot-reload">热重载 (Hot reload)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/development/tools/formatting">代码格式</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://flutter.github.io/devtools/inspector" target="_blank" rel="noopener">Flutter Inspector<i class="fas fa-external-link-alt"></i></a>
+  </li></ul>
+  </li>
+
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-4" role="button" aria-expanded="false" aria-controls="sidenav-4">测试和调优</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-4">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/testing/debugging">调试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/oem-debuggers">使用原生的调试器</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/build-modes">构建模式 (Debug/Release/Profile)</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing">测试 Flutter 应用</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/best-practices">性能优化最佳实践</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/testing/ui-performance">Flutter 性能分析</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-5" role="button" aria-expanded="false" aria-controls="sidenav-5">打包部署</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-5">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/flavors">配置 flavors 构建双端</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/android">打包和发布到 Android 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/ios">打包和发布到 iOS 平台</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/deployment/fastlane-cd">使用 fastlane 持续交付</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link collapsed" data-toggle="collapse" href="#sidenav-6" role="button" aria-expanded="false" aria-controls="sidenav-6">资源列表</a>
+
+      <ul class="nav flex-column flex-nowrap collapse " id="sidenav-6">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/resources/bootstrap-into-dart">Dart 资源列表</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/inside-flutter">Flutter 工作原理</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/platform-adaptations">平台行为差异和适配</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/technical-overview">技术概览</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/videos">Flutter 技术视频资源</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/docs/resources/faq">常见问题解答</a>
+  </li>
+</ul>
+    </li><li class="nav-item">
+      <a class="nav-link " data-toggle="collapse" href="#sidenav-7" role="button" aria-expanded="true" aria-controls="sidenav-7">参考资料</a>
+
+      <ul class="nav flex-column flex-nowrap collapse show" id="sidenav-7">
+        <li class="nav-item">
+    <a class="nav-link" href="/docs/reference/widgets">Flutter Widget 目录</a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://docs.flutter.cn" target="_blank" rel="noopener">Flutter API 文档<i class="fas fa-external-link-alt"></i></a>
+  </li><li class="nav-item">
+    <a class="nav-link" href="https://pub.flutter-io.cn/flutter" target="_blank" rel="noopener">Package 网站<i class="fas fa-external-link-alt"></i></a>
+  </li>
+</ul>
+    </li></ul>
+
+    </div>
+    <div id="site-toc--side" class="site-toc site-toc--side fixed-col col-xl-2 order-3" data-fixed-column="">
+  <header class="site-toc__title">
+    Contents
+    <button type="button" class="btn site-toc--button__page-top" aria-label="Page top"></button>
+    </header>
+  <ul class="section-nav nav">
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#architectural-overview-platform-channels">Architectural overview: platform channels</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#platform-channel-data-types-support-and-codecs">Platform channel data types support and codecs</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#example-calling-platform-specific-ios-and-android-code-using-platform-channels">Example: Calling platform-specific iOS and Android code using platform channels</a>
+<ul class="nav">
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#step-1-create-a-new-app-project">Step 1: Create a new app project</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#step-2-create-the-flutter-platform-client">Step 2: Create the Flutter platform client</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#step-3a-add-an-android-platform-specific-implementation-using-java">Step 3a: Add an Android platform-specific implementation using Java</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#step-3b-add-an-android-platform-specific-implementation-using-kotlin">Step 3b: Add an Android platform-specific implementation using Kotlin</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#step-4a-add-an-ios-platform-specific-implementation-using-objective-c">Step 4a: Add an iOS platform-specific implementation using Objective-C</a></li>
+<li class="toc-entry nav-item toc-h3"><a class="nav-link" href="#step-4b-add-an-ios-platform-specific-implementation-using-swift">Step 4b: Add an iOS platform-specific implementation using Swift</a></li>
+</ul>
+</li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#separate-platform-specific-code-from-ui-code">Separate platform-specific code from UI code</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#publish-platform-specific-code-as-a-package">Publish platform-specific code as a package</a></li>
+<li class="toc-entry nav-item toc-h2"><a class="nav-link" href="#custom-channels-and-codecs">Custom channels and codecs</a></li>
+</ul>
+</div>
+<main class="site-content col-12 col-md-9 offset-md-3 col-xl-8 offset-xl-2 col-xxl-8 offset-xxl-2" role="main">
+      <div class="container">
+        
+        
+        <header class="site-content__title">
+          <div id="page-github-links" class="btn-group" aria-label="Page GitHub links" role="group">
+  <a href="https://github.com/cfug/flutter.cn/tree/master/src/docs/development/platform-integration/platform-channels.md" class="btn no-automatic-external" title="View page source" target="_blank" rel="noopener">
+    <i class="fas fa-file-alt fa-sm"></i>
+  </a>
+  <a href="https://github.com/cfug/flutter.cn/issues/new?title='撰写双端平台代码（插件编写实现）' page issue&amp;body=
+Page URL: https://flutter.dev/docs/development/platform-integration/platform-channels.html%0D%0A
+Page source: https://github.com/cfug/flutter.cn/tree/master/src/docs/development/platform-integration/platform-channels.md%0D%0A
+%0D%0A
+Found a typo? You can fix it yourself by going to the page source and clicking the pencil icon. Or finish creating this issue.%0D%0A
+%0D%0A
+Description of issue:" class="btn no-automatic-external" title="Report an issue with this page" target="_blank" rel="noopener">
+    <i class="fas fa-bug fa-sm"></i>
+  </a>
+</div>
+
+          <h1 id="撰写双端平台代码（插件编写实现）">撰写双端平台代码（插件编写实现）</h1>
+          
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="/docs" property="item" typeof="WebPage"><span property="name">文档</span>
+      </a>
+      <meta property="position" content="1">
+    </li>
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="/docs/development" property="item" typeof="WebPage"><span property="name">开发文档</span>
+      </a>
+      <meta property="position" content="2">
+    </li>
+  <li class="breadcrumb-item" property="itemListElement" typeof="ListItem"><a href="/docs/development/platform-integration" property="item" typeof="WebPage"><span property="name">平台集成</span>
+      </a>
+      <meta property="position" content="3">
+    </li>
+  <li class="breadcrumb-item active" property="itemListElement" typeof="ListItem" aria-current="page"><a href="/docs/development/platform-integration/platform-channels.html" property="item" typeof="WebPage"><span property="name">平台相关代码</span>
+      </a>
+      <meta property="position" content="4">
+    </li>
+  
+  </ol>
+</nav>
+          </header>
+        <div id="site-toc--inline" class="site-toc site-toc--inline ">
+  <header class="site-toc__title">
+    Contents
+    </header>
+  <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#architectural-overview-platform-channels">Architectural overview: platform channels</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#platform-channel-data-types-support-and-codecs">Platform channel data types support and codecs</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#example-calling-platform-specific-ios-and-android-code-using-platform-channels">Example: Calling platform-specific iOS and Android code using platform channels</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#step-1-create-a-new-app-project">Step 1: Create a new app project</a></li>
+<li class="toc-entry toc-h3"><a href="#step-2-create-the-flutter-platform-client">Step 2: Create the Flutter platform client</a></li>
+<li class="toc-entry toc-h3"><a href="#step-3a-add-an-android-platform-specific-implementation-using-java">Step 3a: Add an Android platform-specific implementation using Java</a></li>
+<li class="toc-entry toc-h3"><a href="#step-3b-add-an-android-platform-specific-implementation-using-kotlin">Step 3b: Add an Android platform-specific implementation using Kotlin</a></li>
+<li class="toc-entry toc-h3"><a href="#step-4a-add-an-ios-platform-specific-implementation-using-objective-c">Step 4a: Add an iOS platform-specific implementation using Objective-C</a></li>
+<li class="toc-entry toc-h3"><a href="#step-4b-add-an-ios-platform-specific-implementation-using-swift">Step 4b: Add an iOS platform-specific implementation using Swift</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#separate-platform-specific-code-from-ui-code">Separate platform-specific code from UI code</a></li>
+<li class="toc-entry toc-h2"><a href="#publish-platform-specific-code-as-a-package">Publish platform-specific code as a package</a></li>
+<li class="toc-entry toc-h2"><a href="#custom-channels-and-codecs">Custom channels and codecs</a></li>
+</ul>
+</div>
+<p>This guide describes how to write custom platform-specific code. Some
+platform-specific functionality is available through existing packages;
+please see <a href="/docs/development/packages-and-plugins/using-packages">using packages</a>.</p>
+
+<p>Flutter uses a flexible system that allows you to call platform-specific APIs
+whether available in Java or Kotlin code on Android, or in ObjectiveC or Swift
+code on iOS.</p>
+
+<p>Flutter’s platform-specific API support does not rely on code generation, but
+rather on a flexible message passing style:</p>
+
+<ul>
+  <li>
+    <p>The Flutter portion of your app sends messages to its <em>host</em>, the iOS or
+ Android portion of your app, over a platform channel.</p>
+  </li>
+  <li>
+    <p>The <em>host</em> listens on the platform channel, and receives the message. It then
+ calls into any number of platform-specific APIs—using the native
+ programming language—and sends back a response to the <em>client</em>, the Flutter
+ portion of your app.</p>
+  </li>
+</ul>
+
+<h2 id="architecture">
+<a id="architectural-overview-platform-channels" class="anchor" href="#architectural-overview-platform-channels" aria-hidden="true"><span class="octicon octicon-link"></span></a>Architectural overview: platform channels</h2>
+
+<p>Messages are passed between the client (UI) and host (platform) using platform
+channels as illustrated in this diagram:</p>
+
+<p><img src="/images/PlatformChannels.png" alt="Platform channels architecture"></p>
+
+<p>Messages and responses are passed asynchronously, to ensure the user interface
+remains responsive.</p>
+
+<p>On the client side, <code class="highlighter-rouge">MethodChannel</code> (<a href="https://api.flutter.dev/flutter/services/MethodChannel-class.html">API</a>) enables sending
+messages that correspond to method calls. On the platform side, <code class="highlighter-rouge">MethodChannel</code>
+on Android (<a href="https://api.flutter.dev/javadoc/io/flutter/plugin/common/MethodChannel.html">API</a>) and <code class="highlighter-rouge">FlutterMethodChannel</code> on iOS
+(<a href="https://api.flutter.dev/objcdoc/Classes/FlutterMethodChannel.html">API</a>) enable receiving method calls and sending back a
+result. These classes allow you to develop a platform plugin with very little
+‘boilerplate’ code.</p>
+
+<p><em>Note</em>: If desired, method calls can also be sent in the reverse direction, with
+the platform acting as client to methods implemented in Dart. A concrete example
+of this is the <a href="https://pub.flutter-io.cn/packages/quick_actions"><code class="highlighter-rouge">quick_actions</code></a> plugin.</p>
+
+<h3 id="codec">
+<a id="platform-channel-data-types-support-and-codecs" class="anchor" href="#platform-channel-data-types-support-and-codecs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Platform channel data types support and codecs</h3>
+
+<p>The standard platform channels use a standard message codec that supports
+efficient binary serialization of simple JSON-like values, such as booleans,
+numbers, Strings, byte buffers, and List and Maps of these (see
+<a href="https://api.flutter.dev/flutter/services/StandardMessageCodec-class.html"><code class="highlighter-rouge">StandardMessageCodec</code></a>)
+for details). The serialization and deserialization of these values to and from
+messages happens automatically when you send and receive values.</p>
+
+<p>The following table shows how Dart values are received on the platform side and vice versa:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Dart</th>
+      <th>Android</th>
+      <th>iOS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>null</td>
+      <td>null</td>
+      <td>nil (NSNull when nested)</td>
+    </tr>
+    <tr>
+      <td>bool</td>
+      <td>java.lang.Boolean</td>
+      <td>NSNumber numberWithBool:</td>
+    </tr>
+    <tr>
+      <td>int</td>
+      <td>java.lang.Integer</td>
+      <td>NSNumber numberWithInt:</td>
+    </tr>
+    <tr>
+      <td>int, if 32 bits not enough</td>
+      <td>java.lang.Long</td>
+      <td>NSNumber numberWithLong:</td>
+    </tr>
+    <tr>
+      <td>double</td>
+      <td>java.lang.Double</td>
+      <td>NSNumber numberWithDouble:</td>
+    </tr>
+    <tr>
+      <td>String</td>
+      <td>java.lang.String</td>
+      <td>NSString</td>
+    </tr>
+    <tr>
+      <td>Uint8List</td>
+      <td>byte[]</td>
+      <td>FlutterStandardTypedData typedDataWithBytes:</td>
+    </tr>
+    <tr>
+      <td>Int32List</td>
+      <td>int[]</td>
+      <td>FlutterStandardTypedData typedDataWithInt32:</td>
+    </tr>
+    <tr>
+      <td>Int64List</td>
+      <td>long[]</td>
+      <td>FlutterStandardTypedData typedDataWithInt64:</td>
+    </tr>
+    <tr>
+      <td>Float64List</td>
+      <td>double[]</td>
+      <td>FlutterStandardTypedData typedDataWithFloat64:</td>
+    </tr>
+    <tr>
+      <td>List</td>
+      <td>java.util.ArrayList</td>
+      <td>NSArray</td>
+    </tr>
+    <tr>
+      <td>Map</td>
+      <td>java.util.HashMap</td>
+      <td>NSDictionary</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br></p>
+<h2 id="example">
+<a id="example-calling-platform-specific-ios-and-android-code-using-platform-channels" class="anchor" href="#example-calling-platform-specific-ios-and-android-code-using-platform-channels" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example: Calling platform-specific iOS and Android code using platform channels</h2>
+
+<p>The following demonstrates how to call a platform-specific API to retrieve and
+display the current battery level. It uses the Android <code class="highlighter-rouge">BatteryManager</code> API, and
+the iOS <code class="highlighter-rouge">device.batteryLevel</code> API, via a single platform message,
+<code class="highlighter-rouge">getBatteryLevel</code>.</p>
+
+<p>The example adds the platform-specific code inside the main app itself. If you
+want to reuse the platform-specific code for multiple apps, the project creation
+step is slightly different (see <a href="/docs/development/packages-and-plugins/developing-packages#plugin">developing
+packages</a>),
+but the platform channel code is still written in the same way.</p>
+
+<p><em>Note</em>: The full, runnable source-code for this example is available in
+<a href="https://github.com/flutter/flutter/tree/master/examples/platform_channel"><code class="highlighter-rouge">/examples/platform_channel/</code></a>
+for Android with Java and iOS with Objective-C. For iOS with Swift, see
+<a href="https://github.com/flutter/flutter/tree/master/examples/platform_channel_swift"><code class="highlighter-rouge">/examples/platform_channel_swift/</code></a>.</p>
+
+<h3 id="example-project">
+<a id="step-1-create-a-new-app-project" class="anchor" href="#step-1-create-a-new-app-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 1: Create a new app project</h3>
+
+<p>Start by creating a new app:</p>
+
+<ul>
+  <li>In a terminal run: <code class="highlighter-rouge">flutter create batterylevel</code>
+</li>
+</ul>
+
+<p>By default our template supports writing Android code using Java, or iOS code
+using Objective-C. To use Kotlin or Swift, use the <code class="highlighter-rouge">-i</code> and/or <code class="highlighter-rouge">-a</code> flags:</p>
+
+<ul>
+  <li>In a terminal run: <code class="highlighter-rouge">flutter create -i swift -a kotlin batterylevel</code>
+</li>
+</ul>
+
+<h3 id="example-client">
+<a id="step-2-create-the-flutter-platform-client" class="anchor" href="#step-2-create-the-flutter-platform-client" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 2: Create the Flutter platform client</h3>
+
+<p>The app’s <code class="highlighter-rouge">State</code> class holds the current app state. We need to extend that to
+hold the current battery state.</p>
+
+<p>First, we construct the channel. We use a <code class="highlighter-rouge">MethodChannel</code> with a single
+platform method that returns the battery level.</p>
+
+<p>The client and host sides of a channel are connected through a channel name
+passed in the channel constructor. All channel names used in a single app must
+be unique; we recommend prefixing the channel name with a unique ‘domain
+prefix’, e.g. <code class="highlighter-rouge">samples.flutter.io/battery</code>.</p>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="s">'dart:async'</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="s">'package:flutter/material.dart'</span><span class="o">;</span>
+<span class="kn">import</span> <span class="s">'package:flutter/services.dart'</span><span class="o">;</span>
+<span class="o">...</span>
+<span class="kd">class</span> <span class="nc">_MyHomePageState</span> <span class="kd">extends</span> <span class="n">State</span><span class="o">&lt;</span><span class="n">MyHomePage</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="kd">static</span> <span class="kd">const</span> <span class="n">platform</span> <span class="o">=</span> <span class="kd">const</span> <span class="n">MethodChannel</span><span class="o">(</span><span class="s">'samples.flutter.io/battery'</span><span class="o">);</span>
+
+  <span class="c1">// Get battery level.</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Next, invoke a method on the method channel, specifying the concrete method
+to call via the String identifier <code class="highlighter-rouge">getBatteryLevel</code>. The call may fail—for
+example if the platform does not support the platform API (such as when running
+in a simulator), so wrap the <code class="highlighter-rouge">invokeMethod</code> call in a try-catch statement.</p>
+
+<p>Use the returned result to update the user interface state in <code class="highlighter-rouge">_batteryLevel</code>
+inside <code class="highlighter-rouge">setState</code>.</p>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">// Get battery level.</span>
+  <span class="kt">String</span> <span class="n">_batteryLevel</span> <span class="o">=</span> <span class="s">'Unknown battery level.'</span><span class="o">;</span>
+
+  <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">_getBatteryLevel</span><span class="o">()</span> <span class="n">async</span> <span class="o">{</span>
+    <span class="kt">String</span> <span class="n">batteryLevel</span><span class="o">;</span>
+    <span class="k">try</span> <span class="o">{</span>
+      <span class="kd">final</span> <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">await</span> <span class="n">platform</span><span class="o">.</span><span class="na">invokeMethod</span><span class="o">(</span><span class="s">'getBatteryLevel'</span><span class="o">);</span>
+      <span class="n">batteryLevel</span> <span class="o">=</span> <span class="s">'Battery level at </span><span class="si">$result</span><span class="s"> % .'</span><span class="o">;</span>
+    <span class="o">}</span> <span class="n">on</span> <span class="n">PlatformException</span> <span class="k">catch</span> <span class="o">(</span><span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">batteryLevel</span> <span class="o">=</span> <span class="s">"Failed to get battery level: '</span><span class="si">${e.message}</span><span class="s">'."</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="n">setState</span><span class="o">(()</span> <span class="o">{</span>
+      <span class="n">_batteryLevel</span> <span class="o">=</span> <span class="n">batteryLevel</span><span class="o">;</span>
+    <span class="o">});</span>
+  <span class="o">}</span>
+</code></pre></div></div>
+
+<p>Finally, replace the <code class="highlighter-rouge">build</code> method from the template to contain a small user
+interface that displays the battery state in a string, and a button for
+refreshing the value.</p>
+
+<!-- skip -->
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@override</span>
+<span class="n">Widget</span> <span class="nf">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">Material</span><span class="o">(</span>
+    <span class="nl">child:</span> <span class="n">Center</span><span class="o">(</span>
+      <span class="nl">child:</span> <span class="n">Column</span><span class="o">(</span>
+        <span class="nl">mainAxisAlignment:</span> <span class="n">MainAxisAlignment</span><span class="o">.</span><span class="na">spaceEvenly</span><span class="o">,</span>
+        <span class="nl">children:</span> <span class="o">[</span>
+          <span class="n">RaisedButton</span><span class="o">(</span>
+            <span class="nl">child:</span> <span class="n">Text</span><span class="o">(</span><span class="s">'Get Battery Level'</span><span class="o">),</span>
+            <span class="nl">onPressed:</span> <span class="n">_getBatteryLevel</span><span class="o">,</span>
+          <span class="o">),</span>
+          <span class="n">Text</span><span class="o">(</span><span class="n">_batteryLevel</span><span class="o">),</span>
+        <span class="o">],</span>
+      <span class="o">),</span>
+    <span class="o">),</span>
+  <span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="example-java">
+<a id="step-3a-add-an-android-platform-specific-implementation-using-java" class="anchor" href="#step-3a-add-an-android-platform-specific-implementation-using-java" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 3a: Add an Android platform-specific implementation using Java</h3>
+
+<p><em>Note</em>: The following steps use Java. If you prefer Kotlin, skip to step
+3b.</p>
+
+<p>Start by opening the Android host portion of your Flutter app in Android Studio:</p>
+
+<ol>
+  <li>
+    <p>Start Android Studio</p>
+  </li>
+  <li>
+    <p>Select the menu item ‘File &gt; Open…’</p>
+  </li>
+  <li>
+    <p>Navigate to the directory holding your Flutter app, and select the <code class="highlighter-rouge">android</code>
+folder inside it. Click OK.</p>
+  </li>
+  <li>
+    <p>Open the file <code class="highlighter-rouge">MainActivity.java</code> located in the <code class="highlighter-rouge">java</code> folder in the Project
+view.</p>
+  </li>
+</ol>
+
+<p>Next, create a <code class="highlighter-rouge">MethodChannel</code> and set a <code class="highlighter-rouge">MethodCallHandler</code> inside the
+<code class="highlighter-rouge">onCreate</code> method. Make sure to use the same channel name as was used on the
+Flutter client side.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">io.flutter.app.FlutterActivity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">io.flutter.plugin.common.MethodCall</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">io.flutter.plugin.common.MethodChannel</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">io.flutter.plugin.common.MethodChannel.MethodCallHandler</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">io.flutter.plugin.common.MethodChannel.Result</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainActivity</span> <span class="kd">extends</span> <span class="n">FlutterActivity</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">CHANNEL</span> <span class="o">=</span> <span class="s">"samples.flutter.io/battery"</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+        <span class="n">GeneratedPluginRegistrant</span><span class="o">.</span><span class="na">registerWith</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+
+        <span class="k">new</span> <span class="nf">MethodChannel</span><span class="o">(</span><span class="n">getFlutterView</span><span class="o">(),</span> <span class="n">CHANNEL</span><span class="o">).</span><span class="na">setMethodCallHandler</span><span class="o">(</span>
+                <span class="k">new</span> <span class="nf">MethodCallHandler</span><span class="o">()</span> <span class="o">{</span>
+                    <span class="nd">@Override</span>
+                    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onMethodCall</span><span class="o">(</span><span class="n">MethodCall</span> <span class="n">call</span><span class="o">,</span> <span class="n">Result</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="c1">// TODO</span>
+                    <span class="o">}</span>
+                <span class="o">});</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Next, we add the actual Android Java code that uses the Android battery APIs to
+retrieve the battery level. This code is exactly the same as you would have
+written in a native Android app.</p>
+
+<p>First, add the needed imports at the top of the file:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import android.content.ContextWrapper;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.BatteryManager;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
+import android.os.Bundle;
+</code></pre></div></div>
+
+<p>Then add the following as a new method in the activity class, below the <code class="highlighter-rouge">onCreate</code>
+method:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">int</span> <span class="nf">getBatteryLevel</span><span class="o">()</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">batteryLevel</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">VERSION</span><span class="o">.</span><span class="na">SDK_INT</span> <span class="o">&gt;=</span> <span class="n">VERSION_CODES</span><span class="o">.</span><span class="na">LOLLIPOP</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">BatteryManager</span> <span class="n">batteryManager</span> <span class="o">=</span> <span class="o">(</span><span class="n">BatteryManager</span><span class="o">)</span> <span class="n">getSystemService</span><span class="o">(</span><span class="n">BATTERY_SERVICE</span><span class="o">);</span>
+    <span class="n">batteryLevel</span> <span class="o">=</span> <span class="n">batteryManager</span><span class="o">.</span><span class="na">getIntProperty</span><span class="o">(</span><span class="n">BatteryManager</span><span class="o">.</span><span class="na">BATTERY_PROPERTY_CAPACITY</span><span class="o">);</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="n">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ContextWrapper</span><span class="o">(</span><span class="n">getApplicationContext</span><span class="o">()).</span>
+        <span class="n">registerReceiver</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="k">new</span> <span class="n">IntentFilter</span><span class="o">(</span><span class="n">Intent</span><span class="o">.</span><span class="na">ACTION_BATTERY_CHANGED</span><span class="o">));</span>
+    <span class="n">batteryLevel</span> <span class="o">=</span> <span class="o">(</span><span class="n">intent</span><span class="o">.</span><span class="na">getIntExtra</span><span class="o">(</span><span class="n">BatteryManager</span><span class="o">.</span><span class="na">EXTRA_LEVEL</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">*</span> <span class="mi">100</span><span class="o">)</span> <span class="o">/</span>
+        <span class="n">intent</span><span class="o">.</span><span class="na">getIntExtra</span><span class="o">(</span><span class="n">BatteryManager</span><span class="o">.</span><span class="na">EXTRA_SCALE</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="k">return</span> <span class="n">batteryLevel</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Finally, complete the <code class="highlighter-rouge">onMethodCall</code> method added earlier. You need to
+handle a single platform method, <code class="highlighter-rouge">getBatteryLevel</code>, so test for that in the
+<code class="highlighter-rouge">call</code> argument. The implementation of this platform method simply calls the
+Android code written in the previous step, and passes back a response for both
+the success and error cases using the <code class="highlighter-rouge">response</code> argument. If an unknown method
+is called, report that instead. Replace:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">onMethodCall</span><span class="o">(</span><span class="n">MethodCall</span> <span class="n">call</span><span class="o">,</span> <span class="n">Result</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// TODO</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>with:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">onMethodCall</span><span class="o">(</span><span class="n">MethodCall</span> <span class="n">call</span><span class="o">,</span> <span class="n">Result</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">call</span><span class="o">.</span><span class="na">method</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"getBatteryLevel"</span><span class="o">))</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">batteryLevel</span> <span class="o">=</span> <span class="n">getBatteryLevel</span><span class="o">();</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">batteryLevel</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">result</span><span class="o">.</span><span class="na">success</span><span class="o">(</span><span class="n">batteryLevel</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">result</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">"UNAVAILABLE"</span><span class="o">,</span> <span class="s">"Battery level not available."</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="n">result</span><span class="o">.</span><span class="na">notImplemented</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>You should now be able to run the app on Android. If you are using the Android
+Emulator, you can set the battery level in the Extended Controls panel
+accessible from the <code class="highlighter-rouge">...</code> button in the toolbar.</p>
+
+<h3 id="example-kotlin">
+<a id="step-3b-add-an-android-platform-specific-implementation-using-kotlin" class="anchor" href="#step-3b-add-an-android-platform-specific-implementation-using-kotlin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 3b: Add an Android platform-specific implementation using Kotlin</h3>
+
+<p><em>Note</em>: The following steps are similar to step 3a, only using Kotlin rather than
+Java.</p>
+
+<p>This step assumes that you created your project in <a href="#example-project">step 1.</a>
+using the <code class="highlighter-rouge">-a kotlin</code> option.</p>
+
+<p>Start by opening the Android host portion of your Flutter app in Android Studio:</p>
+
+<ol>
+  <li>
+    <p>Start Android Studio</p>
+  </li>
+  <li>
+    <p>Select the menu item ‘File &gt; Open…’</p>
+  </li>
+  <li>
+    <p>Navigate to the directory holding your Flutter app, and select the <code class="highlighter-rouge">android</code>
+folder inside it. Click OK.</p>
+  </li>
+  <li>
+    <p>Open the file <code class="highlighter-rouge">MainActivity.kt</code> located in the <code class="highlighter-rouge">kotlin</code> folder in the Project
+view. (Note: If you are editing using Android Studio 2.3, note that the
+‘kotlin’ folder is shown as-if named ‘java’.)</p>
+  </li>
+</ol>
+
+<p>Next, inside the <code class="highlighter-rouge">onCreate</code> method, create a <code class="highlighter-rouge">MethodChannel</code> and call
+<code class="highlighter-rouge">setMethodCallHandler</code>. Make sure to use the same channel name as was used on
+the Flutter client side.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">android.os.Bundle</span>
+<span class="k">import</span> <span class="nn">io.flutter.app.FlutterActivity</span>
+<span class="k">import</span> <span class="nn">io.flutter.plugin.common.MethodChannel</span>
+
+<span class="kd">class</span> <span class="nc">MainActivity</span><span class="p">()</span> <span class="p">:</span> <span class="nc">FlutterActivity</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">private</span> <span class="kd">val</span> <span class="py">CHANNEL</span> <span class="p">=</span> <span class="s">"samples.flutter.io/battery"</span>
+
+  <span class="k">override</span> <span class="k">fun</span> <span class="nf">onCreate</span><span class="p">(</span><span class="nv">savedInstanceState</span><span class="p">:</span> <span class="nc">Bundle</span><span class="p">?)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">.</span><span class="n">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+
+    <span class="n">GeneratedPluginRegistrant</span><span class="p">.</span><span class="n">registerWith</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+    <span class="n">MethodChannel</span><span class="p">(</span><span class="n">flutterView</span><span class="p">,</span> <span class="n">CHANNEL</span><span class="p">).</span><span class="n">setMethodCallHandler</span> <span class="p">{</span> <span class="n">call</span><span class="p">,</span> <span class="n">result</span> <span class="p">-&gt;</span>
+      <span class="c1">// TODO</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Next, add the actual Android Kotlin code that uses the Android battery APIs to
+retrieve the battery level. This code is exactly the same as you would have
+written in a native Android app.</p>
+
+<p>First, add the needed imports at the top of the file:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import android.content.Context
+import android.content.ContextWrapper
+import android.content.Intent
+import android.content.IntentFilter
+import android.os.BatteryManager
+import android.os.Build.VERSION
+import android.os.Build.VERSION_CODES
+</code></pre></div></div>
+
+<p>Next, add the following as a new method in the <code class="highlighter-rouge">MainActivity</code> class, below the <code class="highlighter-rouge">onCreate</code>
+method:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">private</span> <span class="k">fun</span> <span class="nf">getBatteryLevel</span><span class="p">():</span> <span class="nc">Int</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">batteryLevel</span><span class="p">:</span> <span class="n">Int</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">VERSION</span><span class="p">.</span><span class="n">SDK_INT</span> <span class="p">&gt;=</span> <span class="n">VERSION_CODES</span><span class="p">.</span><span class="n">LOLLIPOP</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">val</span> <span class="py">batteryManager</span> <span class="p">=</span> <span class="n">getSystemService</span><span class="p">(</span><span class="n">Context</span><span class="p">.</span><span class="n">BATTERY_SERVICE</span><span class="p">)</span> <span class="k">as</span> <span class="n">BatteryManager</span>
+      <span class="n">batteryLevel</span> <span class="p">=</span> <span class="n">batteryManager</span><span class="p">.</span><span class="n">getIntProperty</span><span class="p">(</span><span class="n">BatteryManager</span><span class="p">.</span><span class="n">BATTERY_PROPERTY_CAPACITY</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="kd">val</span> <span class="py">intent</span> <span class="p">=</span> <span class="n">ContextWrapper</span><span class="p">(</span><span class="n">applicationContext</span><span class="p">).</span><span class="n">registerReceiver</span><span class="p">(</span><span class="k">null</span><span class="p">,</span> <span class="n">IntentFilter</span><span class="p">(</span><span class="n">Intent</span><span class="p">.</span><span class="n">ACTION_BATTERY_CHANGED</span><span class="p">))</span>
+      <span class="n">batteryLevel</span> <span class="p">=</span> <span class="n">intent</span><span class="o">!!</span><span class="p">.</span><span class="n">getIntExtra</span><span class="p">(</span><span class="n">BatteryManager</span><span class="p">.</span><span class="n">EXTRA_LEVEL</span><span class="p">,</span> <span class="p">-</span><span class="m">1</span><span class="p">)</span> <span class="p">*</span> <span class="m">100</span> <span class="p">/</span> <span class="n">intent</span><span class="p">.</span><span class="n">getIntExtra</span><span class="p">(</span><span class="n">BatteryManager</span><span class="p">.</span><span class="n">EXTRA_SCALE</span><span class="p">,</span> <span class="p">-</span><span class="m">1</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">batteryLevel</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Finally, complete the <code class="highlighter-rouge">onMethodCall</code> method added earlier. You need to
+handle a single platform method, <code class="highlighter-rouge">getBatteryLevel</code>, so test for that in the
+<code class="highlighter-rouge">call</code> argument. The implementation of this platform method simply calls the
+Android code written in the previous step, and passes back a response for both
+the success and error cases using the <code class="highlighter-rouge">response</code> argument. If an unknown method
+is called, report that instead. Replace:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">MethodChannel</span><span class="p">(</span><span class="n">flutterView</span><span class="p">,</span> <span class="n">CHANNEL</span><span class="p">).</span><span class="n">setMethodCallHandler</span> <span class="p">{</span> <span class="n">call</span><span class="p">,</span> <span class="n">result</span> <span class="p">-&gt;</span>
+      <span class="c1">// TODO</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>with:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">MethodChannel</span><span class="p">(</span><span class="n">flutterView</span><span class="p">,</span> <span class="n">CHANNEL</span><span class="p">).</span><span class="n">setMethodCallHandler</span> <span class="p">{</span> <span class="n">call</span><span class="p">,</span> <span class="n">result</span> <span class="p">-&gt;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">call</span><span class="p">.</span><span class="n">method</span> <span class="p">==</span> <span class="s">"getBatteryLevel"</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">val</span> <span class="py">batteryLevel</span> <span class="p">=</span> <span class="n">getBatteryLevel</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">batteryLevel</span> <span class="p">!=</span> <span class="p">-</span><span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+          <span class="n">result</span><span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="n">batteryLevel</span><span class="p">)</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+          <span class="n">result</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s">"UNAVAILABLE"</span><span class="p">,</span> <span class="s">"Battery level not available."</span><span class="p">,</span> <span class="k">null</span><span class="p">)</span>
+        <span class="p">}</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">result</span><span class="p">.</span><span class="n">notImplemented</span><span class="p">()</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>You should now be able to run the app on Android. If you are using the Android
+Emulator, you can set the battery level in the Extended Controls panel
+accessible from the <code class="highlighter-rouge">...</code> button in the toolbar.</p>
+
+<h3 id="example-objc">
+<a id="step-4a-add-an-ios-platform-specific-implementation-using-objective-c" class="anchor" href="#step-4a-add-an-ios-platform-specific-implementation-using-objective-c" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 4a: Add an iOS platform-specific implementation using Objective-C</h3>
+
+<p><em>Note</em>: The following steps use Objective-C. If you prefer Swift, skip to step
+4b.</p>
+
+<p>Start by opening the iOS host portion of your Flutter app in Xcode:</p>
+
+<ol>
+  <li>
+    <p>Start Xcode</p>
+  </li>
+  <li>
+    <p>Select the menu item ‘File &gt; Open…’</p>
+  </li>
+  <li>
+    <p>Navigate to the directory holding your Flutter app, and select the <code class="highlighter-rouge">ios</code>
+folder inside it. Click OK.</p>
+  </li>
+  <li>
+    <p>Make sure the Xcode projects builds without errors.</p>
+  </li>
+  <li>
+    <p>Open the file <code class="highlighter-rouge">AppDelegate.m</code> located under Runner &gt; Runner in the Project
+navigator.</p>
+  </li>
+</ol>
+
+<p>Next, create a <code class="highlighter-rouge">FlutterMethodChannel</code> and add a handler inside the <code class="highlighter-rouge">application
+didFinishLaunchingWithOptions:</code> method. Make sure to use the same channel name
+as was used on the Flutter client side.</p>
+
+<div class="language-objectivec highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#import &lt;Flutter/Flutter.h&gt;
+#import "GeneratedPluginRegistrant.h"
+</span>
+<span class="k">@implementation</span> <span class="nc">AppDelegate</span>
+<span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">application</span><span class="p">:(</span><span class="n">UIApplication</span><span class="o">*</span><span class="p">)</span><span class="nv">application</span> <span class="nf">didFinishLaunchingWithOptions</span><span class="p">:(</span><span class="n">NSDictionary</span><span class="o">*</span><span class="p">)</span><span class="nv">launchOptions</span> <span class="p">{</span>
+  <span class="n">FlutterViewController</span><span class="o">*</span> <span class="n">controller</span> <span class="o">=</span> <span class="p">(</span><span class="n">FlutterViewController</span><span class="o">*</span><span class="p">)</span><span class="n">self</span><span class="p">.</span><span class="n">window</span><span class="p">.</span><span class="n">rootViewController</span><span class="p">;</span>
+
+  <span class="n">FlutterMethodChannel</span><span class="o">*</span> <span class="n">batteryChannel</span> <span class="o">=</span> <span class="p">[</span><span class="n">FlutterMethodChannel</span>
+                                          <span class="nf">methodChannelWithName</span><span class="p">:</span><span class="s">@"samples.flutter.io/battery"</span>
+                                          <span class="nf">binaryMessenger</span><span class="p">:</span><span class="n">controller</span><span class="p">];</span>
+
+  <span class="p">[</span><span class="n">batteryChannel</span> <span class="nf">setMethodCallHandler</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">FlutterMethodCall</span><span class="o">*</span> <span class="n">call</span><span class="p">,</span> <span class="n">FlutterResult</span> <span class="n">result</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// TODO</span>
+  <span class="p">}];</span>
+
+  <span class="p">[</span><span class="n">GeneratedPluginRegistrant</span> <span class="nf">registerWithRegistry</span><span class="p">:</span><span class="n">self</span><span class="p">];</span>
+  <span class="k">return</span> <span class="p">[</span><span class="n">super</span> <span class="nf">application</span><span class="p">:</span><span class="n">application</span> <span class="nf">didFinishLaunchingWithOptions</span><span class="p">:</span><span class="n">launchOptions</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Next, add the actual iOS ObjectiveC code that uses the iOS battery APIs to
+retrieve the battery level. This code is exactly the same as you would have
+written in a native iOS app.</p>
+
+<p>Add the following as a new method in the <code class="highlighter-rouge">AppDelegate</code> class, just before <code class="highlighter-rouge">@end</code>:</p>
+
+<div class="language-objectivec highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">getBatteryLevel</span> <span class="p">{</span>
+  <span class="n">UIDevice</span><span class="o">*</span> <span class="n">device</span> <span class="o">=</span> <span class="n">UIDevice</span><span class="p">.</span><span class="n">currentDevice</span><span class="p">;</span>
+  <span class="n">device</span><span class="p">.</span><span class="n">batteryMonitoringEnabled</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">device</span><span class="p">.</span><span class="n">batteryState</span> <span class="o">==</span> <span class="n">UIDeviceBatteryStateUnknown</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">device</span><span class="p">.</span><span class="n">batteryLevel</span> <span class="o">*</span> <span class="mi">100</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Finally, complete the <code class="highlighter-rouge">setMethodCallHandler</code> method added earlier. You need
+to handle a single platform method, <code class="highlighter-rouge">getBatteryLevel</code>, so test for that in
+the <code class="highlighter-rouge">call</code> argument. The implementation of this platform method simply calls the
+iOS code written in the previous step, and passes back a response for both
+the success and error cases using the <code class="highlighter-rouge">result</code> argument. If an unknown method
+is called, report that instead.</p>
+
+<div class="language-objectivec highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">__weak</span> <span class="nf">typeof</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="n">weakSelf</span> <span class="o">=</span> <span class="n">self</span>
+<span class="p">[</span><span class="n">batteryChannel</span> <span class="nf">setMethodCallHandler</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">FlutterMethodCall</span><span class="o">*</span> <span class="n">call</span><span class="p">,</span> <span class="n">FlutterResult</span> <span class="n">result</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">([</span><span class="s">@"getBatteryLevel"</span> <span class="nf">isEqualToString</span><span class="p">:</span><span class="n">call</span><span class="p">.</span><span class="n">method</span><span class="p">])</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">batteryLevel</span> <span class="o">=</span> <span class="p">[</span><span class="n">weakSelf</span> <span class="nf">getBatteryLevel</span><span class="p">];</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">batteryLevel</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">result</span><span class="p">([</span><span class="n">FlutterError</span> <span class="nf">errorWithCode</span><span class="p">:</span><span class="s">@"UNAVAILABLE"</span>
+                                 <span class="nf">message</span><span class="p">:</span><span class="s">@"Battery info unavailable"</span>
+                                 <span class="nl">details:</span><span class="nb">nil</span><span class="p">]);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">result</span><span class="p">(</span><span class="err">@</span><span class="p">(</span><span class="n">batteryLevel</span><span class="p">));</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">result</span><span class="p">(</span><span class="n">FlutterMethodNotImplemented</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}];</span>
+</code></pre></div></div>
+
+<p>You should now be able to run the app on iOS. If you are using the iOS
+Simulator, note that it does not support battery APIs, and the app will thus
+display ‘battery info unavailable’.</p>
+
+<h3 id="example-swift">
+<a id="step-4b-add-an-ios-platform-specific-implementation-using-swift" class="anchor" href="#step-4b-add-an-ios-platform-specific-implementation-using-swift" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 4b: Add an iOS platform-specific implementation using Swift</h3>
+
+<p><em>Note</em>: The following steps are similar to step 4a, only using Swift rather than
+Objective-C.</p>
+
+<p>This step assumes that you created your project in <a href="#example-project">step 1.</a>
+using the <code class="highlighter-rouge">-i swift</code> option.</p>
+
+<p>Start by opening the iOS host portion of your Flutter app in Xcode:</p>
+
+<ol>
+  <li>
+    <p>Start Xcode</p>
+  </li>
+  <li>
+    <p>Select the menu item ‘File &gt; Open…’</p>
+  </li>
+  <li>
+    <p>Navigate to the directory holding your Flutter app, and select the <code class="highlighter-rouge">ios</code>
+folder inside it. Click OK.</p>
+  </li>
+</ol>
+
+<p>Next, add support for Swift in the standard template setup that uses
+Objective-C:</p>
+
+<ol>
+  <li>
+    <p>Expand Runner &gt; Runner in the Project navigator.</p>
+  </li>
+  <li>
+    <p>Open the file <code class="highlighter-rouge">AppDelegate.swift</code> located under Runner &gt; Runner in the Project
+navigator.</p>
+  </li>
+</ol>
+
+<p>Next, override the <code class="highlighter-rouge">application:didFinishLaunchingWithOptions:</code> function and create
+a <code class="highlighter-rouge">FlutterMethodChannel</code> tied to the channel name <code class="highlighter-rouge">samples.flutter.io/battery</code>:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">@UIApplicationMain</span>
+<span class="kd">@objc</span> <span class="kd">class</span> <span class="kt">AppDelegate</span><span class="p">:</span> <span class="kt">FlutterAppDelegate</span> <span class="p">{</span>
+  <span class="k">override</span> <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span>
+    <span class="n">didFinishLaunchingWithOptions</span> <span class="nv">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIApplicationLaunchOptionsKey</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+
+    <span class="k">let</span> <span class="nv">controller</span> <span class="p">:</span> <span class="kt">FlutterViewController</span> <span class="o">=</span> <span class="n">window</span><span class="p">?</span><span class="o">.</span><span class="n">rootViewController</span> <span class="k">as!</span> <span class="kt">FlutterViewController</span>
+    <span class="k">let</span> <span class="nv">batteryChannel</span> <span class="o">=</span> <span class="kt">FlutterMethodChannel</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"samples.flutter.io/battery"</span><span class="p">,</span>
+                                              <span class="nv">binaryMessenger</span><span class="p">:</span> <span class="n">controller</span><span class="p">)</span>
+    <span class="n">batteryChannel</span><span class="o">.</span><span class="nf">setMethodCallHandler</span><span class="p">({</span>
+      <span class="p">(</span><span class="nv">call</span><span class="p">:</span> <span class="kt">FlutterMethodCall</span><span class="p">,</span> <span class="nv">result</span><span class="p">:</span> <span class="kt">FlutterResult</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span> <span class="k">in</span>
+      <span class="c1">// Handle battery messages.</span>
+    <span class="p">})</span>
+
+    <span class="kt">GeneratedPluginRegistrant</span><span class="o">.</span><span class="nf">register</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="k">self</span><span class="p">)</span>
+    <span class="k">return</span> <span class="k">super</span><span class="o">.</span><span class="nf">application</span><span class="p">(</span><span class="n">application</span><span class="p">,</span> <span class="nv">didFinishLaunchingWithOptions</span><span class="p">:</span> <span class="n">launchOptions</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Next, add the actual iOS Swift code that uses the iOS battery APIs to retrieve
+the battery level. This code is exactly the same as you would have written in a
+native iOS app.</p>
+
+<p>Add the following as a new method at the bottom of <code class="highlighter-rouge">AppDelegate.swift</code>:</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">receiveBatteryLevel</span><span class="p">(</span><span class="nv">result</span><span class="p">:</span> <span class="kt">FlutterResult</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">let</span> <span class="nv">device</span> <span class="o">=</span> <span class="kt">UIDevice</span><span class="o">.</span><span class="n">current</span>
+  <span class="n">device</span><span class="o">.</span><span class="n">isBatteryMonitoringEnabled</span> <span class="o">=</span> <span class="kc">true</span>
+  <span class="k">if</span> <span class="n">device</span><span class="o">.</span><span class="n">batteryState</span> <span class="o">==</span> <span class="kt">UIDeviceBatteryState</span><span class="o">.</span><span class="n">unknown</span> <span class="p">{</span>
+    <span class="nf">result</span><span class="p">(</span><span class="kt">FlutterError</span><span class="p">(</span><span class="nv">code</span><span class="p">:</span> <span class="s">"UNAVAILABLE"</span><span class="p">,</span>
+                        <span class="nv">message</span><span class="p">:</span> <span class="s">"Battery info unavailable"</span><span class="p">,</span>
+                        <span class="nv">details</span><span class="p">:</span> <span class="kc">nil</span><span class="p">))</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nf">result</span><span class="p">(</span><span class="kt">Int</span><span class="p">(</span><span class="n">device</span><span class="o">.</span><span class="n">batteryLevel</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Finally, complete the <code class="highlighter-rouge">setMethodCallHandler</code> method added earlier. You need
+to handle a single platform method, <code class="highlighter-rouge">getBatteryLevel</code>, so test for that in
+the <code class="highlighter-rouge">call</code> argument. The implementation of this platform method simply calls the
+iOS code written in the previous step. If an unknown method
+is called, report that instead.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">batteryChannel</span><span class="o">.</span><span class="nf">setMethodCallHandler</span><span class="p">({</span>
+  <span class="p">[</span><span class="k">weak</span> <span class="k">self</span><span class="p">]</span> <span class="p">(</span><span class="nv">call</span><span class="p">:</span> <span class="kt">FlutterMethodCall</span><span class="p">,</span> <span class="nv">result</span><span class="p">:</span> <span class="kt">FlutterResult</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span> <span class="k">in</span>
+  <span class="k">guard</span> <span class="n">call</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s">"getBatteryLevel"</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nf">result</span><span class="p">(</span><span class="kt">FlutterMethodNotImplemented</span><span class="p">)</span>
+    <span class="k">return</span>
+  <span class="p">}</span>
+  <span class="k">self</span><span class="p">?</span><span class="o">.</span><span class="nf">receiveBatteryLevel</span><span class="p">(</span><span class="nv">result</span><span class="p">:</span> <span class="n">result</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>You should now be able to run the app on iOS. If you are using the iOS
+Simulator, note that it does not support battery APIs, and the app
+displays ‘Battery info unavailable.’.</p>
+
+<h2 id="separate">
+<a id="separate-platform-specific-code-from-ui-code" class="anchor" href="#separate-platform-specific-code-from-ui-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Separate platform-specific code from UI code</h2>
+
+<p>If you expect to use your platform-specific code in multiple Flutter apps, it
+can be useful to separate the code into a platform plugin located in a directory
+outside your main application. See <a href="/docs/development/packages-and-plugins/developing-packages">developing
+packages</a> for details.</p>
+
+<h2 id="publish">
+<a id="publish-platform-specific-code-as-a-package" class="anchor" href="#publish-platform-specific-code-as-a-package" aria-hidden="true"><span class="octicon octicon-link"></span></a>Publish platform-specific code as a package</h2>
+
+<p>If you wish to share your platform-specific with other developers in the Flutter
+ecosystem, please see <a href="/docs/development/packages-and-plugins/developing-packages#publish">publishing
+packages</a> for details.</p>
+
+<h2 id="custom-channels-and-codecs">
+<a id="custom-channels-and-codecs" class="anchor" href="#custom-channels-and-codecs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Custom channels and codecs</h2>
+
+<p>Besides the above mentioned <code class="highlighter-rouge">MethodChannel</code>, you can also use the more plain
+<a href="https://api.flutter.dev/flutter/services/BasicMessageChannel-class.html"><code class="highlighter-rouge">BasicMessageChannel</code></a>, which supports basic, asynchronous
+message passing using a custom message codec. Further, you can use the
+specialized <a href="https://api.flutter.dev/flutter/services/BinaryCodec-class.html"><code class="highlighter-rouge">BinaryCodec</code></a>, <a href="https://api.flutter.dev/flutter/services/StringCodec-class.html"><code class="highlighter-rouge">StringCodec</code></a>, and
+<a href="https://api.flutter.dev/flutter/services/JSONMessageCodec-class.html"><code class="highlighter-rouge">JSONMessageCodec</code></a> classes, or create your own codec.</p>
+
+
+        
+      </div>
+    </main>
+  </div>
+</div>
+<footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 site-footer__wrapper">
+        <div class="site-footer__logo">
+          <img src="/images/flutter-mono-81x100.png" alt="Flutter Logo" width="81" height="100">
+        </div>
+        <div class="site-footer__content">
+          <ul class="site-footer__link-list">
+              <li><a href="https://groups.google.com/forum/#!forum/flutter-dev">flutter-dev@</a></li>
+              <li><a href="/tos">terms</a></li>
+              <li><a href="/security">security</a></li>
+              <li><a href="https://www.google.com/intl/en/policies/privacy">privacy</a></li>
+              <li><a href="https://flutter-es.io/">español</a></li>
+              <li><a href="https://flutter-io.cn" class="text-nowrap">社区中文资源</a></li>
+          </ul>
+
+          <p class="licenses" translation-origin="on">
+            Except as otherwise noted,
+            this work is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0">Creative
+            Commons Attribution 4.0 International License</a>,
+            and code samples are licensed under the BSD License.
+          </p>
+          <p class="licenses" translation-result="off">
+            除非特别说明，否则本站内容采用 <a rel="license" href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0 授权协议</a>，所有范例代码都采用 BSD 授权协议。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- <script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=at3ul57xpub2vk3oxt2ytw365i"></script> -->
+  
+
+<script src="/assets/translator/js/translator.js"></script></body></html>
